@@ -1,0 +1,1454 @@
+{
+  "schema": "cleaner.review_queue/0.1",
+  "package": {
+    "package_id": "cleaner_functions",
+    "package_version": "0.4.0",
+    "review_schema": "0.1",
+    "decision_schema": "0.1"
+  },
+  "run": {
+    "run_id": "azd_mline_20261002T211602",
+    "created_at": "2026-10-02T21:16:02",
+    "script_id": "AZD_M_LINE",
+    "kind": "azd_mline",
+    "raw_report_path": "C:\\Users\\f.tehrani\\Desktop\\My_Tool_Development_Shop\\cleaner_functions_v0_4_azd_review\\azd_mline_report.json"
+  },
+  "profile": {
+    "schema_version": "0.3",
+    "family": "GENERAL_DOCUMENT",
+    "profile_name": "AZD"
+  },
+  "workbook": {
+    "name": "7_AZD_LATEST_GENERAL_DOC_14050707.xlsx",
+    "path": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\Cleaner\\7_AZD_LATEST_GENERAL_DOC_14050707.xlsx",
+    "saved_state": "unsaved"
+  },
+  "summary": {
+    "total_items": 9,
+    "by_status": {
+      "KNOWN_EXCEPTION": 5,
+      "FAIL": 2,
+      "POSSIBLE_EXCEPTION": 2
+    },
+    "pending_review": 0,
+    "resolved": 9,
+    "deferred": 0
+  },
+  "items": [
+    {
+      "review_id": "M_LINE_230KV_SS_A15_AA16_ac2d0e6cb46e",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A15:AA16"
+      },
+      "message": "Known AZD M-line exception: 230KV SS!A15:AA16.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A15:AA16",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          15,
+          16
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "CURRENTLY_ACCEPTED_BY_PROFILE",
+        "note": "The current profile recognizes this exception. Reviewer may keep it, replace it with a repair, or change the rule."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "230KV SS",
+            "target": "A15:AA16",
+            "rows": [
+              15,
+              16
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A15:AA16",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A15:AA16"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A15:AA16",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A15:AA16"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A15:AA16"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A15:AA16",
+          "rows": [
+            15,
+            16
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:22",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A129_AA130_62352a2ce067",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A129:AA130"
+      },
+      "message": "Known AZD M-line exception: 230KV SS!A129:AA130.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A129:AA130",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          129,
+          130
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "CURRENTLY_ACCEPTED_BY_PROFILE",
+        "note": "The current profile recognizes this exception. Reviewer may keep it, replace it with a repair, or change the rule."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "230KV SS",
+            "target": "A129:AA130",
+            "rows": [
+              129,
+              130
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A129:AA130",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A129:AA130"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A129:AA130",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A129:AA130"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A129:AA130"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A129:AA130",
+          "rows": [
+            129,
+            130
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:26",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A197_AA198_a90e9db9f212",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A197:AA198"
+      },
+      "message": "Known AZD M-line exception: 230KV SS!A197:AA198.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A197:AA198",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          197,
+          198
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "CURRENTLY_ACCEPTED_BY_PROFILE",
+        "note": "The current profile recognizes this exception. Reviewer may keep it, replace it with a repair, or change the rule."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "230KV SS",
+            "target": "A197:AA198",
+            "rows": [
+              197,
+              198
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A197:AA198",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A197:AA198"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A197:AA198",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A197:AA198"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A197:AA198"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A197:AA198",
+          "rows": [
+            197,
+            198
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:29",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A341_AA342_b63759071053",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A341:AA342"
+      },
+      "message": "Known AZD M-line exception: 230KV SS!A341:AA342.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A341:AA342",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          341,
+          342
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "CURRENTLY_ACCEPTED_BY_PROFILE",
+        "note": "The current profile recognizes this exception. Reviewer may keep it, replace it with a repair, or change the rule."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "230KV SS",
+            "target": "A341:AA342",
+            "rows": [
+              341,
+              342
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A341:AA342",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A341:AA342"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A341:AA342",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A341:AA342"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "230KV SS",
+            "target": "A341:AA342"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A341:AA342",
+          "rows": [
+            341,
+            342
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:30",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_B9_X10_26b587ac6da5",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "FAIL",
+        "severity": "HIGH"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "B9:X10"
+      },
+      "message": "Unexpected M-line crossing: 63KV SS!B9:X10.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "B9:X10",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          9,
+          10
+        ],
+        "known_exception_rows": [
+          15,
+          16,
+          129,
+          130,
+          197,
+          198,
+          341,
+          342
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "UNRESOLVED_ERROR",
+        "note": "The current profile/test classifies this as an error."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "target": "B9:X10",
+            "rows": [
+              9,
+              10
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "B9:X10",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "B9:X10"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "B9:X10",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "B9:X10"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "B9:X10"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "B9:X10",
+          "rows": [
+            9,
+            10
+          ]
+        },
+        "reason": "Vertical Row",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:50",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A47_X48_3a5e65869df2",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "POSSIBLE_EXCEPTION",
+        "severity": "WARNING"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A47:X48"
+      },
+      "message": "Possible repeated AZD exception: 63KV SS!A47:X48; rows 47-48 match known exception geometry.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A47:X48",
+      "evidence": {
+        "boundary_after_col": 3,
+        "candidate_rows": [
+          47,
+          48
+        ],
+        "signature": [
+          [
+            0,
+            1,
+            -2,
+            21
+          ]
+        ],
+        "learned_from_rows": [
+          129,
+          130
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": {
+          "id": "AZD_MLINE_EXCEPTION_63KV_SS_R47_48",
+          "enabled": true,
+          "reason": "Candidate repeated Category/Type boundary exception discovered from matching known M-line geometry; requires human confirmation.",
+          "match": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "rows": [
+              47,
+              48
+            ]
+          }
+        }
+      },
+      "current_policy": {
+        "state": "CANDIDATE_ONLY",
+        "note": "Similarity was detected but no exception has been approved."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "target": "A47:X48",
+            "rows": [
+              47,
+              48
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A47:X48",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A47:X48"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A47:X48",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A47:X48"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A47:X48"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A47:X48",
+          "rows": [
+            47,
+            48
+          ]
+        },
+        "reason": "Vertical Row",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:39",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A89_X90_d01914e59922",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "POSSIBLE_EXCEPTION",
+        "severity": "WARNING"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A89:X90"
+      },
+      "message": "Possible repeated AZD exception: 63KV SS!A89:X90; rows 89-90 match known exception geometry.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A89:X90",
+      "evidence": {
+        "boundary_after_col": 3,
+        "candidate_rows": [
+          89,
+          90
+        ],
+        "signature": [
+          [
+            0,
+            1,
+            -2,
+            21
+          ]
+        ],
+        "learned_from_rows": [
+          129,
+          130
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": {
+          "id": "AZD_MLINE_EXCEPTION_63KV_SS_R89_90",
+          "enabled": true,
+          "reason": "Candidate repeated Category/Type boundary exception discovered from matching known M-line geometry; requires human confirmation.",
+          "match": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "rows": [
+              89,
+              90
+            ]
+          }
+        }
+      },
+      "current_policy": {
+        "state": "CANDIDATE_ONLY",
+        "note": "Similarity was detected but no exception has been approved."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "target": "A89:X90",
+            "rows": [
+              89,
+              90
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A89:X90",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A89:X90"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A89:X90",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A89:X90"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A89:X90"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A89:X90",
+          "rows": [
+            89,
+            90
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:44",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A129_X130_cefff3b5a3fa",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A129:X130"
+      },
+      "message": "Known AZD M-line exception: 63KV SS!A129:X130.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A129:X130",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          129,
+          130
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "CURRENTLY_ACCEPTED_BY_PROFILE",
+        "note": "The current profile recognizes this exception. Reviewer may keep it, replace it with a repair, or change the rule."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "63KV SS",
+            "target": "A129:X130",
+            "rows": [
+              129,
+              130
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A129:X130",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A129:X130"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A129:X130",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A129:X130"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "63KV SS",
+            "target": "A129:X130"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A129:X130",
+          "rows": [
+            129,
+            130
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:48",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_LINE_A53_X54_34941f69dcbb",
+      "review_state": "RESOLVED",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "FAIL",
+        "severity": "HIGH"
+      },
+      "location": {
+        "sheet": "LINE",
+        "target": "A53:X54"
+      },
+      "message": "Unexpected M-line crossing: LINE!A53:X54.",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A53:X54",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          53,
+          54
+        ],
+        "known_exception_rows": [
+          15,
+          16,
+          129,
+          130,
+          197,
+          198,
+          341,
+          342
+        ]
+      },
+      "machine_suggestion": {
+        "suggested_exception": null
+      },
+      "current_policy": {
+        "state": "UNRESOLVED_ERROR",
+        "note": "The current profile/test classifies this as an error."
+      },
+      "allowed_actions": [
+        {
+          "action": "ACCEPT_EXCEPTION",
+          "description": "Accept this condition as a legitimate exception and later add/update profile exception policy.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "test_id": "M_LINE",
+            "sheet": "LINE",
+            "target": "A53:X54",
+            "rows": [
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "action": "SET_VALUE",
+          "description": "Set a specific cell to a value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "LINE",
+            "target": "A53:X54",
+            "value": null
+          }
+        },
+        {
+          "action": "CLEAR_CELL",
+          "description": "Clear a specific cell later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "LINE",
+            "target": "A53:X54"
+          }
+        },
+        {
+          "action": "REPLACE_VALUE",
+          "description": "Replace an expected old value with a new value later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "LINE",
+            "target": "A53:X54",
+            "expected_old_value": null,
+            "new_value": null
+          }
+        },
+        {
+          "action": "UNMERGE_RANGE",
+          "description": "Unmerge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "LINE",
+            "target": "A53:X54"
+          }
+        },
+        {
+          "action": "MERGE_RANGE",
+          "description": "Merge a range later.",
+          "execution_kind": "WORKBOOK_CHANGE",
+          "parameter_template": {
+            "sheet": "LINE",
+            "target": "A53:X54"
+          }
+        },
+        {
+          "action": "MANUAL_FIX",
+          "description": "Record a human repair instruction not yet represented by a deterministic action.",
+          "execution_kind": "MANUAL",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "PROFILE_CHANGE",
+          "description": "Change the profile/rule definition rather than the workbook.",
+          "execution_kind": "PROFILE_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "TEST_RULE_CHANGE",
+          "description": "Change the discovery/test logic rather than the workbook.",
+          "execution_kind": "TEST_UPDATE",
+          "parameter_template": {
+            "instruction": ""
+          }
+        },
+        {
+          "action": "DEFER",
+          "description": "Leave unresolved for later review.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        },
+        {
+          "action": "DISMISS",
+          "description": "Close the item without creating an exception or repair.",
+          "execution_kind": "NONE",
+          "parameter_template": {}
+        }
+      ],
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "LINE",
+          "target": "A53:X54",
+          "rows": [
+            53,
+            54
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:52",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    }
+  ]
+}

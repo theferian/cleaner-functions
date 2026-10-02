@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.3",
+  "family": "GENERAL_DOCUMENT",
+  "profile_name": "AZD",
+  "workbook": {
+    "expected_sheets": [
+      "230KV SS",
+      "63KV SS",
+      "LINE"
+    ]
+  },
+  "structure": {
+    "m_line": {
+      "enabled": true,
+      "test_id": "M_LINE",
+      "target_sheets": [
+        "230KV SS",
+        "63KV SS",
+        "LINE"
+      ],
+      "boundary_after_col": 3,
+      "boundary_label": "C|D",
+      "discovery": {
+        "title_window": {
+          "row_start": 1,
+          "row_end": 10,
+          "col_start": 1,
+          "col_end": 6
+        }
+      },
+      "candidate_exception_detection": {
+        "enabled": true,
+        "method": "EXACT_CROSSING_GEOMETRY_SIGNATURE"
+      }
+    }
+  },
+  "known_exceptions": [
+    {
+      "id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "enabled": true,
+      "reason": "The AZD General Document Category/Type structure legitimately crosses the generic C|D middle line on these registered rows.",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "*",
+        "rows": [
+          15,
+          16,
+          129,
+          130,
+          197,
+          198,
+          341,
+          342
+        ]
+      },
+      "discovery": {
+        "learn_similarity": true,
+        "method": "EXACT_CROSSING_GEOMETRY_SIGNATURE"
+      }
+    }
+  ],
+  "known_fixes": [],
+  "fields": {},
+  "status_translation": {}
+}

@@ -1,0 +1,230 @@
+# Cleaner Functions v0.3 — AZD M-Line
+
+This package implements the revised architecture:
+
+```text
+Live Excel workbook
+        ↓
+Excel SaveCopyAs
+        ↓
+temporary current-state snapshot
+        ↓
+openpyxl analysis
+        ↓
+Profile Discovery / Profile-Driven Tests
+```
+
+The analysis layer no longer enumerates Excel cells through COM.
+
+## Package contract
+
+`cleaner.package.json` is at the ZIP root:
+
+```json
+{
+  "package_id": "cleaner_functions",
+  "version": "0.3.0",
+  "core_module": "cleaner_core",
+  "profile_schema": "0.3",
+  "requirements": "requirements.txt",
+  "entrypoints": {
+    "profile_discovery": "discoveries",
+    "tests": "tests",
+    "cleaners": "cleaners"
+  }
+}
+```
+
+A future Frappe bridge can inspect this manifest rather than guessing the ZIP layout.
+
+## Important separation
+
+### Discovery
+
+`discoveries/discover_m_line.py`
+
+Used while developing a profile. It scans only the configured header window and reports merged title candidates and the boundary each candidate would imply.
+
+It does **not** determine PASS/FAIL.
+
+### Health check
+
+`tests/m_line_check.py`
+
+Uses the boundary already stored in the profile:
+
+```json
+"boundary_after_col": 3
+```
+
+which means:
+
+```text
+C | D
+```
+
+The test does not depend on A1 or title discovery.
+
+## AZD profile
+
+`profiles/AZD.profile.json` currently contains:
+
+```text
+Expected sheets:
+- 230KV SS
+- 63KV SS
+- LINE
+
+Stored M-line:
+C | D
+
+Known exception rows:
+15,16
+129,130
+197,198
+341,342
+```
+
+Known exception geometry is also used to identify structurally similar candidate exception groups elsewhere. Candidate exceptions are reported, not automatically trusted.
+
+## Run against the Excel workbook currently open
+
+From PowerShell:
+
+```powershell
+cd cleaner_functions_v0_3_azd
+
+python -m pip install -r requirements.txt
+
+python .\dev\run_azd_mline.py
+```
+
+Optional:
+
+```powershell
+python .\dev\run_azd_mline.py --mode check
+python .\dev\run_azd_mline.py --mode discover
+python .\dev\run_azd_mline.py --workbook "7_AZD_LATEST_GENERAL_DOC_14050707.xlsx"
+```
+
+The runner logs live stages such as:
+
+```text
+[CONNECT] Attaching to running Excel.
+[CONNECT] Workbook: 7_AZD_LATEST_GENERAL_DOC_14050707.xlsx
+[SNAPSHOT] Creating temporary SaveCopyAs snapshot...
+[TIMING] Excel SaveCopyAs snapshot created in 0.42s
+[STAGE] Running profile-development discovery.
+...
+[STAGE] Running profile-driven M-line health check.
+[INFO] 230KV SS: 120 total merged ranges; 4 cross C|D.
+...
+```
+
+Output is written to:
+
+```text
+azd_mline_report.json
+```
+
+## Why it should be much faster
+
+The old implementation did this:
+
+```text
+Python
+  ↕ COM
+every used Excel cell
+```
+
+The revised implementation makes one Excel `SaveCopyAs` call, then openpyxl reads the file locally:
+
+```text
+Excel COM
+   ↓ one copy operation
+openpyxl
+   ↓
+merged-range geometry
+```
+
+## Next development
+
+Once the actual AZD report is reviewed:
+
+1. confirm whether `C|D` is correct for all three sheets;
+2. review known exceptions;
+3. approve/reject newly discovered candidate exceptions;
+4. then build the next profile-driven structural rule.
+
+
+# v0.4 Review Layer
+
+After the M-line check, the runner now creates two distinct outputs:
+
+```text
+azd_mline_report.json
+    raw technical detector output
+
+azd_review_queue.json
+    normalized human/Frappe review input
+```
+
+Run normally:
+
+```powershell
+python .\dev\run_azd_mline.py
+```
+
+The final console section is:
+
+```text
+=== FINAL REVIEW LIST ===
+1. KNOWN_EXCEPTION ...
+2. FAIL ...
+3. POSSIBLE_EXCEPTION ...
+```
+
+To immediately review each finding in the terminal:
+
+```powershell
+python .\dev\run_azd_mline.py --review
+```
+
+or later:
+
+```powershell
+python .\dev\review_findings.py
+```
+
+Review decisions are written to:
+
+```text
+azd_review_decisions.json
+```
+
+The review layer **does not change Excel yet**.
+
+It records what should happen later, for example:
+
+```text
+ACCEPT_EXCEPTION
+SET_VALUE
+CLEAR_CELL
+REPLACE_VALUE
+UNMERGE_RANGE
+MERGE_RANGE
+MANUAL_FIX
+PROFILE_CHANGE
+TEST_RULE_CHANGE
+DEFER
+DISMISS
+```
+
+This is intentional: detection, human judgment, and execution remain separate.
+That separation is also suitable for later Frappe workflow/approval handling.
+
+See:
+
+```text
+docs/REVIEW_CONTRACT.md
+```

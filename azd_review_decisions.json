@@ -1,0 +1,302 @@
+{
+  "schema": "cleaner.review_decisions/0.1",
+  "package": {
+    "package_id": "cleaner_functions",
+    "package_version": "0.4.0",
+    "review_schema": "0.1",
+    "decision_schema": "0.1"
+  },
+  "run": {
+    "run_id": "azd_mline_20261002T211602",
+    "created_at": "2026-10-02T21:16:02",
+    "script_id": "AZD_M_LINE",
+    "kind": "azd_mline",
+    "raw_report_path": "C:\\Users\\f.tehrani\\Desktop\\My_Tool_Development_Shop\\cleaner_functions_v0_4_azd_review\\azd_mline_report.json"
+  },
+  "profile": {
+    "schema_version": "0.3",
+    "family": "GENERAL_DOCUMENT",
+    "profile_name": "AZD"
+  },
+  "workbook": {
+    "name": "7_AZD_LATEST_GENERAL_DOC_14050707.xlsx",
+    "path": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\Cleaner\\7_AZD_LATEST_GENERAL_DOC_14050707.xlsx",
+    "saved_state": "unsaved"
+  },
+  "summary": {
+    "decision_count": 9,
+    "pending_execution": 9
+  },
+  "decisions": [
+    {
+      "review_id": "M_LINE_230KV_SS_A15_AA16_ac2d0e6cb46e",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A15:AA16"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A15:AA16",
+          "rows": [
+            15,
+            16
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:22",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A129_AA130_62352a2ce067",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A129:AA130"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A129:AA130",
+          "rows": [
+            129,
+            130
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:26",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A197_AA198_a90e9db9f212",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A197:AA198"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A197:AA198",
+          "rows": [
+            197,
+            198
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:29",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_230KV_SS_A341_AA342_b63759071053",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "230KV SS",
+        "target": "A341:AA342"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "230KV SS",
+          "target": "A341:AA342",
+          "rows": [
+            341,
+            342
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:30",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_B9_X10_26b587ac6da5",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "FAIL",
+        "severity": "HIGH"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "B9:X10"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "B9:X10",
+          "rows": [
+            9,
+            10
+          ]
+        },
+        "reason": "Vertical Row",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:16:50",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A47_X48_3a5e65869df2",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "POSSIBLE_EXCEPTION",
+        "severity": "WARNING"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A47:X48"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A47:X48",
+          "rows": [
+            47,
+            48
+          ]
+        },
+        "reason": "Vertical Row",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:39",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A89_X90_d01914e59922",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "POSSIBLE_EXCEPTION",
+        "severity": "WARNING"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A89:X90"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A89:X90",
+          "rows": [
+            89,
+            90
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:44",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_63KV_SS_A129_X130_cefff3b5a3fa",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "KNOWN_EXCEPTION",
+        "severity": "INFO"
+      },
+      "location": {
+        "sheet": "63KV SS",
+        "target": "A129:X130"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "target": "A129:X130",
+          "rows": [
+            129,
+            130
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:48",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    },
+    {
+      "review_id": "M_LINE_LINE_A53_X54_34941f69dcbb",
+      "source": {
+        "kind": "TEST_FINDING",
+        "test_id": "M_LINE",
+        "status": "FAIL",
+        "severity": "HIGH"
+      },
+      "location": {
+        "sheet": "LINE",
+        "target": "A53:X54"
+      },
+      "decision": {
+        "action": "ACCEPT_EXCEPTION",
+        "parameters": {
+          "test_id": "M_LINE",
+          "sheet": "LINE",
+          "target": "A53:X54",
+          "rows": [
+            53,
+            54
+          ]
+        },
+        "reason": "",
+        "reviewer": "",
+        "decided_at": "2026-10-02T21:17:52",
+        "execution_kind": "PROFILE_UPDATE",
+        "execution_state": "PENDING"
+      }
+    }
+  ]
+}

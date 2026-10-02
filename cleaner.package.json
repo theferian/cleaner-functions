@@ -1,0 +1,15 @@
+{
+  "package_id": "cleaner_functions",
+  "version": "0.4.0",
+  "core_module": "cleaner_core",
+  "profile_schema": "0.3",
+  "requirements": "requirements.txt",
+  "entrypoints": {
+    "profile_discovery": "discoveries",
+    "tests": "tests",
+    "cleaners": "cleaners",
+    "review": "review"
+  },
+  "review_schema": "0.1",
+  "decision_schema": "0.1"
+}

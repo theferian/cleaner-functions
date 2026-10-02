@@ -1,0 +1,583 @@
+{
+  "kind": "azd_mline",
+  "script_id": "AZD_M_LINE",
+  "logs": [
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "CONNECT",
+      "message": "Attaching to running Excel."
+    },
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "CONNECT",
+      "message": "Workbook: 7_AZD_LATEST_GENERAL_DOC_14050707.xlsx"
+    },
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "CONNECT",
+      "message": "Path: C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\Cleaner\\7_AZD_LATEST_GENERAL_DOC_14050707.xlsx"
+    },
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "CONNECT",
+      "message": "Excel saved state: unsaved"
+    },
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "SNAPSHOT",
+      "message": "Creating temporary SaveCopyAs snapshot of the live workbook."
+    },
+    {
+      "time": "2026-10-02T21:16:00",
+      "level": "TIMING",
+      "message": "Excel SaveCopyAs snapshot created in 0.24s: C:\\Users\\FAD78~1.TEH\\AppData\\Local\\Temp\\cleaner_snapshots\\7_AZD_LATEST_GENERAL_DOC_14050707_02e9b40788.xlsx"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "Running profile-development discovery."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "START",
+      "message": "DISCOVER_M_LINE scanning title window R1:R10, C1:C6."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "230KV SS: inspecting merged ranges in the configured title window."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DISCOVERY",
+      "message": "230KV SS: merged title candidate A1:C2 ends at C, implying C|D. Value='AZAD 230/63KV SS'"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "63KV SS: inspecting merged ranges in the configured title window."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DISCOVERY",
+      "message": "63KV SS: merged title candidate A1:C2 ends at C, implying C|D. Value='AZAD 63/11KV SS'"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "LINE: inspecting merged ranges in the configured title window."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DISCOVERY",
+      "message": "LINE: merged title candidate A1:C2 ends at C, implying C|D. Value='TERANSMISION LINE'"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DONE",
+      "message": "DISCOVER_M_LINE produced 3 candidate(s)."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "TIMING",
+      "message": "M-line discovery finished in 0.01s."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "Running profile-driven M-line health check."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "START",
+      "message": "M_LINE using stored profile boundary C|D. No title discovery is performed."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "230KV SS: reading merged-range geometry from snapshot."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "230KV SS: 1884 total merged range(s); 4 cross C|D."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "230KV SS: known exception groups = [(15, 16), (129, 130), (197, 198), (341, 342)]"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "Learned known-exception signature from rows 15-16: ((0, 1, -2, 24),)"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "Learned known-exception signature from rows 129-130: ((0, 1, -2, 24),)"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "Learned known-exception signature from rows 197-198: ((0, 1, -2, 24),)"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "Learned known-exception signature from rows 341-342: ((0, 1, -2, 24),)"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A15:AA16."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A129:AA130."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A197:AA198."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A341:AA342."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "SUMMARY",
+      "message": "230KV SS: known=4, possible=0, unexpected=0."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "63KV SS: reading merged-range geometry from snapshot."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "63KV SS: 650 total merged range(s); 4 cross C|D."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "63KV SS: known exception groups = [(15, 16), (129, 130), (197, 198), (341, 342)]"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 15-16: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "Learned known-exception signature from rows 129-130: ((0, 1, -2, 21),)"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 197-198: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 341-342: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DISCOVERY",
+      "message": "63KV SS: rows 47-48 match a known exception geometry signature."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DISCOVERY",
+      "message": "63KV SS: rows 89-90 match a known exception geometry signature."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "FAIL",
+      "message": "Unexpected M-line crossing: 63KV SS!B9:X10."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "POSSIBLE_EXCEPTION",
+      "message": "Possible repeated AZD exception: 63KV SS!A47:X48; rows 47-48 match known exception geometry."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "POSSIBLE_EXCEPTION",
+      "message": "Possible repeated AZD exception: 63KV SS!A89:X90; rows 89-90 match known exception geometry."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 63KV SS!A129:X130."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "SUMMARY",
+      "message": "63KV SS: known=1, possible=2, unexpected=1."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "STAGE",
+      "message": "LINE: reading merged-range geometry from snapshot."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "LINE: 292 total merged range(s); 1 cross C|D."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "INFO",
+      "message": "LINE: known exception groups = [(15, 16), (129, 130), (197, 198), (341, 342)]"
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 15-16: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 129-130: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 197-198: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "WARNING",
+      "message": "Known exception rows 341-342: no crossing geometry exists in this sheet."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "FAIL",
+      "message": "Unexpected M-line crossing: LINE!A53:X54."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "SUMMARY",
+      "message": "LINE: known=0, possible=0, unexpected=1."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "DONE",
+      "message": "M_LINE finished with 9 finding(s)."
+    },
+    {
+      "time": "2026-10-02T21:16:02",
+      "level": "TIMING",
+      "message": "M-line health check finished in 0.01s."
+    }
+  ],
+  "findings": [
+    {
+      "test_id": "M_LINE",
+      "status": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A15:AA16.",
+      "sheet": "230KV SS",
+      "target": "A15:AA16",
+      "severity": "INFO",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A15:AA16",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          15,
+          16
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A129:AA130.",
+      "sheet": "230KV SS",
+      "target": "A129:AA130",
+      "severity": "INFO",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A129:AA130",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          129,
+          130
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A197:AA198.",
+      "sheet": "230KV SS",
+      "target": "A197:AA198",
+      "severity": "INFO",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A197:AA198",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          197,
+          198
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 230KV SS!A341:AA342.",
+      "sheet": "230KV SS",
+      "target": "A341:AA342",
+      "severity": "INFO",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A341:AA342",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          341,
+          342
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "FAIL",
+      "message": "Unexpected M-line crossing: 63KV SS!B9:X10.",
+      "sheet": "63KV SS",
+      "target": "B9:X10",
+      "severity": "HIGH",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "B9:X10",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          9,
+          10
+        ],
+        "known_exception_rows": [
+          15,
+          16,
+          129,
+          130,
+          197,
+          198,
+          341,
+          342
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "POSSIBLE_EXCEPTION",
+      "message": "Possible repeated AZD exception: 63KV SS!A47:X48; rows 47-48 match known exception geometry.",
+      "sheet": "63KV SS",
+      "target": "A47:X48",
+      "severity": "WARNING",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A47:X48",
+      "evidence": {
+        "boundary_after_col": 3,
+        "candidate_rows": [
+          47,
+          48
+        ],
+        "signature": [
+          [
+            0,
+            1,
+            -2,
+            21
+          ]
+        ],
+        "learned_from_rows": [
+          129,
+          130
+        ]
+      },
+      "suggested_exception": {
+        "id": "AZD_MLINE_EXCEPTION_63KV_SS_R47_48",
+        "enabled": true,
+        "reason": "Candidate repeated Category/Type boundary exception discovered from matching known M-line geometry; requires human confirmation.",
+        "match": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "rows": [
+            47,
+            48
+          ]
+        }
+      }
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "POSSIBLE_EXCEPTION",
+      "message": "Possible repeated AZD exception: 63KV SS!A89:X90; rows 89-90 match known exception geometry.",
+      "sheet": "63KV SS",
+      "target": "A89:X90",
+      "severity": "WARNING",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A89:X90",
+      "evidence": {
+        "boundary_after_col": 3,
+        "candidate_rows": [
+          89,
+          90
+        ],
+        "signature": [
+          [
+            0,
+            1,
+            -2,
+            21
+          ]
+        ],
+        "learned_from_rows": [
+          129,
+          130
+        ]
+      },
+      "suggested_exception": {
+        "id": "AZD_MLINE_EXCEPTION_63KV_SS_R89_90",
+        "enabled": true,
+        "reason": "Candidate repeated Category/Type boundary exception discovered from matching known M-line geometry; requires human confirmation.",
+        "match": {
+          "test_id": "M_LINE",
+          "sheet": "63KV SS",
+          "rows": [
+            89,
+            90
+          ]
+        }
+      }
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "KNOWN_EXCEPTION",
+      "message": "Known AZD M-line exception: 63KV SS!A129:X130.",
+      "sheet": "63KV SS",
+      "target": "A129:X130",
+      "severity": "INFO",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A129:X130",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          129,
+          130
+        ],
+        "exception_rule_ids": [
+          "AZD_MLINE_CATEGORY_TYPE_BOUNDARY"
+        ]
+      },
+      "suggested_exception": null
+    },
+    {
+      "test_id": "M_LINE",
+      "status": "FAIL",
+      "message": "Unexpected M-line crossing: LINE!A53:X54.",
+      "sheet": "LINE",
+      "target": "A53:X54",
+      "severity": "HIGH",
+      "expected": "No ordinary merge crosses C|D",
+      "observed": "A53:X54",
+      "evidence": {
+        "boundary_after_col": 3,
+        "rows": [
+          53,
+          54
+        ],
+        "known_exception_rows": [
+          15,
+          16,
+          129,
+          130,
+          197,
+          198,
+          341,
+          342
+        ]
+      },
+      "suggested_exception": null
+    }
+  ],
+  "candidates": [
+    {
+      "discovery_id": "DISCOVER_M_LINE",
+      "sheet": "230KV SS",
+      "target": "A1:C2",
+      "message": "230KV SS: merged title candidate A1:C2 ends at C, implying C|D.",
+      "evidence": {
+        "value": "AZAD 230/63KV SS",
+        "merge": "A1:C2",
+        "boundary_after_col": 3,
+        "boundary_label": "C|D"
+      },
+      "suggested_profile_patch": {
+        "path": "structure.m_line.boundary_after_col",
+        "value": 3,
+        "sheet": "230KV SS"
+      }
+    },
+    {
+      "discovery_id": "DISCOVER_M_LINE",
+      "sheet": "63KV SS",
+      "target": "A1:C2",
+      "message": "63KV SS: merged title candidate A1:C2 ends at C, implying C|D.",
+      "evidence": {
+        "value": "AZAD 63/11KV SS",
+        "merge": "A1:C2",
+        "boundary_after_col": 3,
+        "boundary_label": "C|D"
+      },
+      "suggested_profile_patch": {
+        "path": "structure.m_line.boundary_after_col",
+        "value": 3,
+        "sheet": "63KV SS"
+      }
+    },
+    {
+      "discovery_id": "DISCOVER_M_LINE",
+      "sheet": "LINE",
+      "target": "A1:C2",
+      "message": "LINE: merged title candidate A1:C2 ends at C, implying C|D.",
+      "evidence": {
+        "value": "TERANSMISION LINE",
+        "merge": "A1:C2",
+        "boundary_after_col": 3,
+        "boundary_label": "C|D"
+      },
+      "suggested_profile_patch": {
+        "path": "structure.m_line.boundary_after_col",
+        "value": 3,
+        "sheet": "LINE"
+      }
+    }
+  ],
+  "snapshot_path": "C:\\Users\\FAD78~1.TEH\\AppData\\Local\\Temp\\cleaner_snapshots\\7_AZD_LATEST_GENERAL_DOC_14050707_02e9b40788.xlsx",
+  "run_id": "azd_mline_20261002T211602"
+}
