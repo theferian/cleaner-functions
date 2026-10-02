@@ -2,20 +2,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
+
+from openpyxl.utils import get_column_letter
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from cleaner_core.knowledge import decision_from_known_policy
+from cleaner_core.live_excel import ExcelConnectionError, attach_excel_workbook
 from review.decisions import (
     ACTIONS,
     apply_decision_to_queue,
     make_decision,
     write_decisions_file,
 )
-from cleaner_core.knowledge import decision_from_known_policy
 
 
 MENU = {
@@ -33,6 +37,8 @@ MENU = {
     "u": "USE_MACHINE_SUGGESTION",
     "s": "SKIP",
 }
+
+_ROW_SPAN_RE = re.compile(r"^(?P<start>\d+):(?P<end>\d+)$")
 
 
 def prompt(text: str, default: str | None = None) -> str:
@@ -90,13 +96,182 @@ def build_parameters(action: str, item: dict) -> dict:
     return {}
 
 
-def print_item(index: int, total: int, item: dict):
+def _review_targets(item: dict) -> list[str]:
+    """Return occurrence targets for visual review, preserving source order."""
+    evidence = item.get("evidence") or {}
+    candidates = evidence.get("all_targets") or evidence.get("representative_targets") or []
+    if not isinstance(candidates, list):
+        candidates = []
+
+    primary = (item.get("location") or {}).get("target")
+    ordered: list[str] = []
+    for value in [primary, *candidates]:
+        if value in (None, ""):
+            continue
+        target = str(value)
+        if target not in ordered:
+            ordered.append(target)
+    return ordered
+
+
+def _structure_pattern_max_col(item: dict) -> int | None:
+    pattern = (item.get("evidence") or {}).get("structure_pattern") or {}
+    merges = pattern.get("merges") or []
+    max_col: int | None = None
+    for merge in merges:
+        if not isinstance(merge, (list, tuple)) or len(merge) != 4:
+            continue
+        try:
+            c2 = int(merge[3])
+        except (TypeError, ValueError):
+            continue
+        max_col = c2 if max_col is None else max(max_col, c2)
+    return max_col
+
+
+def _selection_address_for_item(
+    item: dict,
+    target: str,
+    *,
+    used_max_col: int | None = None,
+) -> str:
+    """
+    Translate a review target into a useful Excel selection.
+
+    Normal A1 targets are used unchanged. A row-span target such as ``3:4``
+    (used by DOCUMENT_STRUCTURE) is expanded to the full card width. The
+    structure fingerprint supplies the preferred last column; UsedRange is a
+    fallback only when the fingerprint has no merge geometry.
+    """
+    target = str(target or "").strip()
+    match = _ROW_SPAN_RE.fullmatch(target)
+    if not match:
+        return target
+
+    start_row = int(match.group("start"))
+    end_row = int(match.group("end"))
+    max_col = _structure_pattern_max_col(item) or used_max_col or 1
+    max_col = max(1, int(max_col))
+    return f"A{start_row}:{get_column_letter(max_col)}{end_row}"
+
+
+class ExcelReviewNavigator:
+    """Small COM navigation helper used only for human review/navigation."""
+
+    def __init__(self, queue: dict, *, enabled: bool = True):
+        self.enabled = enabled
+        self.workbook = None
+        self.error: str | None = None
+        if not enabled:
+            return
+
+        meta = queue.get("workbook") or {}
+        workbook_ref = meta.get("name") or meta.get("path") or None
+        try:
+            self.workbook = attach_excel_workbook(workbook_ref)
+        except ExcelConnectionError as exc:
+            self.error = str(exc)
+        except Exception as exc:  # navigation must never prevent review itself
+            self.error = f"Excel navigation unavailable: {exc}"
+
+    @property
+    def available(self) -> bool:
+        return self.workbook is not None
+
+    def _worksheet(self, sheet: str):
+        if self.workbook is None:
+            raise RuntimeError(self.error or "Excel navigation is not connected.")
+        return self.workbook.Worksheets(sheet)
+
+    def show(self, item: dict, target: str) -> str:
+        """Activate/select a review target and return the actual Excel address."""
+        if self.workbook is None:
+            raise RuntimeError(self.error or "Excel navigation is not connected.")
+
+        sheet = str((item.get("location") or {}).get("sheet") or "")
+        if not sheet:
+            raise RuntimeError("Review item has no worksheet location.")
+
+        ws = self._worksheet(sheet)
+        used_max_col = None
+        try:
+            used = ws.UsedRange
+            used_max_col = int(used.Column) + int(used.Columns.Count) - 1
+        except Exception:
+            pass
+
+        address = _selection_address_for_item(
+            item,
+            target,
+            used_max_col=used_max_col,
+        )
+        if not address:
+            raise RuntimeError("Review item has no selectable Excel target.")
+
+        self.workbook.Activate()
+        ws.Activate()
+        rng = ws.Range(address)
+
+        app = self.workbook.Application
+        try:
+            app.Visible = True
+        except Exception:
+            pass
+
+        # Goto both selects the range and scrolls it into view. Select is kept
+        # as a fallback for Excel installations where Goto behaves differently.
+        try:
+            app.Goto(rng, True)
+        except Exception:
+            rng.Select()
+
+        try:
+            window = app.ActiveWindow
+            row = int(rng.Row)
+            window.ScrollRow = max(1, row - 2)
+            window.ScrollColumn = 1
+        except Exception:
+            pass
+
+        return f"{sheet}!{address}"
+
+
+def _show_review_target(
+    navigator: ExcelReviewNavigator,
+    item: dict,
+    targets: list[str],
+    target_index: int,
+) -> str | None:
+    if not targets:
+        return None
+    if not navigator.available:
+        return None
+    try:
+        return navigator.show(item, targets[target_index])
+    except Exception as exc:
+        print(f"[EXCEL] Navigation failed: {exc}")
+        return None
+
+
+def print_item(
+    index: int,
+    total: int,
+    item: dict,
+    *,
+    examples: list[str] | None = None,
+    example_index: int = 0,
+    excel_selection: str | None = None,
+):
     print("\n" + "=" * 88)
     print(f"REVIEW {index}/{total}")
     print(f"ID      : {item['review_id']}")
     print(f"STATUS  : {item['source'].get('status')}")
     print(f"SEVERITY: {item['source'].get('severity')}")
     print(f"LOCATION: {item['location'].get('sheet')}!{item['location'].get('target')}")
+    if examples:
+        print(f"EXAMPLE : {example_index + 1}/{len(examples)} -> {examples[example_index]}")
+    if excel_selection:
+        print(f"EXCEL   : selected {excel_selection}")
     print(f"MESSAGE : {item.get('message')}")
     print(f"POLICY  : {item.get('current_policy', {}).get('state')}")
     note = item.get('current_policy', {}).get('note')
@@ -104,6 +279,10 @@ def print_item(index: int, total: int, item: dict):
         print(f"          {note}")
 
     print("\nActions")
+    if examples and len(examples) > 1:
+        print("  n  NEXT EXAMPLE in Excel")
+        print("  p  PREVIOUS EXAMPLE in Excel")
+    print("  r  RESELECT current item in Excel")
     print("  1  ACCEPT_EXCEPTION")
     print("  2  SET_VALUE")
     print("  3  CLEAR_CELL")
@@ -183,6 +362,11 @@ def main():
             "profile knowledge, then review only unknown findings."
         ),
     )
+    parser.add_argument(
+        "--no-excel-navigation",
+        action="store_true",
+        help="Disable automatic jump/select behavior in the already-open Excel workbook.",
+    )
     args = parser.parse_args()
 
     queue_path = Path(args.queue)
@@ -190,6 +374,13 @@ def main():
         raise SystemExit(f"Review queue not found: {queue_path}")
 
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
+    navigator = ExcelReviewNavigator(queue, enabled=not args.no_excel_navigation)
+    if navigator.available:
+        print(f"[EXCEL] Connected to open workbook: {navigator.workbook.Name}")
+        print("[EXCEL] Each pending review item will be selected automatically.")
+    elif not args.no_excel_navigation:
+        print(f"[EXCEL] Automatic navigation unavailable: {navigator.error}")
+        print("[EXCEL] Review will continue in terminal-only mode.")
 
     if args.accept_known:
         accepted = accept_known_resolutions(queue, reviewer=args.reviewer)
@@ -212,10 +403,50 @@ def main():
         return
 
     for index, item in enumerate(pending, start=1):
-        print_item(index, len(pending), item)
+        examples = _review_targets(item)
+        example_index = 0
+        excel_selection = _show_review_target(
+            navigator,
+            item,
+            examples,
+            example_index,
+        )
+        print_item(
+            index,
+            len(pending),
+            item,
+            examples=examples,
+            example_index=example_index,
+            excel_selection=excel_selection,
+        )
 
         while True:
             choice = input("\nDecision: ").strip().lower()
+
+            if choice in {"n", "p", "r"}:
+                if not examples:
+                    print("This review item has no Excel target.")
+                    continue
+                if choice == "n":
+                    example_index = (example_index + 1) % len(examples)
+                elif choice == "p":
+                    example_index = (example_index - 1) % len(examples)
+
+                excel_selection = _show_review_target(
+                    navigator,
+                    item,
+                    examples,
+                    example_index,
+                )
+                if excel_selection:
+                    print(
+                        f"[EXCEL] Example {example_index + 1}/{len(examples)}: "
+                        f"{excel_selection}"
+                    )
+                elif not navigator.available:
+                    print("[EXCEL] Automatic navigation is not available.")
+                continue
+
             action = MENU.get(choice)
             if action:
                 break
