@@ -213,7 +213,7 @@ def main():
     print("\nReview this stage with:")
     print(
         f'python .\\dev\\review_findings.py "{queue_path}" '
-        f'--decisions "{decisions_path}"'
+        f'--decisions "{decisions_path}" --accept-known'
     )
 
     nxt = None

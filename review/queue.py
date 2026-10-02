@@ -7,6 +7,7 @@ import json
 from typing import Any
 
 from .decisions import ACTIONS
+from cleaner_core.knowledge import match_known_fix
 
 
 def _now() -> str:
@@ -114,6 +115,29 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
             "note": "Review if required.",
         }
 
+    reusable_resolution = None
+    known_fix = match_known_fix(profile, finding)
+    if known_fix is not None:
+        current_policy = {
+            "state": "KNOWN_REUSABLE_RESOLUTION",
+            "note": (
+                "This exact test/sheet/target/status signature has a reusable "
+                "resolution in the profile. It may be accepted automatically "
+                "during review with --accept-known."
+            ),
+            "known_fix_id": known_fix.get("id"),
+        }
+        reusable_resolution = {
+            "kind": "KNOWN_FIX",
+            "known_fix_id": known_fix.get("id"),
+            "reason": known_fix.get("reason"),
+            "resolution": known_fix.get("resolution") or {},
+        }
+    elif status == "KNOWN_EXCEPTION":
+        reusable_resolution = {
+            "kind": "KNOWN_EXCEPTION",
+        }
+
     allowed = _allowed_actions(finding)
 
     return {
@@ -138,6 +162,7 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
             "suggested_fix": finding.get("suggested_fix"),
         },
         "current_policy": current_policy,
+        "reusable_resolution": reusable_resolution,
         "allowed_actions": [
             {
                 "action": action,

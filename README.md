@@ -312,3 +312,28 @@ python .\pipeline\azd_pipeline.py --stage M_LINE
 
 After reviewing that queue, run `IDENTIFIERS` with the same run ID and the
 M-line decision file. See `docs/RESOLVED_STATE.md`.
+
+
+# Reusable knowledge across weekly AZD workbooks
+
+Run-level decisions stay in `runs/<run-id>/resolved_state.json`. Decisions you
+want to reuse next week can be explicitly promoted into `profiles/AZD.profile.json`.
+
+Preview promotion:
+
+```powershell
+python .\dev\promote_decisions.py .\runs\<run-id>\m_line_review_decisions.json .\runs\<run-id>\identifiers_review_decisions.json
+```
+
+Apply promotion:
+
+```powershell
+python .\dev\promote_decisions.py .\runs\<run-id>\m_line_review_decisions.json .\runs\<run-id>\identifiers_review_decisions.json --apply
+```
+
+On a later weekly workbook, use `--accept-known` during review. Known exceptions
+and exact recurring fixes are resolved automatically in the decision file; only
+new/unknown findings remain interactive. Identifier WBS values are recalculated
+from the current workbook rather than copying last week's generated value.
+
+See `docs/REUSABLE_KNOWLEDGE.md`.

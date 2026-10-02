@@ -29,3 +29,10 @@ from .overlay import (
     apply_state_to_profile,
     build_resolved_context,
 )
+
+from .knowledge import (
+    promote_decisions_to_profile,
+    save_profile,
+    match_known_fix,
+    decision_from_known_policy,
+)

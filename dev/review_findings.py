@@ -15,6 +15,7 @@ from review.decisions import (
     make_decision,
     write_decisions_file,
 )
+from cleaner_core.knowledge import decision_from_known_policy
 
 
 MENU = {
@@ -124,6 +125,26 @@ def print_item(index: int, total: int, item: dict):
     print("  s  SKIP (leave pending)")
 
 
+def accept_known_resolutions(queue: dict, reviewer: str = "") -> int:
+    accepted = 0
+    for item in queue.get("items", []):
+        if item.get("review_state") != "PENDING":
+            continue
+        template = decision_from_known_policy(item)
+        if not template:
+            continue
+        decision = make_decision(
+            template["action"],
+            parameters=template.get("parameters") or {},
+            reason=template.get("reason") or "Accepted reusable profile policy.",
+            reviewer=reviewer,
+        )
+        decision["origin"] = template.get("origin", "REUSABLE_PROFILE")
+        apply_decision_to_queue(queue, item["review_id"], decision)
+        accepted += 1
+    return accepted
+
+
 def update_summary(queue: dict):
     items = queue.get("items", [])
     queue["summary"]["pending_review"] = sum(
@@ -154,6 +175,14 @@ def main():
         "--reviewer",
         default="",
     )
+    parser.add_argument(
+        "--accept-known",
+        action="store_true",
+        help=(
+            "Auto-record decisions for findings already covered by reusable "
+            "profile knowledge, then review only unknown findings."
+        ),
+    )
     args = parser.parse_args()
 
     queue_path = Path(args.queue)
@@ -161,6 +190,17 @@ def main():
         raise SystemExit(f"Review queue not found: {queue_path}")
 
     queue = json.loads(queue_path.read_text(encoding="utf-8"))
+
+    if args.accept_known:
+        accepted = accept_known_resolutions(queue, reviewer=args.reviewer)
+        update_summary(queue)
+        queue_path.write_text(
+            json.dumps(queue, ensure_ascii=False, indent=2, default=str) + "\n",
+            encoding="utf-8",
+        )
+        write_decisions_file(queue, args.decisions)
+        print(f"Accepted reusable profile resolutions: {accepted}")
+
     pending = [
         x for x in queue.get("items", [])
         if x.get("review_state") == "PENDING"
