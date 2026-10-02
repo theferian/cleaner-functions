@@ -14,7 +14,7 @@ def test_boundaries_allowed_after_mline_review():
     assert_stage_allowed(state, "DOCUMENT_BOUNDARIES")
 
 
-def test_identifiers_wait_for_boundary_review():
+def test_structure_waits_for_boundary_review():
     state = {
         "stages": {
             "M_LINE": {"status": "REVIEWED"},
@@ -22,14 +22,37 @@ def test_identifiers_wait_for_boundary_review():
         }
     }
     with pytest.raises(RuntimeError):
-        assert_stage_allowed(state, "IDENTIFIERS")
+        assert_stage_allowed(state, "DOCUMENT_STRUCTURE")
 
 
-def test_identifiers_allowed_after_boundary_review():
+def test_structure_allowed_after_boundary_review():
     state = {
         "stages": {
             "M_LINE": {"status": "REVIEWED"},
             "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"},
+        }
+    }
+    assert_stage_allowed(state, "DOCUMENT_STRUCTURE")
+
+
+def test_identifiers_wait_for_structure_review():
+    state = {
+        "stages": {
+            "M_LINE": {"status": "REVIEWED"},
+            "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"},
+            "DOCUMENT_STRUCTURE": {"status": "AWAITING_REVIEW"},
+        }
+    }
+    with pytest.raises(RuntimeError):
+        assert_stage_allowed(state, "IDENTIFIERS")
+
+
+def test_identifiers_allowed_after_structure_review():
+    state = {
+        "stages": {
+            "M_LINE": {"status": "REVIEWED"},
+            "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"},
+            "DOCUMENT_STRUCTURE": {"status": "REVIEWED"},
         }
     }
     assert_stage_allowed(state, "IDENTIFIERS")

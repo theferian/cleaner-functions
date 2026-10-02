@@ -365,3 +365,23 @@ The stage writes `runs/<run-id>/document_regions.json` as an audit/debug catalog
 provisional physical-row heuristic.
 
 See `docs/DOCUMENT_BOUNDARIES.md`.
+
+
+## Document structure
+
+The ordered AZD pipeline now includes a structural card-layout stage:
+
+```text
+M_LINE
+  -> DOCUMENT_BOUNDARIES
+  -> DOCUMENT_STRUCTURE
+  -> IDENTIFIERS
+```
+
+`DOCUMENT_STRUCTURE` fingerprints each `DocumentRegion` from normalized merge
+geometry. Absolute row numbers and cell values are excluded, so the same valid
+card remains recognizable when it moves in a later weekly workbook. Unknown
+patterns are reviewed once per unique geometry and can be promoted into
+`profiles/AZD.profile.json` with `dev/promote_decisions.py --apply`. The run
+also writes `document_structure_catalog.json`. See
+`docs/DOCUMENT_STRUCTURE.md`.

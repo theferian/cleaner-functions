@@ -144,6 +144,7 @@ def write_decisions_file(queue: dict, path: str | Path) -> Path:
                 "review_id": item["review_id"],
                 "source": item["source"],
                 "location": item["location"],
+                "evidence": item.get("evidence") or {},
                 "decision": item["decision"],
             })
 

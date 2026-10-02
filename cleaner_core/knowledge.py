@@ -139,6 +139,45 @@ def _fix_from_item(item: dict, *, source_run_id: str | None) -> dict | None:
     }
 
 
+
+def _structure_pattern_from_item(item: dict, *, source_run_id: str | None) -> dict | None:
+    source = item.get("source") or {}
+    if str(source.get("test_id") or "").upper() != "DOCUMENT_STRUCTURE":
+        return None
+
+    evidence = item.get("evidence") or {}
+    pattern = deepcopy(evidence.get("structure_pattern") or {})
+    location = item.get("location") or {}
+    decision = item.get("decision") or {}
+    sheet = location.get("sheet")
+    pattern_id = pattern.get("pattern_id")
+    if not sheet or not pattern_id:
+        return None
+
+    return {
+        "id": _slug_id("STRUCTURE_PATTERN", {"sheet": sheet, "pattern_id": pattern_id}),
+        "enabled": True,
+        "sheet": sheet,
+        "pattern_id": pattern_id,
+        "signature": pattern,
+        "reason": decision.get("reason") or "Reviewed as a valid document structure pattern.",
+        "source": {
+            "kind": "PROMOTED_REVIEW_DECISION",
+            "run_id": source_run_id,
+            "review_id": item.get("review_id"),
+            "promoted_at": _now(),
+        },
+    }
+
+
+def _same_structure_pattern(existing: dict, candidate: dict) -> bool:
+    return (
+        str(existing.get("sheet") or "*").upper()
+        == str(candidate.get("sheet") or "*").upper()
+        and str(existing.get("pattern_id") or "")
+        == str(candidate.get("pattern_id") or "")
+    )
+
 def promote_decisions_to_profile(
     profile: dict[str, Any],
     decisions_payload: dict[str, Any],
@@ -155,10 +194,15 @@ def promote_decisions_to_profile(
     updated = deepcopy(profile)
     known_exceptions = updated.setdefault("known_exceptions", [])
     known_fixes = updated.setdefault("known_fixes", [])
+    structure_cfg = updated.setdefault("data_model", {}).setdefault(
+        "document_structure", {}
+    )
+    known_structure_patterns = structure_cfg.setdefault("known_patterns", [])
 
     run_id = decisions_payload.get("run", {}).get("run_id")
     promoted_exceptions = []
     promoted_fixes = []
+    promoted_structure_patterns = []
     skipped = []
 
     for item in decisions_payload.get("decisions", []):
@@ -166,6 +210,24 @@ def promote_decisions_to_profile(
         action = str(decision.get("action") or "").upper()
 
         if action == "ACCEPT_EXCEPTION":
+            structure_pattern = _structure_pattern_from_item(
+                item, source_run_id=run_id
+            )
+            if structure_pattern is not None:
+                if any(
+                    _same_structure_pattern(x, structure_pattern)
+                    for x in known_structure_patterns
+                    if x.get("enabled", True)
+                ):
+                    skipped.append({
+                        "review_id": item.get("review_id"),
+                        "reason": "Document structure pattern is already learned.",
+                    })
+                    continue
+                known_structure_patterns.append(structure_pattern)
+                promoted_structure_patterns.append(structure_pattern)
+                continue
+
             candidate = _exception_from_item(item, source_run_id=run_id)
             if candidate is None:
                 skipped.append({"review_id": item.get("review_id"), "reason": "Incomplete exception match."})
@@ -205,9 +267,11 @@ def promote_decisions_to_profile(
         "source_run_id": run_id,
         "promoted_exception_count": len(promoted_exceptions),
         "promoted_fix_count": len(promoted_fixes),
+        "promoted_structure_pattern_count": len(promoted_structure_patterns),
         "skipped_count": len(skipped),
         "promoted_exceptions": promoted_exceptions,
         "promoted_fixes": promoted_fixes,
+        "promoted_structure_patterns": promoted_structure_patterns,
         "skipped": skipped,
     }
     return updated, report

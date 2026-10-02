@@ -41,19 +41,23 @@ def main():
 
     total_exc = sum(x["promoted_exception_count"] for x in reports)
     total_fix = sum(x["promoted_fix_count"] for x in reports)
+    total_structure = sum(x.get("promoted_structure_pattern_count", 0) for x in reports)
     total_skip = sum(x["skipped_count"] for x in reports)
 
     print("=== REUSABLE KNOWLEDGE PROMOTION ===")
     print(f"Profile              : {profile_path}")
     print(f"Promoted exceptions  : {total_exc}")
     print(f"Promoted known fixes : {total_fix}")
+    print(f"Structure patterns   : {total_structure}")
     print(f"Skipped              : {total_skip}")
 
     for report in reports:
         print(f"\nSource: {report['source_file']}")
         print(
             f"  exceptions={report['promoted_exception_count']} "
-            f"fixes={report['promoted_fix_count']} skipped={report['skipped_count']}"
+            f"fixes={report['promoted_fix_count']} "
+            f"structure={report.get('promoted_structure_pattern_count', 0)} "
+            f"skipped={report['skipped_count']}"
         )
         for item in report["promoted_exceptions"]:
             print(f"  + exception {item['id']} -> {item['match']}")
@@ -61,6 +65,11 @@ def main():
             print(
                 f"  + fix {item['id']} -> {item['match']} "
                 f"[{item['resolution']['mode']}]"
+            )
+        for item in report.get("promoted_structure_patterns", []):
+            print(
+                f"  + structure {item['pattern_id']} -> "
+                f"{item['sheet']}"
             )
         for item in report["skipped"]:
             print(f"  - skip {item.get('review_id')}: {item['reason']}")

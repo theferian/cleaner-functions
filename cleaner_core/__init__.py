@@ -18,6 +18,13 @@ __all__ = [
     "boundary_config",
     "scan_document_regions",
     "scan_all_document_regions",
+    "StructurePattern",
+    "RegionStructure",
+    "StructureScan",
+    "document_structure_config",
+    "structure_pattern_for_region",
+    "scan_document_structure",
+    "scan_all_document_structures",
 ]
 
 
@@ -49,4 +56,14 @@ from .document_regions import (
     boundary_config,
     scan_document_regions,
     scan_all_document_regions,
+)
+
+from .document_structure import (
+    StructurePattern,
+    RegionStructure,
+    StructureScan,
+    document_structure_config,
+    structure_pattern_for_region,
+    scan_document_structure,
+    scan_all_document_structures,
 )

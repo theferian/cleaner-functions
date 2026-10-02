@@ -1874,6 +1874,14 @@
       ],
       "merge_aware": true,
       "note": "Until explicit document data boundaries are modeled, a logical record is detected when at least one mapped identifier field has its own value/merge anchor. Rows covered only by a merge anchored in another column are ignored."
+    },
+    "document_structure": {
+      "enabled": true,
+      "method": "NORMALIZED_MERGE_SIGNATURE",
+      "transaction_start_col": 4,
+      "unknown_pattern_status": "POSSIBLE_EXCEPTION",
+      "known_patterns": [],
+      "note": "A document card is fingerprinted from merge geometry normalized to the DocumentRegion start row. Cell values and absolute row numbers are excluded so the same valid layout can move between weekly workbooks."
     }
   }
 }

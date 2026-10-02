@@ -23,18 +23,21 @@ from cleaner_core import (
     save_resolved_state,
     snapshot_live_workbook,
     scan_all_document_regions,
+    scan_all_document_structures,
 )
 from cleaner_core.logging import RunLogger
 from review.queue import build_review_queue, write_review_queue
 from tests.m_line_check import run as m_line_check
 from tests.document_boundaries import run as document_boundaries_check
+from tests.document_structure import run as document_structure_check
 from tests.identifier_check import run as identifier_check
 
 
-STAGES = ["M_LINE", "DOCUMENT_BOUNDARIES", "IDENTIFIERS"]
+STAGES = ["M_LINE", "DOCUMENT_BOUNDARIES", "DOCUMENT_STRUCTURE", "IDENTIFIERS"]
 RUNNERS = {
     "M_LINE": m_line_check,
     "DOCUMENT_BOUNDARIES": document_boundaries_check,
+    "DOCUMENT_STRUCTURE": document_structure_check,
     "IDENTIFIERS": identifier_check,
 }
 
@@ -192,6 +195,26 @@ def main():
                 "ARTIFACT",
                 f"Derived document-region catalog: {regions_path}",
             )
+
+        if stage_id == "DOCUMENT_STRUCTURE":
+            resolved_snapshot, resolved_profile = build_resolved_context(
+                snap, profile, state
+            )
+            scans = scan_all_document_structures(resolved_snapshot, resolved_profile)
+            catalog_path = run_dir / "document_structure_catalog.json"
+            catalog_payload = {
+                "schema": "cleaner.document_structure/0.1",
+                "run_id": run_id,
+                "profile_name": resolved_profile.get("profile_name"),
+                "workbook": workbook_meta,
+                "sheets": {sheet: scan.to_dict() for sheet, scan in scans.items()},
+            }
+            catalog_path.write_text(
+                json.dumps(catalog_payload, ensure_ascii=False, indent=2, default=str) + "\n",
+                encoding="utf-8",
+            )
+            stage_artifacts["document_structure_catalog"] = str(catalog_path)
+            logger("ARTIFACT", f"Derived document-structure catalog: {catalog_path}")
     finally:
         snap.close()
 
@@ -249,6 +272,8 @@ def main():
     print(f"State        : {state_path}")
     if stage_artifacts.get("document_regions"):
         print(f"Regions      : {stage_artifacts['document_regions']}")
+    if stage_artifacts.get("document_structure_catalog"):
+        print(f"Structure    : {stage_artifacts['document_structure_catalog']}")
     print("\nReview this stage with:")
     print(
         f'python .\\dev\\review_findings.py "{queue_path}" '
