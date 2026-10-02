@@ -49,6 +49,34 @@ class WorkbookSnapshot:
     def anchor_value(self, sheet: str, rect: Rect):
         return self.value(sheet, f"{get_column_letter(rect.c1)}{rect.r1}")
 
+    def merge_info(self, sheet: str, address: str):
+        """
+        Return merge metadata for one cell.
+
+        The value is taken from the merge anchor (top-left cell) when merged.
+        """
+        rect = self.merged_range_containing(sheet, address)
+        if rect is None:
+            return {
+                "merged": False,
+                "range": None,
+                "anchor_row": None,
+                "anchor_col": None,
+                "value": self.value(sheet, address),
+            }
+
+        anchor = f"{get_column_letter(rect.c1)}{rect.r1}"
+        return {
+            "merged": True,
+            "range": rect.address,
+            "anchor_row": rect.r1,
+            "anchor_col": rect.c1,
+            "value": self.value(sheet, anchor),
+        }
+
+    def effective_value(self, sheet: str, address: str):
+        return self.merge_info(sheet, address)["value"]
+
 
 def load_snapshot(path: str | Path) -> WorkbookSnapshot:
     return WorkbookSnapshot(path)

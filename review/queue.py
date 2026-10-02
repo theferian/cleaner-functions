@@ -135,6 +135,7 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
         "evidence": finding.get("evidence") or {},
         "machine_suggestion": {
             "suggested_exception": finding.get("suggested_exception"),
+            "suggested_fix": finding.get("suggested_fix"),
         },
         "current_policy": current_policy,
         "allowed_actions": [

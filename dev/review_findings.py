@@ -29,6 +29,7 @@ MENU = {
     "9": "TEST_RULE_CHANGE",
     "d": "DEFER",
     "x": "DISMISS",
+    "u": "USE_MACHINE_SUGGESTION",
     "s": "SKIP",
 }
 
@@ -113,6 +114,13 @@ def print_item(index: int, total: int, item: dict):
     print("  9  TEST_RULE_CHANGE")
     print("  d  DEFER")
     print("  x  DISMISS")
+    suggestion = item.get("machine_suggestion", {}).get("suggested_fix")
+    if suggestion:
+        p = suggestion.get("parameters", {})
+        print(
+            f"  u  USE_MACHINE_SUGGESTION -> "
+            f"{suggestion.get('action')} {p.get('target')}={p.get('value')!r}"
+        )
     print("  s  SKIP (leave pending)")
 
 
@@ -177,8 +185,21 @@ def main():
             print("Left pending.")
             continue
 
-        params = build_parameters(action, item)
-        reason = prompt("Reason / note (optional)")
+        if action == "USE_MACHINE_SUGGESTION":
+            suggestion = item.get("machine_suggestion", {}).get("suggested_fix")
+            if not suggestion:
+                print("This item has no machine fix suggestion; left pending.")
+                continue
+            action = suggestion["action"]
+            params = suggestion.get("parameters") or {}
+            reason = prompt(
+                "Reason / note",
+                suggestion.get("reason") or "Accepted machine cleaning suggestion"
+            )
+        else:
+            params = build_parameters(action, item)
+            reason = prompt("Reason / note (optional)")
+
         decision = make_decision(
             action,
             parameters=params,

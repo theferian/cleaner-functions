@@ -1,14 +1,15 @@
 {
   "package_id": "cleaner_functions",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "core_module": "cleaner_core",
-  "profile_schema": "0.3",
+  "profile_schema": "0.4",
   "requirements": "requirements.txt",
   "entrypoints": {
     "profile_discovery": "discoveries",
     "tests": "tests",
     "cleaners": "cleaners",
-    "review": "review"
+    "review": "review",
+    "profile_configuration": "dev/configure_profile_fields.py"
   },
   "review_schema": "0.1",
   "decision_schema": "0.1"

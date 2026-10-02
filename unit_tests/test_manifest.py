@@ -8,3 +8,4 @@ def test_manifest():
     assert data["package_id"] == "cleaner_functions"
     assert data["core_module"] == "cleaner_core"
     assert data["entrypoints"]["tests"] == "tests"
+    assert data["profile_schema"] == "0.4"

@@ -228,3 +228,72 @@ See:
 ```text
 docs/REVIEW_CONTRACT.md
 ```
+
+
+# v0.4.1 — Identifier Cleaner / Test
+
+The v0.4 core and review contract are preserved.
+
+Added:
+
+```text
+tests/identifier_check.py
+cleaners/identifier_cleaner.py
+dev/run_azd_identifiers.py
+dev/run_azd_health.py
+dev/configure_profile_fields.py
+docs/IDENTIFIER_RULE.md
+docs/DATA_FIELD_MODEL.md
+```
+
+## Run only Name/WBS identifiers
+
+```powershell
+python .\dev\run_azd_identifiers.py
+```
+
+Interactive review:
+
+```powershell
+python .\dev\run_azd_identifiers.py --review
+```
+
+When a machine cleaning suggestion exists, the reviewer can choose:
+
+```text
+u  USE_MACHINE_SUGGESTION
+```
+
+The decision is still only recorded; it is not applied to Excel yet.
+
+## Run current AZD health suite
+
+M-line + identifiers:
+
+```powershell
+python .\dev\run_azd_health.py
+```
+
+With review:
+
+```powershell
+python .\dev\run_azd_health.py --review
+```
+
+This creates one Frappe-friendly queue containing findings from both tests.
+
+## Edit family data fields / instance mappings
+
+```powershell
+python .\dev\configure_profile_fields.py
+```
+
+Default family fields are:
+
+```text
+Document Type
+Name
+WBS
+```
+
+You may add more fields without changing the test framework.

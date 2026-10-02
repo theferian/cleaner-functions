@@ -16,6 +16,7 @@ class Finding:
     observed: Any = None
     evidence: dict[str, Any] = field(default_factory=dict)
     suggested_exception: dict[str, Any] | None = None
+    suggested_fix: dict[str, Any] | None = None
 
     def to_dict(self):
         return asdict(self)
