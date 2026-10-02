@@ -59,3 +59,7 @@ M_LINE
 
 `document_structure_catalog.json` is written into the run folder for inspection
 and future UI/Frappe integration.
+
+> **Pipeline status:** merge fingerprints are now diagnostic only. The required
+> AZD workflow uses `CARD_MAP` instead, because reviewers need explicit card/data
+> boundaries rather than anonymous geometry IDs.

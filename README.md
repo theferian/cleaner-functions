@@ -385,3 +385,29 @@ patterns are reviewed once per unique geometry and can be promoted into
 `profiles/AZD.profile.json` with `dev/promote_decisions.py --apply`. The run
 also writes `document_structure_catalog.json`. See
 `docs/DOCUMENT_STRUCTURE.md`.
+
+## Card map: explicit data boundaries
+
+The required pipeline no longer asks reviewers to approve anonymous merge fingerprints.
+The operational path is now:
+
+```text
+M_LINE
+  -> DOCUMENT_BOUNDARIES
+  -> CARD_MAP
+  -> IDENTIFIERS
+```
+
+`CARD_MAP` records, for every document card, a human-readable identifier range
+and data range plus the visible merged/unmerged data slots. For AZD the data area
+starts after the C|D boundary. The right edge is derived from the workbook's
+actual merge extent.
+
+The profile also records the semantic fields we intend to map next:
+`reference`, `send_date`, `receive_date`, and `status`. They are not validated
+until their locations are explicitly mapped.
+
+A stage with zero findings is now marked `REVIEWED` automatically, so the next
+stage does not require an empty decisions file.
+
+See `docs/CARD_MAP.md`.

@@ -25,6 +25,12 @@ __all__ = [
     "structure_pattern_for_region",
     "scan_document_structure",
     "scan_all_document_structures",
+    "scan_all_card_maps",
+    "scan_card_map",
+    "card_map_config",
+    "CardMapScan",
+    "CardMap",
+    "CardSlot",
 ]
 
 
@@ -66,4 +72,13 @@ from .document_structure import (
     structure_pattern_for_region,
     scan_document_structure,
     scan_all_document_structures,
+)
+
+from .card_map import (
+    CardSlot,
+    CardMap,
+    CardMapScan,
+    card_map_config,
+    scan_card_map,
+    scan_all_card_maps,
 )

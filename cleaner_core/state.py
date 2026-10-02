@@ -93,13 +93,16 @@ def mark_stage_run(
     stage_id = str(stage_id).upper()
     stage = state.setdefault("stages", {}).setdefault(stage_id, {})
     stage.update({
-        "status": "AWAITING_REVIEW",
+        "status": "REVIEWED" if int(finding_count) == 0 else "AWAITING_REVIEW",
         "last_run_at": _now(),
         "finding_count": int(finding_count),
         "report_path": report_path,
         "review_queue_path": review_queue_path,
         "decision_count": int(stage.get("decision_count", 0)),
     })
+    if int(finding_count) == 0:
+        stage["reviewed_at"] = _now()
+        stage["auto_reviewed"] = True
 
 
 def _upsert_by_review_id(items: list[dict], item: dict) -> None:

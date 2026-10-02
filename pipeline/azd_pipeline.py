@@ -24,20 +24,23 @@ from cleaner_core import (
     snapshot_live_workbook,
     scan_all_document_regions,
     scan_all_document_structures,
+    scan_all_card_maps,
 )
 from cleaner_core.logging import RunLogger
 from review.queue import build_review_queue, write_review_queue
 from tests.m_line_check import run as m_line_check
 from tests.document_boundaries import run as document_boundaries_check
 from tests.document_structure import run as document_structure_check
+from tests.card_map import run as card_map_check
 from tests.identifier_check import run as identifier_check
 
 
-STAGES = ["M_LINE", "DOCUMENT_BOUNDARIES", "DOCUMENT_STRUCTURE", "IDENTIFIERS"]
+STAGES = ["M_LINE", "DOCUMENT_BOUNDARIES", "CARD_MAP", "IDENTIFIERS"]
 RUNNERS = {
     "M_LINE": m_line_check,
     "DOCUMENT_BOUNDARIES": document_boundaries_check,
     "DOCUMENT_STRUCTURE": document_structure_check,
+    "CARD_MAP": card_map_check,
     "IDENTIFIERS": identifier_check,
 }
 
@@ -196,6 +199,26 @@ def main():
                 f"Derived document-region catalog: {regions_path}",
             )
 
+        if stage_id == "CARD_MAP":
+            resolved_snapshot, resolved_profile = build_resolved_context(
+                snap, profile, state
+            )
+            scans = scan_all_card_maps(resolved_snapshot, resolved_profile)
+            card_map_path = run_dir / "card_maps.json"
+            card_map_payload = {
+                "schema": "cleaner.card_map/0.1",
+                "run_id": run_id,
+                "profile_name": resolved_profile.get("profile_name"),
+                "workbook": workbook_meta,
+                "sheets": {sheet: scan.to_dict() for sheet, scan in scans.items()},
+            }
+            card_map_path.write_text(
+                json.dumps(card_map_payload, ensure_ascii=False, indent=2, default=str) + "\n",
+                encoding="utf-8",
+            )
+            stage_artifacts["card_map"] = str(card_map_path)
+            logger("ARTIFACT", f"Derived card/data map: {card_map_path}")
+
         if stage_id == "DOCUMENT_STRUCTURE":
             resolved_snapshot, resolved_profile = build_resolved_context(
                 snap, profile, state
@@ -274,22 +297,36 @@ def main():
         print(f"Regions      : {stage_artifacts['document_regions']}")
     if stage_artifacts.get("document_structure_catalog"):
         print(f"Structure    : {stage_artifacts['document_structure_catalog']}")
-    print("\nReview this stage with:")
-    print(
-        f'python .\\dev\\review_findings.py "{queue_path}" '
-        f'--decisions "{decisions_path}" --accept-known'
-    )
+    if stage_artifacts.get("card_map"):
+        print(f"Card map     : {stage_artifacts['card_map']}")
+        print("\nOptional visual inspection of every derived card/data boundary:")
+        print(f'python .\\dev\\inspect_card_map.py "{stage_artifacts["card_map"]}"')
+    if findings:
+        print("\nReview this stage with:")
+        print(
+            f'python .\\dev\\review_findings.py "{queue_path}" '
+            f'--decisions "{decisions_path}" --accept-known'
+        )
+    else:
+        print("\nNo review is required for this stage; it was marked REVIEWED automatically.")
 
     nxt = None
     index = STAGES.index(stage_id)
     if index + 1 < len(STAGES):
         nxt = STAGES[index + 1]
     if nxt:
-        print("\nThen run the next stage with the same run-id and decisions:")
-        print(
-            f'python .\\pipeline\\azd_pipeline.py --run-id "{run_id}" '
-            f'--stage {nxt} --decisions "{decisions_path}"'
-        )
+        if findings:
+            print("\nThen run the next stage with the same run-id and decisions:")
+            print(
+                f'python .\\pipeline\\azd_pipeline.py --run-id "{run_id}" '
+                f'--stage {nxt} --decisions "{decisions_path}"'
+            )
+        else:
+            print("\nThen run the next stage with the same run-id:")
+            print(
+                f'python .\\pipeline\\azd_pipeline.py --run-id "{run_id}" '
+                f'--stage {nxt}'
+            )
 
     if not args.keep_snapshot:
         Path(snapshot_path).unlink(missing_ok=True)
