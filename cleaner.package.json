@@ -11,7 +11,8 @@
     "review": "review",
     "profile_configuration": "dev/configure_profile_fields.py",
     "pipeline": "pipeline/azd_pipeline.py",
-    "promotion": "dev/promote_decisions.py"
+    "promotion": "dev/promote_decisions.py",
+    "document_boundaries": "tests/document_boundaries.py"
   },
   "review_schema": "0.1",
   "decision_schema": "0.1",

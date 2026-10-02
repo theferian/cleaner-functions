@@ -337,3 +337,31 @@ new/unknown findings remain interactive. Identifier WBS values are recalculated
 from the current workbook rather than copying last week's generated value.
 
 See `docs/REUSABLE_KNOWLEDGE.md`.
+
+# Document boundaries
+
+The ordered AZD pipeline now separates record detection from identifier
+validation:
+
+```text
+M_LINE
+  -> DOCUMENT_BOUNDARIES
+  -> IDENTIFIERS
+```
+
+`DOCUMENT_BOUNDARIES` derives `DocumentRegion` objects from the current
+workbook's mapped Name/WBS anchors and merge geometry. Large category/separator
+merges anchored outside the identifier columns are excluded. Ambiguous geometry
+is sent to review instead of silently guessed.
+
+Run the new stage after reviewing M-line:
+
+```powershell
+python .\pipeline\azd_pipeline.py --run-id "<run-id>" --stage DOCUMENT_BOUNDARIES --decisions ".\runs\<run-id>\m_line_review_decisions.json"
+```
+
+The stage writes `runs/<run-id>/document_regions.json` as an audit/debug catalog.
+`IDENTIFIERS` now consumes the same logical regions instead of using its former
+provisional physical-row heuristic.
+
+See `docs/DOCUMENT_BOUNDARIES.md`.

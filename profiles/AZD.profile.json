@@ -1846,6 +1846,25 @@
         }
       }
     },
+    "document_boundaries": {
+      "enabled": true,
+      "method": "IDENTIFIER_FIELD_MERGE_SPAN",
+      "first_data_row": 3,
+      "signal_fields": [
+        "document_type",
+        "name",
+        "wbs"
+      ],
+      "boundary_fields": [
+        "name",
+        "wbs"
+      ],
+      "separator_fields": [
+        "name",
+        "wbs"
+      ],
+      "note": "Document regions are derived per workbook from mapped identifier anchors and Name/WBS merge spans. Rows where Name and WBS are both covered by a merge anchored elsewhere are treated as separator/background ranges."
+    },
     "record_detection": {
       "first_data_row": 3,
       "signal_fields": [

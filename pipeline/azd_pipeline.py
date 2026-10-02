@@ -22,16 +22,19 @@ from cleaner_core import (
     mark_stage_run,
     save_resolved_state,
     snapshot_live_workbook,
+    scan_all_document_regions,
 )
 from cleaner_core.logging import RunLogger
 from review.queue import build_review_queue, write_review_queue
 from tests.m_line_check import run as m_line_check
+from tests.document_boundaries import run as document_boundaries_check
 from tests.identifier_check import run as identifier_check
 
 
-STAGES = ["M_LINE", "IDENTIFIERS"]
+STAGES = ["M_LINE", "DOCUMENT_BOUNDARIES", "IDENTIFIERS"]
 RUNNERS = {
     "M_LINE": m_line_check,
+    "DOCUMENT_BOUNDARIES": document_boundaries_check,
     "IDENTIFIERS": identifier_check,
 }
 
@@ -148,6 +151,7 @@ def main():
         f"Snapshot created in {time.perf_counter() - started:.2f}s: {snapshot_path}",
     )
 
+    stage_artifacts = {}
     snap = load_snapshot(snapshot_path)
     try:
         findings = run_stage(
@@ -157,6 +161,37 @@ def main():
             state=state,
             logger=logger,
         )
+
+        if stage_id == "DOCUMENT_BOUNDARIES":
+            resolved_snapshot, resolved_profile = build_resolved_context(
+                snap, profile, state
+            )
+            scans = scan_all_document_regions(resolved_snapshot, resolved_profile)
+            regions_path = run_dir / "document_regions.json"
+            regions_payload = {
+                "schema": "cleaner.document_regions/0.1",
+                "run_id": run_id,
+                "profile_name": resolved_profile.get("profile_name"),
+                "workbook": workbook_meta,
+                "sheets": {
+                    sheet: scan.to_dict()
+                    for sheet, scan in scans.items()
+                },
+            }
+            regions_path.write_text(
+                json.dumps(
+                    regions_payload,
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
+                ) + "\n",
+                encoding="utf-8",
+            )
+            stage_artifacts["document_regions"] = str(regions_path)
+            logger(
+                "ARTIFACT",
+                f"Derived document-region catalog: {regions_path}",
+            )
     finally:
         snap.close()
 
@@ -171,6 +206,8 @@ def main():
     payload["run_id"] = run_id
     payload["pipeline_stage"] = stage_id
     payload["resolved_state_path"] = str(state_path)
+    if stage_artifacts:
+        payload["derived_artifacts"] = stage_artifacts
 
     stem = stage_id.lower()
     report_path = run_dir / f"{stem}_report.json"
@@ -210,6 +247,8 @@ def main():
     print(f"Report       : {report_path}")
     print(f"Review queue : {queue_path}")
     print(f"State        : {state_path}")
+    if stage_artifacts.get("document_regions"):
+        print(f"Regions      : {stage_artifacts['document_regions']}")
     print("\nReview this stage with:")
     print(
         f'python .\\dev\\review_findings.py "{queue_path}" '

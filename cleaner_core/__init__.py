@@ -12,6 +12,12 @@ __all__ = [
     "WorkbookSnapshot",
     "load_snapshot",
     "load_profile",
+    "FieldAnchor",
+    "DocumentRegion",
+    "BoundaryScan",
+    "boundary_config",
+    "scan_document_regions",
+    "scan_all_document_regions",
 ]
 
 
@@ -35,4 +41,12 @@ from .knowledge import (
     save_profile,
     match_known_fix,
     decision_from_known_policy,
+)
+from .document_regions import (
+    FieldAnchor,
+    DocumentRegion,
+    BoundaryScan,
+    boundary_config,
+    scan_document_regions,
+    scan_all_document_regions,
 )
