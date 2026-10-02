@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+*_report.json
+*_review_queue.json
+*_review_decisions.json
