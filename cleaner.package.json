@@ -9,8 +9,10 @@
     "tests": "tests",
     "cleaners": "cleaners",
     "review": "review",
-    "profile_configuration": "dev/configure_profile_fields.py"
+    "profile_configuration": "dev/configure_profile_fields.py",
+    "pipeline": "pipeline/azd_pipeline.py"
   },
   "review_schema": "0.1",
-  "decision_schema": "0.1"
+  "decision_schema": "0.1",
+  "resolved_state_schema": "0.1"
 }

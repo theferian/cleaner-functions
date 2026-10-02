@@ -297,3 +297,18 @@ WBS
 ```
 
 You may add more fields without changing the test framework.
+
+
+# Resolved-state pipeline
+
+Ordered stages can now carry reviewed resolutions forward without changing the
+live Excel workbook.
+
+Start M-line:
+
+```powershell
+python .\pipeline\azd_pipeline.py --stage M_LINE
+```
+
+After reviewing that queue, run `IDENTIFIERS` with the same run ID and the
+M-line decision file. See `docs/RESOLVED_STATE.md`.
