@@ -2,8 +2,10 @@ from pathlib import Path
 
 from openpyxl import Workbook
 
-from cleaner_core.document_structure import scan_document_structure
+from cleaner_core.document_structure import scan_document_structure, structure_pattern_for_region
 from cleaner_core.knowledge import promote_decisions_to_profile
+from cleaner_core.document_regions import DocumentRegion, FieldAnchor
+from cleaner_core.ranges import parse_range
 from cleaner_core.logging import RunLogger
 from cleaner_core.snapshot import WorkbookSnapshot
 from tests.document_structure import run as document_structure_check
@@ -84,6 +86,12 @@ def build_book(path: Path):
     ws.merge_cells("D7:G7")
     ws.merge_cells("D8:E8")
 
+    # Legitimate higher-level/context merges that span several document cards.
+    # Column A is contextual (Document Type), while H is in the transaction side.
+    # Neither defines a DocumentRegion boundary, so these must not become hazards.
+    ws.merge_cells("A3:A8")
+    ws.merge_cells("H3:H8")
+
     wb.save(path)
 
 
@@ -157,3 +165,36 @@ def test_reviewed_structure_pattern_can_be_promoted_and_recognized(tmp_path):
     assert len(unknown2) == 1
     assert unknown2[0].evidence["pattern_count"] == 1
     snap.close()
+
+
+
+def test_owned_boundary_merge_crossing_region_is_a_hazard():
+    region = DocumentRegion(
+        sheet="230KV SS",
+        record_index=1,
+        anchor_row=3,
+        start_row=3,
+        end_row=4,
+        fields={
+            "name": FieldAnchor(
+                field_key="name", column=2, address="B3", value="Document A",
+                own_anchor=True, continuation=False, covered_by_external_merge=False,
+                merge="B3:B4", span_start_row=3, span_end_row=4,
+            ),
+            "wbs": FieldAnchor(
+                field_key="wbs", column=3, address="C3", value="1.1",
+                own_anchor=True, continuation=False, covered_by_external_merge=False,
+                merge="C3:C4", span_start_row=3, span_end_row=4,
+            ),
+        },
+        signal_fields=("name", "wbs"),
+        boundary_fields=("name", "wbs"),
+    )
+
+    _, crossing = structure_pattern_for_region(
+        region=region,
+        merged_ranges=[parse_range("B3:B6")],
+        transaction_start_col=4,
+    )
+
+    assert crossing == ("B3:B6",)

@@ -1880,6 +1880,7 @@
       "method": "NORMALIZED_MERGE_SIGNATURE",
       "transaction_start_col": 4,
       "unknown_pattern_status": "POSSIBLE_EXCEPTION",
+      "crossing_hazard_policy": "OWNED_BOUNDARY_FIELDS_ONLY",
       "known_patterns": [],
       "note": "A document card is fingerprinted from merge geometry normalized to the DocumentRegion start row. Cell values and absolute row numbers are excluded so the same valid layout can move between weekly workbooks."
     }

@@ -56,7 +56,7 @@ def run(snapshot, profile, log):
                 sheet=sheet,
                 target=hazard.get("target"),
                 message=message,
-                expected="Merged ranges contained within one derived DocumentRegion",
+                expected="Owned boundary-field merges remain within their derived DocumentRegion",
                 observed=hazard.get("ranges"),
                 evidence=hazard,
             ))

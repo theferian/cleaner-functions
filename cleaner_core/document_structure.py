@@ -84,6 +84,12 @@ def document_structure_config(profile: dict) -> dict[str, Any]:
         "unknown_pattern_status": str(
             configured.get("unknown_pattern_status", "POSSIBLE_EXCEPTION")
         ).upper(),
+        "crossing_hazard_policy": str(
+            configured.get(
+                "crossing_hazard_policy",
+                "OWNED_BOUNDARY_FIELDS_ONLY",
+            )
+        ).upper(),
     }
 
 
@@ -97,11 +103,53 @@ def _pattern_id(payload: dict[str, Any]) -> str:
     return f"STRUCT_{digest}"
 
 
+def _boundary_columns(region: DocumentRegion) -> set[int]:
+    """Return mapped columns that actually define this DocumentRegion boundary."""
+    return {
+        int(region.fields[key].column)
+        for key in region.boundary_fields
+        if key in region.fields
+    }
+
+
+def _is_owned_boundary_crossing(
+    rect: Rect,
+    region: DocumentRegion,
+    *,
+    policy: str,
+) -> bool:
+    """Classify whether a row-crossing merge is a document-structure hazard.
+
+    DocumentRegion boundaries are defined by the configured boundary fields
+    (for AZD, Name/WBS). Long merges in contextual columns such as Document Type
+    or in the transaction area may legitimately span several documents. They are
+    therefore not hazards merely because their row span overlaps this region.
+
+    A merge is owned by this region when its top-left anchor row starts inside
+    the region. Under the default policy, only an owned crossing merge that also
+    covers a boundary-field column is treated as a structural hazard.
+    """
+    policy = str(policy or "OWNED_BOUNDARY_FIELDS_ONLY").upper()
+    if policy in {"NONE", "DISABLED"}:
+        return False
+    if policy == "ALL_CROSSING_MERGES":
+        return True
+    if policy != "OWNED_BOUNDARY_FIELDS_ONLY":
+        raise ValueError(f"Unknown document-structure crossing hazard policy: {policy}")
+
+    if not (region.start_row <= rect.r1 <= region.end_row):
+        return False
+
+    boundary_cols = _boundary_columns(region)
+    return any(rect.c1 <= col <= rect.c2 for col in boundary_cols)
+
+
 def structure_pattern_for_region(
     *,
     region: DocumentRegion,
     merged_ranges: list[Rect],
     transaction_start_col: int,
+    crossing_hazard_policy: str = "OWNED_BOUNDARY_FIELDS_ONLY",
 ) -> tuple[StructurePattern, tuple[str, ...]]:
     """
     Build a row-position-independent geometry signature for one document region.
@@ -118,7 +166,12 @@ def structure_pattern_for_region(
             continue
 
         if rect.r1 < region.start_row or rect.r2 > region.end_row:
-            crossing.append(rect.address)
+            if _is_owned_boundary_crossing(
+                rect,
+                region,
+                policy=crossing_hazard_policy,
+            ):
+                crossing.append(rect.address)
             continue
 
         normalized.append((
@@ -177,6 +230,7 @@ def scan_document_structure(snapshot, profile: dict, sheet: str) -> StructureSca
             region=region,
             merged_ranges=merged_ranges,
             transaction_start_col=config["transaction_start_col"],
+            crossing_hazard_policy=config["crossing_hazard_policy"],
         )
         item = RegionStructure(
             sheet=sheet,

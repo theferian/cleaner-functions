@@ -35,10 +35,18 @@ by row number.
 
 ## Hard structural hazard
 
-If a merged range intersects a derived document region but extends outside its
-row boundary, the stage emits a `FAIL`. That indicates disagreement between the
-boundary model and the physical card geometry and should be reviewed before
-content-level cleaning.
+A merge is **not** a hazard merely because it spans several document rows. AZD
+contains legitimate higher-level/context merges (for example Document Type or
+transaction-side grouping) that can cross multiple `DocumentRegion`s.
+
+Under the default `OWNED_BOUNDARY_FIELDS_ONLY` policy, a crossing merge becomes
+a `FAIL` only when both conditions are true:
+
+1. the merge anchor starts inside the current `DocumentRegion` (the region owns it);
+2. the merge covers one of the configured boundary-field columns (for AZD, Name/WBS).
+
+This keeps genuine boundary disagreements visible while ignoring contextual
+merges that do not define document ownership.
 
 ## Pipeline position
 
