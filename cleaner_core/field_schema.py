@@ -16,7 +16,7 @@ _DASHES = str.maketrans({"–": "-", "—": "-", "−": "-", "ـ": "-"})
 _JALALI_CANONICAL_RE = re.compile(r"^\d{4}/\d{2}/\d{2}$")
 _JALALI_LOOSE_RE = re.compile(r"^\s*(?:\d{2}|\d{4})\s*[/\\.\-]\s*\d{1,2}\s*[/\\.\-]\s*\d{1,2}\s*$")
 _EMBEDDED_JALALI_RE = re.compile(r"(?<!\d)(?:\d{2}|\d{4})\s*[/\.\-–—−]\s*\d{1,2}\s*[/\.\-–—−]\s*\d{1,2}(?!\d)")
-_GLOBAL_JALALI_TOKEN_RE = re.compile(r"(?<!\d)(?:1[34]\d{2}|\d{3})\s*[/\.\-–—−]\s*\d{1,3}\s*[/\.\-–—−]\s*\d{1,3}(?!\d)")
+_GLOBAL_JALALI_TOKEN_RE = re.compile(r"(?<!\d)(?:1[34]\d{2,3}|\d{3})\s*[/\.\-–—−]\s*\d{1,3}\s*[/\.\-–—−]\s*\d{1,3}(?!\d)")
 _SHORT_JALALI_TOKEN_RE = re.compile(r"(?<!\d)\d{2}\s*[/\.\-–—−]\s*\d{1,2}\s*[/\.\-–—−]\s*\d{1,2}(?!\d)")
 _DATE_CONTEXT_MARKERS = ("مورخ", "تاریخ", "تاريخ", "date", "dated")
 _CODE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9._/\-]{0,9}$")
@@ -314,8 +314,9 @@ def discover_jalali_tokens(value: Any, *, allow_short: bool = False) -> tuple[di
     """Discover Jalali-looking tokens anywhere inside a value.
 
     The global safety-net deliberately scans beyond fields already classified as
-    dates. Four-digit 13xx/14xx tokens and malformed three-digit-year numeric
-    triples are always considered date candidates. Month/day components are
+    dates. Four-digit 13xx/14xx tokens, likely five-digit 13xxx/14xxx typos,
+    and malformed three-digit-year numeric triples are always considered date
+    candidates. Month/day components are
     deliberately allowed up to three digits so malformed dates are discovered
     first and rejected by calendar validation rather than missed by regex.
     Two-digit years are considered only when explicitly allowed (normally for

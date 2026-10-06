@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.4",
+  "family": "GENERAL_DOCUMENT",
+  "profile_name": "__PROJECT__",
+  "workbook": {
+    "expected_sheets": []
+  },
+  "structure": {
+    "m_line": {
+      "enabled": true,
+      "test_id": "M_LINE",
+      "target_sheets": [],
+      "boundary_after_col": 3,
+      "boundary_label": "C|D",
+      "discovery": {
+        "title_window": {
+          "row_start": 1,
+          "row_end": 10,
+          "col_start": 1,
+          "col_end": 6
+        }
+      },
+      "candidate_exception_detection": {
+        "enabled": true,
+        "method": "EXACT_CROSSING_GEOMETRY_SIGNATURE"
+      }
+    }
+  },
+  "known_exceptions": [],
+  "known_fixes": [],
+  "fields": {},
+  "status_translation": {},
+  "data_model": {
+    "family_fields": [
+      {
+        "key": "document_type",
+        "label": "Document Type",
+        "data_type": "TEXT",
+        "required": false,
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 1
+        },
+        "validation": {
+          "kind": "NONE"
+        },
+        "cleaning": {}
+      },
+      {
+        "key": "name",
+        "label": "Name",
+        "data_type": "TEXT",
+        "required": true,
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 2
+        },
+        "validation": {
+          "kind": "NON_EMPTY",
+          "empty_tokens": [
+            null,
+            ""
+          ]
+        },
+        "cleaning": {
+          "on_empty": "SET_VALUE",
+          "template": "ERR_EMPT_NAME_{NUMBER}",
+          "number_strategy": "ROW_NUMBER"
+        }
+      },
+      {
+        "key": "wbs",
+        "label": "WBS",
+        "data_type": "WBS",
+        "required": true,
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 3
+        },
+        "validation": {
+          "kind": "REGEX",
+          "pattern": "^\\d+(?:\\.\\d+)*$",
+          "empty_or_invalid_tokens": [
+            "",
+            "-",
+            "–",
+            "—"
+          ]
+        },
+        "cleaning": {
+          "on_invalid": "SET_VALUE",
+          "strategy": "NEAREST_VALID_ABOVE_APPEND_SEQUENCE",
+          "sequence_start": 1000,
+          "separator": ".",
+          "fallback_root_start": 1000
+        }
+      }
+    ],
+    "instances": {},
+    "document_boundaries": {
+      "enabled": true,
+      "method": "IDENTIFIER_FIELD_MERGE_SPAN",
+      "first_data_row": 3,
+      "signal_fields": [
+        "document_type",
+        "name",
+        "wbs"
+      ],
+      "boundary_fields": [
+        "name",
+        "wbs"
+      ],
+      "separator_fields": [
+        "name",
+        "wbs"
+      ],
+      "note": "Document regions are derived per workbook from mapped identifier anchors and Name/WBS merge spans. Rows where Name and WBS are both covered by a merge anchored elsewhere are treated as separator/background ranges."
+    },
+    "record_detection": {
+      "first_data_row": 3,
+      "signal_fields": [
+        "document_type",
+        "name",
+        "wbs"
+      ],
+      "merge_aware": true,
+      "note": "Until explicit document data boundaries are modeled, a logical record is detected when at least one mapped identifier field has its own value/merge anchor. Rows covered only by a merge anchored in another column are ignored."
+    },
+    "document_structure": {
+      "enabled": true,
+      "method": "NORMALIZED_MERGE_SIGNATURE",
+      "transaction_start_col": 4,
+      "unknown_pattern_status": "POSSIBLE_EXCEPTION",
+      "crossing_hazard_policy": "OWNED_BOUNDARY_FIELDS_ONLY",
+      "known_patterns": [],
+      "note": "A document card is fingerprinted from merge geometry normalized to the DocumentRegion start row. Cell values and absolute row numbers are excluded so the same valid layout can move between weekly workbooks."
+    },
+    "card_map": {
+      "enabled": true,
+      "method": "EXPLICIT_IDENTIFIER_AND_DATA_BOUNDARIES",
+      "data_start_col": 4,
+      "data_end_strategy": "MERGE_EXTENT",
+      "semantic_fields": [
+        "reference",
+        "send_date",
+        "receive_date",
+        "status"
+      ],
+      "field_map": {},
+      "note": "CARD_MAP derives human-readable identifier and data ranges for every DocumentRegion. Semantic field roles are mapped explicitly before date/reference/status validation."
+    },
+    "field_inference": {
+      "enabled": true,
+      "header_rows": [
+        1,
+        2
+      ],
+      "max_block_width": 8,
+      "min_block_confidence": 0.7,
+      "min_role_confidence": 0.8,
+      "reference_min_samples": 5,
+      "reference_min_coverage": 0.8,
+      "status_min_occurrences": 2,
+      "status_min_coverage": 0.8,
+      "note": "Infer the fundamental repeating transaction width from whole-column semantic periodicity; when vertically mixed correspondence cells make that noisy, allow repeated high-confidence semantic anchor columns (normally STATUS) to establish the horizontal rhythm. Once width is known, infer send/receive date-bearing offsets from value-level evidence so stacked date/reference/explanation cells do not need a pure TOP/BOTTOM lane.",
+      "semantic_min_confidence": 0.9,
+      "block_fundamental_tolerance": 0.12,
+      "status_max_unique": 20,
+      "status_max_unique_ratio": 0.6,
+      "anchor_block_inference": true,
+      "anchor_min_columns": 3,
+      "anchor_min_spacing_coverage": 0.75,
+      "mixed_offset_date_min_samples": 3,
+      "mixed_offset_date_min_share": 0.2
+    },
+    "field_validation": {
+      "enabled": true,
+      "jalali_date": {
+        "canonical_regex": "^\\d{4}/\\d{2}/\\d{2}$",
+        "normalize_persian_arabic_digits": true,
+        "normalize_separators": true,
+        "zero_pad_month_day": true,
+        "calendar_validation": true
+      },
+      "reference": {
+        "rule_source": "MAJORITY_STRUCTURAL_REGEX",
+        "review_outliers_only": true
+      },
+      "status": {
+        "rule_source": "RECURRING_NORMALIZED_VOCABULARY",
+        "review_outliers_only": true
+      },
+      "note": "Passing values are silent. Semantic validators are supplemented by a global Jalali-token safety audit across every mapped card slot, a receive-date/status relationship check, and review-only send/receive chronology validation. Invalid or non-canonical values enter review; deterministic normalization is suggested only when safe.",
+      "global_date_audit": {
+        "enabled": true,
+        "scope": "ALL_MAPPED_CARD_SLOTS",
+        "short_year_with_context": true,
+        "note": "Safety-net scan for Jalali-looking numeric triples across every mapped card slot, including slots already classified as dates. Canonical 13xx/14xx years and malformed three-digit years are audited broadly; month/day components may be malformed and are still discovered before calendar validation. Two-digit years are audited only in explicit date context such as مورخ/تاریخ."
+      },
+      "receive_status_relation": {
+        "enabled": true,
+        "rule": "RECEIVE_DATE_REQUIRES_STATUS_IN_SAME_TRANSACTION_EVENT",
+        "note": "When a valid receive-date sub-slot exists in a resolved repeating transaction block, the vertically corresponding status slot must be populated."
+      },
+      "date_chronology": {
+        "enabled": true,
+        "rule": "RECEIVE_DATE_ON_OR_AFTER_SEND_DATE_IN_SAME_TRANSACTION_EVENT",
+        "note": "Review-only temporal consistency check. If paired send and receive dates are both valid, receive must not precede send. No automatic correction is proposed."
+      }
+    }
+  },
+  "bootstrap": {
+    "template": "GENERAL_DOCUMENT",
+    "note": "Project profile bootstrap inherits family rules only. Project-specific fixes/exceptions must be learned by review."
+  }
+}

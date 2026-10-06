@@ -448,3 +448,72 @@ See `docs/CARD_MAP.md`.
 ## Transaction field inference and validation
 
 After `CARD_MAP`, the ordered AZD pipeline now runs `SLOT_SCHEMA` and `FIELD_VALIDATION` before `IDENTIFIERS`. `SLOT_SCHEMA` infers repeating transaction-block width and semantic roles from worksheet headers plus majority value patterns. `FIELD_VALIDATION` keeps valid values silent and sends only non-canonical/invalid Jalali dates, reference-regex outliers, and status-vocabulary outliers to human review. See `docs/FIELD_INFERENCE_AND_VALIDATION.md`.
+
+# Current function/pipeline architecture
+
+Cleaner is now treated as a function-level component rather than the top-level workflow.
+The repository keeps the existing Cleaner command compatible while introducing the
+higher orchestration layer explicitly:
+
+```text
+pipeline/
+    weekly_report_pipeline.py     overall orchestration
+    azd_pipeline.py               compatibility launcher for Cleaner
+
+functions/
+    cleaner/
+        azd_pipeline.py           actual Cleaner stage runner
+        service.py                reviewed Cleaner-run contract/finalization
+
+    board_to_log/
+        extractor.py              Cleaner artifacts -> canonical transactions
+        contracts.py              Logbook/issue contracts
+        writers.py                JSON/CSV + optional Excel COM output
+```
+
+The intended dependency direction is:
+
+```text
+Retrieval (next)
+      ↓
+Cleaner function
+      ↓
+reviewed semantic Cleaner artifacts
+      ↓
+Board→Log function
+      ↓
+canonical Logbook
+      ↓
+downstream reporting
+```
+
+Board→Log must not rediscover document boundaries or repeating transaction geometry.
+Those are owned by Cleaner.
+
+## First Board→Log validation
+
+Use a completed/reviewed Cleaner run:
+
+```powershell
+python .\pipeline\weekly_report_pipeline.py board-to-log `
+  --run-dir ".\runs\azd_20261006T063256" `
+  --project AZD `
+  --csv-out ".\runs\azd_20261006T063256\board_to_log.csv"
+```
+
+This writes the canonical JSON automatically to the run directory and optionally a
+CSV for inspection. It does **not** write into the workbook unless
+`--excel-workbook` is supplied explicitly.
+
+After the transaction extraction is accepted, the Excel writer should target the
+controlled cleaned workbook copy, not the raw retrieved source file.
+
+See `docs/ARCHITECTURE.md` and `docs/BOARD_TO_LOG.md`.
+
+## Retrieval layer
+
+The overall weekly-report pipeline now has a configuration-driven Retrieval function before Cleaner.  See `docs/RETRIEVAL.md`, `docs/PROJECT_CONTROL_THREE_SOURCE_MODEL.md`, and `configs/project_control_sources.sample.json`.
+
+```text
+Retrieval -> Cleaner -> Review/Knowledge -> Controlled Execution -> Board->Log -> Publish
+```

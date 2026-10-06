@@ -1,0 +1,91 @@
+{
+  "schema": "weekly_report.retrieval/0.2",
+  "retrieval_workspace": "./input",
+  "families": {
+    "GENERAL_DOCUMENT": {
+      "enabled": true,
+      "document_name": "Engineering / General Document Register",
+      "name_token": "LATEST_GENERAL_DOC",
+      "source_defaults": {
+        "mode": "direct"
+      }
+    }
+  },
+  "projects": {
+    "YSK": {
+      "enabled": true,
+      "report_order": "1",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1400\\140002-03- 63kv hasan abad yasookand\\letter\\technical\\updated Doc\\Yasookand-General.xlsx"
+        }
+      }
+    },
+    "EYV": {
+      "enabled": true,
+      "report_order": "2",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1401\\140102-09- 63kv Ivanaki\\letter\\technical\\updated Doc\\General-IVANAKI.xlsx"
+        }
+      }
+    },
+    "FSH": {
+      "enabled": true,
+      "report_order": "3",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1403\\1403-02-01-132kV Gostarsh Foulad shahryar\\Letter\\technical\\GOSTARESH E FOLAD E SHAHRIAR - UPDATED DOC.xlsx"
+        }
+      }
+    },
+    "BFG": {
+      "enabled": true,
+      "report_order": "4.1",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1403\\1403-02-02-132kv Foulad Bafgh Kasra and Ext. of Nakhlestan\\Letter\\technical\\Baafgh\\updated Doc\\Baafgh..xlsx"
+        }
+      }
+    },
+    "NKH": {
+      "enabled": true,
+      "report_order": "4.2",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1403\\1403-02-02-132kv Foulad Bafgh Kasra and Ext. of Nakhlestan\\Letter\\technical\\Nakhlestan\\updated Doc\\Nakhlestan...xlsx"
+        }
+      }
+    },
+    "JND": {
+      "enabled": true,
+      "report_order": "5",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1403\\1403-02-03-400-132kv Jondi Shapoor\\Letter\\technical\\Updated Doc\\General - Jondi Shapour.xlsx"
+        }
+      }
+    },
+    "NGN": {
+      "enabled": false,
+      "report_order": "6",
+      "sources": {}
+    },
+    "AZD": {
+      "enabled": true,
+      "report_order": "7",
+      "sources": {
+        "GENERAL_DOCUMENT": {
+          "mode": "direct",
+          "path": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\updated Doc\\General - Azad.xlsx"
+        }
+      }
+    }
+  }
+}

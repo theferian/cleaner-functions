@@ -1,18 +1,7 @@
-AZD 63KV transaction-rhythm recovery patch
+AZD compatibility launcher import-path fix
 
 Changes:
-- fallback block-width inference from stable semantic anchor spacing (e.g. STATUS columns)
-- value-level recovery of send/receive date-bearing offsets in vertically mixed transaction columns
-- profile-driven thresholds for modular project reuse
-- SLOT_SCHEMA logging now reports block_source and anchor evidence
-- regression tests for status-anchor spacing and mixed date/reference offsets
+- pipeline/azd_pipeline.py adds repository root to sys.path before importing functions.cleaner.
+- unit_tests/test_weekly_report_pipeline_cli.py adds direct launcher regression under cp1256.
 
-Apply by extracting this archive over the cleaner-functions project root.
-
-Then run:
-  python -m pytest -q unit_tests
-
-Expected:
-  54 passed
-
-Then rerun AZD SLOT_SCHEMA and FIELD_VALIDATION using the existing run-id.
+Verified: 97 tests passed.

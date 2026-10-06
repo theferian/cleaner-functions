@@ -16,7 +16,11 @@
     "document_structure": "tests/document_structure.py",
     "card_map": "tests/card_map.py",
     "slot_schema": "tests/slot_schema.py",
-    "field_validation": "tests/field_validation.py"
+    "field_validation": "tests/field_validation.py",
+    "cleaner_function": "functions/cleaner/azd_pipeline.py",
+    "board_to_log_function": "functions/board_to_log/__main__.py",
+    "overall_pipeline": "pipeline/weekly_report_pipeline.py",
+    "retrieval_function": "functions/retrieval/__main__.py"
   },
   "review_schema": "0.1",
   "decision_schema": "0.1",

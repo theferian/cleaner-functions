@@ -113,6 +113,7 @@ def _candidate_groups(crossings, templates, known_rows: set[int], boundary: int)
 
 def run(snapshot, profile, log):
     cfg = profile.get("structure", {}).get("m_line", {})
+    project_id = str(profile.get("profile_name") or "PROJECT").strip().upper()
 
     if not cfg.get("enabled", True):
         log("SKIP", "M_LINE is disabled in the profile.")
@@ -200,7 +201,7 @@ def run(snapshot, profile, log):
                     )
                 ]
 
-                msg = f"Known AZD M-line exception: {sheet}!{rect.address}."
+                msg = f"Known {project_id} M-line exception: {sheet}!{rect.address}."
                 log("KNOWN_EXCEPTION", msg)
                 findings.append(Finding(
                     test_id="M_LINE",
@@ -230,7 +231,7 @@ def run(snapshot, profile, log):
                 start = matched_candidate["start"]
                 end = matched_candidate["end"]
                 msg = (
-                    f"Possible repeated AZD exception: {sheet}!{rect.address}; "
+                    f"Possible repeated {project_id} exception: {sheet}!{rect.address}; "
                     f"rows {start}-{end} match known exception geometry."
                 )
                 log("POSSIBLE_EXCEPTION", msg)
@@ -253,7 +254,7 @@ def run(snapshot, profile, log):
                         ],
                     },
                     suggested_exception={
-                        "id": f"AZD_MLINE_EXCEPTION_{sheet.replace(' ', '_')}_R{start}_{end}",
+                        "id": f"{project_id}_MLINE_EXCEPTION_{sheet.replace(' ', '_')}_R{start}_{end}",
                         "enabled": True,
                         "reason": (
                             "Candidate repeated Category/Type boundary exception "

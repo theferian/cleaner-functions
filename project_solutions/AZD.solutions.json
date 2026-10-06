@@ -1,14 +1,14 @@
 {
   "schema": "cleaner.project_solutions/0.1",
   "project_id": "AZD",
-  "next_sequence": 51,
+  "next_sequence": 98,
   "solutions": [
     {
       "handle": "AZD-SOL-0001",
       "enabled": true,
       "project_id": "AZD",
       "kind": "WORKBOOK_FIX",
-      "signature": "f75865a8a37fe4dc",
+      "signature": "821974c916c19fd5",
       "match": {
         "test_id": "FIELD_VALIDATION",
         "status": "FAIL",
@@ -22,7 +22,7 @@
           "audit_kind": "EXPLANATION_DATE",
           "document_relative_target": "H+0:H+1"
         },
-        "observed": null,
+        "observed": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03",
         "target_fallback": "H11:H12"
       },
       "resolution": {
@@ -38,13 +38,13 @@
       },
       "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
       "created_at": "2026-10-06T07:03:32",
-      "updated_at": "2026-10-06T16:36:48",
+      "updated_at": "2026-10-07T00:32:20",
       "times_confirmed": 2,
       "source": {
         "run_id": "azd_20261006T063256",
         "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "AZD-SOL-0001"
       },
       "history": [
         {
@@ -250,13 +250,13 @@
       },
       "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
       "created_at": "2026-10-06T07:04:48",
-      "updated_at": "2026-10-06T16:36:48",
+      "updated_at": "2026-10-07T00:32:20",
       "times_confirmed": 1,
       "source": {
         "run_id": "azd_20261006T063256",
         "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "AZD-SOL-0004"
       },
       "history": [
         {
@@ -2365,6 +2365,2078 @@
       },
       "history": [],
       "migration_note": "Split from collided legacy solution AZD-SOL-0002"
+    },
+    {
+      "handle": "AZD-SOL-0051",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "43450218ddc7b788",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "COORDINATION PROCEDURE"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.1.3"
+        },
+        "observed": null,
+        "target_fallback": "C9"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C9",
+          "value": "1.5.1.1.1.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C9; observed='-'. Proposed WBS='1.5.1.1.1.3.1000' using nearest valid WBS above '1.5.1.1.1.3'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C9_651531b6ec06",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0052",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4c3600c37e350f70",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "PROJECT CHART"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.1.3"
+        },
+        "observed": null,
+        "target_fallback": "C11"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C11",
+          "value": "1.5.1.1.1.3.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C11; observed='-'. Proposed WBS='1.5.1.1.1.3.1001' using nearest valid WBS above '1.5.1.1.1.3'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C11_402d80666ab6",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0053",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ab3244bf8c05e905",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "LVDC (110 VDC) LOGIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.2.1.11"
+        },
+        "observed": null,
+        "target_fallback": "C43"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C43",
+          "value": "1.5.1.1.2.1.11.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C43; observed='-'. Proposed WBS='1.5.1.1.2.1.11.1000' using nearest valid WBS above '1.5.1.1.2.1.11'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C43_bff70d315ce9",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0054",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ef5767b5555a4010",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "PROTECTION SCHEMATIC DIAGRAM\n(=D01+R12)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.2.5.2"
+        },
+        "observed": null,
+        "target_fallback": "C99"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C99",
+          "value": "1.5.1.1.2.5.2.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C99; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1000' using nearest valid WBS above '1.5.1.1.2.5.2'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C99_93b96314de27",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0055",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "71866547d54a6e2b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "PROTECTION SCHEMATIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.2.5.2"
+        },
+        "observed": null,
+        "target_fallback": "C101"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C101",
+          "value": "1.5.1.1.2.5.2.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C101; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1001' using nearest valid WBS above '1.5.1.1.2.5.2'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C101_acbdfdae2892",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0056",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "08d16a9b0f7e2196",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MARSHALLING SCHEMATIC DIAGRAM\n(=D01+SV)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.2.5.8"
+        },
+        "observed": null,
+        "target_fallback": "C115"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C115",
+          "value": "1.5.1.1.2.5.8.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C115; observed='-'. Proposed WBS='1.5.1.1.2.5.8.1000' using nearest valid WBS above '1.5.1.1.2.5.8'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C115_1afbaaa1e25f",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0057",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "add3944d256b749d",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "TELE COMMUNNICATION OVERAL LAYOUT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.2.7.2"
+        },
+        "observed": null,
+        "target_fallback": "C127"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C127",
+          "value": "1.5.1.1.2.7.2.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C127; observed='-'. Proposed WBS='1.5.1.1.2.7.2.1000' using nearest valid WBS above '1.5.1.1.2.7.2'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C127_33304523dce4",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0058",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "aad13255b0e6d0ea",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION AND TEST PLAN FOR CT & CVT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.3.3.12"
+        },
+        "observed": null,
+        "target_fallback": "C191"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C191",
+          "value": "1.5.1.1.3.3.12.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C191; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1000' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C191_8f4455126dd5",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0059",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "e080d2a8c575022a",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION AND TEST PLAN FOR DISCONNECTOR SWITCH & CIRCUIT BREAKER"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.3.3.12"
+        },
+        "observed": null,
+        "target_fallback": "C193"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C193",
+          "value": "1.5.1.1.3.3.12.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C193; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1001' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C193_0062d6de561e",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0060",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "66e4a3319dd32fd8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION AND TEST PLAN FOR TRANSFORMER"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.3.3.12"
+        },
+        "observed": null,
+        "target_fallback": "C195"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C195",
+          "value": "1.5.1.1.3.3.12.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C195; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1002' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C195_45848ed211d8",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0061",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "f0088db83b5bfedc",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "230KV P.T.R 2 & AUX./ER TR. AND FIRE WALL FOUNDATION CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.1.8"
+        },
+        "observed": null,
+        "target_fallback": "C219"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C219",
+          "value": "1.5.1.1.4.1.8.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C219; observed='-'. Proposed WBS='1.5.1.1.4.1.8.1000' using nearest valid WBS above '1.5.1.1.4.1.8'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C219_58f72f58b8f8",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0062",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "215997c5c93af4f5",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD HOUSE FOUNDATION AND STRUCTURE CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.1.20"
+        },
+        "observed": null,
+        "target_fallback": "C245"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C245",
+          "value": "1.5.1.1.4.1.20.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C245; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1000' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C245_270f4916ee5f",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0063",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "650de7e248e4b74f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "RETAINING WALL DESIGN CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.1.20"
+        },
+        "observed": null,
+        "target_fallback": "C247"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C247",
+          "value": "1.5.1.1.4.1.20.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C247; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1001' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C247_f3018acdfe90",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0064",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "769f3b44718373bf",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "FLOOD WATER CHANNEL DESIGN CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.1.20"
+        },
+        "observed": null,
+        "target_fallback": "C249"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C249",
+          "value": "1.5.1.1.4.1.20.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C249; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1002' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C249_8a8a8d1407b0",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0065",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "2dec0f1dad608fc7",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "230KV P.T.R 2 & AUX./ER TR AND FIRE WALL FOUNDATION DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.18"
+        },
+        "observed": null,
+        "target_fallback": "C291"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C291",
+          "value": "1.5.1.1.4.2.18.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C291; observed='-'. Proposed WBS='1.5.1.1.4.2.18.1000' using nearest valid WBS above '1.5.1.1.4.2.18'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C291_bd501b9ca6de",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0066",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d1a1f22ea2ff837e",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD HOUSE ARCHITECTURAL DRAWINGS (BASIC)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C327"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C327",
+          "value": "1.5.1.1.4.2.35.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C327; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1000' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C327_61a5d3823255",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0067",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "5984e7a8400ea374",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD HOUSE ARCHITECTURAL DRAWINGS (DETAIL)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C329"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C329",
+          "value": "1.5.1.1.4.2.35.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C329; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1001' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C329_e4056ae7e64b",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0068",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "26dfadbb2856854f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD HOUSE FOUNDATION AND STRUCTURE DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C331"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C331",
+          "value": "1.5.1.1.4.2.35.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C331; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1002' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C331_74a31c0f38fc",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0069",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "bbea44e8c52b954d",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "RETAINING WALL PLAN & DETAIL DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C333"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C333",
+          "value": "1.5.1.1.4.2.35.1003",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C333; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1003' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C333_31ed2353aa19",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0070",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4958148738c4642b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "FLOOD WATER CHANNEL DESIGN PLAN & DETAIL DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C335"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C335",
+          "value": "1.5.1.1.4.2.35.1004",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C335; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1004' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C335_8219186fa7e1",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0071",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "c1be60d1b369e79d",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "SITE MOBILIZATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C337"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C337",
+          "value": "1.5.1.1.4.2.35.1005",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C337; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1005' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C337_b8d28f7d82d9",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0072",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "9bbbffb329be03dd",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "SITE PLAN"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.1.1.4.2.35"
+        },
+        "observed": null,
+        "target_fallback": "C339"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "230KV SS",
+          "target": "C339",
+          "value": "1.5.1.1.4.2.35.1006",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 230KV SS!C339; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1006' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_230KV_SS_C339_ab4228a39273",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0073",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "e575efd5442ad3ea",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MODIFICATION OF ALARM & SIGNAL LIST DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.2.1.3"
+        },
+        "observed": null,
+        "target_fallback": "C17"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C17",
+          "value": "1.5.2.1.2.1.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C17; observed='-'. Proposed WBS='1.5.2.1.2.1.3.1000' using nearest valid WBS above '1.5.2.1.2.1.3'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C17_acd6bbed84aa",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0074",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "08e955a902bd83cc",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "CABLE TERMINATION DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.2.5.1"
+        },
+        "observed": null,
+        "target_fallback": "C37"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C37",
+          "value": "1.5.2.1.2.5.1.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C37; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1000' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C37_e94c422e7daa",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0075",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "826af131ecbbb266",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "CT & PT CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.2.5.1"
+        },
+        "observed": null,
+        "target_fallback": "C39"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C39",
+          "value": "1.5.2.1.2.5.1.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C39; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1001' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C39_ccb573e92494",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0076",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "9ee278766dc3a8e7",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MTO AND TECHNICAL DATA SHEET FOR LV CABLE"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.2.5.1"
+        },
+        "observed": null,
+        "target_fallback": "C43"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C43",
+          "value": "1.5.2.1.2.5.1.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C43; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1002' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C43_d3c9aee76fb3",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0077",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b3a565ddab10b620",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MTO FOR PROTECTION EQUIPMENT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.2.5.1"
+        },
+        "observed": null,
+        "target_fallback": "C45"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C45",
+          "value": "1.5.2.1.2.5.1.1003",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C45; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1003' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C45_46b578fa89cc",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0078",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "7af4f2a46e9b53ec",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "LIGHTNING PROTECTION CALCULATION & PLAN"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.3.2.1"
+        },
+        "observed": null,
+        "target_fallback": "C65"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C65",
+          "value": "1.5.2.1.3.2.1.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C65; observed='-'. Proposed WBS='1.5.2.1.3.2.1.1000' using nearest valid WBS above '1.5.2.1.3.2.1'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C65_2848bbd83186",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0079",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "85b6636ca57738a7",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "MTO AND TECHNICAL DATA SHEET FOR CURRENT TRANSFORMER"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.3.3.7"
+        },
+        "observed": null,
+        "target_fallback": "C81"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C81",
+          "value": "1.5.2.1.3.3.7.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C81; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1000' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C81_6b6b7ab64dca",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0080",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "96400b08328f280b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "MTO AND TECHNICAL DATA SHEET FOR CIRCUIT BREAKER"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.3.3.7"
+        },
+        "observed": null,
+        "target_fallback": "C83"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C83",
+          "value": "1.5.2.1.3.3.7.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C83; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1001' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C83_fbb28fcbda68",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0081",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "95d6bb4d8b8b8e2c",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "MTO AND TECHNICAL DATA SHEET FOR POST INSULATOR"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.3.3.7"
+        },
+        "observed": null,
+        "target_fallback": "C85"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C85",
+          "value": "1.5.2.1.3.3.7.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C85; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1002' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C85_8c55d88df671",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0082",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "cbcdd5d29c68f5a2",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION AND TEST PLAN FOR EARTHING SYSTEM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.3.3.7"
+        },
+        "observed": null,
+        "target_fallback": "C87"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C87",
+          "value": "1.5.2.1.3.3.7.1003",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C87; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1003' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C87_0ad14e21d288",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0083",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "06b857f9dde79e2c",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "P.T.R & AUX./ER TR. AND FIRE WALL FOUNDATION DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.4.2.7"
+        },
+        "observed": null,
+        "target_fallback": "C123"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C123",
+          "value": "1.5.2.1.4.2.7.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C123; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1000' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C123_0566c163f516",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0084",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "735bed0dd55737fe",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "RETAINING WALL PLAN & DETAIL DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.4.2.7"
+        },
+        "observed": null,
+        "target_fallback": "C125"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C125",
+          "value": "1.5.2.1.4.2.7.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C125; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1001' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C125_0b5660ac3f89",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0085",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "8ae641c4e4760c05",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "63KV SS",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GEOTECHNICAL"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.1.4.2.7"
+        },
+        "observed": null,
+        "target_fallback": "C127"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "63KV SS",
+          "target": "C127",
+          "value": "1.5.2.1.4.2.7.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at 63KV SS!C127; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1002' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_63KV_SS_C127_a0838dbc1ea6",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0086",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "1c80356919debd01",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "SPECIFICATION OF LINE INSULATORS (63 KV LINE WITH LENGTH 4.5KMAND 230 KV LINE WITH LENGTH 500m)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.11"
+        },
+        "observed": null,
+        "target_fallback": "C29"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C29",
+          "value": "1.6.1.1.11.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C29; observed=''. Proposed WBS='1.6.1.1.11.1000' using nearest valid WBS above '1.6.1.1.11'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C29_8965f914ec6d",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0087",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d130554aa4b3fc8e",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "SPECIFICATION OF LINE FITTINGS (15KM)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C35"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C35",
+          "value": "1.6.1.1.13.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C35; observed='-'. Proposed WBS='1.6.1.1.13.1000' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C35_222965b2230d",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0088",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "8c6cc7cd03bec38b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "SPECIFICATION OF LINE FITTINGS (63 KV LINE WITH LENGTH 4.5KMAND 230 KV LINE WITH LENGTH 500m)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C37"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C37",
+          "value": "1.6.1.1.13.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C37; observed='-'. Proposed WBS='1.6.1.1.13.1001' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C37_6d2194ae6299",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0089",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "0864eb0a38caf2f8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "INSPECTION AND TEST PLAN/QUALITY CONTROL PLAN FOR STRANDED CONDUCTORS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C39"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C39",
+          "value": "1.6.1.1.13.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C39; observed='-'. Proposed WBS='1.6.1.1.13.1002' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C39_33a30b066fcd",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0090",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "267129d1595e3d14",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "INSPECTION & TEST PLAN FOR\nTRANSMISSION LINE TOWER"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C41"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C41",
+          "value": "1.6.1.1.13.1003",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C41; observed='-'. Proposed WBS='1.6.1.1.13.1003' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C41_192df62ca788",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0091",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "bc23d62a33b685aa",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "INSPECTION AND TEST PLAN/QUALITY CONTROL PLAN FOR STRING INSULATOR (15KM)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C43"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C43",
+          "value": "1.6.1.1.13.1004",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C43; observed='-'. Proposed WBS='1.6.1.1.13.1004' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C43_fb649c2689d5",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0092",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "9789b4bfb52a92be",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "INSPECTION , TEST PLAN & TEST PROCEDURE FORFITTINGS (63 KV LINE WITH LENGTH 15KM)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C45"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C45",
+          "value": "1.6.1.1.13.1005",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C45; observed='-'. Proposed WBS='1.6.1.1.13.1005' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C45_40d04d3c2872",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0093",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "66860bc3aed57eec",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "POWER TRANSMISSION LINE ROUTE PLAN"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C47"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C47",
+          "value": "1.6.1.1.13.1006",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C47; observed='-'. Proposed WBS='1.6.1.1.13.1006' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C47_dba354fed5e1",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0094",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d979dcf063fe1d94",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "LINE",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "CROSS SECTION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.1.13"
+        },
+        "observed": null,
+        "target_fallback": "C49"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "LINE",
+          "target": "C49",
+          "value": "1.6.1.1.13.1007",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at LINE!C49; observed='-'. Proposed WBS='1.6.1.1.13.1007' using nearest valid WBS above '1.6.1.1.13'.",
+      "created_at": "2026-10-06T17:24:17",
+      "updated_at": "2026-10-06T17:24:17",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "IDENTIFIERS_LINE_C49_4111dd39ee6c",
+        "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0095",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "7f8f7e4bcd131829",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "GENERAL",
+          "name": "PROJECT CHART"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "EXPLANATION_DATE"
+        },
+        "observed": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03",
+        "target_fallback": "H11:H12"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "explanation",
+          "sheet": "230KV SS",
+          "target": "H11:H12",
+          "value": "عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03",
+          "expected_old_value": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03"
+        }
+      },
+      "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
+      "created_at": "2026-10-07T00:25:20",
+      "updated_at": "2026-10-07T00:25:20",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0096",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d0f0558744ae9502",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "PROT & CONTROL SINGLE LINE DIAGRAM",
+          "wbs": "1.5.1.1.2.1.2"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "EXPLANATION_DATE"
+        },
+        "observed": "مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22",
+        "target_fallback": "E19:E22"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "explanation",
+          "sheet": "230KV SS",
+          "target": "E19:E22",
+          "value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22",
+          "expected_old_value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22"
+        }
+      },
+      "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
+      "created_at": "2026-10-07T00:25:20",
+      "updated_at": "2026-10-07T00:25:20",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0097",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "45a6578a3440d1b6",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "SURGE ARRESTER CALCULATION",
+          "wbs": "1.5.1.1.3.2.8"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN",
+          "document_relative_target": "E+0"
+        },
+        "observed": "14040/09/23",
+        "target_fallback": "E165"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "230KV SS",
+          "target": "E165",
+          "value": "1404/09/23",
+          "expected_old_value": "14040/09/23",
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN"
+        }
+      },
+      "reason": "Global date audit found invalid Jalali-like token(s) ['14040/09/23'] at 230KV SS!E165; observed='14040/09/23'.",
+      "created_at": "2026-10-07T00:31:51",
+      "updated_at": "2026-10-07T00:32:20",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261006T063256",
+        "review_id": "FIELD_VALIDATION_230KV_SS_E165_ce26408d5214",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
     }
   ]
 }

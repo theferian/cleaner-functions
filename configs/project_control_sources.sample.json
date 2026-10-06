@@ -1,0 +1,66 @@
+{
+  "schema": "weekly_report.retrieval/0.1",
+  "retrieval_workspace": "./input",
+  "families": {
+    "GENERAL_DOCUMENT": {
+      "enabled": true,
+      "document_name": "Engineering / General Document Register",
+      "name_token": "LATEST_GENERAL_DOC",
+      "source_defaults": {
+        "mode": "latest_regex",
+        "root": "REPLACE_WITH_GENERAL_DOCUMENT_SOURCE_FOLDER",
+        "recursive": false,
+        "extensions": [
+          ".xlsx",
+          ".xlsm"
+        ],
+        "file_name_regex": "^(?:\\d+(?:\\.\\d+)?)_(?P<proj_id>[A-Z0-9]+)_LATEST_GENERAL_DOC_(?P<jalali_date>\\d{8})\\.(?:xlsx|xlsm)$",
+        "project_group": "proj_id",
+        "date_group": "jalali_date",
+        "duplicate_policy": "latest_date"
+      }
+    }
+  },
+  "projects": {
+    "YSK": {
+      "enabled": true,
+      "report_order": "1",
+      "sources": {}
+    },
+    "EYV": {
+      "enabled": true,
+      "report_order": "2",
+      "sources": {}
+    },
+    "FSH": {
+      "enabled": true,
+      "report_order": "3",
+      "sources": {}
+    },
+    "BFG": {
+      "enabled": true,
+      "report_order": "4.1",
+      "sources": {}
+    },
+    "NKH": {
+      "enabled": true,
+      "report_order": "4.2",
+      "sources": {}
+    },
+    "JND": {
+      "enabled": true,
+      "report_order": "5",
+      "sources": {}
+    },
+    "NGN": {
+      "enabled": true,
+      "report_order": "6",
+      "sources": {}
+    },
+    "AZD": {
+      "enabled": true,
+      "report_order": "7",
+      "sources": {}
+    }
+  }
+}

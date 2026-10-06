@@ -205,7 +205,7 @@ def test_global_date_audit_discovers_malformed_components(tmp_path):
     wb = Workbook()
     ws = wb.active
     ws.title = "230KV SS"
-    for i, row in enumerate([3, 5]):
+    for i, row in enumerate([3, 5, 7]):
         ws[f"A{row}"] = "DOC"
         ws[f"B{row}"] = f"Doc {i}"
         ws[f"C{row}"] = f"1.{i+1}"
@@ -215,6 +215,8 @@ def test_global_date_audit_discovers_malformed_components(tmp_path):
     ws["D3"] = "note 1404/013/01"
     # Three-digit year is a likely typo and should be surfaced, not silently missed.
     ws["D5"] = "note 404/02/03"
+    # Five-digit 14xxx year is also a likely typing error (e.g. 14040/09/23).
+    ws["D7"] = "note 14040/09/23"
     wb.save(path)
 
     snap = WorkbookSnapshot(path)
@@ -223,6 +225,7 @@ def test_global_date_audit_discovers_malformed_components(tmp_path):
     targets = {f.target for f in global_findings}
     assert "D3" in targets
     assert "D5" in targets
+    assert "D7" in targets
     snap.close()
 
 

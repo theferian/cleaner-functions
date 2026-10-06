@@ -83,3 +83,98 @@ def snapshot_live_workbook(workbook, destination: str | Path | None = None) -> P
         raise SnapshotError("Excel reported success but the snapshot file was not created.")
 
     return Path(destination)
+
+
+def _workbooks_collection(excel):
+    """Return Excel.Workbooks, tolerating weak/dynamic COM wrappers.
+
+    Some pywin32/Excel combinations expose the running application through a
+    dynamic wrapper where ``excel.Workbooks`` raises ``AttributeError`` even
+    though the underlying Excel instance is alive.  ``excel.Application`` can
+    still expose the collection in that state.
+    """
+    try:
+        return excel.Workbooks
+    except Exception:
+        pass
+
+    try:
+        return excel.Application.Workbooks
+    except Exception as exc:
+        raise ExcelConnectionError(
+            "Connected to Excel, but its Workbooks collection is not accessible."
+        ) from exc
+
+
+def _fresh_excel_application(win32_client):
+    """Start a private Excel instance for a retrieved working copy."""
+    dispatch_ex = getattr(win32_client, "DispatchEx", None)
+    try:
+        excel = (
+            dispatch_ex("Excel.Application")
+            if dispatch_ex is not None
+            else win32_client.Dispatch("Excel.Application")
+        )
+        _workbooks_collection(excel)
+        return excel
+    except Exception as exc:
+        raise ExcelConnectionError("Could not start a usable Excel instance.") from exc
+
+
+def ensure_excel_workbook_open(workbook_path: str | Path, *, visible: bool = True):
+    """Return/open a retrieved working copy in a usable Excel instance.
+
+    We first reuse a healthy running Excel instance.  If the active COM object
+    is present but does not expose ``Workbooks`` (a state observed with some
+    pywin32/Excel combinations), we deliberately start a fresh Excel instance
+    rather than failing or opening the network source.
+    """
+    try:
+        import pythoncom
+        import win32com.client
+    except Exception as exc:
+        raise ExcelConnectionError(
+            "Opening a workbook in Excel requires Windows, desktop Excel and pywin32."
+        ) from exc
+
+    pythoncom.CoInitialize()
+    wanted = Path(workbook_path).resolve()
+    if not wanted.exists():
+        raise FileNotFoundError(wanted)
+
+    excel = None
+    workbooks = None
+    try:
+        candidate = win32com.client.GetActiveObject("Excel.Application")
+        workbooks = _workbooks_collection(candidate)
+        excel = candidate
+    except Exception:
+        excel = _fresh_excel_application(win32com.client)
+        workbooks = _workbooks_collection(excel)
+
+    try:
+        excel.Visible = bool(visible)
+    except Exception:
+        pass
+
+    wanted_cf = str(wanted).casefold()
+    try:
+        for wb in workbooks:
+            try:
+                if str(wb.FullName).casefold() == wanted_cf:
+                    return wb
+            except Exception:
+                continue
+    except Exception:
+        # A collection that cannot be enumerated is not safe to reuse.
+        excel = _fresh_excel_application(win32com.client)
+        workbooks = _workbooks_collection(excel)
+        try:
+            excel.Visible = bool(visible)
+        except Exception:
+            pass
+
+    try:
+        return workbooks.Open(str(wanted))
+    except Exception as exc:
+        raise ExcelConnectionError(f"Excel could not open retrieved workbook: {wanted}") from exc

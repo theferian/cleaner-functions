@@ -6,3 +6,4 @@ __pycache__/
 *_review_queue.json
 *_review_decisions.json
 runs/
+input/
