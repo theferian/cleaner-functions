@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from copy import deepcopy
 from pathlib import Path
 import hashlib
 import json
@@ -8,6 +9,8 @@ from typing import Any
 
 from .decisions import ACTIONS
 from cleaner_core.knowledge import match_known_fix
+from cleaner_core.solutions import match_project_solution
+from cleaner_core.exceptions import case_for_finding
 
 
 def _now() -> str:
@@ -71,13 +74,26 @@ def _default_parameters(finding: dict, action: str) -> dict[str, Any]:
                 or finding.get("evidence", {}).get("candidate_rows"),
         }
 
+    if action == "TRACK_EXCEPTION":
+        return {
+            "title": "",
+            "workflow_status": "INVESTIGATE",
+            "tags": "",
+            "owner": "",
+        }
+
     if action in {"PROFILE_CHANGE", "TEST_RULE_CHANGE", "MANUAL_FIX"}:
         return {"instruction": ""}
 
     return {}
 
 
-def finding_to_review_item(finding: dict, profile: dict) -> dict:
+def finding_to_review_item(
+    finding: dict,
+    profile: dict,
+    exception_registry: dict | None = None,
+    project_solutions: dict | None = None,
+) -> dict:
     profile_name = str(profile.get("profile_name") or profile.get("name") or "")
     review_id = _stable_review_id(
         profile_name=profile_name,
@@ -116,8 +132,26 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
         }
 
     reusable_resolution = None
+    project_solution = match_project_solution(project_solutions, finding)
     known_fix = match_known_fix(profile, finding)
-    if known_fix is not None:
+    if project_solution is not None:
+        current_policy = {
+            "state": "PROJECT_SOLUTION",
+            "note": (
+                f"Project solution {project_solution.get('handle')} matched by "
+                f"{project_solution.get('match_mode')}. It may be accepted "
+                "automatically during review with --accept-known."
+            ),
+            "project_solution_handle": project_solution.get("handle"),
+        }
+        reusable_resolution = {
+            "kind": "PROJECT_SOLUTION",
+            "project_solution_handle": project_solution.get("handle"),
+            "reason": project_solution.get("reason"),
+            "resolution": project_solution.get("resolution") or {},
+            "match_mode": project_solution.get("match_mode"),
+        }
+    elif known_fix is not None:
         current_policy = {
             "state": "KNOWN_REUSABLE_RESOLUTION",
             "note": (
@@ -136,6 +170,17 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
     elif status == "KNOWN_EXCEPTION":
         reusable_resolution = {
             "kind": "KNOWN_EXCEPTION",
+        }
+
+    tracked_case = case_for_finding(exception_registry, finding)
+    if tracked_case is not None and tracked_case.get("case_state") != "ACCEPTED":
+        current_policy = {
+            "state": "TRACKED_EXCEPTION",
+            "note": (
+                f"Tracked as {tracked_case.get('handle')} with workflow status "
+                f"{tracked_case.get('workflow_status')}. The finding remains active "
+                "until it is no longer detected or is explicitly resolved."
+            ),
         }
 
     allowed = _allowed_actions(finding)
@@ -163,6 +208,7 @@ def finding_to_review_item(finding: dict, profile: dict) -> dict:
         },
         "current_policy": current_policy,
         "reusable_resolution": reusable_resolution,
+        "tracked_exception": deepcopy(tracked_case) if tracked_case is not None else None,
         "allowed_actions": [
             {
                 "action": action,
@@ -183,10 +229,13 @@ def build_review_queue(
     package_manifest: dict,
     workbook: dict,
     report_path: str | None = None,
+    exception_registry: dict | None = None,
+    project_solutions: dict | None = None,
 ) -> dict:
     items = [
-        finding_to_review_item(finding, profile)
+        finding_to_review_item(finding, profile, exception_registry, project_solutions)
         for finding in report.get("findings", [])
+        if str(finding.get("status") or "").upper() != "PASS"
     ]
 
     counts = {}

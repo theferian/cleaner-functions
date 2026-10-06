@@ -134,3 +134,35 @@ Suggested future fields:
 - reason
 - reviewer
 - decided_at
+
+## Reviewer safety and Excel navigation
+
+The terminal reviewer keeps workbook repair **non-executing**. Excel navigation may
+activate/select cells, change the active window zoom/scroll position, and show a
+temporary application status-bar message, but it must not change worksheet values,
+formats, shapes, merges, row heights, or column widths.
+
+By default `SET_VALUE`, `CLEAR_CELL`, and `REPLACE_VALUE` are locked to the
+finding's own `location.sheet` and `location.target`. This prevents accidental
+replacement of the target address while entering a value. Deliberate redirection
+requires the explicit `--allow-target-edit` flag.
+
+A completed decision can be corrected without editing JSON manually:
+
+```powershell
+python .\dev\review_findings.py <queue.json> --decisions <decisions.json> --edit 4
+```
+
+`--edit` accepts a 1-based queue number, an exact review id, or a unique review-id
+fragment. The prior decision remains on disk until the replacement is actually
+recorded; skipping the edit preserves the previous decision.
+
+During review the navigator:
+
+1. activates the workbook and worksheet;
+2. brings Excel to the foreground when Windows allows it;
+3. establishes the target's top-left cell as the real `ActiveCell`;
+4. selects the full target/merged area using Excel's native selection border;
+5. zooms and scrolls the target into a prominent position; and
+6. restores the pre-review sheet, active cell, zoom, scroll position, and status bar
+   when the reviewer exits normally.

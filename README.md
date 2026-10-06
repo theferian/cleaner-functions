@@ -304,22 +304,55 @@ You may add more fields without changing the test framework.
 Ordered stages can now carry reviewed resolutions forward without changing the
 live Excel workbook.
 
-Start M-line:
+Start a **fresh workbook run** explicitly at M-line:
 
 ```powershell
-python .\pipeline\azd_pipeline.py --stage M_LINE
+python .\pipeline\azd_pipeline.py --new-run --stage M_LINE
 ```
 
-After reviewing that queue, run `IDENTIFIERS` with the same run ID and the
-M-line decision file. See `docs/RESOLVED_STATE.md`.
+The command creates a new `runs/<run-id>/` directory, `resolved_state.json`, and
+`run_manifest.json`, then prints the generated run ID. Continue later stages
+with that exact ID:
+
+```powershell
+python .\pipeline\azd_pipeline.py --run-id "<run-id>" --stage DOCUMENT_BOUNDARIES --decisions ".\runs\<run-id>\m_line_review_decisions.json"
+```
+
+Run mode is intentionally explicit: use `--new-run` only for a freshly retrieved
+workbook and `--run-id` only to continue an existing run. A continued run is
+bound to the workbook/profile it started with. See `docs/RESOLVED_STATE.md`.
 
 
 # Reusable knowledge across weekly AZD workbooks
 
-Run-level decisions stay in `runs/<run-id>/resolved_state.json`. Decisions you
-want to reuse next week can be explicitly promoted into `profiles/AZD.profile.json`.
+Cleaner now keeps reuse at separate scopes:
 
-Preview promotion:
+- `runs/<run-id>/resolved_state.json` — one run only;
+- `exceptions/AZD.exceptions.json` — unresolved/tracked anomalies;
+- `project_solutions/AZD.solutions.json` — approved AZD-specific recurring repairs;
+- `profiles/AZD.profile.json` — project structure/read rules and broader reusable knowledge.
+
+Deterministic workbook repairs reviewed for AZD are synchronized into the project
+solution registry automatically. Project solutions are matched primarily by logical
+document identity (especially document Name) plus field/transaction semantics, with
+the old cell address only as a fallback. This allows an approved repair to follow the
+same document when rows move in a later weekly revision without applying the repair
+to other projects.
+
+Existing decision files can be backfilled explicitly:
+
+```powershell
+python .\dev\project_solutions.py sync .\runs\<run-id>\field_validation_review_decisions.json .\runs\<run-id>\identifiers_review_decisions.json --project AZD
+```
+
+List active project solutions:
+
+```powershell
+python .\dev\project_solutions.py list --project AZD
+```
+
+Profile promotion remains available for rules/exceptions that should become part of
+how the project/document family is interpreted. Preview promotion:
 
 ```powershell
 python .\dev\promote_decisions.py .\runs\<run-id>\m_line_review_decisions.json .\runs\<run-id>\identifiers_review_decisions.json
@@ -331,12 +364,12 @@ Apply promotion:
 python .\dev\promote_decisions.py .\runs\<run-id>\m_line_review_decisions.json .\runs\<run-id>\identifiers_review_decisions.json --apply
 ```
 
-On a later weekly workbook, use `--accept-known` during review. Known exceptions
-and exact recurring fixes are resolved automatically in the decision file; only
-new/unknown findings remain interactive. Identifier WBS values are recalculated
-from the current workbook rather than copying last week's generated value.
+On a later weekly workbook, use `--accept-known` during review. Project solutions
+are preferred over old exact-target profile fixes, so a project-approved value can
+follow the same logical document after row movement. New/unknown findings remain
+interactive.
 
-See `docs/REUSABLE_KNOWLEDGE.md`.
+See `docs/PROJECT_SOLUTIONS.md` and `docs/REUSABLE_KNOWLEDGE.md`.
 
 # Document boundaries
 
@@ -411,3 +444,7 @@ A stage with zero findings is now marked `REVIEWED` automatically, so the next
 stage does not require an empty decisions file.
 
 See `docs/CARD_MAP.md`.
+
+## Transaction field inference and validation
+
+After `CARD_MAP`, the ordered AZD pipeline now runs `SLOT_SCHEMA` and `FIELD_VALIDATION` before `IDENTIFIERS`. `SLOT_SCHEMA` infers repeating transaction-block width and semantic roles from worksheet headers plus majority value patterns. `FIELD_VALIDATION` keeps valid values silent and sends only non-canonical/invalid Jalali dates, reference-regex outliers, and status-vocabulary outliers to human review. See `docs/FIELD_INFERENCE_AND_VALIDATION.md`.

@@ -25,12 +25,24 @@ def test_card_map_allowed_after_boundary_review():
     assert_stage_allowed(state, "CARD_MAP")
 
 
-def test_identifiers_wait_for_card_map_review():
+def test_slot_schema_waits_for_card_map_review():
     state = {"stages": {"M_LINE": {"status": "REVIEWED"}, "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"}, "CARD_MAP": {"status": "AWAITING_REVIEW"}}}
+    with pytest.raises(RuntimeError):
+        assert_stage_allowed(state, "SLOT_SCHEMA")
+
+
+def test_field_validation_waits_for_slot_schema_review():
+    state = {"stages": {"M_LINE": {"status": "REVIEWED"}, "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"}, "CARD_MAP": {"status": "REVIEWED"}, "SLOT_SCHEMA": {"status": "AWAITING_REVIEW"}}}
+    with pytest.raises(RuntimeError):
+        assert_stage_allowed(state, "FIELD_VALIDATION")
+
+
+def test_identifiers_wait_for_field_validation_review():
+    state = {"stages": {"M_LINE": {"status": "REVIEWED"}, "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"}, "CARD_MAP": {"status": "REVIEWED"}, "SLOT_SCHEMA": {"status": "REVIEWED"}, "FIELD_VALIDATION": {"status": "AWAITING_REVIEW"}}}
     with pytest.raises(RuntimeError):
         assert_stage_allowed(state, "IDENTIFIERS")
 
 
-def test_identifiers_allowed_after_card_map_review():
-    state = {"stages": {"M_LINE": {"status": "REVIEWED"}, "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"}, "CARD_MAP": {"status": "REVIEWED"}}}
+def test_identifiers_allowed_after_field_validation_review():
+    state = {"stages": {"M_LINE": {"status": "REVIEWED"}, "DOCUMENT_BOUNDARIES": {"status": "REVIEWED"}, "CARD_MAP": {"status": "REVIEWED"}, "SLOT_SCHEMA": {"status": "REVIEWED"}, "FIELD_VALIDATION": {"status": "REVIEWED"}}}
     assert_stage_allowed(state, "IDENTIFIERS")

@@ -14,9 +14,12 @@
     "promotion": "dev/promote_decisions.py",
     "document_boundaries": "tests/document_boundaries.py",
     "document_structure": "tests/document_structure.py",
-    "card_map": "tests/card_map.py"
+    "card_map": "tests/card_map.py",
+    "slot_schema": "tests/slot_schema.py",
+    "field_validation": "tests/field_validation.py"
   },
   "review_schema": "0.1",
   "decision_schema": "0.1",
-  "resolved_state_schema": "0.1"
+  "resolved_state_schema": "0.1",
+  "run_manifest_schema": "0.1"
 }

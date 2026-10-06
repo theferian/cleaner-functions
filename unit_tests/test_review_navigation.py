@@ -52,3 +52,123 @@ def test_non_pattern_item_has_single_location_target():
         "evidence": {},
     }
     assert _review_targets(item) == ["C43"]
+
+from dev.review_findings import build_parameters, reopen_item_for_edit
+
+
+def test_set_value_locks_finding_target_by_default(monkeypatch):
+    item = {
+        "location": {"sheet": "63KV SS", "target": "H13"},
+        "source": {"test_id": "FIELD_VALIDATION"},
+        "evidence": {},
+    }
+    answers = iter(["1404/08/10"])
+    monkeypatch.setattr("builtins.input", lambda _prompt: next(answers))
+
+    params = build_parameters("SET_VALUE", item)
+
+    assert params == {
+        "sheet": "63KV SS",
+        "target": "H13",
+        "value": "1404/08/10",
+    }
+
+
+def test_set_value_target_can_be_explicitly_unlocked(monkeypatch):
+    item = {
+        "location": {"sheet": "63KV SS", "target": "H13"},
+        "source": {"test_id": "FIELD_VALIDATION"},
+        "evidence": {},
+    }
+    answers = iter(["63KV SS", "H15", "1404/08/10"])
+    monkeypatch.setattr("builtins.input", lambda _prompt: next(answers))
+
+    params = build_parameters("SET_VALUE", item, allow_target_edit=True)
+
+    assert params["sheet"] == "63KV SS"
+    assert params["target"] == "H15"
+    assert params["value"] == "1404/08/10"
+
+
+def test_reopen_resolved_item_for_edit_by_queue_number():
+    old_decision = {
+        "action": "SET_VALUE",
+        "parameters": {"sheet": "63KV SS", "target": "1404/08/10", "value": "1404/08/10"},
+    }
+    queue = {
+        "items": [
+            {
+                "review_id": "FIELD_VALIDATION_63KV_SS_H13_abc",
+                "review_state": "RESOLVED",
+                "decision": old_decision,
+            }
+        ]
+    }
+
+    index, item, previous = reopen_item_for_edit(queue, "1")
+
+    assert index == 0
+    assert item["review_state"] == "PENDING"
+    assert "decision" not in item
+    assert previous == old_decision
+
+
+def test_explicit_target_edit_rejects_value_mistyped_as_cell(monkeypatch):
+    item = {
+        "location": {"sheet": "63KV SS", "target": "H13"},
+        "source": {"test_id": "FIELD_VALIDATION"},
+        "evidence": {},
+    }
+    # sheet, bad target (looks like a date/value), corrected target, new value
+    answers = iter(["63KV SS", "1404/08/10", "H13", "1404/08/10"])
+    monkeypatch.setattr("builtins.input", lambda _prompt: next(answers))
+
+    params = build_parameters("SET_VALUE", item, allow_target_edit=True)
+
+    assert params["target"] == "H13"
+    assert params["value"] == "1404/08/10"
+
+
+def test_navigator_captures_foreground_window_for_return(monkeypatch):
+    import ctypes
+    from dev.review_findings import ExcelReviewNavigator
+
+    class FakeUser32:
+        def GetForegroundWindow(self):
+            return 4242
+
+    class FakeWindll:
+        user32 = FakeUser32()
+
+    monkeypatch.setattr(ctypes, "windll", FakeWindll(), raising=False)
+    assert ExcelReviewNavigator._capture_foreground_window() == 4242
+
+
+def test_navigator_returns_focus_to_captured_window(monkeypatch):
+    import ctypes
+    from dev.review_findings import ExcelReviewNavigator
+
+    calls = []
+
+    class FakeUser32:
+        def IsWindow(self, hwnd):
+            calls.append(("is_window", hwnd))
+            return 1
+
+        def BringWindowToTop(self, hwnd):
+            calls.append(("bring_top", hwnd))
+            return 1
+
+        def SetForegroundWindow(self, hwnd):
+            calls.append(("foreground", hwnd))
+            return 1
+
+    class FakeWindll:
+        user32 = FakeUser32()
+
+    monkeypatch.setattr(ctypes, "windll", FakeWindll(), raising=False)
+    nav = object.__new__(ExcelReviewNavigator)
+    nav.return_hwnd = 4242
+    nav._return_focus_to_console()
+
+    assert ("foreground", 4242) in calls

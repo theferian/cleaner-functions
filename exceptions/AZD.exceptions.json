@@ -1,0 +1,650 @@
+{
+  "schema": "cleaner.exception_registry/0.1",
+  "profile_name": "AZD",
+  "created_at": "2026-10-06T06:19:25",
+  "updated_at": "2026-10-06T16:43:15",
+  "next_sequence": 11,
+  "cases": [
+    {
+      "handle": "AZD-EXC-0001",
+      "match_key": "89afdd302ec259ff",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "sheet": "230KV SS",
+        "target": "N21",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "field_role": "receive_date"
+      },
+      "first_seen_at": "2026-10-06T06:19:25",
+      "last_seen_at": "2026-10-06T07:04:09",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+        "first_run_id": "azd_20261002T235326"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:19:25",
+          "event": "CREATED",
+          "action": "DEFER",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261002T235326",
+          "workflow_status": "INVESTIGATE",
+          "note": "investigate chronology; do not treat as accepted exception"
+        },
+        {
+          "at": "2026-10-06T06:19:50",
+          "event": "MANUAL_CASE_UPDATE",
+          "before": {
+            "case_state": "OPEN",
+            "workflow_status": "INVESTIGATE",
+            "note": "investigate chronology; do not treat as accepted exception",
+            "owner": "",
+            "tags": [
+              "field_validation",
+              "date_chronology",
+              "receive_date",
+              "investigate"
+            ]
+          },
+          "after": {
+            "case_state": "OPEN",
+            "workflow_status": "INVESTIGATE",
+            "note": "Verify source correspondence and determine which date is incorrect.",
+            "owner": "",
+            "tags": [
+              "chronology",
+              "receive-before-send",
+              "investigate"
+            ]
+          }
+        },
+        {
+          "at": "2026-10-06T06:47:01",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "INVESTIGATE",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T06:48:21",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "INVESTIGATE",
+          "note": ""
+        },
+        {
+          "at": "2026-10-06T07:04:58",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21."
+        },
+        {
+          "at": "2026-10-06T07:05:21",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21."
+        }
+      ],
+      "title": "Date Chronology",
+      "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21.",
+      "severity": "MEDIUM",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "DATA_ANOMALY",
+      "tags": [
+        "chronology",
+        "receive-before-send",
+        "investigate",
+        "field_validation",
+        "date_chronology"
+      ],
+      "owner": "",
+      "last_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+      "last_run_id": "azd_20261006T063256",
+      "message": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21.",
+      "last_seen_run_id": "azd_20261006T063256"
+    },
+    {
+      "handle": "AZD-EXC-0002",
+      "match_key": "0c6bd64d4f7870cd",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "230KV SS",
+        "target": "A15:AA16",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_230KV_SS_A15_AA16_ac2d0e6cb46e",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_230KV_SS_A15_AA16_ac2d0e6cb46e",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_230KV_SS_A15_AA16_ac2d0e6cb46e",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 230KV SS!A15:AA16.",
+      "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0003",
+      "match_key": "3a61c8770ff7944e",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "230KV SS",
+        "target": "A129:AA130",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_230KV_SS_A129_AA130_62352a2ce067",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_230KV_SS_A129_AA130_62352a2ce067",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_230KV_SS_A129_AA130_62352a2ce067",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 230KV SS!A129:AA130.",
+      "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0004",
+      "match_key": "1fc5426cf9ff0df4",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "230KV SS",
+        "target": "A197:AA198",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_230KV_SS_A197_AA198_a90e9db9f212",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_230KV_SS_A197_AA198_a90e9db9f212",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_230KV_SS_A197_AA198_a90e9db9f212",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 230KV SS!A197:AA198.",
+      "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0005",
+      "match_key": "5b8463ed80fcbc41",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "230KV SS",
+        "target": "A341:AA342",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_230KV_SS_A341_AA342_b63759071053",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_230KV_SS_A341_AA342_b63759071053",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_230KV_SS_A341_AA342_b63759071053",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 230KV SS!A341:AA342.",
+      "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0006",
+      "match_key": "3e36e3af6a6166a5",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "B9:X10",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_B9_X10_396d3eedfeac",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_B9_X10_396d3eedfeac",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "PROMOTED_EXCEPTION_C540EEF4DA56",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_B9_X10_396d3eedfeac",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 63KV SS!B9:X10.",
+      "profile_rule_id": "PROMOTED_EXCEPTION_C540EEF4DA56",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0007",
+      "match_key": "831226fa481904b0",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "A47:X48",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_A47_X48_793809d554ac",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A47_X48_793809d554ac",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "PROMOTED_EXCEPTION_CB6EDB911188",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_A47_X48_793809d554ac",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 63KV SS!A47:X48.",
+      "profile_rule_id": "PROMOTED_EXCEPTION_CB6EDB911188",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0008",
+      "match_key": "8c43bc00a9006101",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "A89:X90",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_A89_X90_0e3f6611fde5",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A89_X90_0e3f6611fde5",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "PROMOTED_EXCEPTION_E76480EF4FBE",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_A89_X90_0e3f6611fde5",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 63KV SS!A89:X90.",
+      "profile_rule_id": "PROMOTED_EXCEPTION_E76480EF4FBE",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0009",
+      "match_key": "98c6eb5be808ce73",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "A129:X130",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_A129_X130_cefff3b5a3fa",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A129_X130_cefff3b5a3fa",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_A129_X130_cefff3b5a3fa",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: 63KV SS!A129:X130.",
+      "profile_rule_id": "AZD_MLINE_CATEGORY_TYPE_BOUNDARY",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0010",
+      "match_key": "e85eef076beeb518",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "LINE",
+        "target": "A53:X54",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-06T06:36:43",
+      "last_seen_at": "2026-10-06T16:37:44",
+      "detection_count": 2,
+      "source": {
+        "first_review_id": "M_LINE_LINE_A53_X54_9e40f32a21ae",
+        "first_run_id": "azd_20261006T063256"
+      },
+      "history": [
+        {
+          "at": "2026-10-06T06:36:43",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_LINE_A53_X54_9e40f32a21ae",
+          "run_id": "azd_20261006T063256",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Accepted from reusable profile exception policy."
+        },
+        {
+          "at": "2026-10-06T06:42:13",
+          "event": "SUPERSEDED_BY_PROFILE",
+          "profile_rule_id": "PROMOTED_EXCEPTION_0C50F70881D3",
+          "reason": "Condition is already represented by reusable profile knowledge."
+        },
+        {
+          "at": "2026-10-06T16:37:44",
+          "event": "REOPENED",
+          "run_id": "azd_20261006T163737",
+          "reason": "Finding detected again."
+        }
+      ],
+      "title": "Cleaner exception",
+      "note": "Accepted from reusable profile exception policy.",
+      "severity": "INFO",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "PROFILE_KNOWN_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception",
+        "profile-known"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_LINE_A53_X54_9e40f32a21ae",
+      "last_run_id": "azd_20261006T163737",
+      "message": "Known AZD M-line exception: LINE!A53:X54.",
+      "profile_rule_id": "PROMOTED_EXCEPTION_0C50F70881D3",
+      "resolved_at": "2026-10-06T06:42:13",
+      "last_seen_run_id": "azd_20261006T163737"
+    }
+  ]
+}

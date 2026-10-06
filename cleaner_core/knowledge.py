@@ -329,6 +329,25 @@ def decision_from_known_policy(item: dict[str, Any]) -> dict[str, Any] | None:
             "origin": "REUSABLE_PROFILE",
         }
 
+    if kind == "PROJECT_SOLUTION":
+        resolution = policy.get("resolution") or {}
+        if str(resolution.get("mode") or "").upper() != "PROJECT_DECISION_TEMPLATE":
+            return None
+        action = str(resolution.get("action") or "").upper()
+        if not action:
+            return None
+        params = deepcopy(resolution.get("parameters") or {})
+        loc = item.get("location") or {}
+        params["sheet"] = loc.get("sheet")
+        params["target"] = loc.get("target")
+        return {
+            "action": action,
+            "parameters": params,
+            "reason": policy.get("reason") or "Applied persistent project solution.",
+            "origin": "PROJECT_SOLUTION",
+            "project_solution_handle": policy.get("project_solution_handle"),
+        }
+
     if kind != "KNOWN_FIX":
         return None
 

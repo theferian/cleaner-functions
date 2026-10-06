@@ -31,6 +31,22 @@ __all__ = [
     "CardMapScan",
     "CardMap",
     "CardSlot",
+    "ColumnProfile",
+    "ReferenceRule",
+    "SlotSchema",
+    "SlotSchemaScan",
+    "field_inference_config",
+    "normalize_jalali",
+    "is_valid_jalali",
+    "normalize_reference",
+    "normalize_status",
+    "discover_jalali_tokens",
+    "has_date_context_marker",
+    "normalize_discovered_jalali_text",
+    "infer_reference_regex",
+    "infer_slot_schema",
+    "infer_all_slot_schemas",
+    "iter_role_slots",
 ]
 
 
@@ -81,4 +97,54 @@ from .card_map import (
     card_map_config,
     scan_card_map,
     scan_all_card_maps,
+)
+
+
+from .field_schema import (
+    ColumnProfile,
+    ReferenceRule,
+    SlotSchema,
+    SlotSchemaScan,
+    field_inference_config,
+    normalize_jalali,
+    is_valid_jalali,
+    normalize_reference,
+    normalize_status,
+    discover_jalali_tokens,
+    has_date_context_marker,
+    normalize_discovered_jalali_text,
+    infer_reference_regex,
+    infer_slot_schema,
+    infer_all_slot_schemas,
+    iter_role_slots,
+)
+
+from .exceptions import (
+    REGISTRY_SCHEMA,
+    new_exception_registry,
+    load_exception_registry,
+    save_exception_registry,
+    sync_registry_from_decisions_payload,
+    sync_registry_from_decisions_file,
+    reconcile_stage_findings,
+    retire_profile_covered_cases,
+    case_for_review_item,
+    case_for_finding,
+)
+
+from .context import (
+    document_identity,
+    document_relative_target,
+    build_document_context_index,
+    attach_document_context,
+)
+from .solutions import (
+    load_project_solutions,
+    save_project_solutions,
+    sync_project_solutions_from_decisions_payload,
+    sync_project_solutions_from_decisions_file,
+    match_project_solution,
+    decision_from_project_solution,
+    repair_project_solutions_registry,
+    make_manual_project_solution,
 )

@@ -53,8 +53,13 @@ ACTIONS = {
         "requires": ["instruction"],
         "execution_kind": "TEST_UPDATE",
     },
+    "TRACK_EXCEPTION": {
+        "description": "Create/update a tracked exception case without accepting it as valid data.",
+        "requires": [],
+        "execution_kind": "EXCEPTION_REGISTRY",
+    },
     "DEFER": {
-        "description": "Leave unresolved for later review.",
+        "description": "Leave unresolved for later review and track it as an investigation case.",
         "requires": [],
         "execution_kind": "NONE",
     },
@@ -144,7 +149,11 @@ def write_decisions_file(queue: dict, path: str | Path) -> Path:
                 "review_id": item["review_id"],
                 "source": item["source"],
                 "location": item["location"],
+                "message": item.get("message"),
+                "expected": item.get("expected"),
+                "observed": item.get("observed"),
                 "evidence": item.get("evidence") or {},
+                "machine_suggestion": item.get("machine_suggestion") or {},
                 "decision": item["decision"],
             })
 
