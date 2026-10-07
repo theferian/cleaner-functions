@@ -1,6 +1,28 @@
 {
   "schema": "cleaner.status_library/0.1",
   "statuses": {
+    "CM": {
+      "code": "CM",
+      "aliases": [
+        "C.M"
+      ],
+      "meaning": null,
+      "meaning_fa": null,
+      "responsibility_after_receive": null,
+      "action_required": null,
+      "notes": "C.M is user-confirmed as the same status as CM. Business meaning is not yet defined.",
+      "source": "user-confirmed-2026-10-07"
+    },
+    "N.A": {
+      "code": "N.A",
+      "aliases": [],
+      "meaning": null,
+      "meaning_fa": null,
+      "responsibility_after_receive": null,
+      "action_required": null,
+      "notes": "Confirmed as a valid canonical status. Business meaning is not yet defined.",
+      "source": "user-confirmed-2026-10-07"
+    },
     "RJ": {
       "code": "RJ",
       "aliases": [],

@@ -209,3 +209,65 @@ def upsert_status(
     library.statuses[canonical] = definition
     library.__post_init__()
     return definition
+
+def register_canonical_status(
+    library: StatusLibrary,
+    code: str,
+    *,
+    notes: str | None = None,
+    source: str | None = None,
+) -> StatusDefinition:
+    """Register a valid canonical status without inventing business semantics.
+
+    This is the app-level operation for a human-confirmed status whose meaning or
+    workflow consequence is not known yet. Existing metadata is preserved.
+    """
+    canonical = normalize_status_token(code)
+    if not canonical:
+        raise ValueError("Status code cannot be blank.")
+    return upsert_status(
+        library,
+        code=canonical,
+        notes=notes,
+        source=source,
+    )
+
+
+def confirm_status_alias(
+    library: StatusLibrary,
+    *,
+    alias: str,
+    canonical: str,
+) -> StatusDefinition:
+    """Persist one human-confirmed alias for an existing canonical status.
+
+    The mapping is explicit and conservative: the canonical status must already
+    exist, repeated confirmation is idempotent, and an alias already owned by a
+    different canonical status raises instead of silently remapping it.
+    """
+    canonical_code = normalize_status_token(canonical)
+    alias_token = normalize_status_token(alias)
+    if not canonical_code:
+        raise ValueError("Canonical status code cannot be blank.")
+    if not alias_token:
+        raise ValueError("Status alias cannot be blank.")
+
+    definition = library.statuses.get(canonical_code)
+    if definition is None:
+        raise KeyError(
+            f"Canonical status {canonical_code!r} must be registered before adding aliases."
+        )
+
+    existing_owner = library.canonicalize(alias)
+    if existing_owner is not None and existing_owner != canonical_code:
+        raise ValueError(
+            f"Status alias {alias!r} is already mapped to {existing_owner!r}; "
+            f"refusing to remap it to {canonical_code!r}."
+        )
+
+    if alias_token == canonical_code or existing_owner == canonical_code:
+        return definition
+
+    aliases = list(definition.aliases)
+    aliases.append(str(alias).strip())
+    return upsert_status(library, code=canonical_code, aliases=aliases)

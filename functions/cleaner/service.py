@@ -16,11 +16,62 @@ from cleaner_core.solutions import (
     save_project_solutions,
     sync_project_solutions_from_decisions_file,
 )
+from cleaner_core.status_library import (
+    StatusLibrary,
+    confirm_status_alias,
+    load_status_library,
+    register_canonical_status,
+    save_status_library,
+)
 from cleaner_core.state import (
     ingest_review_decisions_file,
     load_resolved_state,
     save_resolved_state,
 )
+
+
+def confirm_reusable_status_alias(
+    alias: str,
+    canonical: str,
+    *,
+    library_path: str | Path | None = None,
+) -> dict[str, Any]:
+    """App/service operation for a reviewer-confirmed status alias."""
+    library = load_status_library(library_path)
+    definition = confirm_status_alias(library, alias=alias, canonical=canonical)
+    target = save_status_library(library, library_path)
+    return {
+        "alias": alias,
+        "canonical": definition.code,
+        "definition": definition.to_dict(),
+        "library_path": str(target),
+    }
+
+
+def register_reusable_status(
+    code: str,
+    *,
+    library_path: str | Path | None = None,
+    notes: str | None = None,
+    source: str | None = "user-confirmed",
+) -> dict[str, Any]:
+    """App/service operation for a confirmed valid canonical status."""
+    if library_path is not None and not Path(library_path).exists():
+        library = StatusLibrary(path=Path(library_path))
+    else:
+        library = load_status_library(library_path)
+    definition = register_canonical_status(
+        library,
+        code,
+        notes=notes,
+        source=source,
+    )
+    target = save_status_library(library, library_path)
+    return {
+        "canonical": definition.code,
+        "definition": definition.to_dict(),
+        "library_path": str(target),
+    }
 
 
 CLEANER_STAGE_ORDER = (

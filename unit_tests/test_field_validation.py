@@ -310,3 +310,22 @@ def test_reusable_status_library_accepts_rare_rj(tmp_path):
     by_target = {f.target: f for f in findings}
     assert "I9:I10" not in by_target
     snap.close()
+
+def test_reusable_status_library_accepts_fsh_alias_and_canonical_status(tmp_path):
+    from openpyxl import load_workbook
+
+    path = tmp_path / "fsh_statuses.xlsx"
+    build_book(path)
+    wb = load_workbook(path)
+    ws = wb["230KV SS"]
+    ws["I9"] = "C.M"
+    ws["F9"] = "N.A"
+    wb.save(path)
+    wb.close()
+
+    snap = WorkbookSnapshot(path)
+    findings = field_validation_check(snap, make_profile(), RunLogger(stream=False))
+    by_target = {f.target: f for f in findings}
+    assert "I9:I10" not in by_target
+    assert "F9:F10" not in by_target
+    snap.close()

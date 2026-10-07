@@ -1,7 +1,11 @@
 import json
 from pathlib import Path
 
-from functions.cleaner.service import finalize_run
+from functions.cleaner.service import (
+    confirm_reusable_status_alias,
+    finalize_run,
+    register_reusable_status,
+)
 
 
 def _write(path: Path, payload: dict):
@@ -139,3 +143,27 @@ def test_finalize_run_reingests_latest_decisions_even_when_stage_already_reviewe
     state = json.loads(run.state_path.read_text(encoding="utf-8"))
     assert state["stages"]["FIELD_VALIDATION"]["status"] == "REVIEWED"
     assert state["value_overrides"]["230KV SS!E165"]["value"] == "1404/09/23"
+
+def test_status_service_can_register_canonical_and_confirm_alias(tmp_path):
+    library_path = tmp_path / "status_library.json"
+
+    registered = register_reusable_status(
+        "CM",
+        library_path=library_path,
+        notes="Meaning pending",
+    )
+    assert registered["canonical"] == "CM"
+
+    mapped = confirm_reusable_status_alias(
+        "C.M",
+        "CM",
+        library_path=library_path,
+    )
+    assert mapped["alias"] == "C.M"
+    assert mapped["canonical"] == "CM"
+
+    from cleaner_core.status_library import load_status_library
+
+    library = load_status_library(library_path)
+    assert library.canonicalize("C.M") == "CM"
+    assert library.definition("CM").meaning is None

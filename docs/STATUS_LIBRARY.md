@@ -20,7 +20,7 @@ A status passes validation when it is either inferred from the workbook or expli
 - `notes`: free-text project-control explanation.
 - `source`: provenance of the definition.
 
-The initial confirmed definition is `RJ = Rejected / رد شده`; after a received `RJ`, responsibility is on the company to revise/respond.
+Confirmed reusable knowledge currently includes `RJ = Rejected / رد شده`, explicit alias `C.M → CM`, and canonical `N.A`. The business meanings/workflow consequences of `CM` and `N.A` remain intentionally undefined until confirmed.
 
 ## CLI
 
@@ -49,3 +49,19 @@ python ./dev/status_library.py add CM --alias C.M
 ```
 
 The library deliberately does not infer that visually similar codes such as `CM` and `C.M`, or `FC` and `F.C`, are semantically identical. That relationship must be confirmed and recorded explicitly.
+
+## App-level unknown status flow
+
+When validation encounters a status that is not in the inferred workbook vocabulary or this library, the app should keep it unresolved and ask the reviewer to choose one of three outcomes:
+
+1. Map it to an existing canonical status. Persist that decision with `confirm_status_alias(...)`.
+2. Register it as a new canonical status. Use `register_canonical_status(...)` even when its business meaning is not known yet.
+3. Leave it unresolved. Do not silently learn from fuzzy similarity.
+
+Alias confirmation is deliberately conflict-safe: a known alias cannot be silently moved from one canonical status to another.
+
+CLI equivalent for a confirmed alias:
+
+```bash
+python ./dev/status_library.py alias C.M CM
+```

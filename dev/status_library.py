@@ -9,6 +9,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from cleaner_core.status_library import (  # noqa: E402
+    confirm_status_alias,
     default_status_library_path,
     load_status_library,
     save_status_library,
@@ -47,6 +48,10 @@ def main(argv=None) -> int:
     add.add_argument("--notes")
     add.add_argument("--source", default="user-maintained")
 
+    alias_cmd = sub.add_parser("alias", help="Map one confirmed alias to an existing canonical status.")
+    alias_cmd.add_argument("alias")
+    alias_cmd.add_argument("canonical")
+
     args = parser.parse_args(argv)
     library = load_status_library(args.library)
 
@@ -70,6 +75,13 @@ def main(argv=None) -> int:
             return 2
         for key, value in item.to_dict().items():
             print(f"{key:<30}: {value}")
+        return 0
+
+    if args.command == "alias":
+        item = confirm_status_alias(library, alias=args.alias, canonical=args.canonical)
+        target = save_status_library(library, args.library)
+        print(f"Saved: {target}")
+        print(f"Alias: {args.alias} -> {item.code}")
         return 0
 
     upsert_status(
