@@ -42,7 +42,7 @@ def test_coverage_audit_marks_narrative_receive_separately(tmp_path):
     assert item["classification"] == "CAPTURED_NARRATIVE"
 
 
-def test_coverage_audit_exposes_scanned_content_not_retrieved(tmp_path):
+def test_coverage_audit_counts_preserved_free_standing_narrative_as_captured(tmp_path):
     run_dir = _make_run(tmp_path)
     cards = json.loads((run_dir / "card_maps.json").read_text(encoding="utf-8"))
     cards["sheets"]["230KV SS"]["cards"][0]["slots"].append({
@@ -56,7 +56,9 @@ def test_coverage_audit_exposes_scanned_content_not_retrieved(tmp_path):
     result = extract_board_to_log(run)
     audit = build_coverage_audit(run, result)
     item = next(x for x in audit["items"] if x["address"] == "D3:D4")
-    assert item["classification"] == "SCANNED_NOT_RETRIEVED"
+    assert item["classification"] == "CAPTURED_NARRATIVE"
+    assert item["source_kind"] == "narrative"
+    assert audit["summary"]["counts"]["SCANNED_NOT_RETRIEVED"] == 0
 
 
 class _Fmt:

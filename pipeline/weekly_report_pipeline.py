@@ -167,6 +167,7 @@ def board_to_log_step(args) -> int:
     print(
         "[PIPELINE] Preserved    : "
         f"narrative={summary.get('preserved_narrative_count', 0)}, "
+        f"status_only_receive={summary.get('status_only_receive_count', 0)}, "
         f"unclassified={result.diagnostics.get('unclassified_content_count', 0)}"
     )
     issue_counts = summary.get("issues_by_kind") or {}

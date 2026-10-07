@@ -106,6 +106,7 @@ class BoardToLogResult:
                 "issues_by_kind": dict(sorted(issue_by_kind.items())),
                 "issues_by_sheet": dict(sorted(issue_by_sheet.items())),
                 "preserved_narrative_count": int(self.diagnostics.get("preserved_narrative_count", 0)),
+                "status_only_receive_count": int(self.diagnostics.get("status_only_receive_count", 0)),
             },
             "diagnostics": dict(self.diagnostics),
             "records": [x.to_dict() for x in self.records],

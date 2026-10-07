@@ -55,7 +55,11 @@ def build_coverage_audit(run: CleanerRun, result: BoardToLogResult) -> dict[str,
     regions = run.document_regions()
 
     transaction_sources: dict[tuple[str, str], list[str]] = defaultdict(list)
-    narrative_sources: set[tuple[str, str]] = set()
+    narrative_sources: set[tuple[str, str]] = {
+        (str(item.get("sheet")), str(item.get("address")))
+        for item in (result.diagnostics.get("preserved_narrative_sources") or [])
+        if item.get("sheet") and item.get("address")
+    }
     for record in result.records:
         mode = str((record.raw or {}).get("mode") or "")
         for kind, address in (
@@ -122,8 +126,8 @@ def build_coverage_audit(run: CleanerRun, result: BoardToLogResult) -> dict[str,
                     note = "Board-to-Log issue"
                 elif key in narrative_sources:
                     classification = "CAPTURED_NARRATIVE"
-                    source_kind = ",".join(sorted(set(transaction_sources[key])))
-                    note = "Narrative receive preserved losslessly"
+                    source_kind = ",".join(sorted(set(transaction_sources[key]))) or "narrative"
+                    note = "Narrative content preserved losslessly as source provenance"
                 elif key in transaction_sources:
                     classification = "CAPTURED_TRANSACTION"
                     source_kind = ",".join(sorted(set(transaction_sources[key])))

@@ -522,3 +522,28 @@ def test_logbook_writer_does_not_require_callable_excel_address():
     assert summary["records_written"] == 0
     assert summary["columns_written"] == len(LOGBOOK_COLUMNS)
     assert ws.header_range.Value2 == (tuple(LOGBOOK_COLUMNS),)
+
+
+def test_board_to_log_preserves_status_only_receive_without_inventing_metadata(tmp_path):
+    run_dir = _make_run(tmp_path)
+    cards = json.loads((run_dir / "card_maps.json").read_text(encoding="utf-8"))
+    card = cards["sheets"]["230KV SS"]["cards"][0]
+    # FSH-like case: SEND date/reference exists, RECEIVE cells are empty, but
+    # the response-status column contains a confirmed status value.
+    card["slots"] = [slot for slot in card["slots"] if slot["address"] not in {"E3", "E4"}]
+    _write(run_dir / "card_maps.json", cards)
+
+    result = extract_board_to_log(load_cleaner_run(run_dir))
+    assert not result.issues
+    assert result.diagnostics["status_only_receive_count"] == 1
+
+    receives = [x for x in result.records if x.side == "receive"]
+    assert len(receives) == 1
+    receive = receives[0]
+    assert receive.doc_status == "A.N"
+    assert receive.letter_date is None
+    assert receive.letter_reference is None
+    assert receive.date_source is None
+    assert receive.reference_source is None
+    assert receive.status_source == "F3:F4"
+    assert receive.transaction_mode == "status_only_receive"

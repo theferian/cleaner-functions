@@ -473,8 +473,12 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         letter_reference=letter_reference,
                         doc_status=status["value"] if status else None,
                         transaction_mode=mode,
-                        date_source=event["address"],
-                        reference_source=(ref["address"] if ref else (event["address"] if mode.startswith("narrative_receive") else None)),
+                        date_source=(None if mode == "status_only_receive" else event["address"]),
+                        reference_source=(
+                            ref["address"]
+                            if ref
+                            else (event["address"] if mode.startswith("narrative_receive") else None)
+                        ),
                         status_source=status["address"] if status else None,
                         source_row=int(card.get("start_row")) + int(event["slot"].get("row_offset_start", 0)),
                         source_col=int(event["slot"].get("col_start", 0)),
@@ -650,6 +654,35 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         "mode": mode,
                     })
 
+                # A status can occasionally be present even when the board omits
+                # the receive date/reference. Preserve that known response state
+                # without inventing missing metadata. We only promote it when it
+                # is the sole unused status overlapping exactly one SEND event and
+                # there is no receive-side date/reference evidence on the same rows.
+                available_statuses = [x for x in statuses if id(x) not in used_statuses]
+                for status in list(available_statuses):
+                    overlapping_sends = [x for x in send_events_all if _rows_overlap(x, status)]
+                    overlapping_receives = [x for x in pure_receives if _rows_overlap(x, status)]
+                    overlapping_receive_refs = [
+                        x for x in refs
+                        if x.get("side_hint") == "receive" and _rows_overlap(x, status)
+                    ]
+                    if len(overlapping_sends) != 1 or overlapping_receives or overlapping_receive_refs:
+                        continue
+                    used_statuses.add(id(status))
+                    available_statuses.remove(status)
+                    result.diagnostics["status_only_receive_count"] = (
+                        int(result.diagnostics.get("status_only_receive_count", 0)) + 1
+                    )
+                    receive_entries.append({
+                        "event": status,
+                        "ref": None,
+                        "status": status,
+                        "letter_date": None,
+                        "letter_reference": None,
+                        "mode": "status_only_receive",
+                    })
+
                 receive_entries.sort(key=lambda x: (
                     int(x["event"]["slot"].get("row_offset_start", 0)),
                     int(x["event"]["slot"].get("col_start", 0)),
@@ -668,7 +701,7 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         letter_reference=entry["letter_reference"],
                         mode=entry["mode"],
                     )
-                    if entry["letter_reference"] is None:
+                    if entry["letter_reference"] is None and entry["mode"] != "status_only_receive":
                         result.issues.append(ExtractionIssue(
                             kind="MISSING_REFERENCE",
                             sheet=sheet,
@@ -695,7 +728,9 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
 
                 # Narrative/explanation cells are intentionally preserved by
                 # Cleaner. Those consumed as narrative receive events are no
-                # longer counted as free-standing narrative diagnostics.
+                # longer counted as free-standing narrative diagnostics. Keep
+                # their source addresses as provenance so Coverage can prove
+                # they were intentionally preserved rather than lost.
                 narratives = [
                     x for x in items
                     if x["role"] == "explanation"
@@ -703,6 +738,14 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                     and id(x) not in used_narratives
                 ]
                 result.diagnostics["preserved_narrative_count"] += len(narratives)
+                preserved_sources = result.diagnostics.setdefault("preserved_narrative_sources", [])
+                for narrative in narratives:
+                    preserved_sources.append({
+                        "sheet": sheet,
+                        "address": narrative["address"],
+                        "document_index": doc_index,
+                        "value": narrative["value"],
+                    })
 
                 # A generic DATE means the Cleaner recognized a date value but could
                 # not decide whether it is a Send or Receive date. That is a real
