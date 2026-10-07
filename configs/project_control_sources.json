@@ -38,7 +38,163 @@
       "sources": {
         "GENERAL_DOCUMENT": {
           "mode": "direct",
-          "path": "W:\\00-1403\\1403-02-01-132kV Gostarsh Foulad shahryar\\Letter\\technical\\GOSTARESH E FOLAD E SHAHRIAR - UPDATED DOC.xlsx"
+          "path": "W:\\00-1403\\1403-02-01-132kV Gostarsh Foulad shahryar\\Letter\\technical\\GOSTARESH E FOLAD E SHAHRIAR - UPDATED DOC.xlsx",
+          "cleaner_profile": {
+            "identifier_layout": {
+              "fields": [
+                {
+                  "key": "category",
+                  "label": "Category",
+                  "column": 1,
+                  "required": false,
+                  "data_type": "TEXT"
+                },
+                {
+                  "key": "type",
+                  "label": "Type",
+                  "column": 2,
+                  "required": false,
+                  "data_type": "TEXT"
+                },
+                {
+                  "key": "name",
+                  "label": "Name",
+                  "column": 3,
+                  "required": true,
+                  "data_type": "TEXT"
+                },
+                {
+                  "key": "code",
+                  "label": "Code",
+                  "column": 4,
+                  "required": true,
+                  "data_type": "CODE",
+                  "validation": {
+                    "kind": "NON_EMPTY",
+                    "empty_or_invalid_tokens": [
+                      "",
+                      "-",
+                      "–",
+                      "—"
+                    ]
+                  },
+                  "cleaning": {
+                    "on_invalid": "SET_VALUE",
+                    "strategy": "NEAREST_VALID_ABOVE_APPEND_SEQUENCE",
+                    "sequence_start": 1000,
+                    "separator": ".",
+                    "fallback_root_start": 1000
+                  }
+                },
+                {
+                  "key": "wbs",
+                  "label": "WBS",
+                  "column": 5,
+                  "required": true,
+                  "data_type": "WBS"
+                }
+              ],
+              "boundary_after_col": 5,
+              "boundary_label": "E|F",
+              "signal_fields": [
+                "category",
+                "type",
+                "name",
+                "code",
+                "wbs"
+              ],
+              "boundary_fields": [
+                "name",
+                "code",
+                "wbs"
+              ],
+              "separator_fields": [
+                "name",
+                "code",
+                "wbs"
+              ],
+              "data_start_col": 6
+            }
+          }
+        }
+      },
+      "cleaner_profiles": {
+        "GENERAL_DOCUMENT": {
+          "identifier_layout": {
+            "fields": [
+              {
+                "key": "category",
+                "label": "Category",
+                "column": 1,
+                "required": false,
+                "data_type": "TEXT"
+              },
+              {
+                "key": "type",
+                "label": "Type",
+                "column": 2,
+                "required": false,
+                "data_type": "TEXT"
+              },
+              {
+                "key": "name",
+                "label": "Name",
+                "column": 3,
+                "required": true,
+                "data_type": "TEXT"
+              },
+              {
+                "key": "code",
+                "label": "Code",
+                "column": 4,
+                "required": true,
+                "data_type": "CODE",
+                "validation": {
+                  "kind": "NON_EMPTY",
+                  "empty_or_invalid_tokens": [
+                    "",
+                    "-",
+                    "–",
+                    "—"
+                  ]
+                },
+                "cleaning": {
+                  "on_invalid": "SET_VALUE",
+                  "strategy": "NEAREST_VALID_ABOVE_APPEND_SEQUENCE",
+                  "sequence_start": 1000,
+                  "separator": ".",
+                  "fallback_root_start": 1000
+                }
+              },
+              {
+                "key": "wbs",
+                "label": "WBS",
+                "column": 5,
+                "required": true,
+                "data_type": "WBS"
+              }
+            ],
+            "boundary_after_col": 5,
+            "boundary_label": "E|F",
+            "signal_fields": [
+              "category",
+              "type",
+              "name",
+              "code",
+              "wbs"
+            ],
+            "boundary_fields": [
+              "name",
+              "code",
+              "wbs"
+            ],
+            "separator_fields": [
+              "name",
+              "code",
+              "wbs"
+            ],
+            "data_start_col": 6
+          }
         }
       }
     },

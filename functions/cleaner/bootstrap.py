@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from typing import Any, Iterable
 
+from openpyxl.utils import get_column_letter
+
 
 @dataclass(frozen=True)
 class SheetProbe:
@@ -124,6 +126,107 @@ def _sheet_instance() -> dict[str, Any]:
     }
 
 
+def _identifier_field_from_layout(profile: dict[str, Any], spec: dict[str, Any]) -> dict[str, Any]:
+    key = str(spec.get("key") or "").strip()
+    if not key:
+        raise ValueError("Identifier layout field is missing key.")
+    existing = next(
+        (deepcopy(x) for x in profile.get("data_model", {}).get("family_fields", []) if x.get("key") == key),
+        None,
+    )
+    field = existing or {
+        "key": key,
+        "label": str(spec.get("label") or key.replace("_", " ").title()),
+        "data_type": str(spec.get("data_type") or "TEXT"),
+        "required": bool(spec.get("required", False)),
+        "validation": deepcopy(spec.get("validation") or {"kind": "NONE"}),
+        "cleaning": deepcopy(spec.get("cleaning") or {}),
+    }
+    field["label"] = str(spec.get("label") or field.get("label") or key)
+    field["data_type"] = str(spec.get("data_type") or field.get("data_type") or "TEXT")
+    if "required" in spec:
+        field["required"] = bool(spec.get("required"))
+    if "validation" in spec:
+        field["validation"] = deepcopy(spec.get("validation") or {})
+    if "cleaning" in spec:
+        field["cleaning"] = deepcopy(spec.get("cleaning") or {})
+    column = int(spec["column"])
+    field["default_locator"] = {"kind": "COLUMN", "column": column}
+    return field
+
+
+def apply_general_document_profile_overrides(
+    profile: dict[str, Any],
+    *,
+    selected_sheets: list[str],
+    overrides: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Apply project-specific structural layout without importing project knowledge.
+
+    This is intended for genuine template dialects such as FSH where the
+    identifier side is Category/Type/Name/Code/WBS (A:E) rather than the
+    family default three-column A:C layout.  Learned fixes and exceptions are
+    deliberately outside this function.
+    """
+    overrides = dict(overrides or {})
+    layout = dict(overrides.get("identifier_layout") or {})
+    if not layout:
+        profile.setdefault("data_model", {})["instances"] = {
+            sheet: _sheet_instance() for sheet in selected_sheets
+        }
+        return profile
+
+    specs = list(layout.get("fields") or [])
+    if not specs:
+        raise ValueError("identifier_layout.fields cannot be empty.")
+    fields = [_identifier_field_from_layout(profile, dict(spec)) for spec in specs]
+    columns = {str(x["key"]): int(x["default_locator"]["column"]) for x in fields}
+    if "name" not in columns or "wbs" not in columns:
+        raise ValueError("Project identifier layout must define at least name and wbs fields.")
+
+    data_model = profile.setdefault("data_model", {})
+    data_model["family_fields"] = fields
+    data_model["instances"] = {
+        sheet: {
+            "instance_type": "SHEET",
+            "field_map": {
+                key: {"kind": "COLUMN", "column": column}
+                for key, column in columns.items()
+            },
+        }
+        for sheet in selected_sheets
+    }
+
+    signal_fields = list(layout.get("signal_fields") or columns.keys())
+    boundary_fields = list(layout.get("boundary_fields") or ["name", "wbs"])
+    separator_fields = list(layout.get("separator_fields") or boundary_fields)
+    boundary_after = int(layout.get("boundary_after_col") or max(columns.values()))
+    data_start = int(layout.get("data_start_col") or (boundary_after + 1))
+
+    m_line = profile.setdefault("structure", {}).setdefault("m_line", {})
+    m_line["boundary_after_col"] = boundary_after
+    m_line["boundary_label"] = str(
+        layout.get("boundary_label")
+        or f"{get_column_letter(boundary_after)}|{get_column_letter(boundary_after + 1)}"
+    )
+
+    boundaries = data_model.setdefault("document_boundaries", {})
+    boundaries["signal_fields"] = signal_fields
+    boundaries["boundary_fields"] = boundary_fields
+    boundaries["separator_fields"] = separator_fields
+
+    detection = data_model.setdefault("record_detection", {})
+    detection["signal_fields"] = signal_fields
+
+    structure = data_model.setdefault("document_structure", {})
+    structure["transaction_start_col"] = data_start
+
+    card_map = data_model.setdefault("card_map", {})
+    card_map["data_start_col"] = data_start
+
+    return profile
+
+
 def build_general_document_profile(
     *,
     project_id: str,
@@ -132,6 +235,7 @@ def build_general_document_profile(
     output_path: str | Path,
     sheets: Iterable[str] | None = None,
     overwrite: bool = False,
+    profile_overrides: dict[str, Any] | None = None,
 ) -> tuple[Path, dict[str, Any]]:
     project_id = str(project_id).strip().upper()
     workbook_path = Path(workbook_path)
@@ -164,9 +268,11 @@ def build_general_document_profile(
     profile["profile_name"] = project_id
     profile["workbook"] = {"expected_sheets": list(selected)}
     profile.setdefault("structure", {}).setdefault("m_line", {})["target_sheets"] = list(selected)
-    profile.setdefault("data_model", {})["instances"] = {
-        sheet: _sheet_instance() for sheet in selected
-    }
+    profile = apply_general_document_profile_overrides(
+        profile,
+        selected_sheets=list(selected),
+        overrides=profile_overrides,
+    )
     profile["known_exceptions"] = []
     profile["known_fixes"] = []
     profile["bootstrap"] = {
@@ -175,6 +281,7 @@ def build_general_document_profile(
         "project_id": project_id,
         "source_workbook": str(workbook_path),
         "selected_sheets": list(selected),
+        "profile_overrides": deepcopy(profile_overrides or {}),
         "probe": [p.to_dict() for p in probes],
         "note": (
             "Bootstrapped from family rules only. No AZD project fixes or exceptions were inherited; "

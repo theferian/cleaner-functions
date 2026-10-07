@@ -1,6 +1,1048 @@
 {
   "schema": "cleaner.project_solutions/0.1",
   "project_id": "JND",
-  "next_sequence": 1,
-  "solutions": []
+  "next_sequence": 24,
+  "solutions": [
+    {
+      "handle": "JND-SOL-0001",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "dd3c3582bd6924e0",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "LVAC PANEL SCHEMATIC DIAGRAM =NE+NF06",
+          "wbs": "1.5.2.4.4"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN",
+          "document_relative_target": "E+2"
+        },
+        "observed": "14040/08/13",
+        "target_fallback": "E87"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "List of Document",
+          "target": "E87",
+          "value": "1404/08/13",
+          "expected_old_value": "14040/08/13",
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN"
+        }
+      },
+      "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E87; observed='14040/08/13'.",
+      "created_at": "2026-10-07T03:09:56",
+      "updated_at": "2026-10-07T03:16:27",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "FIELD_VALIDATION_List_of_Document_E87_83b77ace82df",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0002",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "24f8b33df39e63c3",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "LVAC PANEL SCHEMATIC DIAGRAM =NE+NF06",
+          "wbs": "1.5.2.4.4"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN",
+          "document_relative_target": "E+4"
+        },
+        "observed": "14040/08/13",
+        "target_fallback": "E89"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "List of Document",
+          "target": "E89",
+          "value": "1404/08/13",
+          "expected_old_value": "14040/08/13",
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN"
+        }
+      },
+      "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E89; observed='14040/08/13'.",
+      "created_at": "2026-10-07T03:10:18",
+      "updated_at": "2026-10-07T03:16:27",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "FIELD_VALIDATION_List_of_Document_E89_e1b5adddbbb7",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0003",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "866224205d9fc3e8",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "LVAC PANEL SCHEMATIC DIAGRAM =NE+NF06",
+          "wbs": "1.5.2.4.4"
+        },
+        "semantic": {
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN",
+          "document_relative_target": "E+6"
+        },
+        "observed": "14040/08/13",
+        "target_fallback": "E91"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "List of Document",
+          "target": "E91",
+          "value": "1404/08/13",
+          "expected_old_value": "14040/08/13",
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN"
+        }
+      },
+      "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E91; observed='14040/08/13'.",
+      "created_at": "2026-10-07T03:10:48",
+      "updated_at": "2026-10-07T03:16:27",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "FIELD_VALIDATION_List_of_Document_E91_ea3c9119c44b",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0004",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a34de048927c2d65",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "CVT CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.2.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C49"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C49",
+          "value": "1.5.2.2.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C49; observed='-'. Proposed WBS='1.5.2.2.3.1000' using nearest valid WBS above '1.5.2.2.3'.",
+      "created_at": "2026-10-07T03:14:08",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C49_07a2ef0b203b",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0005",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "bd4698e0e0ad825f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MARSHALING PANEL FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.3.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C57"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C57",
+          "value": "1.5.2.3.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C57; observed='-'. Proposed WBS='1.5.2.3.3.1000' using nearest valid WBS above '1.5.2.3.3'.",
+      "created_at": "2026-10-07T03:14:11",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C57_99a243fb09cc",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0006",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "78c6dcac1d5db773",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "CONTROL BCR ROOMS PANEL ARRANGEMENT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.3.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C59"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C59",
+          "value": "1.5.2.3.3.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C59; observed='-'. Proposed WBS='1.5.2.3.3.1001' using nearest valid WBS above '1.5.2.3.3'.",
+      "created_at": "2026-10-07T03:14:13",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C59_480ed6cbc252",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0007",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "715147634be5140b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MARSHALING PANEL SCHEMATIC DIAGRAM =C05+SV1 …"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.4.8",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C131"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C131",
+          "value": "1.5.2.4.8.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C131; observed='-'. Proposed WBS='1.5.2.4.8.1000' using nearest valid WBS above '1.5.2.4.8'.",
+      "created_at": "2026-10-07T03:14:14",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C131_53802f6a9fa9",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0008",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "fa9f40b3df1baf3a",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "Factory Inspection and Test Procedure (ITP) For Power LV Cable"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.9.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C187"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C187",
+          "value": "1.5.2.9.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C187; observed='-'. Proposed WBS='1.5.2.9.3.1000' using nearest valid WBS above '1.5.2.9.3'.",
+      "created_at": "2026-10-07T03:14:15",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C187_0656010bf6a4",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0009",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a77c5b9739970950",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "BOUSHING CT CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.2.10.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C195"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C195",
+          "value": "1.5.2.10.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C195; observed='-'. Proposed WBS='1.5.2.10.3.1000' using nearest valid WBS above '1.5.2.10.3'.",
+      "created_at": "2026-10-07T03:14:15",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C195_e315b2faef58",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0010",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "62c2ee623a70a415",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "MV/HV CABLE CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.1.7",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C215"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C215",
+          "value": "1.5.3.1.7.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C215; observed='-'. Proposed WBS='1.5.3.1.7.1000' using nearest valid WBS above '1.5.3.1.7'.",
+      "created_at": "2026-10-07T03:14:16",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C215_0a2e2d0ee0c7",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0011",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a08d106874b98821",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "MV CABLE SPECIFICATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.3.6",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C241"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C241",
+          "value": "1.5.3.3.6.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C241; observed='-'. Proposed WBS='1.5.3.3.6.1000' using nearest valid WBS above '1.5.3.3.6'.",
+      "created_at": "2026-10-07T03:14:18",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C241_7b4ba431709a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0012",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d1879fa0a1959afd",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "EARTHING SYSTEM SPECIFICATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.3.6",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C243"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C243",
+          "value": "1.5.3.3.6.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C243; observed='-'. Proposed WBS='1.5.3.3.6.1001' using nearest valid WBS above '1.5.3.3.6'.",
+      "created_at": "2026-10-07T03:14:19",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C243_3d9961a8ef88",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0013",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "076486e8512257f6",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION & TEST PLAN For CLAMP AND FITTINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.5.4",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C269"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C269",
+          "value": "1.5.3.5.4.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C269; observed='-'. Proposed WBS='1.5.3.5.4.1000' using nearest valid WBS above '1.5.3.5.4'.",
+      "created_at": "2026-10-07T03:14:20",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C269_a78a9f298980",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0014",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "997999d9fd67d1c3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INSPECTION & TEST PLAN For GROUNDING EQUIPMENTS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.5.4",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C271"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C271",
+          "value": "1.5.3.5.4.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C271; observed='-'. Proposed WBS='1.5.3.5.4.1001' using nearest valid WBS above '1.5.3.5.4'.",
+      "created_at": "2026-10-07T03:14:21",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C271_1b710c7c98ff",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0015",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d933bcd0b9c95d59",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "ROUTIN TEST REPORT FOR STRANDED &TUBLAR CONDUCTORS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.6.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C279"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C279",
+          "value": "1.5.3.6.3.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C279; observed='-'. Proposed WBS='1.5.3.6.3.1000' using nearest valid WBS above '1.5.3.6.3'.",
+      "created_at": "2026-10-07T03:14:29",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C279_9410550b85ef",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0016",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "aba9a40300ea55f6",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "ROUTINE TEST REPORT FOR MV & LV CABLE"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.6.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C281"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C281",
+          "value": "1.5.3.6.3.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C281; observed='-'. Proposed WBS='1.5.3.6.3.1001' using nearest valid WBS above '1.5.3.6.3'.",
+      "created_at": "2026-10-07T03:14:31",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C281_30305de1a50f",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0017",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "c145523a58e7ce84",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "ROUTINE TEST REPORT FOR CLAMP & FITTINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.3.6.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C283"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C283",
+          "value": "1.5.3.6.3.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C283; observed='-'. Proposed WBS='1.5.3.6.3.1002' using nearest valid WBS above '1.5.3.6.3'.",
+      "created_at": "2026-10-07T03:14:32",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C283_031cb07f19ee",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0018",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4fabe84a29fb8ee8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING ELECTRICAL CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.1.7",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C301"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C301",
+          "value": "1.5.4.1.7.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C301; observed='-'. Proposed WBS='1.5.4.1.7.1000' using nearest valid WBS above '1.5.4.1.7'.",
+      "created_at": "2026-10-07T03:14:33",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C301_08f0fa6cb4a5",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0019",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "e85a33617a2d2be3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING MECHANICAL CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.1.7",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C303"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C303",
+          "value": "1.5.4.1.7.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C303; observed='-'. Proposed WBS='1.5.4.1.7.1001' using nearest valid WBS above '1.5.4.1.7'.",
+      "created_at": "2026-10-07T03:14:34",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C303_3e56ae93888a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0020",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "99a007292abc0eef",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "INDOOR CABLE TRENCHES PLAN & DETAIL DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.2.13",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C331"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C331",
+          "value": "1.5.4.2.13.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C331; observed='-'. Proposed WBS='1.5.4.2.13.1000' using nearest valid WBS above '1.5.4.2.13'.",
+      "created_at": "2026-10-07T03:14:35",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C331_77b6e9413ca0",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0021",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "2cb149ebf718c7ac",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING ARCHITECTURAL PLAN AND DETAILS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.3.2",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C337"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C337",
+          "value": "1.5.4.3.2.1000",
+          "expected_old_value": "بر اساس ابلاغ کارفرما ساختمان BCR از حیطه کاری این شرکت خارج گردید."
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C337; observed='بر اساس ابلاغ کارفرما ساختمان BCR از حیطه کاری این شرکت خارج گردید.'. Proposed WBS='1.5.4.3.2.1000' using nearest valid WBS above '1.5.4.3.2'.",
+      "created_at": "2026-10-07T03:14:41",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C337_e56aacb9a57e",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0022",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "c00d1c827884824a",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING ELECTRICAL SYSTEM DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.3.2",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C343"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C343",
+          "value": "1.5.4.3.2.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C343; observed='-'. Proposed WBS='1.5.4.3.2.1001' using nearest valid WBS above '1.5.4.3.2'.",
+      "created_at": "2026-10-07T03:14:43",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C343_39ed83f7e492",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "JND-SOL-0023",
+      "enabled": true,
+      "project_id": "JND",
+      "kind": "WORKBOOK_FIX",
+      "signature": "297fd58889970b34",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "List of Document",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING HVAC SYSTEM DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.5.4.3.2",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C345"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "List of Document",
+          "target": "C345",
+          "value": "1.5.4.3.2.1002",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at List of Document!C345; observed='-'. Proposed WBS='1.5.4.3.2.1002' using nearest valid WBS above '1.5.4.3.2'.",
+      "created_at": "2026-10-07T03:14:45",
+      "updated_at": "2026-10-07T03:19:24",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "jnd_20261007T022038",
+        "review_id": "IDENTIFIERS_List_of_Document_C345_c8eeb7f029d7",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    }
+  ]
 }

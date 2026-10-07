@@ -4,6 +4,7 @@ import re
 
 from cleaner_core.card_map import scan_all_card_maps
 from cleaner_core.contracts import Finding
+from cleaner_core.status_library import load_status_library
 from cleaner_core.field_schema import (
     discover_jalali_tokens,
     has_date_context_marker,
@@ -218,6 +219,14 @@ def run(snapshot, profile, log):
     config = _validation_config(profile)
     findings: list[Finding] = []
 
+    status_library_config = profile.get("data_model", {}).get("status_library")
+    status_library_path = None
+    if isinstance(status_library_config, str):
+        status_library_path = status_library_config
+    elif isinstance(status_library_config, dict):
+        status_library_path = status_library_config.get("path")
+    status_library = load_status_library(status_library_path)
+
     for sheet, schema in schemas.items():
         scan = card_scans[sheet]
         date_checked = date_failed = 0
@@ -392,28 +401,59 @@ def run(snapshot, profile, log):
                 status_checked += 1
                 normalized = normalize_status(raw)
                 raw_text = str(raw).strip()
-                if normalized in schema.status_values and raw_text == normalized:
+                inferred = normalized in schema.status_values
+                catalog_definition = status_library.definition(normalized)
+                catalog_known = catalog_definition is not None
+
+                # Status frequency and status validity are different concepts.
+                # A rare but catalogued status (e.g. RJ = Rejected) is valid
+                # even when it did not occur often enough to enter this
+                # workbook's inferred majority vocabulary.
+                if inferred or catalog_known:
+                    if inferred and raw_text != normalized:
+                        # Preserve the historical normalization behavior for a
+                        # code already learned from this workbook. Catalog aliases
+                        # are accepted losslessly; they are not rewritten merely
+                        # because an alias exists.
+                        status_failed += 1
+                        reason = (
+                            f"Status at {sheet}!{slot.address} is non-canonical; observed={raw_text!r}, "
+                            f"normalized={normalized!r}."
+                        )
+                        findings.append(Finding(
+                            test_id="FIELD_VALIDATION",
+                            status="FAIL",
+                            severity="MEDIUM",
+                            sheet=sheet,
+                            target=slot.address,
+                            message=reason,
+                            expected=f"Canonical status {normalized!r}",
+                            observed=raw,
+                            evidence={
+                                "field_role": "status",
+                                "audit_kind": "STATUS_VOCABULARY",
+                                "document_region": f"{card.start_row}:{card.end_row}",
+                                "status_vocabulary": list(schema.status_values),
+                                "status_library_match": (catalog_definition.to_dict() if catalog_definition else None),
+                                "normalized": normalized,
+                            },
+                            suggested_fix=_set_value_fix(
+                                field_key="status",
+                                sheet=sheet,
+                                target=slot.address,
+                                observed=raw,
+                                value=normalized,
+                                reason=reason,
+                            ),
+                        ))
                     continue
+
                 status_failed += 1
-                accepted_after_normalization = normalized in schema.status_values
                 reason = (
-                    f"Status at {sheet}!{slot.address} is outside the inferred vocabulary "
-                    f"{list(schema.status_values)}; observed={raw_text!r}."
+                    f"Status at {sheet}!{slot.address} is neither in the inferred vocabulary "
+                    f"{list(schema.status_values)} nor in the reusable status library; "
+                    f"observed={raw_text!r}."
                 )
-                fix = None
-                if accepted_after_normalization and normalized != raw_text:
-                    reason = (
-                        f"Status at {sheet}!{slot.address} is non-canonical; observed={raw_text!r}, "
-                        f"normalized={normalized!r}."
-                    )
-                    fix = _set_value_fix(
-                        field_key="status",
-                        sheet=sheet,
-                        target=slot.address,
-                        observed=raw,
-                        value=normalized,
-                        reason=reason,
-                    )
                 findings.append(Finding(
                     test_id="FIELD_VALIDATION",
                     status="FAIL",
@@ -421,17 +461,21 @@ def run(snapshot, profile, log):
                     sheet=sheet,
                     target=slot.address,
                     message=reason,
-                    expected=f"Status in {list(schema.status_values)}",
+                    expected=(
+                        f"Status in inferred vocabulary {list(schema.status_values)} "
+                        f"or reusable library {list(status_library.known_codes)}"
+                    ),
                     observed=raw,
                     evidence={
                         "field_role": "status",
                         "audit_kind": "STATUS_VOCABULARY",
                         "document_region": f"{card.start_row}:{card.end_row}",
                         "status_vocabulary": list(schema.status_values),
+                        "status_library_codes": list(status_library.known_codes),
                         "status_coverage": schema.status_coverage,
                         "normalized": normalized,
                     },
-                    suggested_fix=fix,
+                    suggested_fix=None,
                 ))
 
         # ------------------------------------------------------------------

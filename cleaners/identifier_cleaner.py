@@ -25,6 +25,25 @@ def is_valid_wbs(value: Any, pattern: str) -> bool:
     return re.fullmatch(pattern, text) is not None
 
 
+def is_invalid_identifier_token(value: Any, tokens: list[Any] | tuple[Any, ...] | None = None) -> bool:
+    text = normalize_digits(value)
+    normalized_tokens = {normalize_digits(x) for x in (tokens or [None, "", "-", "–", "—"])}
+    return text in normalized_tokens
+
+
+def is_valid_sequence_identifier(value: Any, validation: dict | None = None) -> bool:
+    validation = dict(validation or {})
+    kind = str(validation.get("kind") or "NON_EMPTY").upper()
+    text = normalize_digits(value)
+    empty_tokens = validation.get("empty_or_invalid_tokens") or validation.get("empty_tokens")
+    if is_invalid_identifier_token(value, empty_tokens):
+        return False
+    if kind == "REGEX":
+        pattern = str(validation.get("pattern") or "")
+        return bool(pattern and re.fullmatch(pattern, text))
+    return bool(text)
+
+
 def propose_empty_name(row: int, cleaning_cfg: dict) -> str:
     template = str(cleaning_cfg.get("template") or "ERR_EMPT_NAME_{NUMBER}")
     strategy = str(cleaning_cfg.get("number_strategy") or "ROW_NUMBER").upper()

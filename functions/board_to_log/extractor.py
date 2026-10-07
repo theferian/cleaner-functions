@@ -453,9 +453,15 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         source_workbook=workbook_name,
                         source_sheet=sheet,
                         document_index=doc_index,
-                        doc_type=identity.get("document_type") or identity.get("doc_type"),
-                        doc_type_a=identity.get("document_type_a") or identity.get("doc_type_a"),
-                        doc_type_b=identity.get("document_type_b") or identity.get("doc_type_b"),
+                        doc_type=(
+                            identity.get("document_type") or identity.get("type") or identity.get("doc_type")
+                        ),
+                        doc_type_a=(
+                            identity.get("document_type_a") or identity.get("category") or identity.get("doc_type_a")
+                        ),
+                        doc_type_b=(
+                            identity.get("document_type_b") or identity.get("type") or identity.get("doc_type_b")
+                        ),
                         doc_name=identity.get("name") or identity.get("document_name") or identity.get("doc_name"),
                         doc_code=identity.get("code") or identity.get("document_code") or identity.get("doc_code"),
                         doc_wbs=identity.get("wbs") or identity.get("document_wbs") or identity.get("doc_wbs"),

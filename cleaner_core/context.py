@@ -27,12 +27,18 @@ def document_identity(region) -> dict[str, Any]:
     identity: dict[str, Any] = {
         "record_index": int(region.record_index),
     }
-    for key in ("document_type", "name", "wbs"):
+    durable_keys = (
+        "document_type", "document_type_a", "document_type_b",
+        "category", "type", "name", "code", "wbs",
+    )
+    for key in durable_keys:
         anchor = region.field(key)
         value = _clean(anchor.value if anchor is not None else None)
         if value is None:
             continue
         if key == "wbs" and _VALID_WBS.fullmatch(value) is None:
+            continue
+        if key == "code" and value in {"-", "–", "—"}:
             continue
         identity[key] = value
     return identity

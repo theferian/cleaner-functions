@@ -25,7 +25,11 @@ from cleaner_core.solutions import (
     save_project_solutions,
     sync_project_solutions_from_decisions_file,
 )
-from cleaner_core.live_excel import ExcelConnectionError, attach_excel_workbook
+from cleaner_core.live_excel import (
+    ExcelConnectionError,
+    attach_excel_workbook,
+    ensure_excel_workbook_open,
+)
 from review.decisions import (
     ACTIONS,
     apply_decision_to_queue,
@@ -292,9 +296,16 @@ class ExcelReviewNavigator:
             return
 
         meta = queue.get("workbook") or {}
-        workbook_ref = meta.get("name") or meta.get("path") or None
+        workbook_path = meta.get("path") or None
+        workbook_name = meta.get("name") or None
         try:
-            self.workbook = attach_excel_workbook(workbook_ref)
+            if workbook_path and Path(str(workbook_path)).exists():
+                # New multi-project runs carry the retrieved working-copy path.
+                # Reuse it when possible, otherwise open it in a healthy private
+                # Excel instance using the same COM fallback as project_pipeline.
+                self.workbook = ensure_excel_workbook_open(workbook_path, visible=True)
+            else:
+                self.workbook = attach_excel_workbook(workbook_name or workbook_path)
         except ExcelConnectionError as exc:
             self.error = str(exc)
         except Exception as exc:  # navigation must never prevent review itself

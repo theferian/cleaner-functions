@@ -116,6 +116,8 @@ def prepare_general_doc_step(args) -> int:
         probes = inspect_general_document_workbook(result.retrieved_path)
         profile_action = "existing_profile_kept"
     else:
+        project_cfg = (config.get("projects") or {}).get(project) or {}
+        profile_overrides = (project_cfg.get("cleaner_profiles") or {}).get("GENERAL_DOCUMENT") or {}
         profile_path, profile = build_general_document_profile(
             project_id=project,
             workbook_path=result.retrieved_path,
@@ -123,6 +125,7 @@ def prepare_general_doc_step(args) -> int:
             output_path=profile_path,
             sheets=explicit_sheets,
             overwrite=args.overwrite_profile,
+            profile_overrides=profile_overrides,
         )
         probes = inspect_general_document_workbook(result.retrieved_path)
         profile_action = "profile_created"
@@ -353,7 +356,8 @@ def engineering_lists_step(args) -> int:
         document_inventory=document_inventory_from_cleaner(run),
         company_allowance_days=args.company_allowance_days,
         consultant_allowance_days=args.consultant_allowance_days,
-        company_response_statuses=args.company_response_status or ("CM", "RJ"),
+        company_response_statuses=args.company_response_status or None,
+        status_library_path=args.status_library,
     )
     output_dir = Path(args.output_dir) if args.output_dir else run.run_dir / "engineering_lists"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -449,7 +453,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--company-response-status",
         action="append",
         default=[],
-        help="Receive status that puts responsibility back on us; repeat as needed. Default: CM, RJ.",
+        help="Receive status that puts responsibility back on us; repeat as needed. If omitted, use status-library semantics plus legacy CM/RJ defaults.",
+    )
+    eng.add_argument(
+        "--status-library",
+        default=None,
+        help="Optional path to reusable status-library JSON. Default: configs/status_library.json.",
     )
     eng.add_argument("--output-dir", default=None)
     eng.set_defaults(func=engineering_lists_step)

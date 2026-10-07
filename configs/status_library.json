@@ -1,0 +1,15 @@
+{
+  "schema": "cleaner.status_library/0.1",
+  "statuses": {
+    "RJ": {
+      "code": "RJ",
+      "aliases": [],
+      "meaning": "Rejected",
+      "meaning_fa": "رد شده",
+      "responsibility_after_receive": "COMPANY",
+      "action_required": true,
+      "notes": "Confirmed project-control meaning. A received RJ requires company action/revision.",
+      "source": "user-confirmed"
+    }
+  }
+}

@@ -150,3 +150,18 @@ def test_latest_receive_with_unknown_status_is_diagnostic_not_silently_dropped()
     assert len(result.diagnostics) == 1
     assert result.diagnostics[0]["kind"] == "UNKNOWN_RECEIVE_STATUS"
     assert result.diagnostics[0]["transaction_mode"] == "narrative_receive_merged_status"
+
+
+def test_status_library_meaning_flows_into_company_delay():
+    records = [
+        rec(side="send", rev="A", date="1405/01/01", block=0),
+        rec(side="receive", rev="A", date="1405/01/05", status="RJ", block=0),
+    ]
+    result = build_three_engineering_lists(
+        records,
+        status_date="1405/01/15",
+        document_inventory=[inventory(1)],
+    )
+    assert len(result.company_delay) == 1
+    assert result.company_delay[0].status == "RJ"
+    assert result.company_delay[0].status_meaning == "Rejected"

@@ -4,6 +4,8 @@ from dataclasses import asdict, dataclass, field
 import re
 from typing import Any, Iterable
 
+from cleaner_core.status_library import load_status_library, normalize_status_token
+
 from functions.board_to_log.contracts import LogRecord
 from functions.cleaner.service import CleanerRun
 
@@ -23,6 +25,7 @@ class EngineeringExceptionRow:
     last_action_date: str | None = None
     last_action_text: Any = None
     status: Any = None
+    status_meaning: str | None = None
     elapsed_days: int | None = None
     allowance_days: int | None = None
     delay_days: int | None = None
@@ -187,7 +190,8 @@ def build_three_engineering_lists(
     document_inventory: Iterable[dict[str, Any]] | None = None,
     company_allowance_days: int = 0,
     consultant_allowance_days: int = 0,
-    company_response_statuses: Iterable[str] = ("CM", "RJ"),
+    company_response_statuses: Iterable[str] | None = None,
+    status_library_path: str | None = None,
 ) -> EngineeringThreeLists:
     """Build the three current engineering exception lists.
 
@@ -214,7 +218,18 @@ def build_three_engineering_lists(
         raise ValueError(f"status_date must be canonical Jalali YYYY/MM/DD, got {status_date!r}")
     company_allowance_days = max(0, int(company_allowance_days))
     consultant_allowance_days = max(0, int(consultant_allowance_days))
-    response_statuses = {str(x).strip().upper() for x in company_response_statuses if str(x).strip()}
+    status_library = load_status_library(status_library_path)
+    if company_response_statuses is None:
+        # Preserve the historically configured CM/RJ behavior while allowing
+        # the reusable library to contribute workflow semantics. As meanings
+        # are defined in the library, hardcoded project knowledge can shrink.
+        response_statuses = {"CM", "RJ"} | status_library.statuses_for_responsibility("COMPANY")
+    else:
+        response_statuses = {
+            status_library.canonicalize(x) or normalize_status_token(x)
+            for x in company_response_statuses
+            if normalize_status_token(x)
+        }
 
     result = EngineeringThreeLists(status_date=status_date)
     grouped: dict[tuple[str, int], list[LogRecord]] = {}
@@ -294,13 +309,20 @@ def build_three_engineering_lists(
                     ))
             continue
 
-        status = str(latest.doc_status or "").strip().upper()
+        status_definition = status_library.definition(latest.doc_status)
+        status = status_library.canonicalize(latest.doc_status) or normalize_status_token(latest.doc_status)
+        status_meaning = None
+        if status_definition is not None:
+            status_meaning = status_definition.meaning or status_definition.meaning_fa
         if latest.send_or_receive == "receive" and status not in response_statuses:
             result.diagnostics.append({
                 "kind": "UNKNOWN_RECEIVE_STATUS",
                 **identity,
                 "revision": latest.doc_rev,
                 "status": latest.doc_status,
+                "canonical_status": status or None,
+                "status_meaning": status_meaning,
+                "status_known": status_definition is not None,
                 "transaction_mode": latest.transaction_mode,
                 "value": latest.letter_reference or latest.letter_date,
             })
@@ -316,6 +338,7 @@ def build_three_engineering_lists(
                     last_action_date=None,
                     last_action_text=latest.letter_reference or latest.letter_date,
                     status=latest.doc_status,
+                    status_meaning=status_meaning,
                     elapsed_days=None,
                     allowance_days=company_allowance_days,
                     delay_days=None,
@@ -339,6 +362,7 @@ def build_three_engineering_lists(
                         last_action_date=str(latest.letter_date),
                         last_action_text=latest.letter_reference,
                         status=latest.doc_status,
+                        status_meaning=status_meaning,
                         elapsed_days=elapsed,
                         allowance_days=company_allowance_days,
                         delay_days=delay,

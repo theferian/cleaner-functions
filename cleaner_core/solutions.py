@@ -310,14 +310,14 @@ def _identity_matches(expected: dict, actual: dict) -> bool:
             return False
     elif expected:
         # If there is some identity but no name, compare available durable keys.
-        for key in ("document_type", "wbs"):
+        for key in ("document_type", "document_type_a", "document_type_b", "category", "type", "code", "wbs"):
             ev = _norm(expected.get(key))
             if ev and ev != _norm(actual.get(key)):
                 return False
     else:
         return False
 
-    for key in ("document_type", "wbs"):
+    for key in ("document_type", "document_type_a", "document_type_b", "category", "type", "code", "wbs"):
         ev = _norm(expected.get(key))
         av = _norm(actual.get(key))
         if ev and av and ev != av:
@@ -410,7 +410,10 @@ def decision_from_project_solution(solution: dict, finding: dict) -> dict | None
 def _identity_from_region_dict(region: dict) -> dict[str, Any]:
     identity: dict[str, Any] = {}
     fields = region.get("fields") or {}
-    for key in ("document_type", "name", "wbs"):
+    for key in (
+        "document_type", "document_type_a", "document_type_b",
+        "category", "type", "name", "code", "wbs",
+    ):
         field = fields.get(key) or {}
         value = field.get("value")
         if value in (None, ""):
@@ -419,6 +422,8 @@ def _identity_from_region_dict(region: dict) -> dict[str, Any]:
         if not text:
             continue
         if key == "wbs" and re.fullmatch(r"\d+(?:\.\d+)*", text) is None:
+            continue
+        if key == "code" and text in {"-", "–", "—"}:
             continue
         identity[key] = value
     return identity

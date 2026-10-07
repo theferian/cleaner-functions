@@ -9,7 +9,7 @@ from .three_lists import EngineeringThreeLists
 
 COLUMNS = [
     "source_sheet", "document_index", "doc_name", "doc_wbs", "revision",
-    "responsibility", "state", "last_action_date", "last_action_text", "status",
+    "responsibility", "state", "last_action_date", "last_action_text", "status", "status_meaning",
     "elapsed_days", "allowance_days", "delay_days", "calculation_status",
 ]
 

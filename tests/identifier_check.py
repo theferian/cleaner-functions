@@ -12,7 +12,7 @@ from cleaner_core.document_regions import (
 from cleaners.identifier_cleaner import (
     WbsProposalState,
     is_empty_name,
-    is_valid_wbs,
+    is_valid_sequence_identifier,
     normalize_digits,
     propose_empty_name,
     proposed_set_value_fix,
@@ -21,16 +21,37 @@ from cleaners.identifier_cleaner import (
 
 TEST_META = {
     "id": "IDENTIFIERS",
-    "title": "Identifier Name and WBS Check",
+    "title": "Required Identifier Check",
     "kind": "test",
     "profile_rule": "data_model",
     "snapshot_mode": "openpyxl",
 }
 
 
+def _sequence_fields(fields: dict[str, dict]) -> dict[str, dict]:
+    """Fields repaired by nearest-valid-above + deterministic suffix.
+
+    WBS is the original use case. Project dialects may opt another required
+    identifier (for example FSH Code) into exactly the same strategy by profile.
+    """
+    result: dict[str, dict] = {}
+    for key, fdef in fields.items():
+        cleaning = fdef.get("cleaning") or {}
+        strategy = str(cleaning.get("strategy") or "").upper()
+        if key == "wbs" or strategy == "NEAREST_VALID_ABOVE_APPEND_SEQUENCE":
+            result[key] = fdef
+    return result
+
+
+def _expected_description(label: str, validation: dict) -> str:
+    kind = str(validation.get("kind") or "NON_EMPTY").upper()
+    if kind == "REGEX" and validation.get("pattern"):
+        return f"{label} matching {validation['pattern']}"
+    return f"Non-empty {label}"
+
+
 def run(snapshot, profile, log):
     fields = fields_by_key(profile)
-
     name_def = fields.get("name")
     wbs_def = fields.get("wbs")
 
@@ -49,26 +70,23 @@ def run(snapshot, profile, log):
         or snapshot.sheet_names()
     )
     boundary_cfg = boundary_config(profile)
-
-    wbs_pattern = str(
-        wbs_def.get("validation", {}).get("pattern")
-        or r"^\d+(?:\.\d+)*$"
-    )
-    wbs_cleaning = wbs_def.get("cleaning", {})
     name_cleaning = name_def.get("cleaning", {})
+    seq_defs = _sequence_fields(fields)
 
     findings = []
-
     log(
         "START",
-        "IDENTIFIERS checks required Name and WBS fields on derived DocumentRegion anchors."
+        "IDENTIFIERS checks required mapped identifier fields on derived DocumentRegion anchors.",
     )
-    log(
-        "INFO",
-        f"WBS validation pattern: {wbs_pattern!r}; "
-        f"invalid WBS suggestions use nearest valid WBS above + sequence from "
-        f"{wbs_cleaning.get('sequence_start', 1000)}."
-    )
+    if seq_defs:
+        details = []
+        for key, fdef in seq_defs.items():
+            cleaning = fdef.get("cleaning") or {}
+            details.append(
+                f"{fdef.get('label') or key}: nearest valid above + sequence from "
+                f"{cleaning.get('sequence_start', 1000)}"
+            )
+        log("INFO", "Deterministic sequence repairs: " + "; ".join(details) + ".")
 
     for sheet in target_sheets:
         if not snapshot.has_sheet(sheet):
@@ -95,12 +113,14 @@ def run(snapshot, profile, log):
             continue
 
         boundary_scan = scan_document_regions(snapshot, profile, sheet)
+        mapped_text = ", ".join(
+            f"{fields[key].get('label') or key}={get_column_letter(col)}"
+            for key, col in sorted(mapped.items(), key=lambda kv: kv[1])
+        )
         log(
             "STAGE",
             f"{sheet}: checking {len(boundary_scan.regions)} derived document "
-            f"region(s) from row {boundary_cfg['first_data_row']}; "
-            f"Name={get_column_letter(mapped['name'])}, "
-            f"WBS={get_column_letter(mapped['wbs'])}."
+            f"region(s) from row {boundary_cfg['first_data_row']}; {mapped_text}.",
         )
 
         if boundary_scan.ambiguities:
@@ -108,32 +128,30 @@ def run(snapshot, profile, log):
                 "WARNING",
                 f"{sheet}: boundary detector still reports "
                 f"{len(boundary_scan.ambiguities)} ambiguity/ambiguities. "
-                "The pipeline should normally review DOCUMENT_BOUNDARIES before IDENTIFIERS."
+                "The pipeline should normally review DOCUMENT_BOUNDARIES before IDENTIFIERS.",
             )
 
-        wbs_state = WbsProposalState(
-            sequence_start=int(wbs_cleaning.get("sequence_start", 1000)),
-            separator=str(wbs_cleaning.get("separator", ".")),
-            fallback_root_start=int(wbs_cleaning.get("fallback_root_start", 1000)),
-        )
+        seq_states: dict[str, WbsProposalState] = {}
+        for key, fdef in seq_defs.items():
+            if key not in mapped:
+                continue
+            cleaning = fdef.get("cleaning") or {}
+            seq_states[key] = WbsProposalState(
+                sequence_start=int(cleaning.get("sequence_start", 1000)),
+                separator=str(cleaning.get("separator", ".")),
+                fallback_root_start=int(cleaning.get("fallback_root_start", 1000)),
+            )
 
         scanned_records = 0
         name_errors = 0
-        wbs_errors = 0
+        sequence_errors = {key: 0 for key in seq_states}
 
         for region in boundary_scan.regions:
             scanned_records += 1
             row = region.anchor_row
             name_state = region.field("name")
-            wbs_state_cell = region.field("wbs")
 
-            if name_state is None or wbs_state_cell is None:
-                # Mapping completeness is checked above; this is only a guard
-                # against a malformed detector result.
-                continue
-
-            # ---- Name
-            if is_empty_name(name_state.value):
+            if name_state is not None and is_empty_name(name_state.value):
                 name_errors += 1
                 proposed = propose_empty_name(row, name_cleaning)
                 reason = (
@@ -167,30 +185,37 @@ def run(snapshot, profile, log):
                     suggested_fix=fix,
                 ))
 
-            # ---- WBS
-            raw_wbs = wbs_state_cell.value
-            if is_valid_wbs(raw_wbs, wbs_pattern):
-                wbs_state.observe_valid(raw_wbs)
-            else:
-                wbs_errors += 1
-                proposed, parent = wbs_state.propose()
-                normalized_raw = normalize_digits(raw_wbs)
+            for key, proposal_state in seq_states.items():
+                anchor = region.field(key)
+                if anchor is None:
+                    continue
+                fdef = seq_defs[key]
+                label = str(fdef.get("label") or key.upper())
+                validation = fdef.get("validation") or {}
+                raw = anchor.value
+                if is_valid_sequence_identifier(raw, validation):
+                    proposal_state.observe_valid(raw)
+                    continue
+
+                sequence_errors[key] += 1
+                proposed, parent = proposal_state.propose()
+                normalized_raw = normalize_digits(raw)
                 reason = (
-                    f"Required WBS is empty/invalid at {sheet}!{wbs_state_cell.address}; "
-                    f"observed={normalized_raw!r}. Proposed WBS={proposed!r}"
+                    f"Required {label} is empty/invalid at {sheet}!{anchor.address}; "
+                    f"observed={normalized_raw!r}. Proposed {label}={proposed!r}"
                     + (
-                        f" using nearest valid WBS above {parent!r}."
+                        f" using nearest valid {label} above {parent!r}."
                         if parent is not None
                         else " using fallback root placeholder sequence."
                     )
                 )
                 fix = proposed_set_value_fix(
-                    field_key="wbs",
+                    field_key=key,
                     sheet=sheet,
-                    target=wbs_state_cell.address,
+                    target=anchor.address,
                     value=proposed,
                     reason=reason,
-                    expected_old_value=raw_wbs,
+                    expected_old_value=raw,
                 )
                 log("FAIL", reason)
                 findings.append(Finding(
@@ -198,37 +223,37 @@ def run(snapshot, profile, log):
                     status="FAIL",
                     severity="HIGH",
                     sheet=sheet,
-                    target=wbs_state_cell.address,
+                    target=anchor.address,
                     message=reason,
-                    expected=f"WBS matching {wbs_pattern}",
-                    observed=raw_wbs,
+                    expected=_expected_description(label, validation),
+                    observed=raw,
                     evidence={
-                        "field_key": "wbs",
+                        "field_key": key,
                         "row": row,
                         "document_region": region.target,
-                        "merge": wbs_state_cell.merge,
-                        "nearest_valid_wbs_above": parent,
-                        "proposed_wbs": proposed,
+                        "merge": anchor.merge,
+                        f"nearest_valid_{key}_above": parent,
+                        f"proposed_{key}": proposed,
                     },
                     suggested_fix=fix,
                 ))
 
+        error_text = ", ".join(
+            [f"empty Name={name_errors}"]
+            + [f"invalid/empty {seq_defs[key].get('label') or key}={count}" for key, count in sequence_errors.items()]
+        )
         log(
             "SUMMARY",
-            f"{sheet}: document regions checked={scanned_records}, "
-            f"empty Name={name_errors}, invalid/empty WBS={wbs_errors}."
+            f"{sheet}: document regions checked={scanned_records}, {error_text}.",
         )
 
-        if name_errors == 0 and wbs_errors == 0:
+        if name_errors == 0 and all(count == 0 for count in sequence_errors.values()):
             findings.append(Finding(
                 test_id="IDENTIFIERS",
                 status="PASS",
                 severity="INFO",
                 sheet=sheet,
-                message=(
-                    f"{sheet}: all derived document regions have a non-empty Name "
-                    "and a valid WBS."
-                ),
+                message=f"{sheet}: all derived document regions satisfy required identifier rules.",
                 evidence={"document_regions_checked": scanned_records},
             ))
 

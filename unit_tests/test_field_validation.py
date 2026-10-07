@@ -291,3 +291,22 @@ def test_known_status_value_overrides_irregular_card_geometry(tmp_path):
         for f in findings
     )
     snap.close()
+
+
+def test_reusable_status_library_accepts_rare_rj(tmp_path):
+    from openpyxl import load_workbook
+
+    path = tmp_path / "rare_rj.xlsx"
+    build_book(path)
+    wb = load_workbook(path)
+    ws = wb["230KV SS"]
+    # Replace the synthetic unknown ZZ with the user-confirmed catalogued status RJ.
+    ws["I9"] = "RJ"
+    wb.save(path)
+    wb.close()
+
+    snap = WorkbookSnapshot(path)
+    findings = field_validation_check(snap, make_profile(), RunLogger(stream=False))
+    by_target = {f.target: f for f in findings}
+    assert "I9:I10" not in by_target
+    snap.close()

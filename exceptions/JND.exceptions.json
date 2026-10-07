@@ -2,7 +2,403 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "JND",
   "created_at": "2026-10-07T02:20:38",
-  "updated_at": "2026-10-07T02:20:44",
-  "next_sequence": 1,
-  "cases": []
+  "updated_at": "2026-10-07T03:19:33",
+  "next_sequence": 7,
+  "cases": [
+    {
+      "handle": "JND-EXC-0001",
+      "match_key": "d6195007a1c44465",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "List of Document",
+        "target": "A25:X26",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-07T02:29:51",
+      "last_seen_at": "2026-10-07T02:29:51",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:29:51",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A25:X26."
+        },
+        {
+          "at": "2026-10-07T02:30:02",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A25:X26."
+        },
+        {
+          "at": "2026-10-07T02:30:12",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A25:X26."
+        },
+        {
+          "at": "2026-10-07T02:30:19",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A25:X26."
+        },
+        {
+          "at": "2026-10-07T02:30:32",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A25:X26."
+        }
+      ],
+      "title": "Unexpected M-line crossing: List of Document!A25:X26.",
+      "note": "Unexpected M-line crossing: List of Document!A25:X26.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_List_of_Document_A25_X26_5cd047194045",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Unexpected M-line crossing: List of Document!A25:X26."
+    },
+    {
+      "handle": "JND-EXC-0002",
+      "match_key": "7b42b267e82b1693",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "List of Document",
+        "target": "A197:X198",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-07T02:30:02",
+      "last_seen_at": "2026-10-07T02:30:02",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:30:02",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A197:X198."
+        },
+        {
+          "at": "2026-10-07T02:30:12",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A197:X198."
+        },
+        {
+          "at": "2026-10-07T02:30:19",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A197:X198."
+        },
+        {
+          "at": "2026-10-07T02:30:32",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A197:X198."
+        }
+      ],
+      "title": "Unexpected M-line crossing: List of Document!A197:X198.",
+      "note": "Unexpected M-line crossing: List of Document!A197:X198.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_List_of_Document_A197_X198_edffc7355e4f",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Unexpected M-line crossing: List of Document!A197:X198."
+    },
+    {
+      "handle": "JND-EXC-0003",
+      "match_key": "ac9c77d338f5346a",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "List of Document",
+        "target": "A285:X286",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-07T02:30:12",
+      "last_seen_at": "2026-10-07T02:30:12",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_List_of_Document_A285_X286_3a7099dab571",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:30:12",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A285_X286_3a7099dab571",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A285:X286."
+        },
+        {
+          "at": "2026-10-07T02:30:19",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A285_X286_3a7099dab571",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A285:X286."
+        },
+        {
+          "at": "2026-10-07T02:30:32",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A285_X286_3a7099dab571",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A285:X286."
+        }
+      ],
+      "title": "Unexpected M-line crossing: List of Document!A285:X286.",
+      "note": "Unexpected M-line crossing: List of Document!A285:X286.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_List_of_Document_A285_X286_3a7099dab571",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Unexpected M-line crossing: List of Document!A285:X286."
+    },
+    {
+      "handle": "JND-EXC-0004",
+      "match_key": "4e12858d4aa4eaa1",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "List of Document",
+        "target": "A347:X348",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-07T02:30:19",
+      "last_seen_at": "2026-10-07T02:30:19",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_List_of_Document_A347_X348_1607c7b0cfb9",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T02:30:19",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A347_X348_1607c7b0cfb9",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A347:X348."
+        },
+        {
+          "at": "2026-10-07T02:30:32",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_List_of_Document_A347_X348_1607c7b0cfb9",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: List of Document!A347:X348."
+        }
+      ],
+      "title": "Unexpected M-line crossing: List of Document!A347:X348.",
+      "note": "Unexpected M-line crossing: List of Document!A347:X348.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_List_of_Document_A347_X348_1607c7b0cfb9",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Unexpected M-line crossing: List of Document!A347:X348."
+    },
+    {
+      "handle": "JND-EXC-0005",
+      "match_key": "92d63144d0e00cde",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "sheet": "List of Document",
+        "target": "E301",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "field_role": "receive_date"
+      },
+      "first_seen_at": "2026-10-07T03:11:05",
+      "last_seen_at": "2026-10-07T03:11:05",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T03:11:05",
+          "event": "CREATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+        },
+        {
+          "at": "2026-10-07T03:11:22",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+        },
+        {
+          "at": "2026-10-07T03:13:20",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+        },
+        {
+          "at": "2026-10-07T03:16:27",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+        }
+      ],
+      "title": "Date Chronology",
+      "note": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301.",
+      "severity": "MEDIUM",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "DATA_ANOMALY",
+      "tags": [
+        "field_validation",
+        "date_chronology",
+        "investigate"
+      ],
+      "owner": "",
+      "last_review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+    },
+    {
+      "handle": "JND-EXC-0006",
+      "match_key": "fae5727443e1340b",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "sheet": "List of Document",
+        "target": "E303",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "field_role": "receive_date"
+      },
+      "first_seen_at": "2026-10-07T03:11:22",
+      "last_seen_at": "2026-10-07T03:11:22",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
+        "first_run_id": "jnd_20261007T022038"
+      },
+      "history": [
+        {
+          "at": "2026-10-07T03:11:22",
+          "event": "CREATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303."
+        },
+        {
+          "at": "2026-10-07T03:13:20",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303."
+        },
+        {
+          "at": "2026-10-07T03:16:27",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
+          "run_id": "jnd_20261007T022038",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303."
+        }
+      ],
+      "title": "Date Chronology",
+      "note": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303.",
+      "severity": "MEDIUM",
+      "case_state": "OPEN",
+      "workflow_status": "INVESTIGATE",
+      "classification": "DATA_ANOMALY",
+      "tags": [
+        "field_validation",
+        "date_chronology",
+        "investigate"
+      ],
+      "owner": "",
+      "last_review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
+      "last_run_id": "jnd_20261007T022038",
+      "message": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303."
+    }
+  ]
 }

@@ -172,3 +172,24 @@ def test_navigator_returns_focus_to_captured_window(monkeypatch):
     nav._return_focus_to_console()
 
     assert ("foreground", 4242) in calls
+
+
+def test_review_navigator_opens_retrieved_path_with_robust_connection(monkeypatch, tmp_path):
+    from dev import review_findings as module
+
+    workbook_path = tmp_path / "FSH.xlsx"
+    workbook_path.write_bytes(b"placeholder")
+    sentinel = object()
+    calls = []
+
+    monkeypatch.setattr(module.ExcelReviewNavigator, "_capture_foreground_window", staticmethod(lambda: None))
+    monkeypatch.setattr(
+        module,
+        "ensure_excel_workbook_open",
+        lambda path, visible=True: calls.append((str(path), visible)) or sentinel,
+    )
+    queue = {"workbook": {"path": str(workbook_path), "name": "FSH.xlsx"}}
+    navigator = module.ExcelReviewNavigator(queue)
+    assert navigator.workbook is sentinel
+    assert navigator.available is True
+    assert calls == [(str(workbook_path), True)]

@@ -14,8 +14,8 @@
       "target_sheets": [
         "FOULAD SHAHRIYAR"
       ],
-      "boundary_after_col": 3,
-      "boundary_label": "C|D",
+      "boundary_after_col": 5,
+      "boundary_label": "E|F",
       "discovery": {
         "title_window": {
           "row_start": 1,
@@ -37,18 +37,32 @@
   "data_model": {
     "family_fields": [
       {
-        "key": "document_type",
-        "label": "Document Type",
+        "key": "category",
+        "label": "Category",
         "data_type": "TEXT",
         "required": false,
-        "default_locator": {
-          "kind": "COLUMN",
-          "column": 1
-        },
         "validation": {
           "kind": "NONE"
         },
-        "cleaning": {}
+        "cleaning": {},
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 1
+        }
+      },
+      {
+        "key": "type",
+        "label": "Type",
+        "data_type": "TEXT",
+        "required": false,
+        "validation": {
+          "kind": "NONE"
+        },
+        "cleaning": {},
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 2
+        }
       },
       {
         "key": "name",
@@ -57,7 +71,7 @@
         "required": true,
         "default_locator": {
           "kind": "COLUMN",
-          "column": 2
+          "column": 3
         },
         "validation": {
           "kind": "NON_EMPTY",
@@ -73,13 +87,39 @@
         }
       },
       {
+        "key": "code",
+        "label": "Code",
+        "data_type": "CODE",
+        "required": true,
+        "validation": {
+          "kind": "NON_EMPTY",
+          "empty_or_invalid_tokens": [
+            "",
+            "-",
+            "–",
+            "—"
+          ]
+        },
+        "cleaning": {
+          "on_invalid": "SET_VALUE",
+          "strategy": "NEAREST_VALID_ABOVE_APPEND_SEQUENCE",
+          "sequence_start": 1000,
+          "separator": ".",
+          "fallback_root_start": 1000
+        },
+        "default_locator": {
+          "kind": "COLUMN",
+          "column": 4
+        }
+      },
+      {
         "key": "wbs",
         "label": "WBS",
         "data_type": "WBS",
         "required": true,
         "default_locator": {
           "kind": "COLUMN",
-          "column": 3
+          "column": 5
         },
         "validation": {
           "kind": "REGEX",
@@ -104,17 +144,25 @@
       "FOULAD SHAHRIYAR": {
         "instance_type": "SHEET",
         "field_map": {
-          "document_type": {
+          "category": {
             "kind": "COLUMN",
             "column": 1
           },
-          "name": {
+          "type": {
             "kind": "COLUMN",
             "column": 2
           },
-          "wbs": {
+          "name": {
             "kind": "COLUMN",
             "column": 3
+          },
+          "code": {
+            "kind": "COLUMN",
+            "column": 4
+          },
+          "wbs": {
+            "kind": "COLUMN",
+            "column": 5
           }
         }
       }
@@ -124,16 +172,20 @@
       "method": "IDENTIFIER_FIELD_MERGE_SPAN",
       "first_data_row": 3,
       "signal_fields": [
-        "document_type",
+        "category",
+        "type",
         "name",
+        "code",
         "wbs"
       ],
       "boundary_fields": [
         "name",
+        "code",
         "wbs"
       ],
       "separator_fields": [
         "name",
+        "code",
         "wbs"
       ],
       "note": "Document regions are derived per workbook from mapped identifier anchors and Name/WBS merge spans. Rows where Name and WBS are both covered by a merge anchored elsewhere are treated as separator/background ranges."
@@ -141,8 +193,10 @@
     "record_detection": {
       "first_data_row": 3,
       "signal_fields": [
-        "document_type",
+        "category",
+        "type",
         "name",
+        "code",
         "wbs"
       ],
       "merge_aware": true,
@@ -151,7 +205,7 @@
     "document_structure": {
       "enabled": true,
       "method": "NORMALIZED_MERGE_SIGNATURE",
-      "transaction_start_col": 4,
+      "transaction_start_col": 6,
       "unknown_pattern_status": "POSSIBLE_EXCEPTION",
       "crossing_hazard_policy": "OWNED_BOUNDARY_FIELDS_ONLY",
       "known_patterns": [],
@@ -160,7 +214,7 @@
     "card_map": {
       "enabled": true,
       "method": "EXPLICIT_IDENTIFIER_AND_DATA_BOUNDARIES",
-      "data_start_col": 4,
+      "data_start_col": 6,
       "data_end_strategy": "MERGE_EXTENT",
       "semantic_fields": [
         "reference",
@@ -233,12 +287,89 @@
   },
   "bootstrap": {
     "template": "GENERAL_DOCUMENT",
-    "created_at": "2026-10-07T02:12:59",
+    "created_at": "2026-10-07T02:43:42",
     "project_id": "FSH",
     "source_workbook": "input\\3_FSH_LATEST_GENERAL_DOC_14050715.xlsx",
     "selected_sheets": [
       "FOULAD SHAHRIYAR"
     ],
+    "profile_overrides": {
+      "identifier_layout": {
+        "fields": [
+          {
+            "key": "category",
+            "label": "Category",
+            "column": 1,
+            "required": false,
+            "data_type": "TEXT"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "column": 2,
+            "required": false,
+            "data_type": "TEXT"
+          },
+          {
+            "key": "name",
+            "label": "Name",
+            "column": 3,
+            "required": true,
+            "data_type": "TEXT"
+          },
+          {
+            "key": "code",
+            "label": "Code",
+            "column": 4,
+            "required": true,
+            "data_type": "CODE",
+            "validation": {
+              "kind": "NON_EMPTY",
+              "empty_or_invalid_tokens": [
+                "",
+                "-",
+                "–",
+                "—"
+              ]
+            },
+            "cleaning": {
+              "on_invalid": "SET_VALUE",
+              "strategy": "NEAREST_VALID_ABOVE_APPEND_SEQUENCE",
+              "sequence_start": 1000,
+              "separator": ".",
+              "fallback_root_start": 1000
+            }
+          },
+          {
+            "key": "wbs",
+            "label": "WBS",
+            "column": 5,
+            "required": true,
+            "data_type": "WBS"
+          }
+        ],
+        "boundary_after_col": 5,
+        "boundary_label": "E|F",
+        "signal_fields": [
+          "category",
+          "type",
+          "name",
+          "code",
+          "wbs"
+        ],
+        "boundary_fields": [
+          "name",
+          "code",
+          "wbs"
+        ],
+        "separator_fields": [
+          "name",
+          "code",
+          "wbs"
+        ],
+        "data_start_col": 6
+      }
+    },
     "probe": [
       {
         "sheet": "FOULAD SHAHRIYAR",
