@@ -1,0 +1,335 @@
+From 5c85459a1c207bbd5ae60ad0c0601ef95e692328 Mon Sep 17 00:00:00 2001
+From: OpenAI <noreply@openai.com>
+Date: Thu, 8 Oct 2026 11:07:06 +0000
+Subject: [PATCH] feat: add delay responsibility register
+
+---
+ docs/ENGINEERING_THREE_LISTS.md              | 20 +++++
+ functions/engineering_control/three_lists.py | 77 +++++++++++++++++++-
+ functions/engineering_control/writers.py     |  5 +-
+ pipeline/weekly_report_pipeline.py           |  4 +
+ unit_tests/test_engineering_three_lists.py   | 48 +++++++++++-
+ 5 files changed, 151 insertions(+), 3 deletions(-)
+
+diff --git a/docs/ENGINEERING_THREE_LISTS.md b/docs/ENGINEERING_THREE_LISTS.md
+index 770dd5f..e1af174 100644
+--- a/docs/ENGINEERING_THREE_LISTS.md
++++ b/docs/ENGINEERING_THREE_LISTS.md
+@@ -84,6 +84,7 @@ engineering_lists/
+ ├── 01_Not_Sent.csv
+ ├── 02_Company_Delay.csv
+ ├── 03_Consultant_Delay.csv
++├── 04_Delay_Register.csv
+ └── engineering_three_lists.json
+ ```
+ 
+@@ -99,3 +100,22 @@ python ./pipeline/weekly_report_pipeline.py engineering-lists \
+ ```
+ 
+ Until contractual/management response allowances are configured, an allowance of `0` means `delay_days` equals elapsed days. Configure the allowances before using the values as contractual delay attribution.
++
++## Delay Register and responsibility clock
++
++`04_Delay_Register.csv` combines the two active delay lists into one operational
++management register. Every delayed row carries:
++
++- `current_holder`: `CONSULTANT` for an unanswered SEND, otherwise the inferred internal unit or `COMPANY`.
++- `responsible_unit`: the internal engineering discipline when responsibility is on the company side.
++- `unit_basis`: which Cleaner identifier field supplied that unit (`category`, `document_type`, etc.).
++- `responsibility_since`: SEND date for consultant delay; RECEIVE date for company delay.
++- `responsibility_age_days`: calendar age of the current responsibility state at the Status Date.
++- `allowance_days` and `delay_days`: management/contractual allowance and net delay.
++
++The internal unit is inferred conservatively from existing document metadata. FSH
++uses `category` (for example LV/HV/CIVIL); AZD/JND use `document_type`. The system
++preserves those project-native labels rather than inventing department names. If
++no ownership field exists, `responsible_unit` is blank and `current_holder` stays
++`COMPANY`. A future explicit unit map can translate these tokens into formal
++organisation units without changing the transaction logic.
+diff --git a/functions/engineering_control/three_lists.py b/functions/engineering_control/three_lists.py
+index bcad234..37e40c7 100644
+--- a/functions/engineering_control/three_lists.py
++++ b/functions/engineering_control/three_lists.py
+@@ -21,6 +21,11 @@ class EngineeringExceptionRow:
+     doc_wbs: Any
+     revision: str | None = None
+     responsibility: str | None = None
++    current_holder: str | None = None
++    responsible_unit: str | None = None
++    unit_basis: str | None = None
++    responsibility_since: str | None = None
++    responsibility_age_days: int | None = None
+     state: str | None = None
+     last_action_date: str | None = None
+     last_action_text: Any = None
+@@ -43,20 +48,39 @@ class EngineeringThreeLists:
+     consultant_delay: list[EngineeringExceptionRow] = field(default_factory=list)
+     diagnostics: list[dict[str, Any]] = field(default_factory=list)
+ 
++    def delay_register(self) -> list[EngineeringExceptionRow]:
++        rows = [*self.company_delay, *self.consultant_delay]
++        return sorted(
++            rows,
++            key=lambda row: (
++                row.delay_days is None,
++                -(row.delay_days or 0),
++                str(row.responsibility_since or ""),
++                str(row.doc_name or ""),
++            ),
++        )
++
+     def to_dict(self) -> dict[str, Any]:
++        company_by_unit: dict[str, int] = {}
++        for row in self.company_delay:
++            unit = row.responsible_unit or "UNASSIGNED"
++            company_by_unit[unit] = company_by_unit.get(unit, 0) + 1
+         return {
+-            "schema": "engineering.three_lists/0.1",
++            "schema": "engineering.three_lists/0.2",
+             "status_date": self.status_date,
+             "summary": {
+                 "not_sent": len(self.not_sent),
+                 "company_delay": len(self.company_delay),
+                 "consultant_delay": len(self.consultant_delay),
++                "delay_register": len(self.company_delay) + len(self.consultant_delay),
++                "company_delay_by_unit": company_by_unit,
+                 "diagnostic_count": len(self.diagnostics),
+             },
+             "lists": {
+                 "01_Not_Sent": [x.to_dict() for x in self.not_sent],
+                 "02_Company_Delay": [x.to_dict() for x in self.company_delay],
+                 "03_Consultant_Delay": [x.to_dict() for x in self.consultant_delay],
++                "04_Delay_Register": [x.to_dict() for x in self.delay_register()],
+             },
+             "diagnostics": list(self.diagnostics),
+         }
+@@ -183,6 +207,29 @@ def document_inventory_from_cleaner(run: CleanerRun) -> list[dict[str, Any]]:
+             })
+     return inventory
+ 
++
++
++def _responsible_unit(inventory_item: dict[str, Any]) -> tuple[str | None, str | None]:
++    """Infer the internal engineering unit from Cleaner identifier metadata.
++
++    Project profiles use slightly different identifier names. FSH exposes a
++    Category field (LV/HV/CIVIL), while AZD/JND expose Document Type for the
++    same discipline-level ownership. Keep the raw project vocabulary instead
++    of inventing organisation names; a later unit map can translate these
++    tokens into formal department names.
++    """
++    fields = inventory_item.get("document_fields") or {}
++    for key in ("responsible_unit", "unit", "category", "discipline", "document_type"):
++        value = fields.get(key)
++        if value is None:
++            value = inventory_item.get(key)
++        if value is None:
++            continue
++        text = str(value).strip()
++        if text:
++            return text, key
++    return None, None
++
+ def build_three_engineering_lists(
+     records: Iterable[LogRecord],
+     *,
+@@ -247,6 +294,7 @@ def build_three_engineering_lists(
+         ordered = sorted(doc_records, key=_sequence_key)
+         sends = [x for x in ordered if x.send_or_receive == "send"]
+         inventory_item = inventory_map.get(key) or {}
++        responsible_unit, unit_basis = _responsible_unit(inventory_item)
+         if ordered:
+             identity = _identity(ordered[0])
+         else:
+@@ -263,6 +311,11 @@ def build_three_engineering_lists(
+                 **identity,
+                 revision=(latest.doc_rev if latest else None),
+                 responsibility="COMPANY",
++                current_holder=responsible_unit or "COMPANY",
++                responsible_unit=responsible_unit,
++                unit_basis=unit_basis,
++                responsibility_since=None,
++                responsibility_age_days=None,
+                 state="NOT_SENT",
+                 last_action_date=(str(latest.letter_date) if latest and _jalali_parts(latest.letter_date) else None),
+                 last_action_text=(latest.raw_source_value if latest else None),
+@@ -279,6 +332,11 @@ def build_three_engineering_lists(
+                     **identity,
+                     revision=latest.doc_rev,
+                     responsibility="CONSULTANT",
++                    current_holder="CONSULTANT",
++                    responsible_unit=None,
++                    unit_basis=None,
++                    responsibility_since=None,
++                    responsibility_age_days=None,
+                     state="WAITING_CONSULTANT_RESPONSE",
+                     last_action_date=None,
+                     last_action_text=latest.letter_date,
+@@ -300,6 +358,11 @@ def build_three_engineering_lists(
+                         **identity,
+                         revision=latest.doc_rev,
+                         responsibility="CONSULTANT",
++                        current_holder="CONSULTANT",
++                        responsible_unit=None,
++                        unit_basis=None,
++                        responsibility_since=str(latest.letter_date),
++                        responsibility_age_days=elapsed,
+                         state="WAITING_CONSULTANT_RESPONSE",
+                         last_action_date=str(latest.letter_date),
+                         last_action_text=latest.raw_source_value,
+@@ -324,6 +387,8 @@ def build_three_engineering_lists(
+                 "status_meaning": status_meaning,
+                 "status_known": status_definition is not None,
+                 "transaction_mode": latest.transaction_mode,
++                "responsible_unit": responsible_unit,
++                "unit_basis": unit_basis,
+                 "value": latest.letter_reference or latest.letter_date,
+             })
+             continue
+@@ -334,6 +399,11 @@ def build_three_engineering_lists(
+                     **identity,
+                     revision=latest.doc_rev,
+                     responsibility="COMPANY",
++                    current_holder=responsible_unit or "COMPANY",
++                    responsible_unit=responsible_unit,
++                    unit_basis=unit_basis,
++                    responsibility_since=None,
++                    responsibility_age_days=None,
+                     state="WAITING_COMPANY_RESPONSE",
+                     last_action_date=None,
+                     last_action_text=latest.letter_reference or latest.letter_date,
+@@ -358,6 +428,11 @@ def build_three_engineering_lists(
+                         **identity,
+                         revision=latest.doc_rev,
+                         responsibility="COMPANY",
++                        current_holder=responsible_unit or "COMPANY",
++                        responsible_unit=responsible_unit,
++                        unit_basis=unit_basis,
++                        responsibility_since=str(latest.letter_date),
++                        responsibility_age_days=elapsed,
+                         state="WAITING_COMPANY_RESPONSE",
+                         last_action_date=str(latest.letter_date),
+                         last_action_text=latest.letter_reference,
+diff --git a/functions/engineering_control/writers.py b/functions/engineering_control/writers.py
+index 8e8b1ae..1ef2771 100644
+--- a/functions/engineering_control/writers.py
++++ b/functions/engineering_control/writers.py
+@@ -9,7 +9,9 @@ from .three_lists import EngineeringThreeLists
+ 
+ COLUMNS = [
+     "source_sheet", "document_index", "doc_name", "doc_wbs", "revision",
+-    "responsibility", "state", "last_action_date", "last_action_text", "status", "status_meaning",
++    "responsibility", "current_holder", "responsible_unit", "unit_basis",
++    "responsibility_since", "responsibility_age_days",
++    "state", "last_action_date", "last_action_text", "status", "status_meaning",
+     "elapsed_days", "allowance_days", "delay_days", "calculation_status",
+ ]
+ 
+@@ -29,6 +31,7 @@ def write_three_lists_csv(result: EngineeringThreeLists, directory: str | Path)
+         ("01_Not_Sent", result.not_sent),
+         ("02_Company_Delay", result.company_delay),
+         ("03_Consultant_Delay", result.consultant_delay),
++        ("04_Delay_Register", result.delay_register()),
+     ):
+         path = directory / f"{name}.csv"
+         with path.open("w", encoding="utf-8-sig", newline="") as handle:
+diff --git a/pipeline/weekly_report_pipeline.py b/pipeline/weekly_report_pipeline.py
+index a3947d6..57be612 100644
+--- a/pipeline/weekly_report_pipeline.py
++++ b/pipeline/weekly_report_pipeline.py
+@@ -369,6 +369,10 @@ def engineering_lists_step(args) -> int:
+     print(f"[ENGINEERING] Not sent         : {summary['not_sent']}")
+     print(f"[ENGINEERING] Company delay    : {summary['company_delay']}")
+     print(f"[ENGINEERING] Consultant delay : {summary['consultant_delay']}")
++    print(f"[ENGINEERING] Delay register    : {summary['delay_register']}")
++    if summary.get("company_delay_by_unit"):
++        units = ", ".join(f"{unit}={count}" for unit, count in sorted(summary["company_delay_by_unit"].items()))
++        print(f"[ENGINEERING] Company by unit  : {units}")
+     print(f"[ENGINEERING] Needs review/date: {summary['diagnostic_count']}")
+     print(f"[ENGINEERING] JSON             : {json_path}")
+     for name, path in csv_paths.items():
+diff --git a/unit_tests/test_engineering_three_lists.py b/unit_tests/test_engineering_three_lists.py
+index 318ccad..8463297 100644
+--- a/unit_tests/test_engineering_three_lists.py
++++ b/unit_tests/test_engineering_three_lists.py
+@@ -23,12 +23,13 @@ def rec(*, idx=1, side="send", rev="A", date="1405/01/01", status=None, block=0,
+     )
+ 
+ 
+-def inventory(idx, name="DOC"):
++def inventory(idx, name="DOC", unit="LV"):
+     return {
+         "source_sheet": "230KV SS",
+         "document_index": idx,
+         "doc_name": name,
+         "doc_wbs": f"1.{idx}",
++        "document_fields": {"document_type": unit},
+     }
+ 
+ 
+@@ -57,6 +58,10 @@ def test_latest_send_puts_responsibility_on_consultant():
+     assert row.elapsed_days == 10
+     assert row.delay_days == 5
+     assert row.responsibility == "CONSULTANT"
++    assert row.current_holder == "CONSULTANT"
++    assert row.responsible_unit is None
++    assert row.responsibility_since == "1405/01/01"
++    assert row.responsibility_age_days == 10
+ 
+ 
+ def test_latest_comment_receive_puts_responsibility_on_company():
+@@ -75,6 +80,11 @@ def test_latest_comment_receive_puts_responsibility_on_company():
+     assert row.elapsed_days == 10
+     assert row.delay_days == 7
+     assert row.responsibility == "COMPANY"
++    assert row.current_holder == "LV"
++    assert row.responsible_unit == "LV"
++    assert row.unit_basis == "document_type"
++    assert row.responsibility_since == "1405/01/05"
++    assert row.responsibility_age_days == 10
+ 
+ 
+ def test_approved_receive_closes_current_exception_state():
+@@ -165,3 +175,39 @@ def test_status_library_meaning_flows_into_company_delay():
+     assert len(result.company_delay) == 1
+     assert result.company_delay[0].status == "RJ"
+     assert result.company_delay[0].status_meaning == "Rejected"
++
++
++def test_fsh_category_is_used_as_internal_responsible_unit():
++    records = [
++        rec(side="send", date="1405/01/01"),
++        rec(side="receive", date="1405/01/05", status="CM"),
++    ]
++    inv = [{
++        "source_sheet": "230KV SS", "document_index": 1, "doc_name": "DOC", "doc_wbs": "1.1",
++        "document_fields": {"category": "CIVIL", "type": "DRAWINGS"},
++    }]
++    result = build_three_engineering_lists(records, status_date="1405/01/10", document_inventory=inv)
++    row = result.company_delay[0]
++    assert row.responsible_unit == "CIVIL"
++    assert row.unit_basis == "category"
++    assert row.current_holder == "CIVIL"
++    assert row.responsibility_since == "1405/01/05"
++
++
++def test_delay_register_combines_company_and_consultant_and_sorts_by_delay():
++    records = [
++        rec(idx=1, side="send", date="1405/01/01"),
++        rec(idx=2, side="send", date="1405/01/01"),
++        rec(idx=2, side="receive", date="1405/01/05", status="CM"),
++    ]
++    result = build_three_engineering_lists(
++        records, status_date="1405/01/20",
++        document_inventory=[inventory(1, unit="HV"), inventory(2, unit="CIVIL")],
++    )
++    delay = result.delay_register()
++    assert len(delay) == 2
++    assert delay[0].responsibility == "CONSULTANT"
++    assert delay[0].delay_days == 19
++    assert delay[1].responsibility == "COMPANY"
++    assert delay[1].responsible_unit == "CIVIL"
++    assert result.to_dict()["summary"]["company_delay_by_unit"] == {"CIVIL": 1}
+-- 
+2.47.3
+

@@ -1,6 +1,2483 @@
 {
   "schema": "cleaner.project_solutions/0.1",
   "project_id": "FSH",
-  "next_sequence": 1,
-  "solutions": []
+  "next_sequence": 54,
+  "solutions": [
+    {
+      "handle": "FSH-SOL-0001",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "edc56be8cd9292f9",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "General",
+          "name": "WORK BREAKDOWN STRUCTURE"
+        },
+        "semantic": {
+          "field_key": "code",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D11"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "code",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "D11",
+          "value": "S16-GFS-P-MT-4-004.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required Code is empty/invalid at FOULAD SHAHRIYAR!D11; observed=''. Proposed Code='S16-GFS-P-MT-4-004.1000' using nearest valid Code above 'S16-GFS-P-MT-4-004'.",
+      "created_at": "2026-10-07T04:03:50",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_D11_c65fa14fd715",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0002",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "263a148da3443886",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "General",
+          "name": "WORK BREAKDOWN STRUCTURE"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.1.3",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E11"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E11",
+          "value": "1.2.2.1.3.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E11; observed=''. Proposed WBS='1.2.2.1.3.1000' using nearest valid WBS above '1.2.2.1.3'.",
+      "created_at": "2026-10-07T04:03:53",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E11_8436068034ed",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0003",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "c4917d3399188483",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "BASIC",
+          "name": "COMMUNNICATION OVERALL LAYOUT"
+        },
+        "semantic": {
+          "field_key": "code",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D39"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "code",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "D39",
+          "value": "S16-GFS-L-OL-4-001.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required Code is empty/invalid at FOULAD SHAHRIYAR!D39; observed=''. Proposed Code='S16-GFS-L-OL-4-001.1000' using nearest valid Code above 'S16-GFS-L-OL-4-001'.",
+      "created_at": "2026-10-07T04:03:55",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_D39_e1ab668b079a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0004",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "60a9a117f45a0df3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "BASIC",
+          "name": "COMMUNNICATION OVERALL LAYOUT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.3.1.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E39"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E39",
+          "value": "1.2.2.3.1.2.1.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E39; observed=''. Proposed WBS='1.2.2.3.1.2.1.1000' using nearest valid WBS above '1.2.2.3.1.2.1'.",
+      "created_at": "2026-10-07T04:03:55",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E39_fe4a09fb002e",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0005",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d92a050468f70bc7",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "BASIC",
+          "name": "COMMUNICATION SYSTEM SPECIFICATION"
+        },
+        "semantic": {
+          "field_key": "code",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D41"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "code",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "D41",
+          "value": "S16-GFS-L-OL-4-001.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required Code is empty/invalid at FOULAD SHAHRIYAR!D41; observed=''. Proposed Code='S16-GFS-L-OL-4-001.1001' using nearest valid Code above 'S16-GFS-L-OL-4-001'.",
+      "created_at": "2026-10-07T04:03:56",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_D41_369bdae25b90",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0006",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b950b09b356f3c2e",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "BASIC",
+          "name": "COMMUNICATION SYSTEM SPECIFICATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.3.1.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E41"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E41",
+          "value": "1.2.2.3.1.2.1.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E41; observed=''. Proposed WBS='1.2.2.3.1.2.1.1001' using nearest valid WBS above '1.2.2.3.1.2.1'.",
+      "created_at": "2026-10-07T04:03:57",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E41_3fcb635d053b",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0007",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "7e0796dc0413614e",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "FRONT VIEW",
+          "name": "110V CHARGER FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "code",
+          "document_relative_target": "D+0"
+        },
+        "observed": "-",
+        "target_fallback": "D61"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "code",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "D61",
+          "value": "S16-GFS-L-OL-4-010.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required Code is empty/invalid at FOULAD SHAHRIYAR!D61; observed='-'. Proposed Code='S16-GFS-L-OL-4-010.1000' using nearest valid Code above 'S16-GFS-L-OL-4-010'.",
+      "created_at": "2026-10-07T04:03:59",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_D61_6aeb73d09e08",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0008",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "493c7d6da5004a5b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "FRONT VIEW",
+          "name": "110V CHARGER FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.3.1.2.9",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E61"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E61",
+          "value": "1.2.2.3.1.2.9.1000",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E61; observed='-'. Proposed WBS='1.2.2.3.1.2.9.1000' using nearest valid WBS above '1.2.2.3.1.2.9'.",
+      "created_at": "2026-10-07T04:04:00",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E61_2ec539d7bbb7",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0009",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "e71d40e5e6645244",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "FRONT VIEW",
+          "name": "48V CHARGER FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "code",
+          "document_relative_target": "D+0"
+        },
+        "observed": "-",
+        "target_fallback": "D63"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "code",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "D63",
+          "value": "S16-GFS-L-OL-4-010.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required Code is empty/invalid at FOULAD SHAHRIYAR!D63; observed='-'. Proposed Code='S16-GFS-L-OL-4-010.1001' using nearest valid Code above 'S16-GFS-L-OL-4-010'.",
+      "created_at": "2026-10-07T04:04:19",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_D63_415d7a2cfd9c",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0010",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "9b2062cdc5a56682",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "LV",
+          "type": "FRONT VIEW",
+          "name": "48V CHARGER FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.3.1.2.9",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E63"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E63",
+          "value": "1.2.2.3.1.2.9.1001",
+          "expected_old_value": "-"
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E63; observed='-'. Proposed WBS='1.2.2.3.1.2.9.1001' using nearest valid WBS above '1.2.2.3.1.2.9'.",
+      "created_at": "2026-10-07T04:04:21",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E63_2c5581096bae",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0011",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ed5175fcdcfe9076",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR DISCONNECTOR / EARTH SWITCH",
+          "code": "S16-GFS-H-GT-4-002"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E171"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E171",
+          "value": "1.2.1.2.2.1.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E171; observed=''. Proposed WBS='1.2.1.2.2.1.1000' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:22",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E171_021616916bd0",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0012",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "de6364945e43fba2",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR SURGE ARRESTER & COUNTER",
+          "code": "S16-GFS-H-GT-4-003"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E173"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E173",
+          "value": "1.2.1.2.2.1.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E173; observed=''. Proposed WBS='1.2.1.2.2.1.1001' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:24",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E173_699d710fef44",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0013",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "bd9fef82479d5c92",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR LINE TRAP AND LMU",
+          "code": "S16-GFS-H-GT-4-004"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E175"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E175",
+          "value": "1.2.1.2.2.1.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E175; observed=''. Proposed WBS='1.2.1.2.2.1.1002' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:25",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E175_ba39d9d2c7ab",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0014",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "427718e1664abb54",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR RIGID & FLEXIBLE CONDUCTOR & SHIELD WIRE",
+          "code": "S16-GFS-H-GT-4-005"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E177"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E177",
+          "value": "1.2.1.2.2.1.1003",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E177; observed=''. Proposed WBS='1.2.1.2.2.1.1003' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:27",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E177_0e7d0da618b3",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0015",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "50b92a28209f0e17",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR TUBULAR CONDUCTOR",
+          "code": "S16-GFS-H-GT-4-006"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E179"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E179",
+          "value": "1.2.1.2.2.1.1004",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E179; observed=''. Proposed WBS='1.2.1.2.2.1.1004' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:28",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E179_5fb746aa9d8d",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0016",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "48b441b07ea4c53c",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR POST INSULATOR",
+          "code": "S16-GFS-H-GT-4-007"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E181"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E181",
+          "value": "1.2.1.2.2.1.1005",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E181; observed=''. Proposed WBS='1.2.1.2.2.1.1005' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:29",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E181_7f6ca8120007",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0017",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "5634cd4d546cd8e5",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR STRING INSULATOR",
+          "code": "S16-GFS-H-GT-4-008"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E183"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E183",
+          "value": "1.2.1.2.2.1.1006",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E183; observed=''. Proposed WBS='1.2.1.2.2.1.1006' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:31",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E183_aaa3af04cc36",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0018",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "89b4b88cb1bcf17f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR CVT",
+          "code": "S16-GFS-H-GT-4-009"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E185"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E185",
+          "value": "1.2.1.2.2.1.1007",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E185; observed=''. Proposed WBS='1.2.1.2.2.1.1007' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:32",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E185_89eb2c321a4a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0019",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4aca42c70b5773ec",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR CT",
+          "code": "S16-GFS-H-GT-4-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E187"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E187",
+          "value": "1.2.1.2.2.1.1008",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E187; observed=''. Proposed WBS='1.2.1.2.2.1.1008' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:34",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E187_0f5370a659ac",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0020",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "17d76e23f072d49c",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "MR FOR EARTHING SYSTEM",
+          "code": "S16-GFS-H-GT-4-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E189"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E189",
+          "value": "1.2.1.2.2.1.1009",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E189; observed=''. Proposed WBS='1.2.1.2.2.1.1009' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:35",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E189_9ecce97b8b83",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0021",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "98999f3202a50093",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "HV ERECTION DOCUMENTS",
+          "code": "S16-GFS-H-GT-4-012"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E191"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E191",
+          "value": "1.2.1.2.2.1.1010",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E191; observed=''. Proposed WBS='1.2.1.2.2.1.1010' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:37",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E191_2e1f0a6e8b0d",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0022",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "0e50a4665af07ace",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "NAME PLATE FOR HV EQUIPMENTS",
+          "code": "S16-GFS-H-GT-4-013"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E193"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E193",
+          "value": "1.2.1.2.2.1.1011",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E193; observed=''. Proposed WBS='1.2.1.2.2.1.1011' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:38",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E193_bc8c751e551a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0023",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "1c8085c996e1dbd6",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "HV",
+          "type": "TECHNICAL SPECIFICATION",
+          "name": "FACTORY TEST DOCUMENTS (FOR INFORMATION)",
+          "code": "S16-GFS-H-GT-4-(014-034)"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E195"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E195",
+          "value": "1.2.1.2.2.1.1012",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E195; observed=''. Proposed WBS='1.2.1.2.2.1.1012' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:40",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E195_d213d6f15992",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0024",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "fee62298a0edef21",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "CONTOROL BUILDING FOUNDATION & STRUCTURE CALCULATION",
+          "code": "S16-GFS-C-CA-4-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E197"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E197",
+          "value": "1.2.1.2.2.1.1013",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E197; observed=''. Proposed WBS='1.2.1.2.2.1.1013' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:45",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E197_90a9115c2f2c",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0025",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d320a5d31e7002d4",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "EQUIPMENT FOUNDATION DESIGN CALCULATION",
+          "code": "S16-GFS-C-CA-4-003"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E199"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E199",
+          "value": "1.2.1.2.2.1.1014",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E199; observed=''. Proposed WBS='1.2.1.2.2.1.1014' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:46",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E199_ff75aed47ee1",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0026",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "94c8668deeebce83",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "GANTRY & SHIELD WIRE COLUMN FOUNDATION CALCULATION",
+          "code": "S16-GFS-C-CA-4-004"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E201"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E201",
+          "value": "1.2.1.2.2.1.1015",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E201; observed=''. Proposed WBS='1.2.1.2.2.1.1015' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:47",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E201_4dfcfe718779",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0027",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "16626afcee0deeba",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "P.T.R & AUX./ER TR. AND FIRE WALL FOUNDATION CALCULATION",
+          "code": "S16-GFS-C-CA-4-005"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E203"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E203",
+          "value": "1.2.1.2.2.1.1016",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E203; observed=''. Proposed WBS='1.2.1.2.2.1.1016' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:54",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E203_b4baf9165ae6",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0028",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "c2225b08609ebe26",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "LIGHTING POLE FOUNDATION CALCULATION",
+          "code": "S16-GFS-C-CA-4-008"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E205"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E205",
+          "value": "1.2.1.2.2.1.1017",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E205; observed=''. Proposed WBS='1.2.1.2.2.1.1017' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:56",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E205_df2f8bccdeeb",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0029",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "28b27cba7b3821bb",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "EQUIPMENT STEEL STRUCTURE CALCULATION",
+          "code": "S16-GFS-C-CA-4-009"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E207"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E207",
+          "value": "1.2.1.2.2.1.1018",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E207; observed=''. Proposed WBS='1.2.1.2.2.1.1018' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:57",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E207_1f8becac6b56",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0030",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "6195be4b041bea4f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "GANTRY & SHEILD WIRE COLUMN STEEL STRUCTURE CALCULATION",
+          "code": "S16-GFS-C-CA-4-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E209"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E209",
+          "value": "1.2.1.2.2.1.1019",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E209; observed=''. Proposed WBS='1.2.1.2.2.1.1019' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:04:59",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E209_d0ce25e1827b",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0031",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "de68c9e142543d42",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "CONTROL BUILDING ELECTRICAL SYSTEM CALCULATION",
+          "code": "S16-GFS-C-CA-4-013"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E211"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E211",
+          "value": "1.2.1.2.2.1.1020",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E211; observed=''. Proposed WBS='1.2.1.2.2.1.1020' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:02",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E211_e2275a6952a6",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0032",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "47c9b92a6c0ca798",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "CALCULATION",
+          "name": "CONTROL BUILDING MECHANICAL SYSTEM CALCULATION",
+          "code": "S16-GFS-C-CA-4-014"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E213"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E213",
+          "value": "1.2.1.2.2.1.1021",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E213; observed=''. Proposed WBS='1.2.1.2.2.1.1021' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:04",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E213_e1a1d566ec92",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0033",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "96d18e8a65ac82c2",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "EARTH WORK DRAWING",
+          "code": "S16-GFS-C-CW-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E215"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E215",
+          "value": "1.2.1.2.2.1.1022",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E215; observed=''. Proposed WBS='1.2.1.2.2.1.1022' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:06",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E215_6b29a19d4947",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0034",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "cab80ab8505e264a",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "SITE MOBILIZATION",
+          "code": "S16-GFS-C-CW-3-002"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E217"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E217",
+          "value": "1.2.1.2.2.1.1023",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E217; observed=''. Proposed WBS='1.2.1.2.2.1.1023' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:07",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E217_5b06e7f2f2b6",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0035",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "75cef263e31ef950",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CONTROL BUILDING ARCHITECTURAL DRAWINGS (BASIC)",
+          "code": "S16-GFS-C-AR-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E219"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E219",
+          "value": "1.2.1.2.2.1.1024",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E219; observed=''. Proposed WBS='1.2.1.2.2.1.1024' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:09",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E219_b11114b9dd84",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0036",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "40d9a56675a147f9",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CONTROL BUILDING ARCHITECTURE DETAIL DRAWING",
+          "code": "S16-GFS-C-AR-3-002"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E221"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E221",
+          "value": "1.2.1.2.2.1.1025",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E221; observed=''. Proposed WBS='1.2.1.2.2.1.1025' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:10",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E221_71bb034dfae2",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0037",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "f7e35b851417548e",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CONTOROL BUILDING FOUNDATION & STRUCTURAL DRAWINGS",
+          "code": "S16-GFS-C-ST-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E223"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E223",
+          "value": "1.2.1.2.2.1.1026",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E223; observed=''. Proposed WBS='1.2.1.2.2.1.1026' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:12",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E223_5232d6237234",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0038",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "40c90c8a8a1a463f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "KEY PLAN OF FOUNDATION",
+          "code": "S16-GFS-C-CW-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E225"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E225",
+          "value": "1.2.1.2.2.1.1027",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E225; observed=''. Proposed WBS='1.2.1.2.2.1.1027' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:13",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E225_1da696c8d37e",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0039",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a918bf0b4a2acf09",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "EQUIPMENT FOUNDATION DETAIL DRAWINGS",
+          "code": "S16-GFS-C-CW-3-002"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E227"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E227",
+          "value": "1.2.1.2.2.1.1028",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E227; observed=''. Proposed WBS='1.2.1.2.2.1.1028' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:14",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E227_36f406494f35",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0040",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a6b3cadc6533d463",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "GANTRY & SHEILD WIRE COLUMN FOUNDATION DETAIL DRAWINGS",
+          "code": "S16-GFS-C-CW-3-003"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E229"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E229",
+          "value": "1.2.1.2.2.1.1029",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E229; observed=''. Proposed WBS='1.2.1.2.2.1.1029' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:16",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E229_df9f2e615025",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0041",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b3fddbb5b59cf5f6",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "P.T.R & AUX./ER TR AND FIRE WALL FOUNDATION DRAWINGS",
+          "code": "S16-GFS-C-CW-3-004"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E231"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E231",
+          "value": "1.2.1.2.2.1.1030",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E231; observed=''. Proposed WBS='1.2.1.2.2.1.1030' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:17",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E231_01162df7aba6",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0042",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "38b83c4352d0c703",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "OUTDOOR CABLE TRENCHES PLAN AND DETAIL DRAWINGS",
+          "code": "S16-GFS-C-CW-3-005"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E233"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E233",
+          "value": "1.2.1.2.2.1.1031",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E233; observed=''. Proposed WBS='1.2.1.2.2.1.1031' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:19",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E233_e2460fb04519",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0043",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a8c6959e91f885c3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "INDOOR CABLE CHANNEL PLAN AND DETAIL DRAWINGS",
+          "code": "S16-GFS-C-CW-3-006"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E235"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E235",
+          "value": "1.2.1.2.2.1.1032",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E235; observed=''. Proposed WBS='1.2.1.2.2.1.1032' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:20",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E235_532cc475b312",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0044",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "dadd3adcb7ddf8b1",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "LIGHTING POLE FOUNDATION DRAWING",
+          "code": "S16-GFS-C-CW-3-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E237"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E237",
+          "value": "1.2.1.2.2.1.1033",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E237; observed=''. Proposed WBS='1.2.1.2.2.1.1033' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:22",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E237_7482137e4eba",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0045",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "77b82b8f996f44ea",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "SITE DRAINAGE AND INTERNAL ROAD DETAIL DRAWINGS",
+          "code": "S16-GFS-C-CW-3-012"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E239"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E239",
+          "value": "1.2.1.2.2.1.1034",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E239; observed=''. Proposed WBS='1.2.1.2.2.1.1034' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:23",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E239_e9da16f984b7",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0046",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b3d88426d18a8ffd",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "EQUIPMENT STEEL STRUCTURE DRAWING",
+          "code": "S16-GFS-C-ST-3-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E241"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E241",
+          "value": "1.2.1.2.2.1.1035",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E241; observed=''. Proposed WBS='1.2.1.2.2.1.1035' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:24",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E241_e0dce53d38a8",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0047",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "444b223cfeb3339f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "SINGLE LINE OF GANTRY & GUARD MAST STEEL STRUCTURE",
+          "code": "S16-GFS-C-ST-3-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E243"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E243",
+          "value": "1.2.1.2.2.1.1036",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E243; observed=''. Proposed WBS='1.2.1.2.2.1.1036' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:26",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E243_5268d043e94d",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0048",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "2265af9967f9e331",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "GANTRY & GUARD MAST STEEL STRUCTURE SHOP DRAWINGS",
+          "code": "S16-GFS-C-ST-3-012"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E245"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E245",
+          "value": "1.2.1.2.2.1.1037",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E245; observed=''. Proposed WBS='1.2.1.2.2.1.1037' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:27",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E245_701abc49c595",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0049",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "82d8e691fba15355",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CONTROL BUILDING ELECTRICAL SYSTEM DRAWINGs",
+          "code": "S16-GFS-C-EL-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E247"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E247",
+          "value": "1.2.1.2.2.1.1038",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E247; observed=''. Proposed WBS='1.2.1.2.2.1.1038' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:29",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E247_5c3024875975",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0050",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "6456cf1e96f504c8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CONTROL BUILDING MECHANICAL SYSTEM DRAWINGs",
+          "code": "S16-GFS-C-ME-3-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E249"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E249",
+          "value": "1.2.1.2.2.1.1039",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E249; observed=''. Proposed WBS='1.2.1.2.2.1.1039' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:30",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E249_620fe4f27384",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0051",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "3f7d9bfff5804930",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "CIVIL ERECTION DOCUMENTS",
+          "code": "S16-GFS-C-GT-4-001"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E251"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E251",
+          "value": "1.2.1.2.2.1.1040",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E251; observed=''. Proposed WBS='1.2.1.2.2.1.1040' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:32",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E251_4023cb86a432",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0052",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4fa34da8f9e52ad9",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "20KV OUTGOING CABLE CHANNEL",
+          "code": "S16-GFS-C-CW-3-200"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E253"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E253",
+          "value": "1.2.1.2.2.1.1041",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E253; observed=''. Proposed WBS='1.2.1.2.2.1.1041' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:42",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E253_e8321f665000",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "FSH-SOL-0053",
+      "enabled": true,
+      "project_id": "FSH",
+      "kind": "WORKBOOK_FIX",
+      "signature": "46a646252f08eddc",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "FOULAD SHAHRIYAR",
+        "document_identity": {
+          "category": "CIVIL",
+          "type": "DRAWINGS",
+          "name": "OFFICE BUILDING BASIC ARCHITECTURAL DRAWING",
+          "code": "S16-GFS-C-CW-3-200"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.2.2.1",
+          "document_relative_target": "E+0"
+        },
+        "observed": null,
+        "target_fallback": "E255"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "FOULAD SHAHRIYAR",
+          "target": "E255",
+          "value": "1.2.1.2.2.1.1042",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at FOULAD SHAHRIYAR!E255; observed=''. Proposed WBS='1.2.1.2.2.1.1042' using nearest valid WBS above '1.2.1.2.2.1'.",
+      "created_at": "2026-10-07T04:05:44",
+      "updated_at": "2026-10-07T04:06:30",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "fsh_20261007T024351",
+        "review_id": "IDENTIFIERS_FOULAD_SHAHRIYAR_E255_5f1d363195fd",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    }
+  ]
 }

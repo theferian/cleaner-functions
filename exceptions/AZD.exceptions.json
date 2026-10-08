@@ -2,8 +2,8 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "AZD",
   "created_at": "2026-10-06T06:19:25",
-  "updated_at": "2026-10-07T01:56:08",
-  "next_sequence": 11,
+  "updated_at": "2026-10-08T14:28:57",
+  "next_sequence": 13,
   "cases": [
     {
       "handle": "AZD-EXC-0001",
@@ -16,8 +16,8 @@
         "field_role": "receive_date"
       },
       "first_seen_at": "2026-10-06T06:19:25",
-      "last_seen_at": "2026-10-07T00:24:22",
-      "detection_count": 2,
+      "last_seen_at": "2026-10-08T14:28:57",
+      "detection_count": 3,
       "source": {
         "first_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
         "first_run_id": "azd_20261002T235326"
@@ -129,9 +129,9 @@
       ],
       "owner": "",
       "last_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
-      "last_run_id": "azd_20261006T063256",
+      "last_run_id": "azd_20261008T141819",
       "message": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21.",
-      "last_seen_run_id": "azd_20261006T063256"
+      "last_seen_run_id": "azd_20261008T141819"
     },
     {
       "handle": "AZD-EXC-0002",
@@ -663,6 +663,119 @@
       "profile_rule_id": "PROMOTED_EXCEPTION_0C50F70881D3",
       "resolved_at": "2026-10-06T06:42:13",
       "last_seen_run_id": "azd_20261006T163737"
+    },
+    {
+      "handle": "AZD-EXC-0011",
+      "match_key": "f01114b3f85823ec",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "A91:X92",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-08T14:21:07",
+      "last_seen_at": "2026-10-08T14:21:07",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_A91_X92_022aed177f67",
+        "first_run_id": "azd_20261008T141819"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T14:21:07",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A91_X92_022aed177f67",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry."
+        },
+        {
+          "at": "2026-10-08T14:21:11",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A91_X92_022aed177f67",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry."
+        },
+        {
+          "at": "2026-10-08T14:23:26",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A91_X92_022aed177f67",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry."
+        }
+      ],
+      "title": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry.",
+      "note": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry.",
+      "severity": "WARNING",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_A91_X92_022aed177f67",
+      "last_run_id": "azd_20261008T141819",
+      "message": "Possible repeated AZD exception: 63KV SS!A91:X92; rows 91-92 match known exception geometry."
+    },
+    {
+      "handle": "AZD-EXC-0012",
+      "match_key": "d45deebad2148bbf",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "63KV SS",
+        "target": "A131:X132",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-08T14:21:11",
+      "last_seen_at": "2026-10-08T14:21:11",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_63KV_SS_A131_X132_4a21dc0ad5bf",
+        "first_run_id": "azd_20261008T141819"
+      },
+      "history": [
+        {
+          "at": "2026-10-08T14:21:11",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A131_X132_4a21dc0ad5bf",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Possible repeated AZD exception: 63KV SS!A131:X132; rows 131-132 match known exception geometry."
+        },
+        {
+          "at": "2026-10-08T14:23:26",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_63KV_SS_A131_X132_4a21dc0ad5bf",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Possible repeated AZD exception: 63KV SS!A131:X132; rows 131-132 match known exception geometry."
+        }
+      ],
+      "title": "Possible repeated AZD exception: 63KV SS!A131:X132; rows 131-132 match known exception geometry.",
+      "note": "Possible repeated AZD exception: 63KV SS!A131:X132; rows 131-132 match known exception geometry.",
+      "severity": "WARNING",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_63KV_SS_A131_X132_4a21dc0ad5bf",
+      "last_run_id": "azd_20261008T141819",
+      "message": "Possible repeated AZD exception: 63KV SS!A131:X132; rows 131-132 match known exception geometry."
     }
   ]
 }

@@ -38,13 +38,13 @@
       },
       "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
       "created_at": "2026-10-06T07:03:32",
-      "updated_at": "2026-10-07T00:32:20",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-08T14:29:31",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261006T063256",
+        "run_id": "azd_20261008T141819",
         "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
-        "decision_origin": "PROJECT_SOLUTION",
-        "project_solution_handle": "AZD-SOL-0001"
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
       },
       "history": [
         {
@@ -99,6 +99,27 @@
               "expected_old_value": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03"
             }
           }
+        },
+        {
+          "at": "2026-10-08T14:29:24",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "explanation",
+              "sheet": "230KV SS",
+              "target": "H11:H12",
+              "value": "عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03",
+              "expected_old_value": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03"
+            }
+          },
+          "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
+          "source": {
+            "run_id": "azd_20261006T063256",
+            "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
+            "decision_origin": "PROJECT_SOLUTION",
+            "project_solution_handle": "AZD-SOL-0001"
+          }
         }
       ]
     },
@@ -107,7 +128,7 @@
       "enabled": true,
       "project_id": "AZD",
       "kind": "WORKBOOK_FIX",
-      "signature": "0173d4bf5d834d26",
+      "signature": "8819fb4e5e21f6f0",
       "match": {
         "test_id": "FIELD_VALIDATION",
         "status": "FAIL",
@@ -122,7 +143,7 @@
           "audit_kind": "GLOBAL_DATE_TOKEN_SCAN",
           "document_relative_target": "H+0"
         },
-        "observed": null,
+        "observed": "140/08/10",
         "target_fallback": "H13"
       },
       "resolution": {
@@ -136,13 +157,13 @@
       },
       "reason": "Approved project repair.",
       "created_at": "2026-10-06T07:03:32",
-      "updated_at": "2026-10-06T16:36:48",
+      "updated_at": "2026-10-08T14:29:31",
       "times_confirmed": 2,
       "source": {
-        "run_id": "azd_20261006T063256",
+        "run_id": "azd_20261008T141819",
         "review_id": "FIELD_VALIDATION_63KV_SS_H13_3b2accc2ea13",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "AZD-SOL-0002"
       },
       "history": [
         {
@@ -250,13 +271,13 @@
       },
       "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
       "created_at": "2026-10-06T07:04:48",
-      "updated_at": "2026-10-07T00:32:20",
-      "times_confirmed": 1,
+      "updated_at": "2026-10-08T14:29:31",
+      "times_confirmed": 2,
       "source": {
-        "run_id": "azd_20261006T063256",
+        "run_id": "azd_20261008T141819",
         "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
-        "decision_origin": "PROJECT_SOLUTION",
-        "project_solution_handle": "AZD-SOL-0004"
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
       },
       "history": [
         {
@@ -290,6 +311,27 @@
               "value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22",
               "expected_old_value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22"
             }
+          }
+        },
+        {
+          "at": "2026-10-08T14:29:30",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "explanation",
+              "sheet": "230KV SS",
+              "target": "E19:E22",
+              "value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22",
+              "expected_old_value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22"
+            }
+          },
+          "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
+          "source": {
+            "run_id": "azd_20261006T063256",
+            "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
+            "decision_origin": "PROJECT_SOLUTION",
+            "project_solution_handle": "AZD-SOL-0004"
           }
         }
       ]
@@ -2328,7 +2370,7 @@
       "enabled": true,
       "project_id": "AZD",
       "kind": "WORKBOOK_FIX",
-      "signature": "29b33dbd76e95594",
+      "signature": "fb79d8e5ecf4c617",
       "match": {
         "test_id": "FIELD_VALIDATION",
         "status": "FAIL",
@@ -2339,9 +2381,11 @@
           "wbs": "1.5.2.1.2.2.1"
         },
         "semantic": {
-          "document_relative_target": "D+0"
+          "document_relative_target": "D+0",
+          "field_role": "explanation",
+          "audit_kind": "GLOBAL_DATE_TOKEN_SCAN"
         },
-        "observed": null,
+        "observed": "1404/010/20",
         "target_fallback": "D23"
       },
       "resolution": {
@@ -2355,13 +2399,13 @@
       },
       "reason": "Approved project repair.",
       "created_at": "2026-10-06T16:36:48",
-      "updated_at": "2026-10-06T16:36:48",
+      "updated_at": "2026-10-08T14:29:31",
       "times_confirmed": 1,
       "source": {
-        "run_id": "azd_20261006T063256",
+        "run_id": "azd_20261008T141819",
         "review_id": "FIELD_VALIDATION_63KV_SS_D23_d6c372073e98",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "AZD-SOL-0050"
       },
       "history": [],
       "migration_note": "Split from collided legacy solution AZD-SOL-0002"
@@ -4428,13 +4472,13 @@
       },
       "reason": "Global date audit found invalid Jalali-like token(s) ['14040/09/23'] at 230KV SS!E165; observed='14040/09/23'.",
       "created_at": "2026-10-07T00:31:51",
-      "updated_at": "2026-10-07T00:32:20",
+      "updated_at": "2026-10-08T14:29:31",
       "times_confirmed": 1,
       "source": {
-        "run_id": "azd_20261006T063256",
+        "run_id": "azd_20261008T141819",
         "review_id": "FIELD_VALIDATION_230KV_SS_E165_ce26408d5214",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "AZD-SOL-0097"
       },
       "history": []
     }

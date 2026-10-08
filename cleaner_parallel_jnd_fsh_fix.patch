@@ -1,0 +1,216 @@
+From 39db3b4cb66303def7bad8bc1067fa22da75811d Mon Sep 17 00:00:00 2001
+From: OpenAI <noreply@openai.com>
+Date: Wed, 7 Oct 2026 03:05:46 +0000
+Subject: [PATCH] fix: preserve narrative coverage and status-only responses
+
+---
+ functions/board_to_log/contracts.py |  1 +
+ functions/board_to_log/coverage.py  | 10 ++++--
+ functions/board_to_log/extractor.py | 51 ++++++++++++++++++++++++++---
+ pipeline/weekly_report_pipeline.py  |  1 +
+ unit_tests/test_board_to_log.py     | 25 ++++++++++++++
+ unit_tests/test_coverage_audit.py   |  6 ++--
+ 6 files changed, 85 insertions(+), 9 deletions(-)
+
+diff --git a/functions/board_to_log/contracts.py b/functions/board_to_log/contracts.py
+index 17a22cf..a48a5aa 100644
+--- a/functions/board_to_log/contracts.py
++++ b/functions/board_to_log/contracts.py
+@@ -106,6 +106,7 @@ class BoardToLogResult:
+                 "issues_by_kind": dict(sorted(issue_by_kind.items())),
+                 "issues_by_sheet": dict(sorted(issue_by_sheet.items())),
+                 "preserved_narrative_count": int(self.diagnostics.get("preserved_narrative_count", 0)),
++                "status_only_receive_count": int(self.diagnostics.get("status_only_receive_count", 0)),
+             },
+             "diagnostics": dict(self.diagnostics),
+             "records": [x.to_dict() for x in self.records],
+diff --git a/functions/board_to_log/coverage.py b/functions/board_to_log/coverage.py
+index ec9e792..a58899c 100644
+--- a/functions/board_to_log/coverage.py
++++ b/functions/board_to_log/coverage.py
+@@ -55,7 +55,11 @@ def build_coverage_audit(run: CleanerRun, result: BoardToLogResult) -> dict[str,
+     regions = run.document_regions()
+ 
+     transaction_sources: dict[tuple[str, str], list[str]] = defaultdict(list)
+-    narrative_sources: set[tuple[str, str]] = set()
++    narrative_sources: set[tuple[str, str]] = {
++        (str(item.get("sheet")), str(item.get("address")))
++        for item in (result.diagnostics.get("preserved_narrative_sources") or [])
++        if item.get("sheet") and item.get("address")
++    }
+     for record in result.records:
+         mode = str((record.raw or {}).get("mode") or "")
+         for kind, address in (
+@@ -122,8 +126,8 @@ def build_coverage_audit(run: CleanerRun, result: BoardToLogResult) -> dict[str,
+                     note = "Board-to-Log issue"
+                 elif key in narrative_sources:
+                     classification = "CAPTURED_NARRATIVE"
+-                    source_kind = ",".join(sorted(set(transaction_sources[key])))
+-                    note = "Narrative receive preserved losslessly"
++                    source_kind = ",".join(sorted(set(transaction_sources[key]))) or "narrative"
++                    note = "Narrative content preserved losslessly as source provenance"
+                 elif key in transaction_sources:
+                     classification = "CAPTURED_TRANSACTION"
+                     source_kind = ",".join(sorted(set(transaction_sources[key])))
+diff --git a/functions/board_to_log/extractor.py b/functions/board_to_log/extractor.py
+index dbcc5da..45d50ad 100644
+--- a/functions/board_to_log/extractor.py
++++ b/functions/board_to_log/extractor.py
+@@ -473,8 +473,12 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
+                         letter_reference=letter_reference,
+                         doc_status=status["value"] if status else None,
+                         transaction_mode=mode,
+-                        date_source=event["address"],
+-                        reference_source=(ref["address"] if ref else (event["address"] if mode.startswith("narrative_receive") else None)),
++                        date_source=(None if mode == "status_only_receive" else event["address"]),
++                        reference_source=(
++                            ref["address"]
++                            if ref
++                            else (event["address"] if mode.startswith("narrative_receive") else None)
++                        ),
+                         status_source=status["address"] if status else None,
+                         source_row=int(card.get("start_row")) + int(event["slot"].get("row_offset_start", 0)),
+                         source_col=int(event["slot"].get("col_start", 0)),
+@@ -650,6 +654,35 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
+                         "mode": mode,
+                     })
+ 
++                # A status can occasionally be present even when the board omits
++                # the receive date/reference. Preserve that known response state
++                # without inventing missing metadata. We only promote it when it
++                # is the sole unused status overlapping exactly one SEND event and
++                # there is no receive-side date/reference evidence on the same rows.
++                available_statuses = [x for x in statuses if id(x) not in used_statuses]
++                for status in list(available_statuses):
++                    overlapping_sends = [x for x in send_events_all if _rows_overlap(x, status)]
++                    overlapping_receives = [x for x in pure_receives if _rows_overlap(x, status)]
++                    overlapping_receive_refs = [
++                        x for x in refs
++                        if x.get("side_hint") == "receive" and _rows_overlap(x, status)
++                    ]
++                    if len(overlapping_sends) != 1 or overlapping_receives or overlapping_receive_refs:
++                        continue
++                    used_statuses.add(id(status))
++                    available_statuses.remove(status)
++                    result.diagnostics["status_only_receive_count"] = (
++                        int(result.diagnostics.get("status_only_receive_count", 0)) + 1
++                    )
++                    receive_entries.append({
++                        "event": status,
++                        "ref": None,
++                        "status": status,
++                        "letter_date": None,
++                        "letter_reference": None,
++                        "mode": "status_only_receive",
++                    })
++
+                 receive_entries.sort(key=lambda x: (
+                     int(x["event"]["slot"].get("row_offset_start", 0)),
+                     int(x["event"]["slot"].get("col_start", 0)),
+@@ -668,7 +701,7 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
+                         letter_reference=entry["letter_reference"],
+                         mode=entry["mode"],
+                     )
+-                    if entry["letter_reference"] is None:
++                    if entry["letter_reference"] is None and entry["mode"] != "status_only_receive":
+                         result.issues.append(ExtractionIssue(
+                             kind="MISSING_REFERENCE",
+                             sheet=sheet,
+@@ -695,7 +728,9 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
+ 
+                 # Narrative/explanation cells are intentionally preserved by
+                 # Cleaner. Those consumed as narrative receive events are no
+-                # longer counted as free-standing narrative diagnostics.
++                # longer counted as free-standing narrative diagnostics. Keep
++                # their source addresses as provenance so Coverage can prove
++                # they were intentionally preserved rather than lost.
+                 narratives = [
+                     x for x in items
+                     if x["role"] == "explanation"
+@@ -703,6 +738,14 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
+                     and id(x) not in used_narratives
+                 ]
+                 result.diagnostics["preserved_narrative_count"] += len(narratives)
++                preserved_sources = result.diagnostics.setdefault("preserved_narrative_sources", [])
++                for narrative in narratives:
++                    preserved_sources.append({
++                        "sheet": sheet,
++                        "address": narrative["address"],
++                        "document_index": doc_index,
++                        "value": narrative["value"],
++                    })
+ 
+                 # A generic DATE means the Cleaner recognized a date value but could
+                 # not decide whether it is a Send or Receive date. That is a real
+diff --git a/pipeline/weekly_report_pipeline.py b/pipeline/weekly_report_pipeline.py
+index a2cb36d..a3947d6 100644
+--- a/pipeline/weekly_report_pipeline.py
++++ b/pipeline/weekly_report_pipeline.py
+@@ -167,6 +167,7 @@ def board_to_log_step(args) -> int:
+     print(
+         "[PIPELINE] Preserved    : "
+         f"narrative={summary.get('preserved_narrative_count', 0)}, "
++        f"status_only_receive={summary.get('status_only_receive_count', 0)}, "
+         f"unclassified={result.diagnostics.get('unclassified_content_count', 0)}"
+     )
+     issue_counts = summary.get("issues_by_kind") or {}
+diff --git a/unit_tests/test_board_to_log.py b/unit_tests/test_board_to_log.py
+index 428b7f3..e4a2428 100644
+--- a/unit_tests/test_board_to_log.py
++++ b/unit_tests/test_board_to_log.py
+@@ -522,3 +522,28 @@ def test_logbook_writer_does_not_require_callable_excel_address():
+     assert summary["records_written"] == 0
+     assert summary["columns_written"] == len(LOGBOOK_COLUMNS)
+     assert ws.header_range.Value2 == (tuple(LOGBOOK_COLUMNS),)
++
++
++def test_board_to_log_preserves_status_only_receive_without_inventing_metadata(tmp_path):
++    run_dir = _make_run(tmp_path)
++    cards = json.loads((run_dir / "card_maps.json").read_text(encoding="utf-8"))
++    card = cards["sheets"]["230KV SS"]["cards"][0]
++    # FSH-like case: SEND date/reference exists, RECEIVE cells are empty, but
++    # the response-status column contains a confirmed status value.
++    card["slots"] = [slot for slot in card["slots"] if slot["address"] not in {"E3", "E4"}]
++    _write(run_dir / "card_maps.json", cards)
++
++    result = extract_board_to_log(load_cleaner_run(run_dir))
++    assert not result.issues
++    assert result.diagnostics["status_only_receive_count"] == 1
++
++    receives = [x for x in result.records if x.side == "receive"]
++    assert len(receives) == 1
++    receive = receives[0]
++    assert receive.doc_status == "A.N"
++    assert receive.letter_date is None
++    assert receive.letter_reference is None
++    assert receive.date_source is None
++    assert receive.reference_source is None
++    assert receive.status_source == "F3:F4"
++    assert receive.transaction_mode == "status_only_receive"
+diff --git a/unit_tests/test_coverage_audit.py b/unit_tests/test_coverage_audit.py
+index 5e56a81..5560adb 100644
+--- a/unit_tests/test_coverage_audit.py
++++ b/unit_tests/test_coverage_audit.py
+@@ -42,7 +42,7 @@ def test_coverage_audit_marks_narrative_receive_separately(tmp_path):
+     assert item["classification"] == "CAPTURED_NARRATIVE"
+ 
+ 
+-def test_coverage_audit_exposes_scanned_content_not_retrieved(tmp_path):
++def test_coverage_audit_counts_preserved_free_standing_narrative_as_captured(tmp_path):
+     run_dir = _make_run(tmp_path)
+     cards = json.loads((run_dir / "card_maps.json").read_text(encoding="utf-8"))
+     cards["sheets"]["230KV SS"]["cards"][0]["slots"].append({
+@@ -56,7 +56,9 @@ def test_coverage_audit_exposes_scanned_content_not_retrieved(tmp_path):
+     result = extract_board_to_log(run)
+     audit = build_coverage_audit(run, result)
+     item = next(x for x in audit["items"] if x["address"] == "D3:D4")
+-    assert item["classification"] == "SCANNED_NOT_RETRIEVED"
++    assert item["classification"] == "CAPTURED_NARRATIVE"
++    assert item["source_kind"] == "narrative"
++    assert audit["summary"]["counts"]["SCANNED_NOT_RETRIEVED"] == 0
+ 
+ 
+ class _Fmt:
+-- 
+2.47.3
+
