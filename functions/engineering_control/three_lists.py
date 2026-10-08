@@ -21,6 +21,11 @@ class EngineeringExceptionRow:
     doc_wbs: Any
     revision: str | None = None
     responsibility: str | None = None
+    current_holder: str | None = None
+    responsible_unit: str | None = None
+    unit_basis: str | None = None
+    responsibility_since: str | None = None
+    responsibility_age_days: int | None = None
     state: str | None = None
     last_action_date: str | None = None
     last_action_text: Any = None
@@ -43,20 +48,39 @@ class EngineeringThreeLists:
     consultant_delay: list[EngineeringExceptionRow] = field(default_factory=list)
     diagnostics: list[dict[str, Any]] = field(default_factory=list)
 
+    def delay_register(self) -> list[EngineeringExceptionRow]:
+        rows = [*self.company_delay, *self.consultant_delay]
+        return sorted(
+            rows,
+            key=lambda row: (
+                row.delay_days is None,
+                -(row.delay_days or 0),
+                str(row.responsibility_since or ""),
+                str(row.doc_name or ""),
+            ),
+        )
+
     def to_dict(self) -> dict[str, Any]:
+        company_by_unit: dict[str, int] = {}
+        for row in self.company_delay:
+            unit = row.responsible_unit or "UNASSIGNED"
+            company_by_unit[unit] = company_by_unit.get(unit, 0) + 1
         return {
-            "schema": "engineering.three_lists/0.1",
+            "schema": "engineering.three_lists/0.2",
             "status_date": self.status_date,
             "summary": {
                 "not_sent": len(self.not_sent),
                 "company_delay": len(self.company_delay),
                 "consultant_delay": len(self.consultant_delay),
+                "delay_register": len(self.company_delay) + len(self.consultant_delay),
+                "company_delay_by_unit": company_by_unit,
                 "diagnostic_count": len(self.diagnostics),
             },
             "lists": {
                 "01_Not_Sent": [x.to_dict() for x in self.not_sent],
                 "02_Company_Delay": [x.to_dict() for x in self.company_delay],
                 "03_Consultant_Delay": [x.to_dict() for x in self.consultant_delay],
+                "04_Delay_Register": [x.to_dict() for x in self.delay_register()],
             },
             "diagnostics": list(self.diagnostics),
         }
@@ -183,6 +207,29 @@ def document_inventory_from_cleaner(run: CleanerRun) -> list[dict[str, Any]]:
             })
     return inventory
 
+
+
+def _responsible_unit(inventory_item: dict[str, Any]) -> tuple[str | None, str | None]:
+    """Infer the internal engineering unit from Cleaner identifier metadata.
+
+    Project profiles use slightly different identifier names. FSH exposes a
+    Category field (LV/HV/CIVIL), while AZD/JND expose Document Type for the
+    same discipline-level ownership. Keep the raw project vocabulary instead
+    of inventing organisation names; a later unit map can translate these
+    tokens into formal department names.
+    """
+    fields = inventory_item.get("document_fields") or {}
+    for key in ("responsible_unit", "unit", "category", "discipline", "document_type"):
+        value = fields.get(key)
+        if value is None:
+            value = inventory_item.get(key)
+        if value is None:
+            continue
+        text = str(value).strip()
+        if text:
+            return text, key
+    return None, None
+
 def build_three_engineering_lists(
     records: Iterable[LogRecord],
     *,
@@ -247,6 +294,7 @@ def build_three_engineering_lists(
         ordered = sorted(doc_records, key=_sequence_key)
         sends = [x for x in ordered if x.send_or_receive == "send"]
         inventory_item = inventory_map.get(key) or {}
+        responsible_unit, unit_basis = _responsible_unit(inventory_item)
         if ordered:
             identity = _identity(ordered[0])
         else:
@@ -263,6 +311,11 @@ def build_three_engineering_lists(
                 **identity,
                 revision=(latest.doc_rev if latest else None),
                 responsibility="COMPANY",
+                current_holder=responsible_unit or "COMPANY",
+                responsible_unit=responsible_unit,
+                unit_basis=unit_basis,
+                responsibility_since=None,
+                responsibility_age_days=None,
                 state="NOT_SENT",
                 last_action_date=(str(latest.letter_date) if latest and _jalali_parts(latest.letter_date) else None),
                 last_action_text=(latest.raw_source_value if latest else None),
@@ -279,6 +332,11 @@ def build_three_engineering_lists(
                     **identity,
                     revision=latest.doc_rev,
                     responsibility="CONSULTANT",
+                    current_holder="CONSULTANT",
+                    responsible_unit=None,
+                    unit_basis=None,
+                    responsibility_since=None,
+                    responsibility_age_days=None,
                     state="WAITING_CONSULTANT_RESPONSE",
                     last_action_date=None,
                     last_action_text=latest.letter_date,
@@ -300,6 +358,11 @@ def build_three_engineering_lists(
                         **identity,
                         revision=latest.doc_rev,
                         responsibility="CONSULTANT",
+                        current_holder="CONSULTANT",
+                        responsible_unit=None,
+                        unit_basis=None,
+                        responsibility_since=str(latest.letter_date),
+                        responsibility_age_days=elapsed,
                         state="WAITING_CONSULTANT_RESPONSE",
                         last_action_date=str(latest.letter_date),
                         last_action_text=latest.raw_source_value,
@@ -324,6 +387,8 @@ def build_three_engineering_lists(
                 "status_meaning": status_meaning,
                 "status_known": status_definition is not None,
                 "transaction_mode": latest.transaction_mode,
+                "responsible_unit": responsible_unit,
+                "unit_basis": unit_basis,
                 "value": latest.letter_reference or latest.letter_date,
             })
             continue
@@ -334,6 +399,11 @@ def build_three_engineering_lists(
                     **identity,
                     revision=latest.doc_rev,
                     responsibility="COMPANY",
+                    current_holder=responsible_unit or "COMPANY",
+                    responsible_unit=responsible_unit,
+                    unit_basis=unit_basis,
+                    responsibility_since=None,
+                    responsibility_age_days=None,
                     state="WAITING_COMPANY_RESPONSE",
                     last_action_date=None,
                     last_action_text=latest.letter_reference or latest.letter_date,
@@ -358,6 +428,11 @@ def build_three_engineering_lists(
                         **identity,
                         revision=latest.doc_rev,
                         responsibility="COMPANY",
+                        current_holder=responsible_unit or "COMPANY",
+                        responsible_unit=responsible_unit,
+                        unit_basis=unit_basis,
+                        responsibility_since=str(latest.letter_date),
+                        responsibility_age_days=elapsed,
                         state="WAITING_COMPANY_RESPONSE",
                         last_action_date=str(latest.letter_date),
                         last_action_text=latest.letter_reference,

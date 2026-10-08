@@ -9,7 +9,9 @@ from .three_lists import EngineeringThreeLists
 
 COLUMNS = [
     "source_sheet", "document_index", "doc_name", "doc_wbs", "revision",
-    "responsibility", "state", "last_action_date", "last_action_text", "status", "status_meaning",
+    "responsibility", "current_holder", "responsible_unit", "unit_basis",
+    "responsibility_since", "responsibility_age_days",
+    "state", "last_action_date", "last_action_text", "status", "status_meaning",
     "elapsed_days", "allowance_days", "delay_days", "calculation_status",
 ]
 
@@ -29,6 +31,7 @@ def write_three_lists_csv(result: EngineeringThreeLists, directory: str | Path) 
         ("01_Not_Sent", result.not_sent),
         ("02_Company_Delay", result.company_delay),
         ("03_Consultant_Delay", result.consultant_delay),
+        ("04_Delay_Register", result.delay_register()),
     ):
         path = directory / f"{name}.csv"
         with path.open("w", encoding="utf-8-sig", newline="") as handle:

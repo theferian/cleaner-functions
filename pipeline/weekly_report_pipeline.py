@@ -369,6 +369,10 @@ def engineering_lists_step(args) -> int:
     print(f"[ENGINEERING] Not sent         : {summary['not_sent']}")
     print(f"[ENGINEERING] Company delay    : {summary['company_delay']}")
     print(f"[ENGINEERING] Consultant delay : {summary['consultant_delay']}")
+    print(f"[ENGINEERING] Delay register    : {summary['delay_register']}")
+    if summary.get("company_delay_by_unit"):
+        units = ", ".join(f"{unit}={count}" for unit, count in sorted(summary["company_delay_by_unit"].items()))
+        print(f"[ENGINEERING] Company by unit  : {units}")
     print(f"[ENGINEERING] Needs review/date: {summary['diagnostic_count']}")
     print(f"[ENGINEERING] JSON             : {json_path}")
     for name, path in csv_paths.items():

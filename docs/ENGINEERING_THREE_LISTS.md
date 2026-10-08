@@ -84,6 +84,7 @@ engineering_lists/
 ├── 01_Not_Sent.csv
 ├── 02_Company_Delay.csv
 ├── 03_Consultant_Delay.csv
+├── 04_Delay_Register.csv
 └── engineering_three_lists.json
 ```
 
@@ -99,3 +100,22 @@ python ./pipeline/weekly_report_pipeline.py engineering-lists \
 ```
 
 Until contractual/management response allowances are configured, an allowance of `0` means `delay_days` equals elapsed days. Configure the allowances before using the values as contractual delay attribution.
+
+## Delay Register and responsibility clock
+
+`04_Delay_Register.csv` combines the two active delay lists into one operational
+management register. Every delayed row carries:
+
+- `current_holder`: `CONSULTANT` for an unanswered SEND, otherwise the inferred internal unit or `COMPANY`.
+- `responsible_unit`: the internal engineering discipline when responsibility is on the company side.
+- `unit_basis`: which Cleaner identifier field supplied that unit (`category`, `document_type`, etc.).
+- `responsibility_since`: SEND date for consultant delay; RECEIVE date for company delay.
+- `responsibility_age_days`: calendar age of the current responsibility state at the Status Date.
+- `allowance_days` and `delay_days`: management/contractual allowance and net delay.
+
+The internal unit is inferred conservatively from existing document metadata. FSH
+uses `category` (for example LV/HV/CIVIL); AZD/JND use `document_type`. The system
+preserves those project-native labels rather than inventing department names. If
+no ownership field exists, `responsible_unit` is blank and `current_holder` stays
+`COMPANY`. A future explicit unit map can translate these tokens into formal
+organisation units without changing the transaction logic.
