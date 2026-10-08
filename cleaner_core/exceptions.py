@@ -12,6 +12,139 @@ from typing import Any, Iterable
 REGISTRY_SCHEMA = "cleaner.exception_registry/0.1"
 
 
+AUTO_TRACK_AUDIT_KINDS = {"DATE_CHRONOLOGY"}
+
+
+def is_auto_tracked_finding(finding: Any) -> bool:
+    """Return True for anomaly classes that should be tracked without review.
+
+    Auto-tracking never accepts or repairs data. It only opens/refreshes an
+    INVESTIGATE case so recurring audit findings do not create repetitive
+    human review gates.
+    """
+    if hasattr(finding, "to_dict"):
+        finding = finding.to_dict()
+    evidence = finding.get("evidence") or {}
+    return (
+        _norm(finding.get("status")).upper() == "FAIL"
+        and _audit_kind(evidence).upper() in AUTO_TRACK_AUDIT_KINDS
+    )
+
+
+def auto_track_findings(
+    registry: dict[str, Any],
+    findings: Iterable[Any],
+    *,
+    run_id: str,
+) -> dict[str, Any]:
+    """Open or refresh non-blocking investigation cases for safe audit classes."""
+    created: list[str] = []
+    updated: list[str] = []
+
+    for raw in findings:
+        finding = raw.to_dict() if hasattr(raw, "to_dict") else raw
+        if not is_auto_tracked_finding(finding):
+            continue
+
+        match = exception_match_from_finding(finding)
+        case = _case_for_match(registry, match)
+        is_new = case is None
+        if case is None:
+            case = {
+                "handle": _next_handle(registry),
+                "match_key": _match_key(match),
+                "match": match,
+                "first_seen_at": _now(),
+                "detection_count": 0,
+                "source": {
+                    "first_run_id": run_id,
+                    "origin": "AUTO_TRACK_POLICY",
+                },
+                "history": [],
+            }
+            registry.setdefault("cases", []).append(case)
+
+        previous_run = case.get("last_seen_run_id") or case.get("last_run_id")
+        if previous_run != run_id:
+            case["detection_count"] = int(case.get("detection_count") or 0) + 1
+
+        evidence = deepcopy(finding.get("evidence") or {})
+        audit_kind = _audit_kind(evidence).upper()
+        accepted = _norm(case.get("case_state")).upper() == "ACCEPTED"
+        case.update({
+            "title": audit_kind.replace("_", " ").title() or "Cleaner anomaly",
+            "note": _norm(finding.get("message")),
+            "message": _norm(finding.get("message")),
+            "severity": _norm(finding.get("severity")) or case.get("severity") or "INFO",
+            "case_state": case.get("case_state") if accepted else "OPEN",
+            "workflow_status": case.get("workflow_status") if accepted else "INVESTIGATE",
+            "classification": case.get("classification") if accepted else "DATA_ANOMALY",
+            "tags": list(dict.fromkeys([
+                *case.get("tags", []),
+                _norm(finding.get("test_id")).lower(),
+                audit_kind.lower(),
+                _norm(evidence.get("field_role")).lower(),
+                "auto-tracked",
+                "investigate",
+            ])),
+            "owner": case.get("owner") or "",
+            "evidence": evidence,
+            "last_run_id": run_id,
+            "last_seen_run_id": run_id,
+            "last_seen_at": _now(),
+        })
+        case["tags"] = [tag for tag in case["tags"] if tag]
+
+        if is_new or previous_run != run_id:
+            case.setdefault("history", []).append(
+                _history_event(
+                    "AUTO_TRACKED",
+                    run_id=run_id,
+                    audit_kind=audit_kind,
+                    reason="Matched non-blocking anomaly auto-track policy.",
+                )
+            )
+
+        (created if is_new else updated).append(case["handle"])
+
+    registry["updated_at"] = _now()
+    return {
+        "created_handles": list(dict.fromkeys(created)),
+        "updated_handles": list(dict.fromkeys(updated)),
+        "auto_tracked_count": len(set(created + updated)),
+    }
+
+
+def open_chronology_issue_rows(registry: dict[str, Any]) -> list[dict[str, Any]]:
+    """Return the current open chronology investigation register as flat rows."""
+    rows: list[dict[str, Any]] = []
+    for case in registry.get("cases", []):
+        match = case.get("match") or {}
+        if _norm(match.get("audit_kind")).upper() != "DATE_CHRONOLOGY":
+            continue
+        if _norm(case.get("case_state")).upper() != "OPEN":
+            continue
+        evidence = case.get("evidence") or {}
+        rows.append({
+            "handle": case.get("handle"),
+            "workflow_status": case.get("workflow_status"),
+            "severity": case.get("severity"),
+            "sheet": match.get("sheet"),
+            "send_target": evidence.get("send_target"),
+            "send_date": evidence.get("send_date"),
+            "receive_target": match.get("target"),
+            "receive_date": evidence.get("receive_date"),
+            "document_region": evidence.get("document_region"),
+            "transaction_index": evidence.get("transaction_index"),
+            "owner": case.get("owner") or "",
+            "first_seen_at": case.get("first_seen_at"),
+            "last_seen_at": case.get("last_seen_at"),
+            "detection_count": int(case.get("detection_count") or 0),
+            "message": case.get("message") or case.get("note"),
+        })
+    return sorted(rows, key=lambda row: (str(row.get("sheet") or ""), str(row.get("receive_target") or "")))
+
+
 def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
@@ -423,7 +556,7 @@ def reconcile_stage_findings(
         )
         if matched is not None:
             detected += 1
-            previous_run = case.get("last_seen_run_id")
+            previous_run = case.get("last_seen_run_id") or case.get("last_run_id")
             case["last_seen_at"] = _now()
             case["last_seen_run_id"] = run_id
             case["last_run_id"] = run_id

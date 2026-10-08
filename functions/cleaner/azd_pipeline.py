@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 from datetime import datetime
 import json
 import sys
@@ -34,6 +35,8 @@ from cleaner_core.exceptions import (
     sync_registry_from_decisions_file,
     reconcile_stage_findings,
     retire_profile_covered_cases,
+    auto_track_findings,
+    open_chronology_issue_rows,
 )
 from cleaner_core.logging import RunLogger
 from cleaner_core.context import attach_document_context
@@ -399,12 +402,59 @@ def main(argv=None):
             stage_id=stage_id,
             run_id=run_id,
         )
+        auto_track = auto_track_findings(
+            exception_registry,
+            findings,
+            run_id=run_id,
+        )
         save_exception_registry(exception_registry, exception_registry_path)
         if exception_reconcile.get("detected_open_cases") or exception_reconcile.get("auto_resolved_cases"):
             logger(
                 "EXCEPTIONS",
                 f"open detected={exception_reconcile['detected_open_cases']}; "
                 f"auto-resolved={exception_reconcile['auto_resolved_cases']}",
+            )
+        if auto_track.get("auto_tracked_count"):
+            handles = auto_track.get("created_handles", []) + auto_track.get("updated_handles", [])
+            logger(
+                "EXCEPTIONS",
+                "auto-tracked non-blocking anomaly case(s): " + ", ".join(handles),
+            )
+
+        if stage_id == "FIELD_VALIDATION":
+            chronology_rows = open_chronology_issue_rows(exception_registry)
+            chronology_json_path = run_dir / "chronology_issues.json"
+            chronology_csv_path = run_dir / "chronology_issues.csv"
+            chronology_json_path.write_text(
+                json.dumps(
+                    {
+                        "schema": "cleaner.chronology_issues/0.1",
+                        "run_id": run_id,
+                        "profile_name": profile_name,
+                        "open_issue_count": len(chronology_rows),
+                        "issues": chronology_rows,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                    default=str,
+                ) + "\n",
+                encoding="utf-8",
+            )
+            chronology_fields = [
+                "handle", "workflow_status", "severity", "sheet",
+                "send_target", "send_date", "receive_target", "receive_date",
+                "document_region", "transaction_index", "owner",
+                "first_seen_at", "last_seen_at", "detection_count", "message",
+            ]
+            with chronology_csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=chronology_fields)
+                writer.writeheader()
+                writer.writerows(chronology_rows)
+            stage_artifacts["chronology_issues_json"] = str(chronology_json_path)
+            stage_artifacts["chronology_issues_csv"] = str(chronology_csv_path)
+            logger(
+                "CHRONOLOGY",
+                f"open investigation cases={len(chronology_rows)}; report={chronology_csv_path}",
             )
 
         if stage_id == "DOCUMENT_BOUNDARIES":
@@ -567,6 +617,8 @@ def main(argv=None):
         print(f"Card map     : {stage_artifacts['card_map']}")
         print("\nOptional visual inspection of every derived card/data boundary:")
         print(f'python .\\dev\\inspect_card_map.py "{stage_artifacts["card_map"]}"')
+    if stage_artifacts.get("chronology_issues_csv"):
+        print(f"Chronology   : {stage_artifacts['chronology_issues_csv']}")
     if review_count:
         print("\nReview this stage with:")
         print(

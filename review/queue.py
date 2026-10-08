@@ -10,7 +10,7 @@ from typing import Any
 from .decisions import ACTIONS
 from cleaner_core.knowledge import match_known_fix
 from cleaner_core.solutions import match_project_solution
-from cleaner_core.exceptions import case_for_finding
+from cleaner_core.exceptions import case_for_finding, is_auto_tracked_finding
 
 
 def _now() -> str:
@@ -236,6 +236,7 @@ def build_review_queue(
         finding_to_review_item(finding, profile, exception_registry, project_solutions)
         for finding in report.get("findings", [])
         if str(finding.get("status") or "").upper() != "PASS"
+        and not is_auto_tracked_finding(finding)
     ]
 
     counts = {}

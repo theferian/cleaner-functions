@@ -3,6 +3,8 @@ from cleaner_core.exceptions import (
     sync_registry_from_decisions_payload,
     reconcile_stage_findings,
     case_for_finding,
+    auto_track_findings,
+    open_chronology_issue_rows,
 )
 
 
@@ -234,3 +236,89 @@ def test_profile_superseded_case_stays_retired_when_finding_reappears():
     assert case["workflow_status"] == "SUPERSEDED_BY_PROFILE"
     assert case["classification"] == "PROFILE_KNOWN_EXCEPTION"
     assert case_for_finding(registry, finding) is None
+
+
+def test_chronology_finding_is_auto_tracked_without_human_decision():
+    registry = new_exception_registry("AZD")
+    finding = _finding()
+    finding["evidence"].update({
+        "send_date": "1404/08/11",
+        "receive_date": "1404/08/10",
+        "document_region": "19:22",
+        "transaction_index": 3,
+    })
+
+    report = auto_track_findings(registry, [finding], run_id="azd_auto_1")
+
+    assert report["created_handles"] == ["AZD-EXC-0001"]
+    assert len(registry["cases"]) == 1
+    case = registry["cases"][0]
+    assert case["case_state"] == "OPEN"
+    assert case["workflow_status"] == "INVESTIGATE"
+    assert case["classification"] == "DATA_ANOMALY"
+    assert "auto-tracked" in case["tags"]
+    assert case["evidence"]["send_date"] == "1404/08/11"
+    assert case["detection_count"] == 1
+
+
+def test_auto_tracked_chronology_case_refreshes_without_duplicate():
+    registry = new_exception_registry("AZD")
+    auto_track_findings(registry, [_finding()], run_id="azd_auto_1")
+    auto_track_findings(registry, [_finding()], run_id="azd_auto_2")
+
+    assert len(registry["cases"]) == 1
+    assert registry["cases"][0]["handle"] == "AZD-EXC-0001"
+    assert registry["cases"][0]["detection_count"] == 2
+    assert registry["cases"][0]["last_seen_run_id"] == "azd_auto_2"
+
+
+def test_open_chronology_register_flattens_dates_and_locations():
+    registry = new_exception_registry("AZD")
+    finding = _finding()
+    finding["evidence"].update({
+        "send_date": "1404/08/11",
+        "receive_date": "1404/08/10",
+        "document_region": "19:22",
+        "transaction_index": 3,
+    })
+    auto_track_findings(registry, [finding], run_id="azd_auto_1")
+
+    rows = open_chronology_issue_rows(registry)
+
+    assert len(rows) == 1
+    assert rows[0]["handle"] == "AZD-EXC-0001"
+    assert rows[0]["sheet"] == "230KV SS"
+    assert rows[0]["send_target"] == "M21"
+    assert rows[0]["send_date"] == "1404/08/11"
+    assert rows[0]["receive_target"] == "N21"
+    assert rows[0]["receive_date"] == "1404/08/10"
+
+
+def test_auto_track_does_not_reopen_human_accepted_chronology_case():
+    registry = new_exception_registry("AZD")
+    sync_registry_from_decisions_payload(
+        registry,
+        _decision_payload(action="ACCEPT_EXCEPTION", reason="verified source exception"),
+    )
+
+    auto_track_findings(registry, [_finding()], run_id="azd_auto_2")
+
+    case = registry["cases"][0]
+    assert case["case_state"] == "ACCEPTED"
+    assert case["workflow_status"] == "KNOWN_ACCEPTED"
+    assert open_chronology_issue_rows(registry) == []
+
+
+def test_same_run_reconcile_does_not_double_count_manually_tracked_case():
+    registry = new_exception_registry("AZD")
+    sync_registry_from_decisions_payload(registry, _decision_payload())
+    assert registry["cases"][0]["detection_count"] == 1
+
+    reconcile_stage_findings(
+        registry,
+        [_finding()],
+        stage_id="FIELD_VALIDATION",
+        run_id="azd_test_run",
+    )
+
+    assert registry["cases"][0]["detection_count"] == 1

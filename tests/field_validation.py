@@ -610,5 +610,5 @@ def run(snapshot, profile, log):
                 f"{sheet}: reference validation inactive because no high-confidence reference regex was inferred.",
             )
 
-    log("DONE", f"FIELD_VALIDATION finished with {len(findings)} review finding(s).")
+    log("DONE", f"FIELD_VALIDATION finished with {len(findings)} finding(s).")
     return findings
