@@ -18,6 +18,7 @@ from functions.cleaner import (
     finalize_run,
     build_general_document_profile,
     inspect_general_document_workbook,
+    export_structure_quality_schema,
 )
 from functions.retrieval import load_retrieval_config, retrieve_project_set, write_retrieval_manifest
 from functions.engineering_control import (
@@ -379,6 +380,35 @@ def engineering_lists_step(args) -> int:
         print(f"[ENGINEERING] {name:<18}: {path}")
     return 0
 
+
+def export_structure_schema_step(args) -> int:
+    output, payload = export_structure_quality_schema(
+        args.run_dir,
+        project_id=args.project,
+        orchestration_run_id=args.orchestration_run_id,
+        source_artifact_id=args.source_artifact_id,
+        workbook_path=args.workbook,
+        source_sha256=args.source_sha256,
+        contract_version=args.contract_version,
+        output_path=args.output,
+    )
+    state = payload["quality_state"]
+    source = payload["identity"]["source"]
+    print(f"[SCHEMA] Cleaner run       : {payload['identity']['cleaner_run_id']}")
+    print(f"[SCHEMA] Orchestration run : {payload['identity']['orchestration_run_id']}")
+    print(f"[SCHEMA] Source artifact   : {source['artifact_id']}")
+    print(f"[SCHEMA] Source SHA-256    : {source['sha256']}")
+    print(
+        "[SCHEMA] State             : "
+        f"discovered={state['structure_discovered']}, "
+        f"reviewed={state['structure_reviewed']}, "
+        f"validated={state['data_validated']}, "
+        f"coverage={state['coverage_verified']}, "
+        f"writes_approved={state['write_targets_approved']}"
+    )
+    print(f"[SCHEMA] Output            : {output}")
+    return 0
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Weekly-report orchestration layer above Cleaner and Board->Log functions."
@@ -467,6 +497,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     eng.add_argument("--output-dir", default=None)
     eng.set_defaults(func=engineering_lists_step)
+
+    schema_export = subs.add_parser(
+        "export-structure-schema",
+        help="Publish a run-bound Document Structure Discovery & Quality schema snapshot.",
+    )
+    schema_export.add_argument("--run-dir", required=True)
+    schema_export.add_argument("--project", required=True)
+    schema_export.add_argument("--orchestration-run-id", required=True)
+    schema_export.add_argument("--source-artifact-id", required=True)
+    schema_export.add_argument("--workbook", default=None, help="Approved source copy to hash read-only. If omitted, the run-manifest path is used when accessible.")
+    schema_export.add_argument("--source-sha256", default=None, help="Expected SHA-256 from the approved artifact registry. If --workbook is supplied, mismatch is fatal.")
+    schema_export.add_argument("--contract-version", default="0.2.1")
+    schema_export.add_argument("--output", default=None)
+    schema_export.set_defaults(func=export_structure_schema_step)
 
     pub = subs.add_parser(
         "publish-logbook",
