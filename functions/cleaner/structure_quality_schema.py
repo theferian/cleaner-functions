@@ -112,6 +112,7 @@ def _resolve_source_binding(
                 supplied = candidate.resolve()
 
     expected = str(expected_sha256 or "").strip().lower() or None
+    run_start = str(manifest_workbook.get("sha256_at_run_start") or "").strip().lower() or None
     actual = None
     verification = "EXTERNAL_APPROVED_HASH"
     verified = None
@@ -137,6 +138,18 @@ def _resolve_source_binding(
             "or --source-sha256 from the approved artifact registry."
         )
 
+    run_start_matches_approved = None
+    lineage_status = "LEGACY_RUN_START_HASH_UNAVAILABLE"
+    if run_start and expected:
+        run_start_matches_approved = run_start == expected
+        lineage_status = "RUN_START_HASH_VERIFIED" if run_start_matches_approved else "RUN_START_HASH_MISMATCH"
+        if not run_start_matches_approved:
+            raise RuntimeError(
+                "Cleaner run start hash does not match the approved artifact hash: "
+                f"run_start={run_start}, approved={expected}. "
+                "Use the same approved bytes (or a byte-identical disposable copy) for the Cleaner run."
+            )
+
     manifest_name = manifest_workbook.get("name")
     supplied_name = supplied.name if supplied is not None else None
     return {
@@ -147,6 +160,9 @@ def _resolve_source_binding(
         "sha256": expected,
         "computed_sha256": actual,
         "hash_verified_against_expected": verified,
+        "run_start_sha256": run_start,
+        "run_start_hash_matches_approved": run_start_matches_approved,
+        "lineage_status": lineage_status,
         "binding_mode": verification,
         "company_original_modified": False,
     }
@@ -390,6 +406,7 @@ def export_structure_quality_schema(
     source_sha256: str | None = None,
     contract_version: str = DEFAULT_CONTRACT_VERSION,
     output_path: str | Path | None = None,
+    overwrite: bool = False,
 ) -> tuple[Path, dict[str, Any]]:
     """Publish a read-only, run-bound structural schema snapshot.
 
@@ -610,6 +627,11 @@ def export_structure_quality_schema(
         schema["quality_evidence"]["published_logbook"] = {"available": False}
 
     output = Path(output_path) if output_path else run_dir / "document_structure_quality_schema.json"
+    if output.exists() and not overwrite:
+        raise FileExistsError(
+            f"Structural schema evidence already exists: {output}. "
+            "Use an immutable new output path, or pass overwrite=True/--overwrite explicitly."
+        )
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(schema, ensure_ascii=False, indent=2, default=str) + "\n", encoding="utf-8")
     return output, schema

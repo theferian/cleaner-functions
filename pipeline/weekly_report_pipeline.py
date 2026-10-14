@@ -391,6 +391,7 @@ def export_structure_schema_step(args) -> int:
         source_sha256=args.source_sha256,
         contract_version=args.contract_version,
         output_path=args.output,
+        overwrite=args.overwrite,
     )
     state = payload["quality_state"]
     source = payload["identity"]["source"]
@@ -510,6 +511,11 @@ def build_parser() -> argparse.ArgumentParser:
     schema_export.add_argument("--source-sha256", default=None, help="Expected SHA-256 from the approved artifact registry. If --workbook is supplied, mismatch is fatal.")
     schema_export.add_argument("--contract-version", default="0.2.1")
     schema_export.add_argument("--output", default=None)
+    schema_export.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Explicitly replace an existing schema file. Default is immutable/no-overwrite.",
+    )
     schema_export.set_defaults(func=export_structure_schema_step)
 
     pub = subs.add_parser(

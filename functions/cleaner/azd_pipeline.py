@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 from datetime import datetime
+import hashlib
 import json
 import sys
 import time
@@ -105,6 +106,14 @@ def run_stage(
 
     logger("PIPELINE", f"Running stage {stage_id} against resolved-state overlay.")
     return RUNNERS[stage_id](resolved_snapshot, resolved_profile, logger)
+
+
+def _sha256_path(path: str | Path) -> str:
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _default_run_id(profile_name: str | None = None) -> str:
@@ -265,10 +274,12 @@ def main(argv=None):
         if args.open_workbook
         else attach_excel_workbook(args.workbook)
     )
+    workbook_path_on_disk = Path(str(wb.FullName))
     workbook_meta = {
         "name": str(wb.Name),
         "path": str(wb.FullName),
         "saved_state": "saved" if wb.Saved else "unsaved",
+        "sha256_at_run_start": _sha256_path(workbook_path_on_disk) if workbook_path_on_disk.exists() else None,
     }
 
     profile = load_profile(args.profile)

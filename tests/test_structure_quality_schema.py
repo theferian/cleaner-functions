@@ -49,7 +49,7 @@ def _fixture(tmp_path: Path):
         "run_id": "azd_test_run",
         "profile_name": "AZD",
         "profile_path": str(profile),
-        "workbook": {"name": workbook.name, "path": str(workbook), "saved_state": "saved"},
+        "workbook": {"name": workbook.name, "path": str(workbook), "saved_state": "saved", "sha256_at_run_start": source_hash},
         "exception_registry": str(root / "exceptions" / "AZD.exceptions.json"),
         "project_solutions": str(root / "project_solutions" / "AZD.solutions.json"),
     })
@@ -121,6 +121,8 @@ def test_export_structure_quality_schema_separates_quality_states(tmp_path):
     assert payload["contract_version"] == "0.2.1"
     assert payload["identity"]["source"]["artifact_id"] == "R06e86d9ebfa5"
     assert payload["identity"]["source"]["hash_verified_against_expected"] is True
+    assert payload["identity"]["source"]["run_start_hash_matches_approved"] is True
+    assert payload["identity"]["source"]["lineage_status"] == "RUN_START_HASH_VERIFIED"
     assert payload["quality_state"] == {
         "structure_discovered": True,
         "structure_reviewed": True,
@@ -190,3 +192,55 @@ def test_export_can_bind_external_hash_when_workbook_is_not_local(tmp_path):
     assert payload["identity"]["source"]["binding_mode"] == "EXTERNAL_APPROVED_HASH"
     assert payload["identity"]["source"]["computed_sha256"] is None
     assert payload["identity"]["source"]["sha256"] == source_hash
+
+
+def test_export_rejects_run_start_hash_lineage_mismatch(tmp_path):
+    root, run, profile, workbook, source_hash = _fixture(tmp_path)
+    manifest = json.loads((run / "run_manifest.json").read_text(encoding="utf-8"))
+    manifest["workbook"]["sha256_at_run_start"] = "f" * 64
+    _write_json(run / "run_manifest.json", manifest)
+
+    with pytest.raises(RuntimeError, match="run start hash does not match"):
+        export_structure_quality_schema(
+            run,
+            project_id="AZD",
+            orchestration_run_id="run-1",
+            source_artifact_id="artifact-1",
+            workbook_path=workbook,
+            source_sha256=source_hash,
+        )
+
+
+def test_export_refuses_to_overwrite_existing_evidence_by_default(tmp_path):
+    root, run, profile, workbook, source_hash = _fixture(tmp_path)
+    target = run / "immutable_schema.json"
+    export_structure_quality_schema(
+        run,
+        project_id="AZD",
+        orchestration_run_id="run-1",
+        source_artifact_id="artifact-1",
+        workbook_path=workbook,
+        source_sha256=source_hash,
+        output_path=target,
+    )
+    with pytest.raises(FileExistsError, match="already exists"):
+        export_structure_quality_schema(
+            run,
+            project_id="AZD",
+            orchestration_run_id="run-1",
+            source_artifact_id="artifact-1",
+            workbook_path=workbook,
+            source_sha256=source_hash,
+            output_path=target,
+        )
+
+    export_structure_quality_schema(
+        run,
+        project_id="AZD",
+        orchestration_run_id="run-1",
+        source_artifact_id="artifact-1",
+        workbook_path=workbook,
+        source_sha256=source_hash,
+        output_path=target,
+        overwrite=True,
+    )
