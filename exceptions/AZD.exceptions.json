@@ -2,7 +2,7 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "AZD",
   "created_at": "2026-10-06T06:19:25",
-  "updated_at": "2026-10-08T14:44:49",
+  "updated_at": "2026-10-08T15:21:24",
   "next_sequence": 13,
   "cases": [
     {
@@ -16,7 +16,7 @@
         "field_role": "receive_date"
       },
       "first_seen_at": "2026-10-06T06:19:25",
-      "last_seen_at": "2026-10-08T14:28:57",
+      "last_seen_at": "2026-10-08T14:58:20",
       "detection_count": 3,
       "source": {
         "first_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
@@ -121,6 +121,15 @@
           "run_id": "azd_20261008T141819",
           "workflow_status": "INVESTIGATE",
           "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21."
+        },
+        {
+          "at": "2026-10-08T14:57:57",
+          "event": "REVIEW_UPDATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
+          "run_id": "azd_20261008T141819",
+          "workflow_status": "INVESTIGATE",
+          "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21."
         }
       ],
       "title": "Date Chronology",
@@ -134,13 +143,31 @@
         "receive-before-send",
         "investigate",
         "field_validation",
-        "date_chronology"
+        "date_chronology",
+        "receive_date",
+        "auto-tracked"
       ],
       "owner": "",
       "last_review_id": "FIELD_VALIDATION_230KV_SS_N21_2b9f392c7814",
       "last_run_id": "azd_20261008T141819",
       "message": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21.",
-      "last_seen_run_id": "azd_20261008T141819"
+      "last_seen_run_id": "azd_20261008T141819",
+      "evidence": {
+        "field_role": "receive_date",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "document_region": "19:22",
+        "transaction_index": 3,
+        "send_target": "M21",
+        "send_date": "1404/08/11",
+        "receive_date": "1404/08/10",
+        "document_identity": {
+          "record_index": 7,
+          "document_type": "LV",
+          "name": "PROT & CONTROL SINGLE LINE DIAGRAM",
+          "wbs": "1.5.1.1.2.1.2"
+        },
+        "document_relative_target": "N+2"
+      }
     },
     {
       "handle": "AZD-EXC-0002",
