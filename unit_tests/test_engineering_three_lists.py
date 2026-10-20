@@ -43,7 +43,7 @@ def test_not_sent_uses_cleaner_inventory_even_when_logbook_has_zero_rows():
     )
     assert len(result.not_sent) == 1
     assert result.not_sent[0].doc_name == "NEVER SENT"
-    assert result.not_sent[0].calculation_status == "NO_SEND_EVENT"
+    assert result.not_sent[0].calculation_status == "NO_INTERACTION_HISTORY"
 
 
 def test_latest_send_puts_responsibility_on_consultant():
@@ -211,3 +211,211 @@ def test_delay_register_combines_company_and_consultant_and_sorts_by_delay():
     assert delay[1].responsibility == "COMPANY"
     assert delay[1].responsible_unit == "CIVIL"
     assert result.to_dict()["summary"]["company_delay_by_unit"] == {"CIVIL": 1}
+
+def test_not_sent_requires_fully_empty_interaction_history():
+    records = [
+        rec(
+            side="receive",
+            rev="Z",
+            date="1404/10/03",
+            status="A",
+            block=0,
+            name="GEOTECHNICAL",
+        ),
+    ]
+
+    result = build_three_engineering_lists(
+        records,
+        status_date="1405/01/01",
+        document_inventory=[inventory(1, "GEOTECHNICAL")],
+    )
+
+    assert not result.not_sent
+    assert not result.company_delay
+    assert not result.consultant_delay
+
+
+def test_closed_statuses_leave_all_active_engineering_lists():
+    for status in ("A", "AP", "FC", "F.C"):
+        records = [
+            rec(
+                side="send",
+                rev="A",
+                date="1405/01/01",
+                block=0,
+            ),
+            rec(
+                side="receive",
+                rev="A",
+                date="1405/01/05",
+                status=status,
+                block=0,
+            ),
+        ]
+
+        result = build_three_engineering_lists(
+            records,
+            status_date="1405/01/15",
+            document_inventory=[inventory(1)],
+        )
+
+        assert not result.not_sent, status
+        assert not result.company_delay, status
+        assert not result.consultant_delay, status
+        assert not result.diagnostics, status
+
+
+def test_action_required_statuses_remain_company_candidates():
+    for status in ("AN", "A.N", "CM", "C.M", "RJ"):
+        records = [
+            rec(
+                side="send",
+                rev="A",
+                date="1405/01/01",
+                block=0,
+            ),
+            rec(
+                side="receive",
+                rev="A",
+                date="1405/01/05",
+                status=status,
+                block=0,
+            ),
+        ]
+
+        result = build_three_engineering_lists(
+            records,
+            status_date="1405/01/15",
+            document_inventory=[inventory(1)],
+        )
+
+        assert len(result.company_delay) == 1, status
+        assert not result.consultant_delay, status
+        assert not result.not_sent, status
+
+
+def test_latest_closed_revision_overrides_older_open_revision():
+    records = [
+        rec(
+            side="send",
+            rev="Z",
+            date="1405/01/01",
+            block=0,
+        ),
+        rec(
+            side="receive",
+            rev="Z",
+            date="1405/01/05",
+            status="CM",
+            block=0,
+        ),
+        rec(
+            side="send",
+            rev="A",
+            date="1405/01/10",
+            block=1,
+        ),
+        rec(
+            side="receive",
+            rev="A",
+            date="1405/01/12",
+            status="A",
+            block=1,
+        ),
+    ]
+
+    # DISTINCT_LETTER_REFERENCES_PER_REVISION
+    # The rec() helper defaults to REF/RESP for every revision. That creates
+    # legitimate same-reference conflicts across different dates/statuses.
+    # This test checks closure across distinct revision correspondence.
+    from dataclasses import replace
+    records = [
+        replace(record, letter_reference=f"{record.letter_reference}-{record.doc_rev}")
+        for record in records
+    ]
+
+    result = build_three_engineering_lists(
+        records,
+        status_date="1405/01/20",
+        document_inventory=[inventory(1)],
+    )
+
+    assert not result.not_sent
+    assert not result.company_delay
+    assert not result.consultant_delay
+    assert not result.diagnostics
+
+def test_azd_line_foundation_drawing_uses_latest_actual_date():
+    """AZD LINE / FOUNDATION DRAWING: receive 11/04 beats send 10/24."""
+    records = [
+        rec(side="send", rev="Z", date="1404/09/12", block=0, event=1, sheet="LINE", name="FOUNDATION DRAWING"),
+        rec(side="receive", rev="Z", date="1404/09/20", status="A.N", block=0, event=1, sheet="LINE", name="FOUNDATION DRAWING"),
+        rec(side="send", rev="Z", date="1404/09/18", block=0, event=2, sheet="LINE", name="FOUNDATION DRAWING"),
+        rec(side="receive", rev="Z", date="1404/11/04", status="CM", block=0, event=2, sheet="LINE", name="FOUNDATION DRAWING"),
+        rec(side="send", rev="Z", date="1404/10/24", block=0, event=3, sheet="LINE", name="FOUNDATION DRAWING"),
+    ]
+    inv = [{"source_sheet": "LINE", "document_index": 1,
+            "doc_name": "FOUNDATION DRAWING", "doc_wbs": "1.6.1.1.3"}]
+    result = build_three_engineering_lists(records, status_date="1405/07/22", document_inventory=inv)
+    assert not result.not_sent
+    assert not result.consultant_delay
+    assert len(result.company_delay) == 1
+    item = result.company_delay[0]
+    assert item.status == "CM"
+    assert item.last_action_date == "1404/11/04"
+    assert any(x["kind"] == "SOURCE_SEQUENCE_DATE_INVERSION" for x in result.diagnostics)
+
+
+def test_temporal_order_outweighs_revision_index():
+    records = [
+        rec(side="receive", date="1405/01/20", status="CM", block=0, event=1),
+        rec(side="send", date="1405/01/10", block=2, event=1),
+    ]
+    result = build_three_engineering_lists(records, status_date="1405/01/30", document_inventory=[inventory(1)])
+    assert len(result.company_delay) == 1
+    assert not result.consultant_delay
+    assert result.company_delay[0].last_action_date == "1405/01/20"
+
+
+def test_undated_later_narrative_remains_visible_without_invented_date():
+    records = [
+        rec(side="send", date="1405/01/01", block=0),
+        rec(side="receive", date="پیرو مذاکرات", status="CM", block=1),
+    ]
+    result = build_three_engineering_lists(records, status_date="1405/01/30", document_inventory=[inventory(1)])
+    assert len(result.company_delay) == 1
+    assert result.company_delay[0].calculation_status == "NEEDS_DATE"
+    assert result.company_delay[0].last_action_date is None
+    assert any(x["kind"] == "UNRESOLVED_UNDATED_EVENT_ORDER" for x in result.diagnostics)
+
+
+def test_future_dated_event_cannot_override_as_of_responsibility():
+    records = [
+        rec(side="send", date="1405/01/01", block=0),
+        rec(side="receive", date="1405/01/20", status="A", block=1),
+    ]
+    result = build_three_engineering_lists(records, status_date="1405/01/10", document_inventory=[inventory(1)])
+    assert len(result.consultant_delay) == 1
+    assert result.consultant_delay[0].last_action_date == "1405/01/01"
+    assert any(x["kind"] == "FUTURE_DATED_EVENT_EXCLUDED" for x in result.diagnostics)
+
+
+def test_only_future_events_are_not_mislabeled_not_sent():
+    records = [rec(side="send", date="1405/02/01", block=0)]
+    result = build_three_engineering_lists(records, status_date="1405/01/10", document_inventory=[inventory(1)])
+    assert not result.not_sent
+    assert not result.company_delay
+    assert not result.consultant_delay
+    assert any(x["kind"] == "FUTURE_DATED_EVENT_EXCLUDED" for x in result.diagnostics)
+
+
+def test_receive_before_matched_send_is_diagnostic():
+    records = [
+        rec(side="send", date="1404/08/11", block=0, event=1),
+        rec(side="receive", date="1404/08/10", status="CM", block=0, event=1),
+    ]
+    result = build_three_engineering_lists(records, status_date="1405/01/01", document_inventory=[inventory(1)])
+    issues = [x for x in result.diagnostics if x["kind"] == "RECEIVE_BEFORE_MATCHED_SEND"]
+    assert len(issues) == 1
+    assert issues[0]["examples"][0]["send_date"] == "1404/08/11"
+    assert issues[0]["examples"][0]["receive_date"] == "1404/08/10"

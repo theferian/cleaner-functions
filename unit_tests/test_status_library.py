@@ -46,8 +46,8 @@ def test_default_library_contains_confirmed_fsh_status_knowledge():
     assert library.canonicalize("C.M") == "CM"
     assert library.canonicalize("CM") == "CM"
     assert library.canonicalize("N.A") == "N.A"
-    assert library.definition("N.A").meaning is None
-    assert library.definition("N.A").responsibility_after_receive is None
+    assert library.definition("N.A").meaning == "Not Approved"
+    assert library.definition("N.A").responsibility_after_receive == "COMPANY"
 
 
 def test_confirm_status_alias_is_idempotent_and_preserves_metadata():

@@ -1,0 +1,42 @@
+{
+  "schema": "cleaner.weekly_report.corpus_manifest/0.1",
+  "project_id": "AZD",
+  "document_family": "WEEKLY_REPORT_TEMPLATE",
+  "root": "W:\\\\پیگیری پروژه ها\\\\گزارش هفتگی پروژه ها\\\\1405",
+  "filename": "7- سد آزاد.xlsx",
+  "known_week_folders": [
+    "1405.03.06",
+    "1405.03.13",
+    "1405.03.20",
+    "1405.03.27",
+    "1405.04.17",
+    "1405.04.24",
+    "1405.04.31",
+    "1405.05.07",
+    "1405.05.14",
+    "1405.05.21",
+    "1405.05.28",
+    "1405.06.04",
+    "1405.06.11",
+    "1405.06.18",
+    "1405.06.25",
+    "1405.07.01",
+    "1405.07.08"
+  ],
+  "test_policy": {
+    "pass_requires": [
+      "all required sheets matched",
+      "zero validation errors"
+    ],
+    "compare_across_weeks": [
+      "sheet count",
+      "matched archetypes",
+      "region anchors",
+      "status-date consistency",
+      "WBS row count",
+      "region recognition count",
+      "warnings/errors by kind"
+    ],
+    "do_not_auto_fix": true
+  }
+}

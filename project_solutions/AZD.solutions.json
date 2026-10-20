@@ -1,7 +1,7 @@
 {
   "schema": "cleaner.project_solutions/0.1",
   "project_id": "AZD",
-  "next_sequence": 99,
+  "next_sequence": 100,
   "solutions": [
     {
       "handle": "AZD-SOL-0001",
@@ -38,10 +38,10 @@
       },
       "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
       "created_at": "2026-10-06T07:03:32",
-      "updated_at": "2026-10-08T15:17:31",
-      "times_confirmed": 3,
+      "updated_at": "2026-10-14T10:32:52",
+      "times_confirmed": 4,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
         "decision_origin": "HUMAN_REVIEW",
         "project_solution_handle": null
@@ -120,6 +120,27 @@
             "decision_origin": "PROJECT_SOLUTION",
             "project_solution_handle": "AZD-SOL-0001"
           }
+        },
+        {
+          "at": "2026-10-14T10:28:18",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "explanation",
+              "sheet": "230KV SS",
+              "target": "H11:H12",
+              "value": "عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03",
+              "expected_old_value": "عطف به بند شماره 1 صورتجلسه مورخ 04/06/03"
+            }
+          },
+          "reason": "Explanation at 230KV SS!H11:H12 contains non-canonical embedded Jalali date(s); observed='عطف به بند شماره 1 صورتجلسه مورخ 04/06/03', normalized='عطف به بند شماره 1 صورتجلسه مورخ 1404/06/03'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
+            "review_id": "FIELD_VALIDATION_230KV_SS_H11_H12_e1de2acf09c5",
+            "decision_origin": "HUMAN_REVIEW",
+            "project_solution_handle": null
+          }
         }
       ]
     },
@@ -157,10 +178,10 @@
       },
       "reason": "Approved project repair.",
       "created_at": "2026-10-06T07:03:32",
-      "updated_at": "2026-10-08T14:57:57",
+      "updated_at": "2026-10-14T10:32:52",
       "times_confirmed": 2,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "FIELD_VALIDATION_63KV_SS_H13_3b2accc2ea13",
         "decision_origin": "PROJECT_SOLUTION",
         "project_solution_handle": "AZD-SOL-0002"
@@ -271,10 +292,10 @@
       },
       "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
       "created_at": "2026-10-06T07:04:48",
-      "updated_at": "2026-10-08T15:17:31",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:32:52",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
         "decision_origin": "HUMAN_REVIEW",
         "project_solution_handle": null
@@ -333,6 +354,27 @@
             "decision_origin": "PROJECT_SOLUTION",
             "project_solution_handle": "AZD-SOL-0004"
           }
+        },
+        {
+          "at": "2026-10-14T10:28:20",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "explanation",
+              "sheet": "230KV SS",
+              "target": "E19:E22",
+              "value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22",
+              "expected_old_value": "مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22"
+            }
+          },
+          "reason": "Explanation at 230KV SS!E19:E22 contains non-canonical embedded Jalali date(s); observed='مطابق مذاکرات صورت گرفته در جلسه مورخ 04/02/22', normalized='مطابق مذاکرات صورت گرفته در جلسه مورخ 1404/02/22'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
+            "review_id": "FIELD_VALIDATION_230KV_SS_E19_E22_17b3ab67bc5f",
+            "decision_origin": "HUMAN_REVIEW",
+            "project_solution_handle": null
+          }
         }
       ]
     },
@@ -371,10 +413,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C9; observed='-'. Proposed WBS='1.5.1.1.1.3.1000' using nearest valid WBS above '1.5.1.1.1.3'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C9_651531b6ec06",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -396,6 +438,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C9; observed='-'. Proposed WBS='1.5.1.1.1.3.1000' using nearest valid WBS above '1.5.1.1.1.3'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C9_651531b6ec06",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C9",
+              "value": "1.5.1.1.1.3.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C9; observed='-'. Proposed WBS='1.5.1.1.1.3.1000' using nearest valid WBS above '1.5.1.1.1.3'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C9_651531b6ec06",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -438,10 +501,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C11; observed='-'. Proposed WBS='1.5.1.1.1.3.1001' using nearest valid WBS above '1.5.1.1.1.3'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C11_402d80666ab6",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -463,6 +526,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C11; observed='-'. Proposed WBS='1.5.1.1.1.3.1001' using nearest valid WBS above '1.5.1.1.1.3'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C11_402d80666ab6",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C11",
+              "value": "1.5.1.1.1.3.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C11; observed='-'. Proposed WBS='1.5.1.1.1.3.1001' using nearest valid WBS above '1.5.1.1.1.3'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C11_402d80666ab6",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -505,10 +589,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C43; observed='-'. Proposed WBS='1.5.1.1.2.1.11.1000' using nearest valid WBS above '1.5.1.1.2.1.11'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C43_bff70d315ce9",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -530,6 +614,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C43; observed='-'. Proposed WBS='1.5.1.1.2.1.11.1000' using nearest valid WBS above '1.5.1.1.2.1.11'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C43_bff70d315ce9",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C43",
+              "value": "1.5.1.1.2.1.11.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C43; observed='-'. Proposed WBS='1.5.1.1.2.1.11.1000' using nearest valid WBS above '1.5.1.1.2.1.11'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C43_bff70d315ce9",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -572,10 +677,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C99; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1000' using nearest valid WBS above '1.5.1.1.2.5.2'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C99_93b96314de27",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -597,6 +702,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C99; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1000' using nearest valid WBS above '1.5.1.1.2.5.2'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C99_93b96314de27",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C99",
+              "value": "1.5.1.1.2.5.2.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C99; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1000' using nearest valid WBS above '1.5.1.1.2.5.2'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C99_93b96314de27",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -639,10 +765,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C101; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1001' using nearest valid WBS above '1.5.1.1.2.5.2'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C101_acbdfdae2892",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -664,6 +790,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C101; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1001' using nearest valid WBS above '1.5.1.1.2.5.2'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C101_acbdfdae2892",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C101",
+              "value": "1.5.1.1.2.5.2.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C101; observed='-'. Proposed WBS='1.5.1.1.2.5.2.1001' using nearest valid WBS above '1.5.1.1.2.5.2'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C101_acbdfdae2892",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -706,10 +853,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C115; observed='-'. Proposed WBS='1.5.1.1.2.5.8.1000' using nearest valid WBS above '1.5.1.1.2.5.8'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C115_1afbaaa1e25f",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -731,6 +878,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C115; observed='-'. Proposed WBS='1.5.1.1.2.5.8.1000' using nearest valid WBS above '1.5.1.1.2.5.8'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C115_1afbaaa1e25f",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C115",
+              "value": "1.5.1.1.2.5.8.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C115; observed='-'. Proposed WBS='1.5.1.1.2.5.8.1000' using nearest valid WBS above '1.5.1.1.2.5.8'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C115_1afbaaa1e25f",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -773,10 +941,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C127; observed='-'. Proposed WBS='1.5.1.1.2.7.2.1000' using nearest valid WBS above '1.5.1.1.2.7.2'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C127_33304523dce4",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -798,6 +966,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C127; observed='-'. Proposed WBS='1.5.1.1.2.7.2.1000' using nearest valid WBS above '1.5.1.1.2.7.2'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C127_33304523dce4",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C127",
+              "value": "1.5.1.1.2.7.2.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C127; observed='-'. Proposed WBS='1.5.1.1.2.7.2.1000' using nearest valid WBS above '1.5.1.1.2.7.2'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C127_33304523dce4",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -840,10 +1029,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C191; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1000' using nearest valid WBS above '1.5.1.1.3.3.12'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C191_8f4455126dd5",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -865,6 +1054,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C191; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1000' using nearest valid WBS above '1.5.1.1.3.3.12'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C191_8f4455126dd5",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C191",
+              "value": "1.5.1.1.3.3.12.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C191; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1000' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C191_8f4455126dd5",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -907,10 +1117,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C193; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1001' using nearest valid WBS above '1.5.1.1.3.3.12'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C193_0062d6de561e",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -932,6 +1142,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C193; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1001' using nearest valid WBS above '1.5.1.1.3.3.12'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C193_0062d6de561e",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C193",
+              "value": "1.5.1.1.3.3.12.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C193; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1001' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C193_0062d6de561e",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -974,10 +1205,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C195; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1002' using nearest valid WBS above '1.5.1.1.3.3.12'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C195_45848ed211d8",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -999,6 +1230,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C195; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1002' using nearest valid WBS above '1.5.1.1.3.3.12'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C195_45848ed211d8",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C195",
+              "value": "1.5.1.1.3.3.12.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C195; observed='-'. Proposed WBS='1.5.1.1.3.3.12.1002' using nearest valid WBS above '1.5.1.1.3.3.12'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C195_45848ed211d8",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1041,10 +1293,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C219; observed='-'. Proposed WBS='1.5.1.1.4.1.8.1000' using nearest valid WBS above '1.5.1.1.4.1.8'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C219_58f72f58b8f8",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1066,6 +1318,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C219; observed='-'. Proposed WBS='1.5.1.1.4.1.8.1000' using nearest valid WBS above '1.5.1.1.4.1.8'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C219_58f72f58b8f8",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C219",
+              "value": "1.5.1.1.4.1.8.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C219; observed='-'. Proposed WBS='1.5.1.1.4.1.8.1000' using nearest valid WBS above '1.5.1.1.4.1.8'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C219_58f72f58b8f8",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1108,10 +1381,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C245; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1000' using nearest valid WBS above '1.5.1.1.4.1.20'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C245_270f4916ee5f",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1133,6 +1406,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C245; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1000' using nearest valid WBS above '1.5.1.1.4.1.20'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C245_270f4916ee5f",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C245",
+              "value": "1.5.1.1.4.1.20.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C245; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1000' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C245_270f4916ee5f",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1175,10 +1469,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C247; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1001' using nearest valid WBS above '1.5.1.1.4.1.20'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C247_f3018acdfe90",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1200,6 +1494,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C247; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1001' using nearest valid WBS above '1.5.1.1.4.1.20'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C247_f3018acdfe90",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C247",
+              "value": "1.5.1.1.4.1.20.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C247; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1001' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C247_f3018acdfe90",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1242,10 +1557,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C249; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1002' using nearest valid WBS above '1.5.1.1.4.1.20'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C249_8a8a8d1407b0",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1267,6 +1582,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C249; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1002' using nearest valid WBS above '1.5.1.1.4.1.20'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C249_8a8a8d1407b0",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C249",
+              "value": "1.5.1.1.4.1.20.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C249; observed='-'. Proposed WBS='1.5.1.1.4.1.20.1002' using nearest valid WBS above '1.5.1.1.4.1.20'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C249_8a8a8d1407b0",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1309,10 +1645,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C291; observed='-'. Proposed WBS='1.5.1.1.4.2.18.1000' using nearest valid WBS above '1.5.1.1.4.2.18'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C291_bd501b9ca6de",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1334,6 +1670,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C291; observed='-'. Proposed WBS='1.5.1.1.4.2.18.1000' using nearest valid WBS above '1.5.1.1.4.2.18'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C291_bd501b9ca6de",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C291",
+              "value": "1.5.1.1.4.2.18.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C291; observed='-'. Proposed WBS='1.5.1.1.4.2.18.1000' using nearest valid WBS above '1.5.1.1.4.2.18'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C291_bd501b9ca6de",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1376,10 +1733,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C327; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1000' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C327_61a5d3823255",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1401,6 +1758,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C327; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1000' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C327_61a5d3823255",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C327",
+              "value": "1.5.1.1.4.2.35.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C327; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1000' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C327_61a5d3823255",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1443,10 +1821,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C329; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1001' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C329_e4056ae7e64b",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1468,6 +1846,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C329; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1001' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C329_e4056ae7e64b",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C329",
+              "value": "1.5.1.1.4.2.35.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C329; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1001' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C329_e4056ae7e64b",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1510,10 +1909,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C331; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1002' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C331_74a31c0f38fc",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1535,6 +1934,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C331; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1002' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C331_74a31c0f38fc",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C331",
+              "value": "1.5.1.1.4.2.35.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C331; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1002' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C331_74a31c0f38fc",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1577,10 +1997,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C333; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1003' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C333_31ed2353aa19",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1602,6 +2022,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C333; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1003' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C333_31ed2353aa19",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C333",
+              "value": "1.5.1.1.4.2.35.1003",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C333; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1003' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C333_31ed2353aa19",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1644,10 +2085,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C335; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1004' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C335_8219186fa7e1",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1669,6 +2110,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C335; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1004' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C335_8219186fa7e1",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C335",
+              "value": "1.5.1.1.4.2.35.1004",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C335; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1004' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C335_8219186fa7e1",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1711,10 +2173,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C337; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1005' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C337_b8d28f7d82d9",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1736,6 +2198,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C337; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1005' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C337_b8d28f7d82d9",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C337",
+              "value": "1.5.1.1.4.2.35.1005",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C337; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1005' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C337_b8d28f7d82d9",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1778,10 +2261,10 @@
       },
       "reason": "Required WBS is empty/invalid at 230KV SS!C339; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1006' using nearest valid WBS above '1.5.1.1.4.2.35'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_230KV_SS_C339_ab4228a39273",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1803,6 +2286,27 @@
           "reason": "Required WBS is empty/invalid at 230KV SS!C339; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1006' using nearest valid WBS above '1.5.1.1.4.2.35'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_230KV_SS_C339_ab4228a39273",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "230KV SS",
+              "target": "C339",
+              "value": "1.5.1.1.4.2.35.1006",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 230KV SS!C339; observed='-'. Proposed WBS='1.5.1.1.4.2.35.1006' using nearest valid WBS above '1.5.1.1.4.2.35'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_230KV_SS_C339_ab4228a39273",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1845,10 +2349,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C17; observed='-'. Proposed WBS='1.5.2.1.2.1.3.1000' using nearest valid WBS above '1.5.2.1.2.1.3'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C17_acd6bbed84aa",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1870,6 +2374,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C17; observed='-'. Proposed WBS='1.5.2.1.2.1.3.1000' using nearest valid WBS above '1.5.2.1.2.1.3'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C17_acd6bbed84aa",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C17",
+              "value": "1.5.2.1.2.1.3.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C17; observed='-'. Proposed WBS='1.5.2.1.2.1.3.1000' using nearest valid WBS above '1.5.2.1.2.1.3'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C17_acd6bbed84aa",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1912,10 +2437,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C37; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1000' using nearest valid WBS above '1.5.2.1.2.5.1'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C37_e94c422e7daa",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -1937,6 +2462,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C37; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1000' using nearest valid WBS above '1.5.2.1.2.5.1'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C37_e94c422e7daa",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C37",
+              "value": "1.5.2.1.2.5.1.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C37; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1000' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C37_e94c422e7daa",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -1979,10 +2525,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C39; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1001' using nearest valid WBS above '1.5.2.1.2.5.1'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C39_ccb573e92494",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2004,6 +2550,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C39; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1001' using nearest valid WBS above '1.5.2.1.2.5.1'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C39_ccb573e92494",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C39",
+              "value": "1.5.2.1.2.5.1.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C39; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1001' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C39_ccb573e92494",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2046,10 +2613,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C43; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1002' using nearest valid WBS above '1.5.2.1.2.5.1'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C43_d3c9aee76fb3",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2071,6 +2638,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C43; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1002' using nearest valid WBS above '1.5.2.1.2.5.1'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C43_d3c9aee76fb3",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C43",
+              "value": "1.5.2.1.2.5.1.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C43; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1002' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C43_d3c9aee76fb3",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2113,10 +2701,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C45; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1003' using nearest valid WBS above '1.5.2.1.2.5.1'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C45_46b578fa89cc",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2138,6 +2726,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C45; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1003' using nearest valid WBS above '1.5.2.1.2.5.1'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C45_46b578fa89cc",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C45",
+              "value": "1.5.2.1.2.5.1.1003",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C45; observed='-'. Proposed WBS='1.5.2.1.2.5.1.1003' using nearest valid WBS above '1.5.2.1.2.5.1'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C45_46b578fa89cc",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2180,10 +2789,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C65; observed='-'. Proposed WBS='1.5.2.1.3.2.1.1000' using nearest valid WBS above '1.5.2.1.3.2.1'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C65_2848bbd83186",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2205,6 +2814,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C65; observed='-'. Proposed WBS='1.5.2.1.3.2.1.1000' using nearest valid WBS above '1.5.2.1.3.2.1'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C65_2848bbd83186",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C65",
+              "value": "1.5.2.1.3.2.1.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C65; observed='-'. Proposed WBS='1.5.2.1.3.2.1.1000' using nearest valid WBS above '1.5.2.1.3.2.1'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C65_2848bbd83186",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2247,10 +2877,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C81; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1000' using nearest valid WBS above '1.5.2.1.3.3.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C81_6b6b7ab64dca",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2272,6 +2902,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C81; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1000' using nearest valid WBS above '1.5.2.1.3.3.7'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C81_6b6b7ab64dca",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C81",
+              "value": "1.5.2.1.3.3.7.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C81; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1000' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C81_6b6b7ab64dca",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2314,10 +2965,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C83; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1001' using nearest valid WBS above '1.5.2.1.3.3.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C83_fbb28fcbda68",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2339,6 +2990,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C83; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1001' using nearest valid WBS above '1.5.2.1.3.3.7'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C83_fbb28fcbda68",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C83",
+              "value": "1.5.2.1.3.3.7.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C83; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1001' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C83_fbb28fcbda68",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2381,10 +3053,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C85; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1002' using nearest valid WBS above '1.5.2.1.3.3.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C85_8c55d88df671",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2406,6 +3078,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C85; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1002' using nearest valid WBS above '1.5.2.1.3.3.7'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C85_8c55d88df671",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C85",
+              "value": "1.5.2.1.3.3.7.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C85; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1002' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C85_8c55d88df671",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2448,10 +3141,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C87; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1003' using nearest valid WBS above '1.5.2.1.3.3.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C87_0ad14e21d288",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2473,6 +3166,27 @@
           "reason": "Required WBS is empty/invalid at 63KV SS!C87; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1003' using nearest valid WBS above '1.5.2.1.3.3.7'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_63KV_SS_C87_0ad14e21d288",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C87",
+              "value": "1.5.2.1.3.3.7.1003",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C87; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1003' using nearest valid WBS above '1.5.2.1.3.3.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_63KV_SS_C87_0ad14e21d288",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2515,10 +3229,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C125; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1000' using nearest valid WBS above '1.5.2.1.4.2.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C125_0b5660ac3f89",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2541,6 +3255,27 @@
           "source": {
             "run_id": "azd_20261006T063256",
             "review_id": "IDENTIFIERS_63KV_SS_C123_0566c163f516",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C125",
+              "value": "1.5.2.1.4.2.7.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C125; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1000' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
+            "review_id": "IDENTIFIERS_63KV_SS_C125_0b5660ac3f89",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
           }
@@ -2582,10 +3317,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C127; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1001' using nearest valid WBS above '1.5.2.1.4.2.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C127_a0838dbc1ea6",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2608,6 +3343,27 @@
           "source": {
             "run_id": "azd_20261006T063256",
             "review_id": "IDENTIFIERS_63KV_SS_C125_0b5660ac3f89",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C127",
+              "value": "1.5.2.1.4.2.7.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C127; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1001' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
+            "review_id": "IDENTIFIERS_63KV_SS_C127_a0838dbc1ea6",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
           }
@@ -2649,10 +3405,10 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C129; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1002' using nearest valid WBS above '1.5.2.1.4.2.7'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C129_3aaa80c1616b",
         "decision_origin": "HUMAN_REVIEW",
         "project_solution_handle": null
@@ -2676,6 +3432,27 @@
             "run_id": "azd_20261006T063256",
             "review_id": "IDENTIFIERS_63KV_SS_C127_a0838dbc1ea6",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:22",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "63KV SS",
+              "target": "C129",
+              "value": "1.5.2.1.4.2.7.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at 63KV SS!C129; observed='-'. Proposed WBS='1.5.2.1.4.2.7.1002' using nearest valid WBS above '1.5.2.1.4.2.7'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
+            "review_id": "IDENTIFIERS_63KV_SS_C129_3aaa80c1616b",
+            "decision_origin": "HUMAN_REVIEW",
             "project_solution_handle": null
           }
         }
@@ -2716,10 +3493,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C29; observed=''. Proposed WBS='1.6.1.1.11.1000' using nearest valid WBS above '1.6.1.1.11'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C29_8965f914ec6d",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2741,6 +3518,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C29; observed=''. Proposed WBS='1.6.1.1.11.1000' using nearest valid WBS above '1.6.1.1.11'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C29_8965f914ec6d",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C29",
+              "value": "1.6.1.1.11.1000",
+              "expected_old_value": null
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C29; observed=''. Proposed WBS='1.6.1.1.11.1000' using nearest valid WBS above '1.6.1.1.11'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C29_8965f914ec6d",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2783,10 +3581,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C35; observed='-'. Proposed WBS='1.6.1.1.13.1000' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C35_222965b2230d",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2808,6 +3606,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C35; observed='-'. Proposed WBS='1.6.1.1.13.1000' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C35_222965b2230d",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C35",
+              "value": "1.6.1.1.13.1000",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C35; observed='-'. Proposed WBS='1.6.1.1.13.1000' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C35_222965b2230d",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2850,10 +3669,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C37; observed='-'. Proposed WBS='1.6.1.1.13.1001' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C37_6d2194ae6299",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2875,6 +3694,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C37; observed='-'. Proposed WBS='1.6.1.1.13.1001' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C37_6d2194ae6299",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C37",
+              "value": "1.6.1.1.13.1001",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C37; observed='-'. Proposed WBS='1.6.1.1.13.1001' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C37_6d2194ae6299",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2917,10 +3757,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C39; observed='-'. Proposed WBS='1.6.1.1.13.1002' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C39_33a30b066fcd",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -2942,6 +3782,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C39; observed='-'. Proposed WBS='1.6.1.1.13.1002' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C39_33a30b066fcd",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C39",
+              "value": "1.6.1.1.13.1002",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C39; observed='-'. Proposed WBS='1.6.1.1.13.1002' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C39_33a30b066fcd",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -2984,10 +3845,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C41; observed='-'. Proposed WBS='1.6.1.1.13.1003' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C41_192df62ca788",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -3009,6 +3870,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C41; observed='-'. Proposed WBS='1.6.1.1.13.1003' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C41_192df62ca788",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C41",
+              "value": "1.6.1.1.13.1003",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C41; observed='-'. Proposed WBS='1.6.1.1.13.1003' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C41_192df62ca788",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -3051,10 +3933,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C43; observed='-'. Proposed WBS='1.6.1.1.13.1004' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C43_fb649c2689d5",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -3076,6 +3958,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C43; observed='-'. Proposed WBS='1.6.1.1.13.1004' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C43_fb649c2689d5",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C43",
+              "value": "1.6.1.1.13.1004",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C43; observed='-'. Proposed WBS='1.6.1.1.13.1004' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C43_fb649c2689d5",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -3118,10 +4021,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C45; observed='-'. Proposed WBS='1.6.1.1.13.1005' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C45_40d04d3c2872",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -3143,6 +4046,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C45; observed='-'. Proposed WBS='1.6.1.1.13.1005' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C45_40d04d3c2872",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C45",
+              "value": "1.6.1.1.13.1005",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C45; observed='-'. Proposed WBS='1.6.1.1.13.1005' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C45_40d04d3c2872",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -3185,10 +4109,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C47; observed='-'. Proposed WBS='1.6.1.1.13.1006' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C47_dba354fed5e1",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -3210,6 +4134,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C47; observed='-'. Proposed WBS='1.6.1.1.13.1006' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C47_dba354fed5e1",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C47",
+              "value": "1.6.1.1.13.1006",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C47; observed='-'. Proposed WBS='1.6.1.1.13.1006' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C47_dba354fed5e1",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -3252,10 +4197,10 @@
       },
       "reason": "Required WBS is empty/invalid at LINE!C49; observed='-'. Proposed WBS='1.6.1.1.13.1007' using nearest valid WBS above '1.6.1.1.13'.",
       "created_at": "2026-10-06T07:05:39",
-      "updated_at": "2026-10-08T15:18:11",
-      "times_confirmed": 2,
+      "updated_at": "2026-10-14T10:35:13",
+      "times_confirmed": 3,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_LINE_C49_4111dd39ee6c",
         "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
         "project_solution_handle": null
@@ -3277,6 +4222,27 @@
           "reason": "Required WBS is empty/invalid at LINE!C49; observed='-'. Proposed WBS='1.6.1.1.13.1007' using nearest valid WBS above '1.6.1.1.13'.",
           "source": {
             "run_id": "azd_20261006T063256",
+            "review_id": "IDENTIFIERS_LINE_C49_4111dd39ee6c",
+            "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
+            "project_solution_handle": null
+          }
+        },
+        {
+          "at": "2026-10-14T10:33:17",
+          "resolution": {
+            "mode": "PROJECT_DECISION_TEMPLATE",
+            "action": "SET_VALUE",
+            "parameters": {
+              "field_key": "wbs",
+              "sheet": "LINE",
+              "target": "C49",
+              "value": "1.6.1.1.13.1007",
+              "expected_old_value": "-"
+            }
+          },
+          "reason": "Required WBS is empty/invalid at LINE!C49; observed='-'. Proposed WBS='1.6.1.1.13.1007' using nearest valid WBS above '1.6.1.1.13'.",
+          "source": {
+            "run_id": "azd_20261008T141819",
             "review_id": "IDENTIFIERS_LINE_C49_4111dd39ee6c",
             "decision_origin": "REUSABLE_PROFILE_CURRENT_SUGGESTION",
             "project_solution_handle": null
@@ -3367,10 +4333,10 @@
       },
       "reason": "Approved project repair.",
       "created_at": "2026-10-06T16:36:48",
-      "updated_at": "2026-10-08T14:57:57",
+      "updated_at": "2026-10-14T10:32:52",
       "times_confirmed": 1,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "FIELD_VALIDATION_63KV_SS_D23_d6c372073e98",
         "decision_origin": "PROJECT_SOLUTION",
         "project_solution_handle": "AZD-SOL-0050"
@@ -5440,10 +6406,10 @@
       },
       "reason": "Global date audit found invalid Jalali-like token(s) ['14040/09/23'] at 230KV SS!E165; observed='14040/09/23'.",
       "created_at": "2026-10-07T00:31:51",
-      "updated_at": "2026-10-08T14:57:57",
+      "updated_at": "2026-10-14T10:32:52",
       "times_confirmed": 1,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "FIELD_VALIDATION_230KV_SS_E165_ce26408d5214",
         "decision_origin": "PROJECT_SOLUTION",
         "project_solution_handle": "AZD-SOL-0097"
@@ -5484,13 +6450,60 @@
       },
       "reason": "Required WBS is empty/invalid at 63KV SS!C89; observed='-'. Proposed WBS='1.5.2.1.3.3.7.1004' using nearest valid WBS above '1.5.2.1.3.3.7'.",
       "created_at": "2026-10-08T15:00:00",
-      "updated_at": "2026-10-08T15:18:11",
+      "updated_at": "2026-10-14T10:35:13",
       "times_confirmed": 1,
       "source": {
-        "run_id": "azd_20261008T141819",
+        "run_id": "azd_20261014T071802",
         "review_id": "IDENTIFIERS_63KV_SS_C89_40f6901cd055",
         "decision_origin": "PROJECT_SOLUTION",
         "project_solution_handle": "AZD-SOL-0098"
+      },
+      "history": []
+    },
+    {
+      "handle": "AZD-SOL-0099",
+      "enabled": true,
+      "project_id": "AZD",
+      "kind": "WORKBOOK_FIX",
+      "signature": "5123aa9c6bc886a9",
+      "match": {
+        "test_id": "CONFIRMED_CORRESPONDENCE_DATE",
+        "status": "FAIL",
+        "sheet": "230KV SS",
+        "document_identity": {
+          "name": "PROT & CONTROL SINGLE LINE DIAGRAM",
+          "wbs": "1.5.1.1.2.1.2"
+        },
+        "semantic": {
+          "field_role": "send_date",
+          "audit_kind": "RECEIVE_BEFORE_MATCHED_SEND"
+        },
+        "observed": "1404/08/11",
+        "target_fallback": "M21",
+        "letter_reference": "1404/ES/S/3003",
+        "event_side": "send",
+        "expected_old_date": "1404/08/11"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "230KV SS",
+          "target": "M21",
+          "value": "1404/07/19",
+          "expected_old_value": "1404/08/11",
+          "field_role": "send_date"
+        }
+      },
+      "reason": "User-confirmed source typo, 2026-10-16; original evidence preserved in raw card_map",
+      "created_at": "2026-10-16T21:28:49",
+      "updated_at": "2026-10-16T21:28:49",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "azd_20261014T071802",
+        "review_id": "AZD_CONFIRMED_CORRESPONDENCE_SEND_DATE_1404_ES_S_3003",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
       },
       "history": []
     }

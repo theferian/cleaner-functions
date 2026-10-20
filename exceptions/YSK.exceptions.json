@@ -1,0 +1,219 @@
+{
+  "schema": "cleaner.exception_registry/0.1",
+  "profile_name": "YSK",
+  "created_at": "2026-10-16T21:21:08",
+  "updated_at": "2026-10-18T01:01:59",
+  "next_sequence": 4,
+  "cases": [
+    {
+      "handle": "YSK-EXC-0001",
+      "match_key": "d850d9fef43bcdbd",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "Yasookand",
+        "target": "A17:AD18",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-16T21:24:56",
+      "last_seen_at": "2026-10-16T21:24:56",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+        "first_run_id": "ysk_20261016T212108"
+      },
+      "history": [
+        {
+          "at": "2026-10-16T21:24:56",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A17:AD18."
+        },
+        {
+          "at": "2026-10-16T21:25:01",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A17:AD18."
+        },
+        {
+          "at": "2026-10-16T21:25:04",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A17:AD18."
+        },
+        {
+          "at": "2026-10-16T21:34:24",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A17:AD18."
+        },
+        {
+          "at": "2026-10-16T21:42:39",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A17:AD18."
+        }
+      ],
+      "title": "Unexpected M-line crossing: Yasookand!A17:AD18.",
+      "note": "Unexpected M-line crossing: Yasookand!A17:AD18.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_Yasookand_A17_AD18_13ba3ecd0377",
+      "last_run_id": "ysk_20261016T212108",
+      "message": "Unexpected M-line crossing: Yasookand!A17:AD18."
+    },
+    {
+      "handle": "YSK-EXC-0002",
+      "match_key": "d4aa226f1203a931",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "Yasookand",
+        "target": "A241:AD242",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-16T21:25:01",
+      "last_seen_at": "2026-10-16T21:25:01",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+        "first_run_id": "ysk_20261016T212108"
+      },
+      "history": [
+        {
+          "at": "2026-10-16T21:25:01",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A241:AD242."
+        },
+        {
+          "at": "2026-10-16T21:25:04",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A241:AD242."
+        },
+        {
+          "at": "2026-10-16T21:34:24",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A241:AD242."
+        },
+        {
+          "at": "2026-10-16T21:42:39",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A241:AD242."
+        }
+      ],
+      "title": "Unexpected M-line crossing: Yasookand!A241:AD242.",
+      "note": "Unexpected M-line crossing: Yasookand!A241:AD242.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_Yasookand_A241_AD242_dde814e3202b",
+      "last_run_id": "ysk_20261016T212108",
+      "message": "Unexpected M-line crossing: Yasookand!A241:AD242."
+    },
+    {
+      "handle": "YSK-EXC-0003",
+      "match_key": "70eeff79a1e33a63",
+      "match": {
+        "test_id": "M_LINE",
+        "sheet": "Yasookand",
+        "target": "A457:AD458",
+        "audit_kind": "",
+        "field_role": ""
+      },
+      "first_seen_at": "2026-10-16T21:25:04",
+      "last_seen_at": "2026-10-16T21:25:04",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "M_LINE_Yasookand_A457_AD458_7caa4c12a632",
+        "first_run_id": "ysk_20261016T212108"
+      },
+      "history": [
+        {
+          "at": "2026-10-16T21:25:04",
+          "event": "CREATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A457_AD458_7caa4c12a632",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A457:AD458."
+        },
+        {
+          "at": "2026-10-16T21:34:24",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A457_AD458_7caa4c12a632",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A457:AD458."
+        },
+        {
+          "at": "2026-10-16T21:42:39",
+          "event": "REVIEW_UPDATED",
+          "action": "ACCEPT_EXCEPTION",
+          "review_id": "M_LINE_Yasookand_A457_AD458_7caa4c12a632",
+          "run_id": "ysk_20261016T212108",
+          "workflow_status": "KNOWN_ACCEPTED",
+          "note": "Unexpected M-line crossing: Yasookand!A457:AD458."
+        }
+      ],
+      "title": "Unexpected M-line crossing: Yasookand!A457:AD458.",
+      "note": "Unexpected M-line crossing: Yasookand!A457:AD458.",
+      "severity": "HIGH",
+      "case_state": "ACCEPTED",
+      "workflow_status": "KNOWN_ACCEPTED",
+      "classification": "ACCEPTED_EXCEPTION",
+      "tags": [
+        "m_line",
+        "accepted-exception"
+      ],
+      "owner": "",
+      "last_review_id": "M_LINE_Yasookand_A457_AD458_7caa4c12a632",
+      "last_run_id": "ysk_20261016T212108",
+      "message": "Unexpected M-line crossing: Yasookand!A457:AD458."
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "schema": "cleaner.project_solutions/0.1",
+  "project_id": "EYV",
+  "next_sequence": 16,
+  "solutions": [
+    {
+      "handle": "EYV-SOL-0001",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ddde27e7fea72d2a",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "MTO",
+          "name": "MTO and Technical Data Sheet for LIGHTNING ARRESTER AND SURGE COUNTER",
+          "code": "401-IVK-H-MT-4-014",
+          "wbs": "1.2.2.3.14"
+        },
+        "semantic": {
+          "field_role": "status",
+          "audit_kind": "STATUS_VOCABULARY",
+          "document_relative_target": "G+0:G+1"
+        },
+        "observed": "HOLD",
+        "target_fallback": "G221:G222"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "sheet": "IVANAKI",
+          "target": "G221:G222",
+          "value": "CM",
+          "expected_old_value": "HOLD",
+          "field_role": "status",
+          "audit_kind": "STATUS_VOCABULARY"
+        }
+      },
+      "reason": "Status at IVANAKI!G221:G222 is neither in the inferred vocabulary ['A', 'A.N', 'CM', 'F.C', 'R.M'] nor in the reusable status library; observed='HOLD'.",
+      "created_at": "2026-10-17T02:26:47",
+      "updated_at": "2026-10-17T05:26:19",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "FIELD_VALIDATION_IVANAKI_G221_G222_5c3345ee178e",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0002",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "1927c724de0544a6",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "FRONT VIEW",
+          "name": "AVR PANEL FRONT VIEW",
+          "code": "401-IVK-L-OL-4-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.4.9",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D71"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D71",
+          "value": "1.2.1.4.9.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D71; observed=''. Proposed WBS='1.2.1.4.9.1000' using nearest valid WBS above '1.2.1.4.9'.",
+      "created_at": "2026-10-17T02:50:06",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D71_f18c27f32d72",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0003",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "4c445aaada3c4249",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "FRONT VIEW",
+          "name": "INVERTER TECHNICAL SPEC & FRONT VIEW",
+          "code": "401-IVK-L-OL-4-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.4.9",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D73"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D73",
+          "value": "1.2.1.4.9.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D73; observed=''. Proposed WBS='1.2.1.4.9.1001' using nearest valid WBS above '1.2.1.4.9'.",
+      "created_at": "2026-10-17T02:50:08",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D73_ab54c36adb7a",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0004",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "936d275d5764478d",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "name": "VCR PANEL FRONT VIEW"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.4.9",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D75"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D75",
+          "value": "1.2.1.4.9.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D75; observed=''. Proposed WBS='1.2.1.4.9.1002' using nearest valid WBS above '1.2.1.4.9'.",
+      "created_at": "2026-10-17T02:50:09",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D75_cd83aebcc6bf",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0005",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "db24aa4d72605d06",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "SCHEMATIC DIAGRAM",
+          "name": "63KV BUS SECTION CONTROL & PROTECTION SCHEMATIC DIAGRAM",
+          "code": "401-IVK-L-CD-4-100"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.5.4",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D85"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D85",
+          "value": "1.2.1.5.4.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D85; observed=''. Proposed WBS='1.2.1.5.4.1000' using nearest valid WBS above '1.2.1.5.4'.",
+      "created_at": "2026-10-17T02:50:10",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D85_9095676edfb9",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0006",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "5920b539fe8aa8c3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "SCHEMATIC DIAGRAM",
+          "name": "LOAD SHEDDING SCHEMATIC DIAGRAM",
+          "code": "401-IVK-L-CD-4-115"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.5.14",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D109"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D109",
+          "value": "1.2.1.5.14.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D109; observed=''. Proposed WBS='1.2.1.5.14.1000' using nearest valid WBS above '1.2.1.5.14'.",
+      "created_at": "2026-10-17T02:50:11",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D109_81cd46227d0e",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0007",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ff5f36ffee574c43",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "SCHEMATIC DIAGRAM",
+          "name": "VCR SCHEMATIC DIAGRAM",
+          "code": "401-IVK-L-CD-4-002"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.5.14",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D111"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D111",
+          "value": "1.2.1.5.14.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D111; observed=''. Proposed WBS='1.2.1.5.14.1001' using nearest valid WBS above '1.2.1.5.14'.",
+      "created_at": "2026-10-17T02:50:13",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D111_d2b7a7efe635",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0008",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "7d1471c0d46be0ce",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "SCS",
+          "name": "FAT PROCEDURE OF DCS SYSTEM",
+          "code": "401-IVK-L-CD-4-700"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.6.7",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D127"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D127",
+          "value": "1.2.1.6.7.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D127; observed=''. Proposed WBS='1.2.1.6.7.1000' using nearest valid WBS above '1.2.1.6.7'.",
+      "created_at": "2026-10-17T02:50:14",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D127_dd333d9225b4",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0009",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d18878adb80cf48c",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "MTO",
+          "name": "INVERTER TECHNICAL SPEC & FRONT VIEW",
+          "code": "401-IVK-L-OL-4-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.1.7.5",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D139"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D139",
+          "value": "1.2.1.7.5.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D139; observed=''. Proposed WBS='1.2.1.7.5.1000' using nearest valid WBS above '1.2.1.7.5'.",
+      "created_at": "2026-10-17T02:50:14",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D139_5e30ca22c3d4",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0010",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "ae827177d4f6b0f3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "CALCULATION",
+          "name": "CAPACITOR BANK CALCULATION",
+          "code": "401-IVK-H-CA-4-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.2.8",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D189"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D189",
+          "value": "1.2.2.2.8.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D189; observed=''. Proposed WBS='1.2.2.2.8.1000' using nearest valid WBS above '1.2.2.2.8'.",
+      "created_at": "2026-10-17T02:50:15",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D189_88f2d8c06deb",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0011",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "6276fcc0a48a9edd",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "CALCULATION",
+          "name": "20KV CAPACITOR BANK SURGE ARRESTER CALCULATION",
+          "code": "401-IVK-H-CA-4-011"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.2.2.8",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D191"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D191",
+          "value": "1.2.2.2.8.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D191; observed=''. Proposed WBS='1.2.2.2.8.1001' using nearest valid WBS above '1.2.2.2.8'.",
+      "created_at": "2026-10-17T02:50:16",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D191_b3a95de289c3",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0012",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b0ddcdc8f33236d3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "CALCULATION",
+          "name": "DESIGN CALCULATION OF CABLE GALLERY BUILDING",
+          "code": "401-IVK-C-CA-4-010"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.3.1.14",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D253"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D253",
+          "value": "1.2.3.1.14.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D253; observed=''. Proposed WBS='1.2.3.1.14.1000' using nearest valid WBS above '1.2.3.1.14'.",
+      "created_at": "2026-10-17T02:50:17",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D253_951280196e9d",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0013",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "20925d2258bcd485",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "DRAWING",
+          "name": "MASONRY RETAINING WALL"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.3.2.23",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D301"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D301",
+          "value": "1.2.3.2.23.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D301; observed=''. Proposed WBS='1.2.3.2.23.1000' using nearest valid WBS above '1.2.3.2.23'.",
+      "created_at": "2026-10-17T02:50:18",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D301_0ba7c18c0b89",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0014",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "3f6353846e94d7b3",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "DRAWING",
+          "name": "MASONRY RETAINING WALL CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.3.2.23",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D303"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D303",
+          "value": "1.2.3.2.23.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D303; observed=''. Proposed WBS='1.2.3.2.23.1001' using nearest valid WBS above '1.2.3.2.23'.",
+      "created_at": "2026-10-17T02:50:18",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D303_5ece03310e64",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "EYV-SOL-0015",
+      "enabled": true,
+      "project_id": "EYV",
+      "kind": "WORKBOOK_FIX",
+      "signature": "fbcdd1437bc96fd7",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "IVANAKI",
+        "document_identity": {
+          "document_type": "DRAWING",
+          "name": "SITE MOBILIZATION LAYOUT"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.2.3.2.23",
+          "document_relative_target": "D+0"
+        },
+        "observed": null,
+        "target_fallback": "D305"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "IVANAKI",
+          "target": "D305",
+          "value": "1.2.3.2.23.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at IVANAKI!D305; observed=''. Proposed WBS='1.2.3.2.23.1002' using nearest valid WBS above '1.2.3.2.23'.",
+      "created_at": "2026-10-17T02:50:19",
+      "updated_at": "2026-10-17T03:48:00",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "eyv_20261017T020820",
+        "review_id": "IDENTIFIERS_IVANAKI_D305_dbb5bbadd7b8",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    }
+  ]
+}

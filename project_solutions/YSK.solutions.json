@@ -1,0 +1,547 @@
+{
+  "schema": "cleaner.project_solutions/0.1",
+  "project_id": "YSK",
+  "next_sequence": 13,
+  "solutions": [
+    {
+      "handle": "YSK-SOL-0001",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "77cf2514c9bb9fe9",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "HVI2 SCHEMATIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.4.27",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C171"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C171",
+          "value": "1.6.1.4.27.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C171; observed=''. Proposed WBS='1.6.1.4.27.1000' using nearest valid WBS above '1.6.1.4.27'.",
+      "created_at": "2026-10-16T22:10:52",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C171_1bd8b1462599",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0002",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "df65e8693d5aa5ea",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "+YV1 PANEL SCHEMATIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.4.30",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C179"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C179",
+          "value": "1.6.1.4.30.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C179; observed=''. Proposed WBS='1.6.1.4.30.1000' using nearest valid WBS above '1.6.1.4.30'.",
+      "created_at": "2026-10-16T22:10:53",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C179_9e931efbe766",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0003",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "768875e55248c463",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "+YV2 PANEL SCHEMATIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.4.30",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C181"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C181",
+          "value": "1.6.1.4.30.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C181; observed=''. Proposed WBS='1.6.1.4.30.1001' using nearest valid WBS above '1.6.1.4.30'.",
+      "created_at": "2026-10-16T22:10:54",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C181_532790020b0f",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0004",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a2c2b1735282e908",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "+YV3 PANEL SCHEMATIC DIAGRAM"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.4.30",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C183"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C183",
+          "value": "1.6.1.4.30.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C183; observed=''. Proposed WBS='1.6.1.4.30.1002' using nearest valid WBS above '1.6.1.4.30'.",
+      "created_at": "2026-10-16T22:10:55",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C183_eca98e4f2713",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0005",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "d0fa9b40dce2a666",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MTO & TECHNICAL DATA (SPECIFICATION) FOR PLC"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.10.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C235"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C235",
+          "value": "1.6.1.10.3.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C235; observed=''. Proposed WBS='1.6.1.10.3.1000' using nearest valid WBS above '1.6.1.10.3'.",
+      "created_at": "2026-10-16T22:10:55",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C235_addd0bae527d",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0006",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "b3171c310d6544dc",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MTO & TECHNICAL DATA (SPECIFICATION) FOR MV CABLE & MV CABLE SEALING"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.10.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C237"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C237",
+          "value": "1.6.1.10.3.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C237; observed=''. Proposed WBS='1.6.1.10.3.1001' using nearest valid WBS above '1.6.1.10.3'.",
+      "created_at": "2026-10-16T22:10:56",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C237_1799fcdd9958",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0007",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "aa1cdd42a0a1cc7a",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "MTO & TECHNICAL DATA (SPECIFICATION) FOR LV CABLE"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.1.10.3",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C239"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C239",
+          "value": "1.6.1.10.3.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C239; observed=''. Proposed WBS='1.6.1.10.3.1002' using nearest valid WBS above '1.6.1.10.3'.",
+      "created_at": "2026-10-16T22:10:56",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C239_52f8299739c4",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0008",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "93112e584e5a121b",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "HV",
+          "name": "INDUCTANCE CALCULATION FOR CAPACITOR BANK"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.2.10.7",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C455"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C455",
+          "value": "1.6.2.10.7.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C455; observed=''. Proposed WBS='1.6.2.10.7.1000' using nearest valid WBS above '1.6.2.10.7'.",
+      "created_at": "2026-10-16T22:11:02",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C455_68b1d916eb54",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0009",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "eead523afc59e0e8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD MAST STEEL STRUCTURE CALCULATION"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.3.1.19",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C501"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C501",
+          "value": "1.6.3.1.19.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C501; observed=''. Proposed WBS='1.6.3.1.19.1000' using nearest valid WBS above '1.6.3.1.19'.",
+      "created_at": "2026-10-16T22:11:04",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C501_fb163e9defdc",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0010",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a6d21820f9b7f9ec",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GUARD MAST STEEL STRUCTURE DRAWING"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.3.4.5",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C635"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C635",
+          "value": "1.6.3.4.5.1000",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C635; observed=''. Proposed WBS='1.6.3.4.5.1000' using nearest valid WBS above '1.6.3.4.5'.",
+      "created_at": "2026-10-16T22:11:05",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C635_dd104343edb3",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0011",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "a804f73f4839a0d8",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "GANTRY STEEL STRUCTURE SHOP DRAWINGS"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.3.4.5",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C637"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C637",
+          "value": "1.6.3.4.5.1001",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C637; observed=''. Proposed WBS='1.6.3.4.5.1001' using nearest valid WBS above '1.6.3.4.5'.",
+      "created_at": "2026-10-16T22:11:06",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C637_c58d045dbf2f",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    },
+    {
+      "handle": "YSK-SOL-0012",
+      "enabled": true,
+      "project_id": "YSK",
+      "kind": "WORKBOOK_FIX",
+      "signature": "9b8c3b7f66bb254f",
+      "match": {
+        "test_id": "IDENTIFIERS",
+        "status": "FAIL",
+        "sheet": "Yasookand",
+        "document_identity": {
+          "document_type": "CIVIL",
+          "name": "FEL CODES"
+        },
+        "semantic": {
+          "field_key": "wbs",
+          "nearest_valid_wbs_above": "1.6.3.4.5",
+          "document_relative_target": "C+0"
+        },
+        "observed": null,
+        "target_fallback": "C641"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "SET_VALUE",
+        "parameters": {
+          "field_key": "wbs",
+          "sheet": "Yasookand",
+          "target": "C641",
+          "value": "1.6.3.4.5.1002",
+          "expected_old_value": null
+        }
+      },
+      "reason": "Required WBS is empty/invalid at Yasookand!C641; observed=''. Proposed WBS='1.6.3.4.5.1002' using nearest valid WBS above '1.6.3.4.5'.",
+      "created_at": "2026-10-16T22:11:07",
+      "updated_at": "2026-10-16T22:12:54",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "ysk_20261016T212108",
+        "review_id": "IDENTIFIERS_Yasookand_C641_f971097ed6c9",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": []
+    }
+  ]
+}

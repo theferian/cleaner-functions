@@ -28,6 +28,7 @@ class LogRecord:
     event_index: int = 1
     letter_date: Any = None
     letter_reference: Any = None
+    reference_kind: str | None = None
     doc_status: Any = None
     transaction_mode: str | None = None
 
@@ -38,6 +39,7 @@ class LogRecord:
     status_source: str | None = None
     block_index: int | None = None
     raw_source_value: Any = None
+    notes: str | None = None
     raw: dict[str, Any] = field(default_factory=dict)
 
     # Convenience aliases for the new internal vocabulary while downstream

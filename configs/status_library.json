@@ -1,27 +1,82 @@
 {
   "schema": "cleaner.status_library/0.1",
   "statuses": {
+    "A": {
+      "code": "A",
+      "aliases": [],
+      "meaning": "Approved",
+      "meaning_fa": "تایید شده",
+      "responsibility_after_receive": null,
+      "action_required": false,
+      "notes": "User-confirmed: engineering work is closed; candidate for WBS finish approval.",
+      "source": "user-confirmed-2026-10-15"
+    },
+    "A.F.C": {
+      "code": "A.F.C",
+      "aliases": [],
+      "meaning": "Approved for Construction",
+      "meaning_fa": null,
+      "responsibility_after_receive": "NONE",
+      "action_required": false,
+      "notes": null,
+      "source": "user-maintained"
+    },
+    "AN": {
+      "code": "AN",
+      "aliases": [
+        "A.N"
+      ],
+      "meaning": "Approved as Noted",
+      "meaning_fa": "تایید با اعمال نکات",
+      "responsibility_after_receive": "COMPANY",
+      "action_required": true,
+      "notes": "User-confirmed: further engineering action is required; do not close engineering.",
+      "source": "user-confirmed-2026-10-15"
+    },
+    "AP": {
+      "code": "AP",
+      "aliases": [],
+      "meaning": "Approved",
+      "meaning_fa": "تایید شده",
+      "responsibility_after_receive": null,
+      "action_required": false,
+      "notes": "User-confirmed: engineering work is closed; candidate for WBS finish approval.",
+      "source": "user-confirmed-2026-10-15"
+    },
     "CM": {
       "code": "CM",
       "aliases": [
-        "C.M"
+        "C.M",
+        "HOLD"
       ],
-      "meaning": null,
-      "meaning_fa": null,
+      "meaning": "Commented",
+      "meaning_fa": "دارای کامنت",
+      "responsibility_after_receive": "COMPANY",
+      "action_required": true,
+      "notes": "User-confirmed: comments require company engineering action.",
+      "source": "user-confirmed-2026-10-15"
+    },
+    "FC": {
+      "code": "FC",
+      "aliases": [
+        "F.C"
+      ],
+      "meaning": "For Construction",
+      "meaning_fa": "جهت اجرا",
       "responsibility_after_receive": null,
-      "action_required": null,
-      "notes": "C.M is user-confirmed as the same status as CM. Business meaning is not yet defined.",
-      "source": "user-confirmed-2026-10-07"
+      "action_required": false,
+      "notes": "User-confirmed: engineering work is closed; candidate for WBS finish approval.",
+      "source": "user-confirmed-2026-10-15"
     },
     "N.A": {
       "code": "N.A",
       "aliases": [],
-      "meaning": null,
+      "meaning": "Not Approved",
       "meaning_fa": null,
-      "responsibility_after_receive": null,
-      "action_required": null,
+      "responsibility_after_receive": "COMPANY",
+      "action_required": true,
       "notes": "Confirmed as a valid canonical status. Business meaning is not yet defined.",
-      "source": "user-confirmed-2026-10-07"
+      "source": "user-maintained"
     },
     "RJ": {
       "code": "RJ",
@@ -30,8 +85,8 @@
       "meaning_fa": "رد شده",
       "responsibility_after_receive": "COMPANY",
       "action_required": true,
-      "notes": "Confirmed project-control meaning. A received RJ requires company action/revision.",
-      "source": "user-confirmed"
+      "notes": "User-confirmed: rejected; company engineering revision/action is required.",
+      "source": "user-confirmed-2026-10-15"
     }
   }
 }

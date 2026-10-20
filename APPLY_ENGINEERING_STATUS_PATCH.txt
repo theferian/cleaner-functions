@@ -1,0 +1,41 @@
+ENGINEERING STATUS SEMANTICS PATCH v0.1
+
+Target repo:
+C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions
+
+Patch contents:
+- A/AP/FC = closed engineering, WBS finish candidate
+- AN/A.N, CM/C.M, RJ = action required, eligible for company-delay logic
+- N.A remains recognized but unresolved
+- NOT_SENT now requires fully empty interaction history
+- known closed statuses no longer create UNKNOWN_RECEIVE_STATUS diagnostics
+- regression tests
+- engineering-list documentation
+- demo task list (4A.7 complete; 4A.8 and 4A.9 next)
+
+Recommended Windows CMD/cmder sequence from repo root:
+
+  git status -sb
+  git apply --check engineering_status_semantics_v01.patch
+  git apply engineering_status_semantics_v01.patch
+  python -m pytest -q unit_tests\test_status_library.py unit_tests\test_engineering_three_lists.py
+  python -m pytest -q unit_tests
+
+If --check fails because the live branch has later edits to the same files:
+
+  git apply --3way engineering_status_semantics_v01.patch
+  git status --short
+  git diff --check
+
+Do not commit until the real AZD engineering-lists rerun passes and the output is reviewed.
+
+Next after applying:
+
+  python .\pipeline\weekly_report_pipeline.py engineering-lists --run-dir "runs\azd_20261014T071802" --project AZD --status-date 1405/07/22
+
+Acceptance targets:
+- GEOTECHNICAL is not in 01_Not_Sent.
+- A/AP/FC records are absent from all three active engineering lists.
+- AN/A.N, CM/C.M and RJ remain eligible for Company Delay based on latest state/date.
+- A/AP/FC no longer create UNKNOWN_RECEIVE_STATUS diagnostics.
+- N.A remains explicit unresolved knowledge, never guessed.

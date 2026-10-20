@@ -37,6 +37,7 @@ LOGBOOK_COLUMNS = [
     "event_index",
     "letter_date",
     "letter_reference",
+    "reference_kind",
     "doc_status",
     "transaction_mode",
     "source_row",
@@ -46,6 +47,7 @@ LOGBOOK_COLUMNS = [
     "status_source",
     "block_index",
     "raw_source_value",
+    "notes",
 ]
 
 
@@ -212,8 +214,8 @@ def write_logbook_to_workbook_com(
             "project_id", "source_run_id", "source_workbook", "source_sheet",
             "doc_type", "doc_type_a", "doc_type_b", "doc_name", "doc_code",
             "doc_wbs", "send_or_receive", "doc_rev", "letter_date",
-            "letter_reference", "doc_status", "transaction_mode", "date_source", "reference_source",
-            "status_source", "raw_source_value",
+            "letter_reference", "reference_kind", "doc_status", "transaction_mode", "date_source", "reference_source",
+            "status_source", "raw_source_value", "notes",
         }
         for idx, header in enumerate(LOGBOOK_COLUMNS, start=1):
             if header in text_columns:

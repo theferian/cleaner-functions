@@ -1,0 +1,213 @@
+{
+  "schema": "cleaner.weekly_report.validation/0.1",
+  "project_id": "AZD",
+  "document_family": "WEEKLY_REPORT_TEMPLATE",
+  "profile_version": "0.1.0",
+  "file_sha256": "63fd49cc56952a435f497df918d2bbd3bdd9a6e54da57bab517b440c32cc7d6d",
+  "status": "passed",
+  "counts": {
+    "errors": 0,
+    "warnings": 2,
+    "evidence": 23,
+    "wbs_rows": 852
+  },
+  "report_dates": [
+    {
+      "sheet": "اجرا پست های 230 و 63",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "اجرا پست های 230 و 63",
+      "cell": "J1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "اجرا خطوط های 230 و 63",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "تجهیزات پست 230",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "تجهیزات پست 63 ",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "تجهیزات خط  230 (500 متر)",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "تجهیزات خط 63 (4.5 کیلومتر)",
+      "cell": "A1",
+      "value": "1405/07/15"
+    },
+    {
+      "sheet": "تجهیزات خط 63 (15 کیلومتر)",
+      "cell": "A1",
+      "value": "1405/07/15"
+    }
+  ],
+  "issues": [
+    {
+      "severity": "WARNING",
+      "kind": "DUPLICATE_WBS",
+      "wbs": "1.1",
+      "rows": [
+        3,
+        876
+      ]
+    },
+    {
+      "severity": "WARNING",
+      "kind": "FORMULA_REFERENCE_ERROR",
+      "defined_name": "_xlnm._FilterDatabase",
+      "text": "'تجهیزات خط 63 (15 کیلومتر)'!#REF!"
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "master",
+      "sheet": "سد آزاد",
+      "role": "MASTER_MODEL"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "execution_substations",
+      "sheet": "اجرا پست های 230 و 63",
+      "role": "EXECUTION_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "execution_lines",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "role": "EXECUTION_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "procurement_230ss",
+      "sheet": "تجهیزات پست 230",
+      "role": "PROCUREMENT_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "procurement_63ss",
+      "sheet": "تجهیزات پست 63 ",
+      "role": "PROCUREMENT_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "procurement_line230",
+      "sheet": "تجهیزات خط  230 (500 متر)",
+      "role": "PROCUREMENT_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "procurement_line63_4_5",
+      "sheet": "تجهیزات خط 63 (4.5 کیلومتر)",
+      "role": "PROCUREMENT_REPORT"
+    },
+    {
+      "kind": "SHEET_MATCH",
+      "sheet_id": "procurement_line63_15",
+      "sheet": "تجهیزات خط 63 (15 کیلومتر)",
+      "role": "PROCUREMENT_REPORT"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_230_NOT_SENT",
+      "anchor_cell": "A27"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_230_COMPANY_DELAY",
+      "anchor_cell": "C64"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_230_CONSULTANT_DELAY",
+      "anchor_cell": "A80"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_63_NOT_SENT",
+      "anchor_cell": "A213"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_63_COMPANY_DELAY",
+      "anchor_cell": "C222"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا پست های 230 و 63",
+      "region_id": "SUBSTATION_63_CONSULTANT_DELAY",
+      "anchor_cell": "A228"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_230_NOT_SENT",
+      "anchor_cell": "A14"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_230_COMPANY_DELAY",
+      "anchor_cell": "C19"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_230_CONSULTANT_DELAY",
+      "anchor_cell": "A27"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_4_5_NOT_SENT",
+      "anchor_cell": "A61"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_4_5_COMPANY_DELAY",
+      "anchor_cell": "C66"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_4_5_CONSULTANT_DELAY",
+      "anchor_cell": "A74"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_15_NOT_SENT",
+      "anchor_cell": "A106"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_15_COMPANY_DELAY",
+      "anchor_cell": "C109"
+    },
+    {
+      "kind": "REGION_ANCHOR",
+      "sheet": "اجرا خطوط های 230 و 63",
+      "region_id": "LINE_63_15_CONSULTANT_DELAY",
+      "anchor_cell": "A114"
+    }
+  ]
+}

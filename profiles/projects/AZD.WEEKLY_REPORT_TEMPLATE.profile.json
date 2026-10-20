@@ -1,0 +1,889 @@
+{
+  "schema": "cleaner.project_document_profile/0.1",
+  "project_id": "AZD",
+  "document_family": "WEEKLY_REPORT_TEMPLATE",
+  "profile_version": "0.3.0",
+  "status": "SEMANTIC_EXTRACTION_VALIDATION",
+  "identity": {
+    "filename_patterns": [
+      "^7-\\s*سد آزاد\\.xlsx$",
+      "سد آزاد"
+    ],
+    "project_title_contains": [
+      "آزاد"
+    ],
+    "base_specimen": "7- سد آزاد.xlsx"
+  },
+  "status_semantics": {
+    "canonical": {
+      "A": {
+        "meaning": "Approved",
+        "action_required": false,
+        "engineering_closed": true
+      },
+      "AP": {
+        "meaning": "Approved",
+        "action_required": false,
+        "engineering_closed": true
+      },
+      "AN": {
+        "aliases": [
+          "A.N"
+        ],
+        "meaning": "Approved as Noted",
+        "action_required": true,
+        "engineering_closed": false
+      },
+      "CM": {
+        "aliases": [
+          "C.M"
+        ],
+        "meaning": "Commented",
+        "action_required": true,
+        "engineering_closed": false
+      },
+      "FC": {
+        "aliases": [
+          "F.C"
+        ],
+        "meaning": "For Construction",
+        "action_required": false,
+        "engineering_closed": true
+      },
+      "RJ": {
+        "meaning": "Rejected",
+        "action_required": true,
+        "engineering_closed": false
+      },
+      "N.A": {
+        "meaning": null,
+        "action_required": null,
+        "engineering_closed": null
+      }
+    },
+    "blank_tokens": [
+      "-",
+      "_",
+      ""
+    ]
+  },
+  "sheets": [
+    {
+      "sheet_id": "master",
+      "role": "MASTER_MODEL",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "سد آزاد"
+        ]
+      },
+      "expected_headers": {
+        "A1": "WBS",
+        "C1": "Task Name",
+        "D1": "درصد وزنی",
+        "E1": "Plan",
+        "F1": "Actual",
+        "G1": "تأخیرات",
+        "H1": "شروع",
+        "I1": "پایان"
+      },
+      "regions": [
+        {
+          "region_id": "MASTER_SCHEDULE_PROGRESS",
+          "region_type": "SCHEDULE_PROGRESS_MODEL",
+          "fallback_range": "A2:I876",
+          "purpose": "Canonical WBS, task, weight, plan, actual, delay, start and finish data.",
+          "ownership": "MAPPER_INPUT",
+          "fields": {
+            "wbs": {
+              "column": "A",
+              "data_type": "WBS",
+              "ownership": "REFERENCE",
+              "required": true
+            },
+            "task_name": {
+              "column": "C",
+              "data_type": "TEXT",
+              "ownership": "REFERENCE"
+            },
+            "weight_factor": {
+              "column": "D",
+              "data_type": "WEIGHT",
+              "ownership": "MAPPER_INPUT"
+            },
+            "plan_pct": {
+              "column": "E",
+              "data_type": "PERCENT_POINTS",
+              "ownership": "MAPPER_INPUT"
+            },
+            "actual_pct": {
+              "column": "F",
+              "data_type": "PERCENT_POINTS",
+              "ownership": "MAPPER_INPUT"
+            },
+            "delay": {
+              "column": "G",
+              "data_type": "PERCENT_POINTS",
+              "ownership": "FORMULA_PROTECTED",
+              "validation": "approximately plan_pct - actual_pct"
+            },
+            "start": {
+              "column": "H",
+              "data_type": "JALALI_DATE",
+              "ownership": "REFERENCE"
+            },
+            "finish": {
+              "column": "I",
+              "data_type": "JALALI_DATE",
+              "ownership": "REFERENCE"
+            }
+          }
+        },
+        {
+          "region_id": "MASTER_TASK_NOTES",
+          "region_type": "NARRATIVE_COLUMN",
+          "fallback_range": "J2:J876",
+          "purpose": "Task/document notes and explanations.",
+          "ownership": "MANUAL"
+        },
+        {
+          "region_id": "MASTER_ENGINEERING_HISTORY",
+          "region_type": "REVISION_TRANSACTION_MATRIX",
+          "fallback_range": "K2:AX876",
+          "purpose": "Engineering send/receive/status cycles and response durations.",
+          "ownership": "REFERENCE",
+          "cycle_width": 5,
+          "cycle_start_columns": [
+            "K",
+            "P",
+            "U",
+            "Z",
+            "AE",
+            "AJ",
+            "AO",
+            "AT"
+          ],
+          "status_columns": [
+            "M",
+            "R",
+            "W",
+            "AB",
+            "AG",
+            "AL",
+            "AQ",
+            "AV"
+          ]
+        },
+        {
+          "region_id": "MASTER_ENGINEERING_METRICS",
+          "region_type": "ENGINEERING_METRICS",
+          "fallback_range": "AY2:BB876",
+          "purpose": "Approval timing, designer and average response-time metrics.",
+          "ownership": "REFERENCE"
+        },
+        {
+          "region_id": "MASTER_PROCUREMENT_LIFECYCLE",
+          "region_type": "PROCUREMENT_LIFECYCLE",
+          "fallback_range": "BC2:BL876",
+          "purpose": "MTO, purchase request, vendor drawing, technical approval, order/manufacture/delivery lifecycle.",
+          "ownership": "REFERENCE"
+        }
+      ]
+    },
+    {
+      "sheet_id": "execution_substations",
+      "role": "EXECUTION_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "اجرا پست های 230 و 63"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "helper_columns": "J:M",
+      "regions": [
+        {
+          "region_id": "SUBSTATION_230_NOT_SENT",
+          "region_type": "NOT_SENT_LIST",
+          "scope": "230KV_SUBSTATION",
+          "anchor_contains": "استخراج لیست مدارک ارسال نشده",
+          "fallback_range": "A27:I57",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "NOT_SENT_LIST"
+        },
+        {
+          "region_id": "SUBSTATION_230_COMPANY_DELAY",
+          "region_type": "COMPANY_DELAY_LIST",
+          "scope": "230KV_SUBSTATION",
+          "anchor_contains": "پاسخگویی به نظرات مشاور با تأخیر",
+          "fallback_range": "A64:I79",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "COMPANY_DELAY_LIST"
+        },
+        {
+          "region_id": "SUBSTATION_230_CONSULTANT_DELAY",
+          "region_type": "CONSULTANT_DELAY_LIST",
+          "scope": "230KV_SUBSTATION",
+          "anchor_contains": "پاسخ مشاور به مدارک این شرکت با تأخیر",
+          "fallback_range": "A80:I88",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "CONSULTANT_DELAY_LIST"
+        },
+        {
+          "region_id": "SUBSTATION_63_NOT_SENT",
+          "region_type": "NOT_SENT_LIST",
+          "scope": "63KV_SUBSTATION",
+          "anchor_contains": "استخراج لیست مدارک ارسال نشده",
+          "occurrence": 2,
+          "fallback_range": "A213:I218",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "NOT_SENT_LIST"
+        },
+        {
+          "region_id": "SUBSTATION_63_COMPANY_DELAY",
+          "region_type": "COMPANY_DELAY_LIST",
+          "scope": "63KV_SUBSTATION",
+          "anchor_contains": "پاسخگویی به نظرات مشاور با تأخیر",
+          "occurrence": 2,
+          "fallback_range": "A222:I227",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "COMPANY_DELAY_LIST"
+        },
+        {
+          "region_id": "SUBSTATION_63_CONSULTANT_DELAY",
+          "region_type": "CONSULTANT_DELAY_LIST",
+          "scope": "63KV_SUBSTATION",
+          "anchor_contains": "پاسخ مشاور به مدارک این شرکت با تأخیر",
+          "occurrence": 2,
+          "fallback_range": "A228:I233",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "CONSULTANT_DELAY_LIST"
+        }
+      ],
+      "publication_status_date_cells": [
+        "A1",
+        "J1"
+      ],
+      "status_date_notes": "A1 is authoritative for validation; A1 and J1 are both publication write targets."
+    },
+    {
+      "sheet_id": "execution_lines",
+      "role": "EXECUTION_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "اجرا خطوط های 230 و 63"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "helper_columns": "J:M",
+      "regions": [
+        {
+          "region_id": "LINE_230_NOT_SENT",
+          "region_type": "NOT_SENT_LIST",
+          "scope": "230KV_LINE_500M",
+          "anchor_contains": "استخراج لیست مدارک ارسال نشده",
+          "fallback_range": "A14:I18",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "NOT_SENT_LIST"
+        },
+        {
+          "region_id": "LINE_230_COMPANY_DELAY",
+          "region_type": "COMPANY_DELAY_LIST",
+          "scope": "230KV_LINE_500M",
+          "anchor_contains": "پاسخگویی به نظرات مشاور با تأخیر",
+          "fallback_range": "A19:I26",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "COMPANY_DELAY_LIST"
+        },
+        {
+          "region_id": "LINE_230_CONSULTANT_DELAY",
+          "region_type": "CONSULTANT_DELAY_LIST",
+          "scope": "230KV_LINE_500M",
+          "anchor_contains": "پاسخ مشاور به مدارک این شرکت با تأخیر",
+          "fallback_range": "A27:I28",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "CONSULTANT_DELAY_LIST"
+        },
+        {
+          "region_id": "LINE_63_4_5_NOT_SENT",
+          "region_type": "NOT_SENT_LIST",
+          "scope": "63KV_LINE_4_5KM",
+          "anchor_contains": "استخراج لیست مدارک ارسال نشده",
+          "occurrence": 2,
+          "fallback_range": "A61:I65",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "NOT_SENT_LIST"
+        },
+        {
+          "region_id": "LINE_63_4_5_COMPANY_DELAY",
+          "region_type": "COMPANY_DELAY_LIST",
+          "scope": "63KV_LINE_4_5KM",
+          "anchor_contains": "پاسخگویی به نظرات مشاور با تأخیر",
+          "occurrence": 2,
+          "fallback_range": "A66:I73",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "COMPANY_DELAY_LIST"
+        },
+        {
+          "region_id": "LINE_63_4_5_CONSULTANT_DELAY",
+          "region_type": "CONSULTANT_DELAY_LIST",
+          "scope": "63KV_LINE_4_5KM",
+          "anchor_contains": "پاسخ مشاور به مدارک این شرکت با تأخیر",
+          "occurrence": 2,
+          "fallback_range": "A74:I75",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "CONSULTANT_DELAY_LIST"
+        },
+        {
+          "region_id": "LINE_63_15_NOT_SENT",
+          "region_type": "NOT_SENT_LIST",
+          "scope": "63KV_LINE_15KM",
+          "anchor_contains": "استخراج لیست مدارک ارسال نشده",
+          "occurrence": 3,
+          "fallback_range": "A106:I108",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "NOT_SENT_LIST"
+        },
+        {
+          "region_id": "LINE_63_15_COMPANY_DELAY",
+          "region_type": "COMPANY_DELAY_LIST",
+          "scope": "63KV_LINE_15KM",
+          "anchor_contains": "پاسخگویی به نظرات مشاور با تأخیر",
+          "occurrence": 3,
+          "fallback_range": "A109:I113",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "COMPANY_DELAY_LIST"
+        },
+        {
+          "region_id": "LINE_63_15_CONSULTANT_DELAY",
+          "region_type": "CONSULTANT_DELAY_LIST",
+          "scope": "63KV_LINE_15KM",
+          "anchor_contains": "پاسخ مشاور به مدارک این شرکت با تأخیر",
+          "occurrence": 3,
+          "fallback_range": "A114:I116",
+          "ownership": "GENERATED",
+          "source_service": "GENERAL_DOCUMENT",
+          "boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+          "raw_provenance": true,
+          "semantic_model": "CONSULTANT_DELAY_LIST"
+        }
+      ],
+      "publication_status_date_cells": [
+        "A1"
+      ]
+    },
+    {
+      "sheet_id": "procurement_230ss",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "تجهیزات پست 230"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "table_header_row": 7,
+      "item_start_row": 8,
+      "status_legend_contains": "قرمز: عدم استخراج MTO",
+      "helper_columns": "O:R",
+      "publication_status_date_cells": [
+        "A1"
+      ],
+      "item_identity_column": "M",
+      "procurement_item_fields": {
+        "status": {
+          "column": "A",
+          "data_type": "STATUS_COLOR",
+          "merge_inheritance": true
+        },
+        "notes": {
+          "columns": [
+            "B",
+            "C"
+          ],
+          "data_type": "NARRATIVE"
+        },
+        "manufacture_delivery_duration": {
+          "column": "D",
+          "data_type": "TEXT"
+        },
+        "order_contract_date": {
+          "column": "E",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "technical_approval": {
+          "column": "F",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "vendor_drawing_received": {
+          "column": "G",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "purchase_request": {
+          "column": "H",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "mto_date": {
+          "column": "I",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "delay_ratio": {
+          "column": "J",
+          "data_type": "RATIO"
+        },
+        "actual_ratio": {
+          "column": "K",
+          "data_type": "RATIO"
+        },
+        "plan_ratio": {
+          "column": "L",
+          "data_type": "RATIO"
+        },
+        "equipment": {
+          "column": "M",
+          "data_type": "TEXT",
+          "required": true
+        }
+      },
+      "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+    },
+    {
+      "sheet_id": "procurement_63ss",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "تجهیزات پست 63",
+          "تجهیزات پست 63 "
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "table_header_row": 7,
+      "item_start_row": 8,
+      "status_legend_contains": "قرمز: عدم استخراج MTO",
+      "helper_columns": "O:R",
+      "publication_status_date_cells": [
+        "A1"
+      ],
+      "item_identity_column": "M",
+      "procurement_item_fields": {
+        "status": {
+          "column": "A",
+          "data_type": "STATUS_COLOR",
+          "merge_inheritance": true
+        },
+        "notes": {
+          "columns": [
+            "B",
+            "C"
+          ],
+          "data_type": "NARRATIVE"
+        },
+        "manufacture_delivery_duration": {
+          "column": "D",
+          "data_type": "TEXT"
+        },
+        "order_contract_date": {
+          "column": "E",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "technical_approval": {
+          "column": "F",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "vendor_drawing_received": {
+          "column": "G",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "purchase_request": {
+          "column": "H",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "mto_date": {
+          "column": "I",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "delay_ratio": {
+          "column": "J",
+          "data_type": "RATIO"
+        },
+        "actual_ratio": {
+          "column": "K",
+          "data_type": "RATIO"
+        },
+        "plan_ratio": {
+          "column": "L",
+          "data_type": "RATIO"
+        },
+        "equipment": {
+          "column": "M",
+          "data_type": "TEXT",
+          "required": true
+        }
+      },
+      "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+    },
+    {
+      "sheet_id": "procurement_line230",
+      "role": "PROCUREMENT_REPORT",
+      "required": false,
+      "match": {
+        "exact_names": [
+          "تجهیزات خط 230 (500 متر)",
+          "تجهیزات خط  230 (500 متر)"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "table_header_row": 7,
+      "item_start_row": 8,
+      "status_legend_contains": "قرمز: عدم استخراج MTO",
+      "helper_columns": "O:R",
+      "publication_status_date_cells": [
+        "A1"
+      ],
+      "required_from_status_date": "1405/06/04",
+      "historical_presence_policy": "OPTIONAL_BEFORE_REQUIRED_FROM_DATE",
+      "item_identity_column": "M",
+      "procurement_item_fields": {
+        "status": {
+          "column": "A",
+          "data_type": "STATUS_COLOR",
+          "merge_inheritance": true
+        },
+        "notes": {
+          "columns": [
+            "B",
+            "C"
+          ],
+          "data_type": "NARRATIVE"
+        },
+        "manufacture_delivery_duration": {
+          "column": "D",
+          "data_type": "TEXT"
+        },
+        "order_contract_date": {
+          "column": "E",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "technical_approval": {
+          "column": "F",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "vendor_drawing_received": {
+          "column": "G",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "purchase_request": {
+          "column": "H",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "mto_date": {
+          "column": "I",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "delay_ratio": {
+          "column": "J",
+          "data_type": "RATIO"
+        },
+        "actual_ratio": {
+          "column": "K",
+          "data_type": "RATIO"
+        },
+        "plan_ratio": {
+          "column": "L",
+          "data_type": "RATIO"
+        },
+        "equipment": {
+          "column": "M",
+          "data_type": "TEXT",
+          "required": true
+        }
+      },
+      "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+    },
+    {
+      "sheet_id": "procurement_line63_4_5",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "تجهیزات خط 63 (4.5 کیلومتر)"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "table_header_row": 7,
+      "item_start_row": 8,
+      "status_legend_contains": "قرمز: عدم استخراج MTO",
+      "helper_columns": "O:R",
+      "publication_status_date_cells": [
+        "A1"
+      ],
+      "item_identity_column": "M",
+      "procurement_item_fields": {
+        "status": {
+          "column": "A",
+          "data_type": "STATUS_COLOR",
+          "merge_inheritance": true
+        },
+        "notes": {
+          "columns": [
+            "B",
+            "C"
+          ],
+          "data_type": "NARRATIVE"
+        },
+        "manufacture_delivery_duration": {
+          "column": "D",
+          "data_type": "TEXT"
+        },
+        "order_contract_date": {
+          "column": "E",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "technical_approval": {
+          "column": "F",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "vendor_drawing_received": {
+          "column": "G",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "purchase_request": {
+          "column": "H",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "mto_date": {
+          "column": "I",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "delay_ratio": {
+          "column": "J",
+          "data_type": "RATIO"
+        },
+        "actual_ratio": {
+          "column": "K",
+          "data_type": "RATIO"
+        },
+        "plan_ratio": {
+          "column": "L",
+          "data_type": "RATIO"
+        },
+        "equipment": {
+          "column": "M",
+          "data_type": "TEXT",
+          "required": true
+        }
+      },
+      "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+    },
+    {
+      "sheet_id": "procurement_line63_15",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "match": {
+        "exact_names": [
+          "تجهیزات خط 63 (15 کیلومتر)"
+        ]
+      },
+      "status_date_cells": [
+        "A1"
+      ],
+      "project_title_cell": "C1",
+      "table_header_row": 7,
+      "item_start_row": 8,
+      "status_legend_contains": "قرمز: عدم استخراج MTO",
+      "helper_columns": "O:R",
+      "publication_status_date_cells": [
+        "A1"
+      ],
+      "item_identity_column": "M",
+      "procurement_item_fields": {
+        "status": {
+          "column": "A",
+          "data_type": "STATUS_COLOR",
+          "merge_inheritance": true
+        },
+        "notes": {
+          "columns": [
+            "B",
+            "C"
+          ],
+          "data_type": "NARRATIVE"
+        },
+        "manufacture_delivery_duration": {
+          "column": "D",
+          "data_type": "TEXT"
+        },
+        "order_contract_date": {
+          "column": "E",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "technical_approval": {
+          "column": "F",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "vendor_drawing_received": {
+          "column": "G",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "purchase_request": {
+          "column": "H",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "mto_date": {
+          "column": "I",
+          "data_type": "DATE_OR_NARRATIVE"
+        },
+        "delay_ratio": {
+          "column": "J",
+          "data_type": "RATIO"
+        },
+        "actual_ratio": {
+          "column": "K",
+          "data_type": "RATIO"
+        },
+        "plan_ratio": {
+          "column": "L",
+          "data_type": "RATIO"
+        },
+        "equipment": {
+          "column": "M",
+          "data_type": "TEXT",
+          "required": true
+        }
+      },
+      "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+    }
+  ],
+  "validation_policy": {
+    "require_all_required_sheets": true,
+    "require_consistent_report_page_dates": true,
+    "require_master_headers": true,
+    "require_region_anchors": true,
+    "wbs_must_be_text_safe": true,
+    "progress_range": [
+      0,
+      100
+    ],
+    "closed_engineering_statuses": [
+      "A",
+      "AP",
+      "FC"
+    ],
+    "active_engineering_statuses": [
+      "AN",
+      "CM",
+      "RJ"
+    ],
+    "known_anomalies": [
+      {
+        "id": "AZD-WR-001",
+        "issue": "Terminal 'پایان' row is stored as WBS 1.1, likely numeric collapse of intended 1.10; row position varies historically.",
+        "policy": "WARN_KNOWN_WBS_COLLAPSE",
+        "matcher": {
+          "sheet_id": "master",
+          "wbs": "1.1",
+          "duplicate_task_contains": "پایان"
+        }
+      },
+      {
+        "id": "AZD-WR-002",
+        "location": "اجرا پست های 230 و 63!J1",
+        "issue": "J1 is a publication write target but was blank in older reports; A1 is authoritative for validation.",
+        "policy": "NON_BLOCKING_PUBLICATION_TARGET"
+      },
+      {
+        "id": "AZD-WR-003",
+        "location": "تجهیزات خط 63 (15 کیلومتر)",
+        "issue": "Hidden defined-name filter contains #REF!",
+        "policy": "WARN"
+      }
+    ]
+  },
+  "status_date_authority": {
+    "sheet_id": "execution_substations",
+    "cell": "A1",
+    "purpose": "Canonical report/status date used for schema-era validation."
+  },
+  "schema_evolution": [
+    {
+      "id": "AZD-WR-EVOL-001",
+      "change": "procurement_line230 sheet introduced into the weekly-report family",
+      "effective_from_status_date": "1405/06/04",
+      "validation_policy": "OPTIONAL_BEFORE_REQUIRED_FROM_DATE"
+    },
+    {
+      "id": "AZD-WR-EVOL-002",
+      "change": "execution_substations J1 became populated in later reports",
+      "validation_policy": "A1_AUTHORITATIVE_J1_PUBLICATION_TARGET"
+    }
+  ],
+  "semantic_extraction": {
+    "version": "0.3",
+    "raw_provenance_required": true,
+    "engineering_boundary_strategy": "ANCHOR_SHIFTED_PROFILE_RANGE",
+    "procurement_item_identity": "COLUMN_M_NONBLANK",
+    "merged_status_policy": "INHERIT_MERGED_A_ANCHOR"
+  }
+}

@@ -153,6 +153,27 @@ def build_coverage_audit(run: CleanerRun, result: BoardToLogResult) -> dict[str,
     for item in items:
         by_sheet[item.sheet][item.classification] += 1
 
+    # GENERAL_DOCUMENT_MEETING_REFERENCE_V02_COVERAGE
+    from dataclasses import replace as _meeting_replace
+    _meeting_sources = {
+        (str(r.source_sheet), str(r.reference_source))
+        for r in result.records
+        if getattr(r, "reference_kind", None) in {"MEETING_MINUTES", "MEETING"}
+        and r.reference_source
+    }
+    if _meeting_sources:
+        items = [
+            _meeting_replace(
+                item,
+                source_kind=((str(item.source_kind) + ",") if item.source_kind else "")
+                            + "MEETING_BASED_RECEIVE_REFERENCE",
+                note=((str(item.note) + " | ") if item.note else "")
+                     + "Original meeting reference captured; discovery/verification pending",
+            )
+            if ((item.sheet, item.address) in _meeting_sources
+                and item.classification in {"CAPTURED_TRANSACTION", "CAPTURED_NARRATIVE"})
+            else item for item in items
+        ]
     return {
         "schema": "board_to_log.coverage_audit/0.1",
         "run_id": run.run_id,

@@ -6,6 +6,7 @@ from typing import Any, Iterable
 
 from cleaner_core.status_library import load_status_library, normalize_status_token
 
+from cleaner_core.correspondence_reconstruction import reconstruct_correspondence
 from functions.board_to_log.contracts import LogRecord
 from functions.cleaner.service import CleanerRun
 
@@ -47,6 +48,7 @@ class EngineeringThreeLists:
     company_delay: list[EngineeringExceptionRow] = field(default_factory=list)
     consultant_delay: list[EngineeringExceptionRow] = field(default_factory=list)
     diagnostics: list[dict[str, Any]] = field(default_factory=list)
+    correspondence_audit: list[dict[str, Any]] = field(default_factory=list)
 
     def delay_register(self) -> list[EngineeringExceptionRow]:
         rows = [*self.company_delay, *self.consultant_delay]
@@ -82,6 +84,7 @@ class EngineeringThreeLists:
                 "03_Consultant_Delay": [x.to_dict() for x in self.consultant_delay],
                 "04_Delay_Register": [x.to_dict() for x in self.delay_register()],
             },
+            "correspondence_audit": list(self.correspondence_audit),
             "diagnostics": list(self.diagnostics),
         }
 
@@ -171,6 +174,114 @@ def _sequence_key(record: LogRecord) -> tuple[int, int, int]:
         int(record.event_index or 0),
         0 if record.send_or_receive == "send" else 1,
     )
+
+
+def _order_events_chronologically(
+    doc_records: list[LogRecord], *, status_date: str
+) -> tuple[list[LogRecord], list[dict[str, Any]]]:
+    """Order *dated* transactions by Jalali day, not revision/slot position.
+
+    Source sequence is only a tie-breaker for equal dates. An undated event
+    cannot safely be assigned a calendar position: preserve it as potentially
+    latest when its source sequence follows the latest dated event, and emit
+    a diagnostic whenever an undated event makes chronology uncertain.
+
+    Future-dated records are retained as evidence but excluded from the state
+    as of status_date; the caller must not mistake that for no history.
+    """
+    dated: list[LogRecord] = []
+    undated: list[LogRecord] = []
+    future: list[LogRecord] = []
+    diagnostics: list[dict[str, Any]] = []
+    as_of = _jalali_parts(status_date)
+    for event in doc_records:
+        date = _jalali_parts(event.letter_date)
+        if date is None:
+            undated.append(event)
+        elif as_of is not None and date > as_of:
+            future.append(event)
+        else:
+            dated.append(event)
+
+    # Lexicographic YYYY/MM/DD components are chronological Jalali dates.
+    dated.sort(key=lambda x: (_jalali_parts(x.letter_date), _sequence_key(x)))
+    undated.sort(key=_sequence_key)
+
+    if future:
+        diagnostics.append({
+            "kind": "FUTURE_DATED_EVENT_EXCLUDED",
+            "count": len(future),
+            "events": [
+                {"date": str(x.letter_date), "side": x.send_or_receive,
+                 "revision": x.doc_rev, "block_index": x.block_index,
+                 "event_index": x.event_index}
+                for x in future
+            ],
+        })
+
+    # Logbook source/revision order may disagree with dated event order.
+    by_source = sorted(dated, key=_sequence_key)
+    inverted_pairs = [
+        (left, right)
+        for left, right in zip(by_source, by_source[1:])
+        if _jalali_parts(left.letter_date) > _jalali_parts(right.letter_date)
+    ]
+    if inverted_pairs:
+        diagnostics.append({
+            "kind": "SOURCE_SEQUENCE_DATE_INVERSION",
+            "count": len(inverted_pairs),
+            "examples": [
+                {"earlier_source_date": str(left.letter_date),
+                 "later_source_date": str(right.letter_date),
+                 "earlier_source_side": left.send_or_receive,
+                 "later_source_side": right.send_or_receive}
+                for left, right in inverted_pairs[:5]
+            ],
+        })
+
+    # A RECEIVE before its paired SEND is an evidence problem, not an
+    # ordinary response-time interval. Preserve both events and flag it.
+    transaction_pairs: dict[tuple[int, int], dict[str, list[LogRecord]]] = {}
+    for event in dated:
+        pair_key = (int(event.block_index if event.block_index is not None else -1),
+                    int(event.event_index or 0))
+        transaction_pairs.setdefault(pair_key, {}).setdefault(event.send_or_receive, []).append(event)
+    contradictions = []
+    for pair_key, parts in transaction_pairs.items():
+        for send in parts.get("send", []):
+            for receive in parts.get("receive", []):
+                if _jalali_parts(receive.letter_date) < _jalali_parts(send.letter_date):
+                    contradictions.append({
+                        "block_index": pair_key[0], "event_index": pair_key[1],
+                        "send_date": str(send.letter_date),
+                        "receive_date": str(receive.letter_date),
+                    })
+    if contradictions:
+        diagnostics.append({
+            "kind": "RECEIVE_BEFORE_MATCHED_SEND",
+            "count": len(contradictions),
+            "examples": contradictions[:5],
+        })
+
+    if not dated:
+        # With no usable dates, preserve original semantic source order and
+        # let the existing NEEDS_DATE behavior handle the current state.
+        if undated:
+            diagnostics.append({"kind": "ALL_EVENTS_UNDATED", "count": len(undated)})
+        return undated, diagnostics
+
+    latest_dated = dated[-1]
+    earlier_undated = [x for x in undated if _sequence_key(x) <= _sequence_key(latest_dated)]
+    later_undated = [x for x in undated if _sequence_key(x) > _sequence_key(latest_dated)]
+    if undated:
+        diagnostics.append({
+            "kind": "UNRESOLVED_UNDATED_EVENT_ORDER",
+            "count": len(undated),
+            "potentially_latest": len(later_undated),
+            "latest_dated_event": str(latest_dated.letter_date),
+        })
+
+    return earlier_undated + dated + later_undated, diagnostics
 
 
 def _identity(record: LogRecord) -> dict[str, Any]:
@@ -270,7 +381,7 @@ def build_three_engineering_lists(
         # Preserve the historically configured CM/RJ behavior while allowing
         # the reusable library to contribute workflow semantics. As meanings
         # are defined in the library, hardcoded project knowledge can shrink.
-        response_statuses = {"CM", "RJ"} | status_library.statuses_for_responsibility("COMPANY")
+        response_statuses = status_library.statuses_for_responsibility("COMPANY")
     else:
         response_statuses = {
             status_library.canonicalize(x) or normalize_status_token(x)
@@ -291,7 +402,12 @@ def build_three_engineering_lists(
     all_keys = sorted(set(grouped) | set(inventory_map))
     for key in all_keys:
         doc_records = grouped.get(key, [])
-        ordered = sorted(doc_records, key=_sequence_key)
+        reconstruction = reconstruct_correspondence(
+            doc_records, status_library=status_library
+        )
+        ordered, chronology_issues = _order_events_chronologically(
+            reconstruction.events, status_date=status_date
+        )
         sends = [x for x in ordered if x.send_or_receive == "send"]
         inventory_item = inventory_map.get(key) or {}
         responsible_unit, unit_basis = _responsible_unit(inventory_item)
@@ -305,7 +421,15 @@ def build_three_engineering_lists(
                 "doc_wbs": inventory_item.get("doc_wbs"),
             }
 
-        if not sends:
+        result.diagnostics.extend({**identity, **issue} for issue in chronology_issues)
+        if doc_records:
+            result.correspondence_audit.append({**identity, **reconstruction.to_dict()})
+        result.diagnostics.extend({**identity, **issue} for issue in reconstruction.diagnostics)
+        if not ordered and doc_records:
+            # Interactions exist, but all are after the Status Date.
+            continue
+
+        if not ordered:
             latest = ordered[-1] if ordered else None
             result.not_sent.append(EngineeringExceptionRow(
                 **identity,
@@ -320,7 +444,7 @@ def build_three_engineering_lists(
                 last_action_date=(str(latest.letter_date) if latest and _jalali_parts(latest.letter_date) else None),
                 last_action_text=(latest.raw_source_value if latest else None),
                 status=(latest.doc_status if latest else None),
-                calculation_status="NO_SEND_EVENT",
+                calculation_status="NO_INTERACTION_HISTORY",
             ))
             continue
 
@@ -377,6 +501,16 @@ def build_three_engineering_lists(
         status_meaning = None
         if status_definition is not None:
             status_meaning = status_definition.meaning or status_definition.meaning_fa
+        # Closed engineering statuses A/AP/FC require no further
+        # engineering work and are excluded from all three active
+        # engineering lists. WBS finish approval is evaluated later.
+        if (
+            latest.send_or_receive == "receive"
+            and status_definition is not None
+            and status_definition.action_required is False
+        ):
+            continue
+
         if latest.send_or_receive == "receive" and status not in response_statuses:
             result.diagnostics.append({
                 "kind": "UNKNOWN_RECEIVE_STATUS",

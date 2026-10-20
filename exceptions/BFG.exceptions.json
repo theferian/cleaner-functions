@@ -1,0 +1,60 @@
+{
+  "schema": "cleaner.exception_registry/0.1",
+  "profile_name": "BFG",
+  "created_at": "2026-10-17T13:04:19",
+  "updated_at": "2026-10-17T15:35:55",
+  "next_sequence": 2,
+  "cases": [
+    {
+      "handle": "BFG-EXC-0001",
+      "match_key": "788514790ce59c30",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "sheet": "BAAFGH",
+        "target": "K69",
+        "audit_kind": "RECEIVE_STATUS_RELATION",
+        "field_role": "receive_date"
+      },
+      "first_seen_at": "2026-10-17T13:25:24",
+      "last_seen_at": "2026-10-17T13:25:24",
+      "detection_count": 1,
+      "source": {
+        "first_review_id": "FIELD_VALIDATION_BAAFGH_K69_273d98c30682",
+        "first_run_id": "bfg_20261017T130419"
+      },
+      "history": [
+        {
+          "at": "2026-10-17T13:25:24",
+          "event": "CREATED",
+          "action": "TRACK_EXCEPTION",
+          "review_id": "FIELD_VALIDATION_BAAFGH_K69_273d98c30682",
+          "run_id": "bfg_20261017T130419",
+          "workflow_status": "INVESTIGATE",
+          "note": "Supersedes unsafe K69 date -> NA replacement; actual response status needs source evidence."
+        },
+        {
+          "at": "2026-10-17T13:41:54",
+          "event": "OPERATOR_CONFIRMED_STATUS",
+          "review_id": "USER_CONFIRMED_BFG_L69_RECEIVE_STATUS_NOT_APPROVED",
+          "note": "BAAFGH!L69:L70 set to N.A in run overlay; date preserved."
+        }
+      ],
+      "title": "BAAFGH K69 receive date lacks paired response status",
+      "note": "Supersedes unsafe K69 date -> NA replacement; actual response status needs source evidence.",
+      "severity": "HIGH",
+      "case_state": "RESOLVED",
+      "workflow_status": "OPERATOR_CONFIRMED_STATUS",
+      "classification": "CORRECTED_IN_RESOLVED_STATE",
+      "tags": [
+        "field_validation",
+        "missing_receive_status",
+        "wrong_target_repair"
+      ],
+      "owner": "",
+      "last_review_id": "FIELD_VALIDATION_BAAFGH_K69_273d98c30682",
+      "last_run_id": "bfg_20261017T130419",
+      "message": "Receive date at BAAFGH!K69 has no populated corresponding status in the same transaction/vertical event.",
+      "resolved_at": "2026-10-17T13:41:54"
+    }
+  ]
+}

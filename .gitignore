@@ -9,3 +9,8 @@ runs/
 input/
 root.zip
 *.patch
+
+# Generated local Cleaner outputs (not source or profiles)
+/working/
+/portfolio_audits/
+/.pytest_cache/

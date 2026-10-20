@@ -12,6 +12,7 @@ from cleaner_core.field_schema import (
     normalize_status,
 )
 from functions.cleaner.service import CleanerRun
+from cleaner_core.status_library import load_status_library
 
 from .contracts import BoardToLogResult, ExtractionIssue, LogRecord
 
@@ -58,10 +59,31 @@ def _looks_like_reference_candidate(value: Any, *, status_values: set[str]) -> b
     return any(ch.isdigit() for ch in text)
 
 
+# GENERAL_DOCUMENT_MEETING_REFERENCE_V01
+# A short literal in a receive reference slot is evidence, not an official
+# numbered letter. The full narrative classifier still handles longer prose.
+def _meeting_reference_literal(value: Any) -> str | None:
+    if value is None:
+        return None
+    import re as _re
+    text = _re.sub(r"[\s\u200c\u200d]+", "", str(value).strip())
+    text = text.replace("ي", "ی").replace("ك", "ک")
+    if text in {"صورتجلسه", "جلسه"}:
+        return str(value).strip()
+    return None
+
+
 def _reference_candidates(items: list[dict[str, Any]], status_values: set[str]) -> list[dict[str, Any]]:
     candidates: list[dict[str, Any]] = []
     for item in items:
         if item.get("role") in {"send_date", "receive_date", "date", "status"}:
+            continue
+        # A literal meeting marker below a RECEIVE date is the source's
+        # actual reference text. It is not a numbered correspondence letter.
+        if (item.get("side_hint") == "receive"
+                and item.get("role") == "explanation"
+                and _meeting_reference_literal(item.get("value")) is not None):
+            candidates.append(item)
             continue
         if item.get("role") == "reference" or _looks_like_reference_candidate(
             item.get("value"), status_values=status_values
@@ -141,6 +163,22 @@ def _slot_lane(card: dict[str, Any], slot: dict[str, Any]) -> str:
     return "MIDDLE"
 
 
+def _commented_hold_status(status: dict[str, Any] | None) -> tuple[Any, str | None, Any]:
+    """Canonical CM for HOLD, but preserve original source token in notes."""
+    if status is None:
+        return None, None, None
+    effective = status.get("value")
+    original = (status.get("slot") or {}).get("value", effective)
+    if not any(normalize_status(value) == "HOLD" for value in (effective, original)):
+        return effective, None, original
+    canonical = "CM" if normalize_status(effective) == "HOLD" else effective
+    if normalize_status(canonical) == "CM":
+        note = "Source status HOLD; treated as CM (Commented)."
+    else:
+        note = f"Source status HOLD; reviewed as {canonical}."
+    return canonical, note, original
+
+
 def _effective_value(state: dict[str, Any], sheet: str, address: str, fallback: Any) -> Any:
     key = f"{sheet}!{address}".upper()
     override = (state.get("value_overrides") or {}).get(key)
@@ -214,6 +252,8 @@ def _role_for_slot(schema: dict[str, Any], card: dict[str, Any], slot: dict[str,
             return "status"
         return "reference"
 
+    if kind == "TEXT" and "status" in offset_roles and load_status_library().is_known(value):
+        return "status"
     if kind == "TEXT" and offset_roles:
         return "explanation"
 
@@ -292,6 +332,9 @@ def _choose_reference(date_slot: dict[str, Any], refs: list[dict[str, Any]], nex
         start = int(slot.get("row_offset_start", 0))
         if start < date_end:
             continue
+        # Do not attach a meeting marker from a remote row to an unrelated date.
+        if _meeting_reference_literal(ref.get("value")) is not None and start - date_end > 2:
+            continue
         if next_date_start is not None and start >= next_date_start:
             continue
         candidates.append(ref)
@@ -301,22 +344,45 @@ def _choose_reference(date_slot: dict[str, Any], refs: list[dict[str, Any]], nex
 
 
 def _pair_statuses(receives: list[dict[str, Any]], statuses: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
+    """Match statuses to receive dates; merged statuses cover every row in their span.
+
+    A four-row merged Status cell belongs to all Receive dates inside that
+    merged range. Unmerged statuses remain one-to-one. Prefer a narrower
+    overlapping status if more than one candidate exists; preserve legacy
+    nearest-unused matching only where there is no overlapping status.
+    """
     if not receives or not statuses:
         return {}
     receives_sorted = sorted(receives, key=lambda x: int(x["slot"].get("row_offset_start", 0)))
     statuses_sorted = sorted(statuses, key=lambda x: int(x["slot"].get("row_offset_start", 0)))
     result: dict[int, dict[str, Any]] = {}
     unused = list(statuses_sorted)
-    for idx, event in enumerate(receives_sorted):
-        if not unused:
-            break
+    for event in receives_sorted:
         row = int(event["slot"].get("row_offset_start", 0))
-        chosen = min(
-            unused,
-            key=lambda x: abs(int(x["slot"].get("row_offset_start", 0)) - row),
-        )
+        overlapping = [
+            status for status in statuses_sorted
+            if _rows_overlap(event, status)
+            and (status in unused or _row_span(status)[0] < _row_span(status)[1])
+        ]
+        if overlapping:
+            # Prefer a per-event status over a broader merged summary cell.
+            chosen = min(
+                overlapping,
+                key=lambda status: (
+                    _row_span(status)[1] - _row_span(status)[0],
+                    abs(_row_span(status)[0] - row),
+                ),
+            )
+        elif unused:
+            chosen = min(
+                unused,
+                key=lambda status: abs(_row_span(status)[0] - row),
+            )
+        else:
+            break
         result[id(event)] = chosen
-        unused.remove(chosen)
+        if chosen in unused:
+            unused.remove(chosen)
     return result
 
 
@@ -447,6 +513,35 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                     letter_reference: Any,
                     mode: str,
                 ) -> None:
+                    status_value, status_note, source_status = _commented_hold_status(status)
+                    meeting_literal = (
+                        _meeting_reference_literal(letter_reference)
+                        if side == "receive" and ref is not None else None
+                    )
+                    reference_kind = (
+                        "MEETING_MINUTES" if meeting_literal and
+                        meeting_literal.replace(" ", "").replace("‌", "") == "صورتجلسه"
+                        else "MEETING" if meeting_literal else
+                        "LETTER" if letter_reference is not None else None
+                    )
+                    # Preserve the observation for later discovery and verification.
+                    if meeting_literal:
+                        result.diagnostics["meeting_reference_count"] = (
+                            int(result.diagnostics.get("meeting_reference_count", 0)) + 1
+                        )
+                        result.diagnostics.setdefault("reference_observations", []).append({
+                            "kind": "MEETING_BASED_RECEIVE_REFERENCE",
+                            "discovery_state": "OBSERVED_UNVERIFIED",
+                            "source_sheet": sheet,
+                            "document_index": doc_index,
+                            "doc_name": identity.get("name") or identity.get("document_name"),
+                            "revision": revision,
+                            "date_source": event["address"],
+                            "reference_source": ref["address"],
+                            "reference_literal": meeting_literal,
+                            "reference_kind": reference_kind,
+                            "numbered_letter_provided": False,
+                        })
                     result.records.append(LogRecord(
                         project_id=project_id,
                         source_run_id=run.run_id,
@@ -471,7 +566,8 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         event_index=event_index,
                         letter_date=letter_date,
                         letter_reference=letter_reference,
-                        doc_status=status["value"] if status else None,
+                        reference_kind=reference_kind,
+                        doc_status=status_value,
                         transaction_mode=mode,
                         date_source=(None if mode == "status_only_receive" else event["address"]),
                         reference_source=(
@@ -484,10 +580,19 @@ def extract_board_to_log(run: CleanerRun, *, project_id: str | None = None) -> B
                         source_col=int(event["slot"].get("col_start", 0)),
                         block_index=block_index,
                         raw_source_value=event["value"],
+                        notes=(
+                            ((status_note + " ") if status_note else "") +
+                            (f"Meeting-based receive reference: {meeting_literal}; numbered letter not supplied."
+                             if meeting_literal else "")
+                        ) or None,
                         raw={
                             "date": event["value"],
                             "reference": letter_reference,
-                            "status": status["value"] if status else None,
+                            "reference_kind": reference_kind,
+                            "source_reference_literal": (ref["slot"].get("value") if ref else None),
+                            "reference_discovery_state": ("OBSERVED_UNVERIFIED" if meeting_literal else None),
+                            "status": status_value,
+                            "original_status": source_status if status_note else None,
                             "mode": mode,
                         },
                     ))

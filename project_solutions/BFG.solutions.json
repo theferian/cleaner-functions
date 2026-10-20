@@ -1,0 +1,55 @@
+{
+  "schema": "cleaner.project_solutions/0.1",
+  "project_id": "BFG",
+  "next_sequence": 2,
+  "solutions": [
+    {
+      "handle": "BFG-SOL-0001",
+      "enabled": false,
+      "project_id": "BFG",
+      "kind": "WORKBOOK_FIX",
+      "signature": "755a84a923675306",
+      "match": {
+        "test_id": "FIELD_VALIDATION",
+        "status": "FAIL",
+        "sheet": "BAAFGH",
+        "document_identity": {
+          "document_type": "LV",
+          "name": "LVDC 110V SCHEMATIC DIAGRAM",
+          "wbs": "1.2.1.2.4.3"
+        },
+        "semantic": {
+          "field_role": "receive_date",
+          "audit_kind": "RECEIVE_STATUS_RELATION",
+          "transaction_index": 2,
+          "document_relative_target": "K+0"
+        },
+        "observed": "1404/04/29",
+        "target_fallback": "K69"
+      },
+      "resolution": {
+        "mode": "PROJECT_DECISION_TEMPLATE",
+        "action": "REPLACE_VALUE",
+        "parameters": {
+          "sheet": "BAAFGH",
+          "target": "K69",
+          "expected_old_value": "",
+          "new_value": "NA"
+        }
+      },
+      "reason": "Receive date at BAAFGH!K69 has no populated corresponding status in the same transaction/vertical event.",
+      "created_at": "2026-10-17T13:10:45",
+      "updated_at": "2026-10-17T13:10:46",
+      "times_confirmed": 1,
+      "source": {
+        "run_id": "bfg_20261017T130419",
+        "review_id": "FIELD_VALIDATION_BAAFGH_K69_273d98c30682",
+        "decision_origin": "HUMAN_REVIEW",
+        "project_solution_handle": null
+      },
+      "history": [],
+      "disabled_reason": "Unsafe date-cell replacement superseded by tracked investigation.",
+      "disabled_at": "2026-10-17T13:25:24"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 from cleaner_core.contracts import Finding
 from cleaner_core.ranges import (
     crosses_vertical_boundary,
@@ -15,6 +17,52 @@ TEST_META = {
     "profile_rule": "structure.m_line",
     "snapshot_mode": "openpyxl",
 }
+
+
+def _family_horizontal_separator(snapshot, profile: dict, sheet: str, rect, cfg: dict) -> dict | None:
+    """Recognize a document-group divider, never a normal cross-boundary merge.
+
+    Safely recognize the GENERAL_DOCUMENT family convention: an entire-sheet-
+    width, two-row merge anchored in column A. It is a horizontal separator,
+    not a correspondence/document cell. Long narrative/date-bearing text is
+    deliberately left for human review.
+    """
+    if str(profile.get("family") or "").upper() != "GENERAL_DOCUMENT":
+        return None
+
+    rule = cfg.get("family_horizontal_separators") or {}
+    if not rule.get("enabled", True):
+        return None
+
+    max_row, max_col = snapshot.dimensions(sheet)
+    first_data_row = int(profile.get("data_model", {}).get("document_boundaries", {}).get("first_data_row", 3))
+    if not (
+        rect.c1 == 1
+        and rect.c2 == max_col
+        and rect.row_span == 2
+        and rect.col_span >= 8
+        and first_data_row <= rect.r1
+        and rect.r2 <= max_row
+    ):
+        return None
+
+    anchor = snapshot.anchor_value(sheet, rect)
+    label = "" if anchor is None else str(anchor).strip()
+    if (
+        len(label) > 80
+        or "\n" in label
+        or re.search(r"\d{2,4}[/\-]\d{1,2}[/\-]\d{1,4}", label)
+        or (anchor is not None and not isinstance(anchor, str))
+    ):
+        return None
+
+    return {
+        "rule": "GENERAL_DOCUMENT_FULL_WIDTH_TWO_ROW_SEPARATOR",
+        "anchor_label": label or None,
+        "rows": list(rect.rows()),
+        "full_width_columns": max_col,
+        "recognition": "GEOMETRY_AND_NON_TRANSACTION_ANCHOR",
+    }
 
 
 def _exception_rows(profile: dict, sheet: str) -> tuple[set[int], list[dict]]:
@@ -190,6 +238,24 @@ def run(snapshot, profile, log):
 
         for rect in crossings:
             rect_rows = set(rect.rows())
+
+            separator = _family_horizontal_separator(snapshot, profile, sheet, rect, cfg)
+            if separator is not None:
+                known_count += 1
+                msg = f"GENERAL_DOCUMENT horizontal section separator: {sheet}!{rect.address}."
+                log("FAMILY_SEPARATOR", msg)
+                findings.append(Finding(
+                    test_id="M_LINE",
+                    status="PASS",  # Audited but requires no repeat review.
+                    severity="INFO",
+                    sheet=sheet,
+                    target=rect.address,
+                    message=msg,
+                    expected="Full-width two-row non-transaction divider",
+                    observed=rect.address,
+                    evidence=separator,
+                ))
+                continue
 
             if rect_rows and rect_rows.issubset(known_rows):
                 known_count += 1

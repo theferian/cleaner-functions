@@ -23,6 +23,11 @@
       "candidate_exception_detection": {
         "enabled": true,
         "method": "EXACT_CROSSING_GEOMETRY_SIGNATURE"
+      },
+      "family_horizontal_separators": {
+        "enabled": true,
+        "method": "FULL_WIDTH_TWO_ROW_MERGE",
+        "description": "A merged A-to-last-column two-row band with an empty or short non-transaction label is a horizontal document-group separator, not a document/card. Preserve the merge, audit as PASS, and exclude it in DOCUMENT_BOUNDARIES. Narrow/partial/long narrative/date-bearing merges still require review."
       }
     }
   },

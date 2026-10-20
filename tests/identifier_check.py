@@ -38,6 +38,8 @@ def _sequence_fields(fields: dict[str, dict]) -> dict[str, dict]:
     for key, fdef in fields.items():
         cleaning = fdef.get("cleaning") or {}
         strategy = str(cleaning.get("strategy") or "").upper()
+        if key == "wbs" and not fdef.get("required", True):
+            continue
         if key == "wbs" or strategy == "NEAREST_VALID_ABOVE_APPEND_SEQUENCE":
             result[key] = fdef
     return result

@@ -46,7 +46,12 @@ from cleaner_core.solutions import (
     save_project_solutions,
     sync_project_solutions_from_decisions_file,
 )
+from cleaner_core.correspondence_replay import replay_approved_correspondence_corrections
+from cleaner_core.contracts import Finding
 from review.queue import build_review_queue, write_review_queue
+from review.decisions import write_decisions_file
+from cleaner_core.general_doc_auto_wbs import accept_general_document_wbs
+from cleaners.identifier_cleaner import normalize_digits
 from tests.m_line_check import run as m_line_check
 from tests.document_boundaries import run as document_boundaries_check
 from tests.document_structure import run as document_structure_check
@@ -398,6 +403,24 @@ def main(argv=None):
     stage_artifacts = {}
     snap = load_snapshot(snapshot_path)
     try:
+        if stage_id == "FIELD_VALIDATION":
+            replay_report = replay_approved_correspondence_corrections(
+                run_dir, project_solutions, state
+            )
+            replay_path = run_dir / "correspondence_replay_report.json"
+            replay_path.write_text(
+                json.dumps(replay_report, ensure_ascii=False, indent=2, default=str) + "\n",
+                encoding="utf-8",
+            )
+            stage_artifacts["correspondence_replay"] = str(replay_path)
+            counts = replay_report["summary"]
+            logger(
+                "REPLAY",
+                "Approved correspondence corrections: "
+                + ", ".join(f"{key}={value}" for key, value in counts.items()),
+            )
+            if counts.get("NEEDS_REVIEW", 0):
+                logger("REPLAY", "Unresolved correspondence repairs require review before publishing.")
         findings = run_stage(
             stage_id=stage_id,
             snapshot=snap,
@@ -405,7 +428,37 @@ def main(argv=None):
             state=state,
             logger=logger,
         )
+        if stage_id == "FIELD_VALIDATION":
+            for issue in replay_report["results"]:
+                if issue.get("result") != "NEEDS_REVIEW":
+                    continue
+                findings.append(Finding(
+                    test_id="CORRESPONDENCE_REPLAY",
+                    status="FAIL",
+                    severity="HIGH",
+                    sheet=issue.get("sheet"),
+                    target=issue.get("target"),
+                    message=(
+                        "Approved correspondence correction could not be safely replayed: "
+                        + str(issue.get("reason"))
+                    ),
+                    expected="Verified document/letter/date/response identity",
+                    observed=issue.get("observed"),
+                    evidence=dict(issue),
+                    suggested_fix=None,
+                ))
         resolved_snapshot, resolved_profile = build_resolved_context(snap, profile, state)
+        # Gather real WBS values from the existing resolved snapshot to prevent collisions.
+        # This never writes to source or working Excel files.
+        existing_wbs_for_auto = set()
+        if stage_id == "IDENTIFIERS" and str(profile.get("family") or "").upper() == "GENERAL_DOCUMENT":
+            existing_wbs_for_auto = {
+                normalize_digits(field.value)
+                for scan in scan_all_document_regions(resolved_snapshot, resolved_profile).values()
+                for region in scan.regions
+                for field in [region.field("wbs")]
+                if field is not None and field.value not in (None, "")
+            }
         attach_document_context(findings, resolved_snapshot, resolved_profile)
         exception_reconcile = reconcile_stage_findings(
             exception_registry,
@@ -597,9 +650,20 @@ def main(argv=None):
         exception_registry=exception_registry,
         project_solutions=project_solutions,
     )
+    # Family policy: machine-proposed blank-WBS fixes become auditable logical
+    # decisions. Never overwrite a decisions file containing existing reviews.
+    auto_wbs_count = 0
+    if stage_id == "IDENTIFIERS" and str(profile.get("family") or "").upper() == "GENERAL_DOCUMENT":
+        if decisions_path.exists():
+            logger("AUTO_WBS", "Existing IDENTIFIERS decisions file preserved; no overwrite.")
+        else:
+            auto_wbs_count = accept_general_document_wbs(queue, profile, existing_wbs_for_auto)
+            if auto_wbs_count:
+                write_decisions_file(queue, decisions_path)
+                logger("AUTO_WBS", f"Accepted {auto_wbs_count} safe WBS suggestion(s); Excel source unchanged.")
     write_review_queue(queue, queue_path)
 
-    review_count = int(queue.get("summary", {}).get("total_items", len(queue.get("items", []))))
+    review_count = int(queue.get("summary", {}).get("pending_review", len(queue.get("items", []))))
     mark_stage_run(
         state,
         stage_id,
@@ -607,6 +671,8 @@ def main(argv=None):
         report_path=str(report_path),
         review_queue_path=str(queue_path),
     )
+    if auto_wbs_count:
+        ingest_review_decisions_file(state, decisions_path)
     save_resolved_state(state, state_path)
 
     print("\n=== PIPELINE STAGE COMPLETE ===")

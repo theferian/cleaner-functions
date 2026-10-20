@@ -1,0 +1,123 @@
+{
+  "schema": "cleaner.weekly_report.base_test_summary/0.1",
+  "file": {
+    "path": "/mnt/data/7- سد آزاد.xlsx",
+    "name": "7- سد آزاد.xlsx",
+    "size_bytes": 356164,
+    "sha256": "63fd49cc56952a435f497df918d2bbd3bdd9a6e54da57bab517b440c32cc7d6d"
+  },
+  "validation_status": "passed",
+  "validation_counts": {
+    "errors": 0,
+    "warnings": 2,
+    "evidence": 23,
+    "wbs_rows": 852
+  },
+  "warnings": [
+    {
+      "severity": "WARNING",
+      "kind": "DUPLICATE_WBS",
+      "wbs": "1.1",
+      "rows": [
+        3,
+        876
+      ]
+    },
+    {
+      "severity": "WARNING",
+      "kind": "FORMULA_REFERENCE_ERROR",
+      "defined_name": "_xlnm._FilterDatabase",
+      "text": "'تجهیزات خط 63 (15 کیلومتر)'!#REF!"
+    }
+  ],
+  "sheet_matches": [
+    {
+      "sheet_id": "master",
+      "role": "MASTER_MODEL",
+      "required": true,
+      "matched_sheet": "سد آزاد",
+      "dimension": "A1:BL877",
+      "merge_count": 221,
+      "formula_count": 91
+    },
+    {
+      "sheet_id": "execution_substations",
+      "role": "EXECUTION_REPORT",
+      "required": true,
+      "matched_sheet": "اجرا پست های 230 و 63",
+      "dimension": "A1:S341",
+      "merge_count": 653,
+      "formula_count": 256
+    },
+    {
+      "sheet_id": "execution_lines",
+      "role": "EXECUTION_REPORT",
+      "required": true,
+      "matched_sheet": "اجرا خطوط های 230 و 63",
+      "dimension": "A1:Q185",
+      "merge_count": 379,
+      "formula_count": 139
+    },
+    {
+      "sheet_id": "procurement_230ss",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "matched_sheet": "تجهیزات پست 230",
+      "dimension": "A1:AX526",
+      "merge_count": 1007,
+      "formula_count": 236
+    },
+    {
+      "sheet_id": "procurement_63ss",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "matched_sheet": "تجهیزات پست 63 ",
+      "dimension": "A1:AX493",
+      "merge_count": 968,
+      "formula_count": 134
+    },
+    {
+      "sheet_id": "procurement_line230",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "matched_sheet": "تجهیزات خط  230 (500 متر)",
+      "dimension": "A1:AX480",
+      "merge_count": 954,
+      "formula_count": 44
+    },
+    {
+      "sheet_id": "procurement_line63_4_5",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "matched_sheet": "تجهیزات خط 63 (4.5 کیلومتر)",
+      "dimension": "A1:AX469",
+      "merge_count": 932,
+      "formula_count": 44
+    },
+    {
+      "sheet_id": "procurement_line63_15",
+      "role": "PROCUREMENT_REPORT",
+      "required": true,
+      "matched_sheet": "تجهیزات خط 63 (15 کیلومتر)",
+      "dimension": "A1:AX468",
+      "merge_count": 931,
+      "formula_count": 37
+    }
+  ],
+  "master_progress_counts": {
+    "total": 852,
+    "summary": 152,
+    "leaf": 698,
+    "milestone": 2
+  },
+  "engineering_status_counts": {
+    "RJ": 4,
+    "AP": 5,
+    "AN": 49,
+    "A": 99,
+    "CM": 131,
+    "FC": 21
+  },
+  "region_count": 20,
+  "recognized_region_count": 20
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "cleaner.document_family_profile/0.1",
+  "family": "WEEKLY_REPORT_TEMPLATE",
+  "version": "0.1.0",
+  "supported_extensions": [".xlsx"],
+  "service_contract": {
+    "operations": ["inspect", "validate", "extract", "corpus-test"],
+    "outputs": ["inspection", "validation", "extraction", "evidence"],
+    "write_operations": false,
+    "notes": "Read-only family service. Update/write ownership remains downstream."
+  },
+  "sheet_archetypes": {
+    "MASTER_MODEL": {
+      "purpose": "Canonical reporting model containing WBS, progress, engineering history and procurement lifecycle data.",
+      "required_capabilities": ["wbs", "progress", "engineering_history", "procurement_lifecycle"]
+    },
+    "EXECUTION_REPORT": {
+      "purpose": "Human-facing weekly report page combining progress, delay narratives and engineering exception lists.",
+      "repeatable_regions": ["SCOPE", "DESIGN", "NOT_SENT_LIST", "COMPANY_DELAY_LIST", "CONSULTANT_DELAY_LIST", "EXECUTION"]
+    },
+    "PROCUREMENT_REPORT": {
+      "purpose": "Human-facing equipment/procurement status page linked to the master model.",
+      "repeatable_regions": ["PROCUREMENT_SUMMARY", "PROCUREMENT_ITEMS", "STATUS_LEGEND"]
+    }
+  },
+  "recognition_priority": [
+    "anchor_text",
+    "formula_pattern",
+    "merge_geometry",
+    "relative_position",
+    "fallback_address"
+  ],
+  "ownership_classes": {
+    "PROTECTED": "Must not be overwritten by Cleaner or downstream writers unless explicitly approved.",
+    "MAPPER_INPUT": "May receive mapped schedule/progress data after reviewed WBS matching.",
+    "GENERATED": "Regenerated from another canonical source/service.",
+    "MANUAL": "Human-maintained narrative or status content.",
+    "FORMULA_PROTECTED": "Formula-driven presentation/helper cell; preserve formula.",
+    "REFERENCE": "Reference/key field used for validation and mapping.",
+    "WEEKLY_INPUT": "Deliberate weekly input such as report/status date."
+  },
+  "data_types": {
+    "WBS": {"kind": "string", "regex": "^\\d+(?:\\.\\d+)*$", "preserve_text": true},
+    "JALALI_DATE": {"kind": "string", "regex": "^14\\d{2}/(?:0?[1-9]|1[0-2])/(?:0?[1-9]|[12]\\d|3[01])$"},
+    "PERCENT_POINTS": {"kind": "number", "min": 0, "max": 100},
+    "WEIGHT": {"kind": "number", "min": 0},
+    "STATUS_CODE": {"kind": "string"},
+    "DURATION_DAYS": {"kind": "number", "min": 0},
+    "NARRATIVE": {"kind": "string"},
+    "FORMULA": {"kind": "formula"},
+    "TEXT": {"kind": "string"}
+  },
+  "default_validators": [
+    "file_integrity",
+    "required_sheet_presence",
+    "project_identity",
+    "region_anchor_presence",
+    "date_consistency",
+    "wbs_syntax",
+    "wbs_uniqueness",
+    "progress_range",
+    "formula_reference_errors",
+    "generated_region_structure"
+  ]
+}
