@@ -1,0 +1,33 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\RUN_GENERAL_DOCUMENT_BATCH_V03.py", "--project", "NKH", "--new-run", "--workbook", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\NKH\\source\\20261022T194045296260+0330__4.2_NKH_LATEST_GENERAL_DOC_14050730.xlsx", "--status-date", "1405/07/30", "--non-interactive"]
+
+[START] NKH: creating new Cleaner run (M_LINE)
+[RUN] nkh_20261022T194046
+[OK] M_LINE (already reviewed)
+[RUN] DOCUMENT_BOUNDARIES
+Traceback (most recent call last):
+  File "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\RUN_GENERAL_DOCUMENT_BATCH_V03.py", line 82, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\RUN_GENERAL_DOCUMENT_BATCH_V03.py", line 79, in main
+    return execute(m, args)
+  File "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\RUN_GENERAL_DOCUMENT_BATCH_V03.py", line 33, in execute
+    m.guarded_stage(args, rid, run_dir, book, stage)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\RUN_GENERAL_DOCUMENT_V06.py", line 933, in guarded_stage
+    run_cmd(cmd, cwd=ROOT)
+    ~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\RUN_GENERAL_DOCUMENT_V06.py", line 123, in run_cmd
+    proc = subprocess.run(command, cwd=cwd, env=env, capture_output=True, text=True, errors="replace", check=False)
+  File "C:\Users\f.tehrani\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\f.tehrani\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 1221, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\f.tehrani\AppData\Local\Programs\Python\Python314\Lib\subprocess.py", line 1662, in _communicate
+    self.stdout_thread.join(self._remaining_time(endtime))
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\f.tehrani\AppData\Local\Programs\Python\Python314\Lib\threading.py", line 1133, in join
+    self._os_thread_handle.join(timeout)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyboardInterrupt

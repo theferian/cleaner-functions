@@ -1,0 +1,18 @@
+{
+  "project": "NKH",
+  "status_date": "1405/07/30",
+  "status": "SOURCE_STAGED",
+  "reason": "",
+  "source_original_path": "W:\\00-1403\\1403-02-02-132kv Foulad Bafgh Kasra and Ext. of Nakhlestan\\Letter\\technical\\Nakhlestan\\updated Doc\\Nakhlestan...xlsx",
+  "source_original_filename": "Nakhlestan...xlsx",
+  "retrieval_manifest": "input\\NKH_retrieval_manifest.json",
+  "retrieved_input": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\input\\4.2_NKH_LATEST_GENERAL_DOC_14050730.xlsx",
+  "retrieval_time": "2026-10-22T19:40:45+03:30",
+  "snapshot": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\NKH\\source\\20261022T194045296260+0330__4.2_NKH_LATEST_GENERAL_DOC_14050730.xlsx",
+  "sha256": "e6acb93f2b87566b8fc9c3fde8e2256df4e3d40b080fc180a014ea6ccb09c737",
+  "original_source": "W:\\00-1403\\1403-02-02-132kv Foulad Bafgh Kasra and Ext. of Nakhlestan\\Letter\\technical\\Nakhlestan\\updated Doc\\Nakhlestan...xlsx",
+  "source_selection": "PREPARER_SUCCESSFUL_RETRIEVAL",
+  "source_filename": "Nakhlestan...xlsx",
+  "retrieved_filename": "4.2_NKH_LATEST_GENERAL_DOC_14050730.xlsx",
+  "source_modified": "2026-06-07T13:34:17"
+}

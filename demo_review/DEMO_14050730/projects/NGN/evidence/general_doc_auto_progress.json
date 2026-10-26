@@ -1,0 +1,12 @@
+{
+  "project": "NGN",
+  "status_date": "1405/07/30",
+  "workbook": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\NGN\\source\\General - Negin.xlsx",
+  "status": "REVIEW_REQUIRED",
+  "run_id": "ngn_20261022T190857",
+  "last_stage": "SLOT_SCHEMA",
+  "last_updated": "2026-10-22T19:09:16",
+  "pause_stage": "FIELD_VALIDATION",
+  "review_count": 0,
+  "note": "status AWAITING_REVIEW requires operator decision"
+}

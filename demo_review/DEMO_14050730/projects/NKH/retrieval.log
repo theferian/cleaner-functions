@@ -1,0 +1,13 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py", "prepare-general-doc", "--project", "NKH", "--overwrite"]
+
+[PREPARE] Project      : NKH
+[PREPARE] Source       : W:\00-1403\1403-02-02-132kv Foulad Bafgh Kasra and Ext. of Nakhlestan\Letter\technical\Nakhlestan\updated Doc\Nakhlestan...xlsx
+[PREPARE] Retrieved    : input\4.2_NKH_LATEST_GENERAL_DOC_14050730.xlsx
+[PREPARE] Manifest     : input\NKH_retrieval_manifest.json
+[PREPARE] Profile      : C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\profiles\NKH.profile.json (existing_profile_kept)
+[PREPARE] Workbook sheets:
+          [DATA] 'NAKHLESTAN': rows=1523, cols=172, identifier_rows=77, board_cells=304, headers=send,receive,rev
+[PREPARE] Next         :
+          python ./pipeline/project_pipeline.py --project NKH --stage M_LINE --new-run
+
+EXIT_CODE: 0

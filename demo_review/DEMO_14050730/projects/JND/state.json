@@ -1,0 +1,29 @@
+{
+  "project": "JND",
+  "status_date": "1405/07/30",
+  "status": "REVIEW_REQUIRED",
+  "reason": "existing stage status AWAITING_REVIEW; unresolved review decisions",
+  "source_original_path": "W:\\00-1403\\1403-02-03-400-132kv Jondi Shapoor\\Letter\\technical\\Updated Doc\\General - Jondi Shapour.xlsx",
+  "source_original_filename": "General - Jondi Shapour.xlsx",
+  "retrieval_manifest": "input\\JND_retrieval_manifest.json",
+  "retrieved_input": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\input\\5_JND_LATEST_GENERAL_DOC_14050730.xlsx",
+  "retrieval_time": "2026-10-22T19:24:35+03:30",
+  "snapshot": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\JND\\source\\5_JND_LATEST_GENERAL_DOC_14050730.xlsx",
+  "sha256": "bfc915c1eafe7594dcd5522812c3940e19a581880ad897ec9f5bd0d4d2d15c7a",
+  "original_source": "W:\\00-1403\\1403-02-03-400-132kv Jondi Shapoor\\Letter\\technical\\Updated Doc\\General - Jondi Shapour.xlsx",
+  "source_selection": "PREPARER_SUCCESSFUL_RETRIEVAL",
+  "source_filename": "General - Jondi Shapour.xlsx",
+  "retrieved_filename": "5_JND_LATEST_GENERAL_DOC_14050730.xlsx",
+  "source_modified": "2026-10-06T15:45:51",
+  "run_id": "jnd_20261022T192437",
+  "returncode": 2,
+  "last_stage": "SLOT_SCHEMA",
+  "pause_stage": "FIELD_VALIDATION",
+  "review_items": [
+    {
+      "stage": "FIELD_VALIDATION",
+      "reason": "existing stage status AWAITING_REVIEW; unresolved review decisions",
+      "count": 0
+    }
+  ]
+}

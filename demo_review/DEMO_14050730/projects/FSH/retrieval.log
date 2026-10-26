@@ -1,0 +1,13 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py", "prepare-general-doc", "--project", "FSH", "--overwrite"]
+
+[PREPARE] Project      : FSH
+[PREPARE] Source       : W:\00-1403\1403-02-01-132kV Gostarsh Foulad shahryar\Letter\technical\GOSTARESH E FOLAD E SHAHRIAR - UPDATED DOC.xlsx
+[PREPARE] Retrieved    : input\3_FSH_LATEST_GENERAL_DOC_14050730.xlsx
+[PREPARE] Manifest     : input\FSH_retrieval_manifest.json
+[PREPARE] Profile      : C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\profiles\FSH.profile.json (existing_profile_kept)
+[PREPARE] Workbook sheets:
+          [DATA] 'FOULAD SHAHRIYAR': rows=265, cols=23, identifier_rows=121, board_cells=367, headers=send,receive,rev
+[PREPARE] Next         :
+          python ./pipeline/project_pipeline.py --project FSH --stage M_LINE --new-run
+
+EXIT_CODE: 0

@@ -2,7 +2,7 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "AZD",
   "created_at": "2026-10-06T06:19:25",
-  "updated_at": "2026-10-18T00:50:30",
+  "updated_at": "2026-10-23T02:17:22",
   "next_sequence": 13,
   "cases": [
     {
@@ -130,13 +130,19 @@
           "run_id": "azd_20261008T141819",
           "workflow_status": "INVESTIGATE",
           "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21."
+        },
+        {
+          "at": "2026-10-22T19:52:39",
+          "event": "AUTO_RESOLVED",
+          "run_id": "azd_20261022T195101",
+          "reason": "Matching finding was not detected in the latest stage run."
         }
       ],
       "title": "Date Chronology",
       "note": "Receive date 1404/08/10 at 230KV SS!N21 precedes send date 1404/08/11 at 230KV SS!M21.",
       "severity": "MEDIUM",
-      "case_state": "OPEN",
-      "workflow_status": "INVESTIGATE",
+      "case_state": "RESOLVED",
+      "workflow_status": "NO_LONGER_DETECTED",
       "classification": "DATA_ANOMALY",
       "tags": [
         "chronology",
@@ -167,7 +173,9 @@
           "wbs": "1.5.1.1.2.1.2"
         },
         "document_relative_target": "N+2"
-      }
+      },
+      "resolved_at": "2026-10-22T19:52:39",
+      "resolved_run_id": "azd_20261022T195101"
     },
     {
       "handle": "AZD-EXC-0002",

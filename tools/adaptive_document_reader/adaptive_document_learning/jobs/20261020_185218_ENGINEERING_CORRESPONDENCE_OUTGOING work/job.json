@@ -1,0 +1,28 @@
+{
+  "schema": "adaptive-document-job/v0.6",
+  "id": "20261020_185218_ENGINEERING_CORRESPONDENCE_OUTGOING work",
+  "name": "ENGINEERING_CORRESPONDENCE_OUTGOING work",
+  "family": "ENGINEERING_CORRESPONDENCE_OUTGOING",
+  "status": "completed",
+  "started_at": "2026-10-20T18:52:18",
+  "finished_at": "2026-10-20T18:52:19",
+  "documents": [
+    {
+      "path": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\send\\1404-3003.pdf",
+      "name": "1404-3003.pdf",
+      "opened_at": "2026-10-20T18:52:18",
+      "corrections": []
+    }
+  ],
+  "events": [
+    {
+      "time": "2026-10-20T18:52:18",
+      "type": "document_opened",
+      "path": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\send\\1404-3003.pdf"
+    },
+    {
+      "time": "2026-10-20T18:52:19",
+      "type": "job_finished"
+    }
+  ]
+}

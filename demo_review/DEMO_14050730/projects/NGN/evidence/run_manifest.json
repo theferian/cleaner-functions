@@ -1,0 +1,23 @@
+{
+  "schema": "cleaner.run_manifest/0.1",
+  "run_id": "ngn_20261022T190857",
+  "created_at": "2026-10-22T19:08:57",
+  "profile_name": "NGN",
+  "profile_path": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\profiles\\NGN.profile.json",
+  "workbook": {
+    "name": "General - Negin.xlsx",
+    "path": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\NGN\\source\\General - Negin.xlsx",
+    "saved_state": "saved",
+    "sha256_at_run_start": "94666422fb9b75b7f94c66e7d2aeb9e4083443bd3afe3c8113590a30ac60b911"
+  },
+  "pipeline": [
+    "M_LINE",
+    "DOCUMENT_BOUNDARIES",
+    "CARD_MAP",
+    "SLOT_SCHEMA",
+    "FIELD_VALIDATION",
+    "IDENTIFIERS"
+  ],
+  "exception_registry": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\exceptions\\NGN.exceptions.json",
+  "project_solutions": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\project_solutions\\NGN.solutions.json"
+}

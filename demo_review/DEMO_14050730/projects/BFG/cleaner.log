@@ -1,0 +1,5 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\RUN_GENERAL_DOCUMENT_BATCH_V03.py", "--project", "BFG", "--new-run", "--workbook", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\BFG\\source\\4.1_BFG_LATEST_GENERAL_DOC_14050730.xlsx", "--status-date", "1405/07/30", "--non-interactive"]
+
+[START] BFG: creating new Cleaner run (M_LINE)
+
+EXIT_CODE: 1

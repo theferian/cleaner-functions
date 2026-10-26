@@ -1,0 +1,59 @@
+{
+  "schema": "adaptive-document-example/v0.6",
+  "family": "CONSULTANT_INCOMING_LETTER_FIELDS_v01",
+  "source_document": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\recive\\2104-416.pdf",
+  "page": 1,
+  "saved_at": "2026-10-21T14:57:54",
+  "page_size_px": [
+    3060,
+    4217
+  ],
+  "regions": [
+    {
+      "id": "R001",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_date",
+      "bbox": [
+        137.79,
+        668.26,
+        505.21,
+        771.6
+      ],
+      "bbox_normalized": [
+        0.045028,
+        0.158468,
+        0.165103,
+        0.182974
+      ],
+      "source_before_save": "user_added",
+      "user_modified": true,
+      "group": "",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R002",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_reference",
+      "bbox": [
+        137.79,
+        771.6,
+        516.7,
+        861.16
+      ],
+      "bbox_normalized": [
+        0.045028,
+        0.182974,
+        0.168855,
+        0.204212
+      ],
+      "source_before_save": "user_added",
+      "user_modified": true,
+      "group": "",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    }
+  ]
+}

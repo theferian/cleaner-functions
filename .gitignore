@@ -14,3 +14,15 @@ root.zip
 /working/
 /portfolio_audits/
 /.pytest_cache/
+
+
+# Ignore browser profiles and generated reports
+toProjectReport/
+_browser_profile/
+
+# Ignore zip archives
+*.zip
+
+# Ignore backup files
+*.before_*
+

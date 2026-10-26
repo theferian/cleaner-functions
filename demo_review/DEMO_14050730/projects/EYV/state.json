@@ -1,0 +1,23 @@
+{
+  "project": "EYV",
+  "status_date": "1405/07/30",
+  "status": "ERROR",
+  "reason": "Child exited 1: C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py audit-coverage\nTraceback (most recent call last):\n  File \"C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py\", line 541, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py\", line 537, in main\n    return int(args.func(args) or 0)\n               ~~~~~~~~~^^^^^^\n  File \"C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py\", line 304, in coverage_audit_step\n    excel, workbook, output_path, execution = create_cleaned_copy_com(\n                                              ~~~~~~~~~~~~~~~~~~~~~~~^\n        run,\n        ^^^^\n        output_path=output_path,\n        ^^^^^^^^^^^^^^^^^^^^^^^^\n        overwrite=args.overwrite,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\functions\\cleaner\\executor.py\", line 310, in create_cleaned_copy_com\n    excel.Visible = True\n    ^^^^^^^^^^^^^\n  File \"C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 677, in __setattr__\n    self._oleobj_.Invoke(entry.dispid, 0, invoke_type, 0, value)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npywintypes.com_error: (-2147352567, 'Exception occurred.', (0, None, None, None, 0, -2146777998), None)",
+  "source_original_path": "W:\\00-1401\\140102-09- 63kv Ivanaki\\letter\\technical\\updated Doc\\General-IVANAKI.xlsx",
+  "source_original_filename": "General-IVANAKI.xlsx",
+  "retrieval_manifest": "input\\EYV_retrieval_manifest.json",
+  "retrieved_input": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\input\\2_EYV_LATEST_GENERAL_DOC_14050730.xlsx",
+  "retrieval_time": "2026-10-22T19:35:21+03:30",
+  "snapshot": "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\EYV\\source\\2_EYV_LATEST_GENERAL_DOC_14050730.xlsx",
+  "sha256": "3b3b6e33e8e47e74b437aea75ff01842e5525b55e87d2cef6e8c8aa0a092fa29",
+  "original_source": "W:\\00-1401\\140102-09- 63kv Ivanaki\\letter\\technical\\updated Doc\\General-IVANAKI.xlsx",
+  "source_selection": "PREPARER_SUCCESSFUL_RETRIEVAL",
+  "source_filename": "General-IVANAKI.xlsx",
+  "retrieved_filename": "2_EYV_LATEST_GENERAL_DOC_14050730.xlsx",
+  "source_modified": "2026-10-18T08:36:45",
+  "run_id": "eyv_20261022T193525",
+  "returncode": 1,
+  "last_stage": "BOARD_TO_LOG",
+  "pause_stage": "",
+  "review_items": []
+}

@@ -1,0 +1,11 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\RUN_GENERAL_DOCUMENT_BATCH_V03.py", "--project", "JND", "--run-id", "jnd_20261022T192437", "--workbook", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\JND\\source\\5_JND_LATEST_GENERAL_DOC_14050730.xlsx", "--status-date", "1405/07/30", "--non-interactive"]
+
+[OK] M_LINE (already reviewed)
+[OK] DOCUMENT_BOUNDARIES (already reviewed)
+[OK] CARD_MAP (already reviewed)
+[OK] SLOT_SCHEMA (already reviewed)
+[REVIEW REQUIRED] FIELD_VALIDATION: existing stage status AWAITING_REVIEW; unresolved review decisions
+  Queue: C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\runs\jnd_20261022T192437\field_validation_review_queue.json
+  Review command: py .\dev\review_findings.py "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\runs\jnd_20261022T192437\field_validation_review_queue.json" --decisions "C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\runs\jnd_20261022T192437\field_validation_review_decisions.json" --accept-known
+
+EXIT_CODE: 2

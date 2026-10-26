@@ -1,0 +1,9 @@
+﻿project,status,run_id,status_date,not_sent,company_delay,consultant_delay,diagnostic_count,source_filename,sha256,pause_stage,reason,original_source,source_modified,source_selection,alias,report_available
+AZD,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Azad,False
+JND,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Jondi Shapoor,False
+FSH,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,SHY / Shahriyar,False
+NGN,REVIEW_REQUIRED,ngn_20261022T190857,1405/07/30,,,,,General - Negin.xlsx,94666422fb9b75b7f94c66e7d2aeb9e4083443bd3afe3c8113590a30ac60b911,FIELD_VALIDATION,status AWAITING_REVIEW requires operator decision,\\file-server\Project\00-1403\1403-02-04-Negin Boushehr\Letter\technical\پست سیار(جلسه فنی)\General - Negin.xlsx,2026-10-05T12:02:13,CONFIGURED_EXPLICIT_SOURCE,Negin,False
+YSK,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Yasookand,False
+EYV,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Ivanaki,False
+BFG,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Bafgh Kasra,False
+NKH,SOURCE_REVIEW,,1405/07/30,,,,,,,,RETRIEVAL_NO_FRESH_CANDIDATE,,,,Nakhlestan,False

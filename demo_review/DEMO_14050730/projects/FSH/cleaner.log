@@ -1,0 +1,32 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\RUN_GENERAL_DOCUMENT_BATCH_V03.py", "--project", "FSH", "--run-id", "fsh_20261022T192547", "--workbook", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\FSH\\source\\3_FSH_LATEST_GENERAL_DOC_14050730.xlsx", "--status-date", "1405/07/30", "--non-interactive"]
+
+[OK] M_LINE (already reviewed)
+[OK] DOCUMENT_BOUNDARIES (already reviewed)
+[OK] CARD_MAP (already reviewed)
+[OK] SLOT_SCHEMA (already reviewed)
+[OK] FIELD_VALIDATION (already reviewed)
+[OK] IDENTIFIERS (already reviewed)
+[RUN] Board->Log
+[BOARD->LOG] records=295 issues=0
+[RUN] Coverage Audit
+[COVERAGE] mapped=1309 not_retrieved=0 unresolved=0
+[RUN] Engineering Lists
+[ENGINEERING] not_sent=24 company_delay=7 consultant_delay=44 diagnostics=10
+[REPORT REVIEW] FSH | 1405/07/30 | 10 open diagnostic(s)
+  SAME_DAY_DIRECTION_ORDER_UNVERIFIED: 4 | A send and receive share a date; their actual order cannot be proven from dates alone.
+  SOURCE_SEQUENCE_DATE_INVERSION: 5 | Source-order dates go backwards between consecutive recorded interactions.
+  UNRESOLVED_UNDATED_EVENT_ORDER: 1 | An event without a verified date might affect which response is latest.
+   1. SAME_DAY_DIRECTION_ORDER_UNVERIFIED | FOULAD SHAHRIYAR | LIST OF DOCUMENT | WBS=1.2.2.1.1 | 1403/10/03
+   2. SOURCE_SEQUENCE_DATE_INVERSION | FOULAD SHAHRIYAR | GENERAL SINGLE LINE DIAGRAM  | WBS=1.2.2.3.1.1.1 | dates: 1404/06/09 -> 1404/05/29
+   3. SOURCE_SEQUENCE_DATE_INVERSION | FOULAD SHAHRIYAR | PROT & CONTROL SINGLE LINE DIAGRAM | WBS=1.2.2.3.1.1.2 | dates: 1404/06/09 -> 1404/05/29
+   4. SOURCE_SEQUENCE_DATE_INVERSION | FOULAD SHAHRIYAR | CONTROL ROOM ARRANGMENT | WBS=1.2.2.3.1.1.8 | dates: 1404/06/09 -> 1404/05/29
+   5. SOURCE_SEQUENCE_DATE_INVERSION | FOULAD SHAHRIYAR | CONTROL SCHEMATIC DIAGRAM | WBS=1.2.2.3.1.4.1 | dates: 1404/10/11 -> 1404/06/05
+   6. SOURCE_SEQUENCE_DATE_INVERSION | FOULAD SHAHRIYAR | PROTECTION SCHEMATIC DIAGRAM | WBS=1.2.2.3.1.4.2 | dates: 1404/09/06 -> 1404/05/20
+   7. SAME_DAY_DIRECTION_ORDER_UNVERIFIED | FOULAD SHAHRIYAR | MODIFICATION OF EARTHING SYSTEM PLAN DRAWING | WBS=1.2.2.3.3.1.2 | 1404/08/24
+   8. SAME_DAY_DIRECTION_ORDER_UNVERIFIED | FOULAD SHAHRIYAR | MODIFICATION OF EARTHING SYSTEM DETAILS DRAWING | WBS=1.2.2.3.3.1.3 | 1404/08/24
+   9. UNRESOLVED_UNDATED_EVENT_ORDER | FOULAD SHAHRIYAR | EARTH WORK DRAWING | WBS=1.2.1.2.2.1.1022 | latest dated: 1403/10/08
+  10. SAME_DAY_DIRECTION_ORDER_UNVERIFIED | FOULAD SHAHRIYAR | CONTROL BUILDING ELECTRICAL SYSTEM DRAWINGs | WBS=1.2.1.2.2.1.1038 | 1405/03/13
+[REVIEW REQUIRED] ENGINEERING: 10 reporting diagnostic(s); review pending
+  Run directory: C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\runs\fsh_20261022T192547
+
+EXIT_CODE: 2

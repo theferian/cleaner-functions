@@ -1,0 +1,59 @@
+{
+  "schema": "adaptive-document-example/v0.6",
+  "family": "default",
+  "source_document": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\send\\1404-1188.pdf",
+  "page": 1,
+  "saved_at": "2026-10-21T20:03:42",
+  "page_size_px": [
+    1406,
+    1988
+  ],
+  "regions": [
+    {
+      "id": "R001",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_date",
+      "bbox": [
+        231.39,
+        69.31,
+        350.61,
+        113.68
+      ],
+      "bbox_normalized": [
+        0.164572,
+        0.034866,
+        0.249369,
+        0.057185
+      ],
+      "source_before_save": "template_aligned",
+      "user_modified": true,
+      "group": "Memory",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R002",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_reference",
+      "bbox": [
+        182.87,
+        122.0,
+        343.69,
+        158.05
+      ],
+      "bbox_normalized": [
+        0.130067,
+        0.061368,
+        0.244443,
+        0.079502
+      ],
+      "source_before_save": "template_aligned",
+      "user_modified": true,
+      "group": "Memory",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    }
+  ]
+}

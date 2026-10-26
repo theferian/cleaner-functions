@@ -1,0 +1,13 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\RUN_GENERAL_DOCUMENT_BATCH_V03.py", "--project", "EYV", "--run-id", "eyv_20261022T193525", "--workbook", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\demo_review\\DEMO_14050730\\projects\\EYV\\source\\2_EYV_LATEST_GENERAL_DOC_14050730.xlsx", "--status-date", "1405/07/30", "--non-interactive"]
+
+[OK] M_LINE (already reviewed)
+[OK] DOCUMENT_BOUNDARIES (already reviewed)
+[OK] CARD_MAP (already reviewed)
+[OK] SLOT_SCHEMA (already reviewed)
+[OK] FIELD_VALIDATION (already reviewed)
+[OK] IDENTIFIERS (already reviewed)
+[RUN] Board->Log
+[BOARD->LOG] records=723 issues=0
+[RUN] Coverage Audit
+
+EXIT_CODE: 1

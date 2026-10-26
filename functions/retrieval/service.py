@@ -445,3 +445,8 @@ def write_retrieval_manifest(
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path
+
+
+# CLEANER_GENERAL_DOC_ABSOLUTE_LINKS_V071
+from cleaner_v07.links import wrap_retrieval as _absolute_links_wrapper
+retrieve_document = _absolute_links_wrapper(retrieve_document)

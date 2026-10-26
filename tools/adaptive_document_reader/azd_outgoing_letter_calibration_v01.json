@@ -1,0 +1,30 @@
+{
+  "schema": "adaptive-reader.visual-calibration/0.1",
+  "profile_id": "AZD_OUTGOING_CORRESPONDENCE_SCREENSHOT_V01",
+  "document_family": "ENGINEERING_CORRESPONDENCE_OUTGOING",
+  "source": "User-provided Adaptive Reader target screenshot, 2026-10-20",
+  "quality": "HUMAN_REFERENCE_UNREVIEWED",
+  "page_crop_in_screenshot": [309, 149, 758, 783],
+  "note": "Coordinates measured approximately from the provided application screenshot. These are layout hypotheses, NOT approved extraction rules. Do not use them to verify dates or references. They apply only to page 1 of the AZD example until reviewed.",
+  "target_pages": [
+    {
+      "page": 1,
+      "aspect_ratio": 0.708,
+      "elements": [
+        {"role": "Header reference / date / attachment", "type": "form_field", "screenshot_bbox": [351, 158, 450, 230], "field_id": "letter_header_metadata"},
+        {"role": "Logo", "type": "image", "screenshot_bbox": [632, 163, 748, 227], "field_id": "organization_logo"},
+        {"role": "Recipient organization and title", "type": "text_block", "screenshot_bbox": [539, 233, 732, 252], "field_id": "recipient_org_title"},
+        {"role": "Recipient name", "type": "text_block", "screenshot_bbox": [553, 257, 732, 276], "field_id": "recipient_name"},
+        {"role": "Subject", "type": "title", "screenshot_bbox": [348, 282, 731, 305], "field_id": "subject"},
+        {"role": "Subject continuation", "type": "text_block", "screenshot_bbox": [381, 308, 728, 327], "field_id": "subject_continuation"},
+        {"role": "Greeting", "type": "text_block", "screenshot_bbox": [349, 331, 734, 353], "field_id": "greeting"},
+        {"role": "Main Message", "type": "text_block", "screenshot_bbox": [349, 354, 733, 427], "field_id": "main_message"},
+        {"role": "Blessing / closing", "type": "text_block", "screenshot_bbox": [459, 442, 721, 464], "field_id": "closing"},
+        {"role": "Signature / stamp", "type": "signature", "screenshot_bbox": [372, 520, 470, 594], "field_id": "signature"},
+        {"role": "Postscript / copies", "type": "text_block", "screenshot_bbox": [446, 613, 735, 642], "field_id": "postscript"},
+        {"role": "Company contact footer", "type": "footer", "screenshot_bbox": [314, 718, 739, 765], "field_id": "contact_footer"},
+        {"role": "Vertical brand / margin", "type": "image", "screenshot_bbox": [311, 158, 347, 715], "field_id": "vertical_brand", "optional": true}
+      ]
+    }
+  ]
+}

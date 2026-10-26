@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "AZD": {"mode": "registered", "alias": "Azad"},
+    "JND": {"mode": "registered", "alias": "Jondi Shapoor"},
+    "FSH": {"mode": "registered", "alias": "SHY / Shahriyar"},
+    "NGN": {"mode": "path", "alias": "Negin", "path": "W:\\00-1403\\1403-02-04-Negin Boushehr\\Letter\\technical\\پست سیار(جلسه فنی)\\General - Negin.xlsx"},
+    "YSK": {"mode": "registered", "alias": "Yasookand"},
+    "EYV": {"mode": "registered", "alias": "Ivanaki"},
+    "BFG": {"mode": "registered", "alias": "Bafgh Kasra"},
+    "NKH": {"mode": "registered", "alias": "Nakhlestan"}
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "adaptive-document-example/v0.6",
+  "family": "default",
+  "source_document": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\send\\1404-1116.pdf",
+  "page": 1,
+  "saved_at": "2026-10-21T13:00:52",
+  "page_size_px": [
+    1406,
+    1988
+  ],
+  "regions": [
+    {
+      "id": "R001",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_date",
+      "bbox": [
+        231.5,
+        69.31,
+        350.72,
+        113.67
+      ],
+      "bbox_normalized": [
+        0.164653,
+        0.034865,
+        0.249444,
+        0.057179
+      ],
+      "source_before_save": "user_added",
+      "user_modified": true,
+      "group": "",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R002",
+      "layout_type": "form_field",
+      "role": "EXTRACT:letter_reference",
+      "bbox": [
+        182.98,
+        121.99,
+        343.79,
+        158.03
+      ],
+      "bbox_normalized": [
+        0.130145,
+        0.061363,
+        0.244514,
+        0.079492
+      ],
+      "source_before_save": "user_added",
+      "user_modified": true,
+      "group": "",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    }
+  ]
+}

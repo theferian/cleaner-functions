@@ -1,0 +1,13 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py", "prepare-general-doc", "--project", "EYV", "--overwrite"]
+
+[PREPARE] Project      : EYV
+[PREPARE] Source       : W:\00-1401\140102-09- 63kv Ivanaki\letter\technical\updated Doc\General-IVANAKI.xlsx
+[PREPARE] Retrieved    : input\2_EYV_LATEST_GENERAL_DOC_14050730.xlsx
+[PREPARE] Manifest     : input\EYV_retrieval_manifest.json
+[PREPARE] Profile      : C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\profiles\EYV.profile.json (existing_profile_kept)
+[PREPARE] Workbook sheets:
+          [DATA] 'IVANAKI': rows=340, cols=25, identifier_rows=152, board_cells=582, headers=send,receive,rev
+[PREPARE] Next         :
+          python ./pipeline/project_pipeline.py --project EYV --stage M_LINE --new-run
+
+EXIT_CODE: 0

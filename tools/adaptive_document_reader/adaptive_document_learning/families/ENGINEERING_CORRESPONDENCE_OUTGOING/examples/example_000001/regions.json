@@ -1,0 +1,312 @@
+{
+  "schema": "adaptive-document-example/v0.6",
+  "family": "ENGINEERING_CORRESPONDENCE_OUTGOING",
+  "source_document": "W:\\00-1403\\1403-02-05-230kV Azad\\Letter\\technical\\send\\1404-3003.pdf",
+  "page": 1,
+  "saved_at": "2026-10-20T18:51:53",
+  "page_size_px": [
+    1406,
+    1988
+  ],
+  "regions": [
+    {
+      "id": "R001",
+      "layout_type": "form_field",
+      "role": "Header reference / date / attachment",
+      "bbox": [
+        131.52,
+        28.22,
+        441.53,
+        253.99
+      ],
+      "bbox_normalized": [
+        0.093541,
+        0.014196,
+        0.314031,
+        0.12776
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R002",
+      "layout_type": "image",
+      "role": "Logo",
+      "bbox": [
+        1011.44,
+        43.9,
+        1374.69,
+        244.58
+      ],
+      "bbox_normalized": [
+        0.719376,
+        0.022082,
+        0.977728,
+        0.123028
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R003",
+      "layout_type": "text_block",
+      "role": "Recipient organization and title",
+      "bbox": [
+        720.22,
+        263.39,
+        1324.58,
+        322.97
+      ],
+      "bbox_normalized": [
+        0.512249,
+        0.132492,
+        0.942094,
+        0.162461
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R004",
+      "layout_type": "text_block",
+      "role": "Recipient name",
+      "bbox": [
+        764.06,
+        338.65,
+        1324.58,
+        398.23
+      ],
+      "bbox_normalized": [
+        0.54343,
+        0.170347,
+        0.942094,
+        0.200315
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R005",
+      "layout_type": "title",
+      "role": "Subject",
+      "bbox": [
+        122.12,
+        417.04,
+        1321.45,
+        489.16
+      ],
+      "bbox_normalized": [
+        0.08686,
+        0.209779,
+        0.939866,
+        0.246057
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R006",
+      "layout_type": "text_block",
+      "role": "Subject continuation",
+      "bbox": [
+        225.46,
+        498.57,
+        1312.06,
+        558.15
+      ],
+      "bbox_normalized": [
+        0.160356,
+        0.250789,
+        0.933185,
+        0.280757
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R007",
+      "layout_type": "text_block",
+      "role": "Greeting",
+      "bbox": [
+        125.26,
+        570.69,
+        1330.85,
+        639.67
+      ],
+      "bbox_normalized": [
+        0.089087,
+        0.287066,
+        0.946548,
+        0.321767
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": false,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R008",
+      "layout_type": "text_block",
+      "role": "Main Message",
+      "bbox": [
+        125.26,
+        642.81,
+        1327.71,
+        871.71
+      ],
+      "bbox_normalized": [
+        0.089087,
+        0.323344,
+        0.944321,
+        0.438486
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": false,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R009",
+      "layout_type": "text_block",
+      "role": "Blessing / closing",
+      "bbox": [
+        469.71,
+        918.74,
+        1290.14,
+        987.73
+      ],
+      "bbox_normalized": [
+        0.334076,
+        0.462145,
+        0.917595,
+        0.496845
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R010",
+      "layout_type": "signature",
+      "role": "Signature / stamp",
+      "bbox": [
+        197.28,
+        1163.32,
+        504.16,
+        1395.36
+      ],
+      "bbox_normalized": [
+        0.140312,
+        0.585174,
+        0.358575,
+        0.701893
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R011",
+      "layout_type": "text_block",
+      "role": "Postscript / copies",
+      "bbox": [
+        429.0,
+        1454.94,
+        1333.98,
+        1545.87
+      ],
+      "bbox_normalized": [
+        0.305122,
+        0.731861,
+        0.948775,
+        0.777603
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R012",
+      "layout_type": "footer",
+      "role": "Company contact footer",
+      "bbox": [
+        15.66,
+        1784.18,
+        1346.5,
+        1931.56
+      ],
+      "bbox_normalized": [
+        0.011136,
+        0.897476,
+        0.957684,
+        0.971609
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    },
+    {
+      "id": "R013",
+      "layout_type": "image",
+      "role": "Vertical brand / margin",
+      "bbox": [
+        110.75,
+        28.22,
+        223.48,
+        1774.78
+      ],
+      "bbox_normalized": [
+        0.078767,
+        0.014196,
+        0.158945,
+        0.892744
+      ],
+      "source_before_save": "screenshot_calibration_reviewed_by_user",
+      "user_modified": true,
+      "group": "Calibration targets — REVIEW BEFORE LEARNING",
+      "visible": true,
+      "locked": false,
+      "angle": 0.0
+    }
+  ]
+}

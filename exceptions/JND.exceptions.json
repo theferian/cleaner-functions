@@ -2,7 +2,7 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "JND",
   "created_at": "2026-10-07T02:20:38",
-  "updated_at": "2026-10-18T00:51:44",
+  "updated_at": "2026-10-22T19:45:47",
   "next_sequence": 7,
   "cases": [
     {
@@ -278,8 +278,8 @@
         "field_role": "receive_date"
       },
       "first_seen_at": "2026-10-07T03:11:05",
-      "last_seen_at": "2026-10-07T03:11:05",
-      "detection_count": 1,
+      "last_seen_at": "2026-10-22T19:45:12",
+      "detection_count": 3,
       "source": {
         "first_review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
         "first_run_id": "jnd_20261007T022038"
@@ -331,12 +331,30 @@
       "tags": [
         "field_validation",
         "date_chronology",
-        "investigate"
+        "investigate",
+        "receive_date",
+        "auto-tracked"
       ],
       "owner": "",
       "last_review_id": "FIELD_VALIDATION_List_of_Document_E301_10e69581faed",
-      "last_run_id": "jnd_20261007T022038",
-      "message": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301."
+      "last_run_id": "jnd_20261022T194407",
+      "message": "Receive date 1404/05/06 at List of Document!E301 precedes send date 1404/05/07 at List of Document!D301.",
+      "last_seen_run_id": "jnd_20261022T194407",
+      "evidence": {
+        "field_role": "receive_date",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "document_region": "301:302",
+        "transaction_index": 0,
+        "send_target": "D301",
+        "send_date": "1404/05/07",
+        "receive_date": "1404/05/06",
+        "document_identity": {
+          "record_index": 107,
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING ELECTRICAL CALCULATION"
+        },
+        "document_relative_target": "E+0"
+      }
     },
     {
       "handle": "JND-EXC-0006",
@@ -349,8 +367,8 @@
         "field_role": "receive_date"
       },
       "first_seen_at": "2026-10-07T03:11:22",
-      "last_seen_at": "2026-10-07T03:11:22",
-      "detection_count": 1,
+      "last_seen_at": "2026-10-22T19:45:12",
+      "detection_count": 3,
       "source": {
         "first_review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
         "first_run_id": "jnd_20261007T022038"
@@ -393,12 +411,30 @@
       "tags": [
         "field_validation",
         "date_chronology",
-        "investigate"
+        "investigate",
+        "receive_date",
+        "auto-tracked"
       ],
       "owner": "",
       "last_review_id": "FIELD_VALIDATION_List_of_Document_E303_b934c5cb5d22",
-      "last_run_id": "jnd_20261007T022038",
-      "message": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303."
+      "last_run_id": "jnd_20261022T194407",
+      "message": "Receive date 1404/05/06 at List of Document!E303 precedes send date 1404/05/07 at List of Document!D303.",
+      "last_seen_run_id": "jnd_20261022T194407",
+      "evidence": {
+        "field_role": "receive_date",
+        "audit_kind": "DATE_CHRONOLOGY",
+        "document_region": "303:304",
+        "transaction_index": 0,
+        "send_target": "D303",
+        "send_date": "1404/05/07",
+        "receive_date": "1404/05/06",
+        "document_identity": {
+          "record_index": 108,
+          "document_type": "CIVIL",
+          "name": "BCR BUILDING MECHANICAL CALCULATION"
+        },
+        "document_relative_target": "E+0"
+      }
     }
   ]
 }

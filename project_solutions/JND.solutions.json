@@ -40,13 +40,13 @@
       },
       "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E87; observed='14040/08/13'.",
       "created_at": "2026-10-07T03:09:56",
-      "updated_at": "2026-10-07T03:16:27",
+      "updated_at": "2026-10-22T19:45:12",
       "times_confirmed": 1,
       "source": {
-        "run_id": "jnd_20261007T022038",
+        "run_id": "jnd_20261022T194407",
         "review_id": "FIELD_VALIDATION_List_of_Document_E87_83b77ace82df",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "JND-SOL-0001"
       },
       "history": []
     },
@@ -87,13 +87,13 @@
       },
       "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E89; observed='14040/08/13'.",
       "created_at": "2026-10-07T03:10:18",
-      "updated_at": "2026-10-07T03:16:27",
+      "updated_at": "2026-10-22T19:45:12",
       "times_confirmed": 1,
       "source": {
-        "run_id": "jnd_20261007T022038",
+        "run_id": "jnd_20261022T194407",
         "review_id": "FIELD_VALIDATION_List_of_Document_E89_e1b5adddbbb7",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "JND-SOL-0002"
       },
       "history": []
     },
@@ -134,13 +134,13 @@
       },
       "reason": "Global date audit found invalid Jalali-like token(s) ['14040/08/13'] at List of Document!E91; observed='14040/08/13'.",
       "created_at": "2026-10-07T03:10:48",
-      "updated_at": "2026-10-07T03:16:27",
+      "updated_at": "2026-10-22T19:45:12",
       "times_confirmed": 1,
       "source": {
-        "run_id": "jnd_20261007T022038",
+        "run_id": "jnd_20261022T194407",
         "review_id": "FIELD_VALIDATION_List_of_Document_E91_ea3c9119c44b",
-        "decision_origin": "HUMAN_REVIEW",
-        "project_solution_handle": null
+        "decision_origin": "PROJECT_SOLUTION",
+        "project_solution_handle": "JND-SOL-0003"
       },
       "history": []
     },

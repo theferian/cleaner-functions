@@ -1,0 +1,13 @@
+COMMAND: ["C:\\Users\\f.tehrani\\AppData\\Local\\Programs\\Python\\Python314\\python.exe", "C:\\Users\\f.tehrani\\Desktop\\Weekly Report Golden\\cleaner-functions\\pipeline\\weekly_report_pipeline.py", "prepare-general-doc", "--project", "YSK", "--overwrite"]
+
+[PREPARE] Project      : YSK
+[PREPARE] Source       : W:\00-1400\140002-03- 63kv hasan abad yasookand\letter\technical\updated Doc\Yasookand-General.xlsx
+[PREPARE] Retrieved    : input\1_YSK_LATEST_GENERAL_DOC_14050730.xlsx
+[PREPARE] Manifest     : input\YSK_retrieval_manifest.json
+[PREPARE] Profile      : C:\Users\f.tehrani\Desktop\Weekly Report Golden\cleaner-functions\profiles\YSK.profile.json (existing_profile_kept)
+[PREPARE] Workbook sheets:
+          [DATA] 'Yasookand': rows=644, cols=30, identifier_rows=264, board_cells=582, headers=send,receive,rev
+[PREPARE] Next         :
+          python ./pipeline/project_pipeline.py --project YSK --stage M_LINE --new-run
+
+EXIT_CODE: 0

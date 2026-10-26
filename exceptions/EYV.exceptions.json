@@ -2,7 +2,7 @@
   "schema": "cleaner.exception_registry/0.1",
   "profile_name": "EYV",
   "created_at": "2026-10-17T02:08:20",
-  "updated_at": "2026-10-18T04:48:46",
+  "updated_at": "2026-10-22T19:40:41",
   "next_sequence": 2,
   "cases": [
     {
@@ -16,7 +16,7 @@
         "field_role": "receive_date"
       },
       "first_seen_at": "2026-10-17T02:19:36",
-      "detection_count": 1,
+      "detection_count": 2,
       "source": {
         "first_run_id": "eyv_20261017T020820",
         "origin": "AUTO_TRACK_POLICY"
@@ -62,9 +62,9 @@
         },
         "document_relative_target": "F+0"
       },
-      "last_run_id": "eyv_20261017T020820",
-      "last_seen_run_id": "eyv_20261017T020820",
-      "last_seen_at": "2026-10-17T02:19:36"
+      "last_run_id": "eyv_20261022T193525",
+      "last_seen_run_id": "eyv_20261022T193525",
+      "last_seen_at": "2026-10-22T19:36:46"
     }
   ]
 }
